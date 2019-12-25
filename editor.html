@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Editor</title>
+  <style type="text/css" media="screen">
+    body {
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+    }
+
+    #editor {
+      height: 100%;
+      width: 75%;
+    }
+
+    #code {
+      height: 100%;
+      width: 25%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button id="run">run</button>
+  <div class="container">
+    <pre id="editor"> </pre>
+    <iframe id="code"></iframe>
+
+  </div>
+
+  <script src="ace.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/html");
+    document.getElementById('editor').style.fontSize = '16px';
+
+    var iframe = document.getElementById("code");
+
+
+    var result;
+    editor.session.on('change', function (delta) {
+      // delta.start, delta.end, delta.lines, delta.action
+
+      result = editor.getValue();
+    });
+
+
+    document.getElementById('run').addEventListener('click', () => {
+      iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(result);
+    })
+
+  </script>
+  <script type="text/javascript" src="app.js"></script>
+</body>
+
+</html>
