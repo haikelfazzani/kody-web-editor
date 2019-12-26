@@ -1,0 +1,74 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "boilerplate.",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "scripts": {
+    "test": "jest",
+    "pretty": "prettier --write '**/*.ts'",
+    "lint": "tsc --noEmit && eslint 'src/**/*.{js,ts,tsx}' --fix",
+    "serve": "forever start ./node_modules/http-server/bin/http-server ./ -p 8080",
+    "dev": "rollup -c rollup.config.js --watch",
+    "build": "rollup -c rollup.config.js",
+    "prepublishOnly": "rm -rf dist && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haikelfazzani/boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/haikelfazzani/boilerplate/issues"
+  },
+  "homepage": "https://github.com/haikelfazzani/boilerplate",
+  "files": [
+    "/dist"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc --noEmit && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "keywords": [],
+  "author": "Haikel Fazzani <haikel.fazzani@zoho.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/expect-puppeteer": "^3.3.3",
+    "@types/jest": "^24.0.23",
+    "@types/jest-environment-puppeteer": "^4.3.1",
+    "@types/puppeteer": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "forever": "^1.0.0",
+    "http-server": "^0.12.0",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "jest-puppeteer": "^4.3.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1",
+    "puppeteer": "^2.0.0",
+    "rollup": "^1.27.13",
+    "rollup-plugin-babel-minify": "^9.1.1",
+    "rollup-plugin-dev": "^1.1.1",
+    "rollup-plugin-inline-svg": "^1.1.1",
+    "rollup-plugin-livereload": "^1.0.4",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "ts-jest": "^24.2.0",
+    "ts-loader": "^6.2.1",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "ace-builds": "^1.4.7"
+  }
+}
