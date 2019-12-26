@@ -13,29 +13,27 @@ editor.setOptions({
 
 var iframeElement = document.getElementById("code");
 var editorElement = document.getElementById('editor');
+var checkLiveCode = document.getElementById('livecode')
+var userCode = '';
 
 var editorConfig = {
-  defaultFontSize: 18
+  defaultFontSize: 18,
+  liveCode: false,
+  codeSave: ''
 };
 
-/** Font size */
-editorElement.style.fontSize = editorConfig.defaultFontSize + 'px';
-document.getElementById('btn-font-plus').addEventListener('click', () => {
-  editorConfig.defaultFontSize++;
-  editorElement.style.fontSize = editorConfig.defaultFontSize + 'px';
-})
+// init
+(function () {  
+  if (localStorage.getItem('editor-config')) {
+    editorConfig = JSON.parse(localStorage.getItem('editor-config'));
+    checkLiveCode.checked = editorConfig.liveCode;
+  }
 
-document.getElementById('btn-font-minus').addEventListener('click', () => {
-  editorConfig.defaultFontSize--;
-  editorElement.style.fontSize = editorConfig.defaultFontSize + 'px';
-})
-
-/** get saved code from localStorage */
-var userCode = '';
-if (localStorage.getItem('code-save')) {
-  userCode = JSON.parse(localStorage.getItem('code-save'))
-} else {
-  userCode = `
+  /** get saved code from localStorage */  
+  if (localStorage.getItem('code-save')) {
+    userCode = JSON.parse(localStorage.getItem('code-save'))
+  } else {
+    userCode = `
 <button id="btn">click</button>
 <p id="res"></p>
 <script>
@@ -43,31 +41,8 @@ document.getElementById('btn').addEventListener('click' , () =>{
     document.getElementById('res').textContent = 'hello world'
 })
 </script>`;
-}
+  }
 
-editor.setValue(userCode);
-iframeElement.src = 'data:text/html;charset=utf-8,' + encodeURI(userCode);
-
-editor.session.on('change', function (delta) {
-  userCode = editor.getValue();
-});
-
-/** btn run in nav : run code */
-document.getElementById('btn-run').addEventListener('click', () => {
+  editor.setValue(userCode);
   iframeElement.src = 'data:text/html;charset=utf-8,' + encodeURI(userCode);
-}, false)
-
-/** save code into localstorage */
-document.getElementById('btn-save').addEventListener('click', () => {
-  localStorage.setItem('code-save', JSON.stringify(userCode))
-}, false)
-
-/**  btn download in nav : download code */
-document.getElementById('btn-download').addEventListener('click', () =>{
-  downloadAsFile('code.js', userCode)
-}, false)
-
-/**  btn clear in nav : clear editor */
-document.getElementById('btn-clear').addEventListener('click', () =>{
-  editor.setValue('');
-}, false)
+})()

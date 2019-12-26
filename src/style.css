@@ -1,17 +1,51 @@
-.container-fluid {background-color: #2f3129;}
+.container-fluid {
+  background-color: #2f3129;
+}
 
-.col-md-4,.col-md-8{padding: 0;}
+.col-md-4,
+.col-md-8 {
+  padding: 0;
+}
 
-#code, #editor {
+#code,
+#editor {
   height: 90vh;
   width: 100%;
   margin: 0;
   border: none;
 }
 
-#code {background-color: #fefefe;}
+#code {
+  background-color: #fefefe;
+}
 
 .navbar {
   background-color: #232323 !important;
-  box-shadow: -3px 2rem 9rem 0px rgb(0, 0, 0), inset 0 -1px 17px 2px rgba(0, 0, 0, .1); }
-.dropdown-item,.btn { font-size: 14px; font-weight: 600; text-transform: uppercase;}
+  box-shadow: -3px 2rem 9rem 0px rgb(0, 0, 0), inset 0 -1px 17px 2px rgba(0, 0, 0, .1);
+}
+
+label,
+.dropdown-item,
+.btn {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+label {
+  color: #ffffff !important;
+}
+
+.form-check {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-check label {
+  margin: 0 !important;
+  padding: 0;
+}
