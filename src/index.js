@@ -55,19 +55,19 @@ editor.session.on('change', function (delta) {
 /** btn run in nav : run code */
 document.getElementById('btn-run').addEventListener('click', () => {
   iframeElement.src = 'data:text/html;charset=utf-8,' + encodeURI(userCode);
-})
+}, false)
 
 /** save code into localstorage */
 document.getElementById('btn-save').addEventListener('click', () => {
   localStorage.setItem('code-save', JSON.stringify(userCode))
-})
+}, false)
 
 /**  btn download in nav : download code */
 document.getElementById('btn-download').addEventListener('click', () =>{
   downloadAsFile('code.js', userCode)
-})
+}, false)
 
 /**  btn clear in nav : clear editor */
 document.getElementById('btn-clear').addEventListener('click', () =>{
   editor.setValue('');
-})
+}, false)

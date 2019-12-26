@@ -6,43 +6,53 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>WEB EDITOR</title>
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="./src/style.css">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-  integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#"><i class="fas fa-terminal"></i> WEB EDITOR</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <button type="button" class="btn btn-success" id="btn-run"><i class="fas fa-play"></i> RUN</button>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            FILE
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <button class="dropdown-item" id="btn-save"><i class="fas fa-save"></i> save</button>
+            <button class="dropdown-item" id="btn-clear"><i class="fas fa-retweet"></i> clear</button>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" id="btn-download"><i class="fas fa-download"></i> download</button>
+          </div>
+        </li>        
       </ul>
 
       <ul class="navbar-nav">
+
         <li class="nav-item mr-3">
-          <div class="btn-group" role="group" aria-label="Basic example">            
+          <button type="button" class="btn btn-success" id="btn-run"><i class="fas fa-play"></i> RUN</button>
+        </li>
+
+        <li class="nav-item mr-3">
+          <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-dark"><i class="fas fa-font"></i></button>
             <button type="button" class="btn btn-dark" id="btn-font-plus"><i class="fas fa-plus"></i></button>
-            <button type="button" class="btn btn-dark" id="btn-font-minus"><i class="fas fa-minus"></i></button>            
+            <button type="button" class="btn btn-dark" id="btn-font-minus"><i class="fas fa-minus"></i></button>
           </div>
         </li>
 
-
-        <li class="nav-item">
-          <div class="btn-group" role="group" aria-label="Basic example">            
-            <button type="button" class="btn btn-warning" id="btn-clear"><i class="fas fa-retweet"></i></button>
-            <button type="button" class="btn btn-warning" id="btn-save"><i class="fas fa-save"></i></button>
-            <button type="button" class="btn btn-warning" id="btn-download"><i class="fas fa-download"></i></button>
-          </div>
-        </li>
       </ul>
 
     </div>
@@ -51,15 +61,17 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-8"><pre id="editor"></pre></div>
+      <div class="col-md-8">
+        <pre id="editor"></pre>
+      </div>
       <div class="col-md-4"><iframe id="code"></iframe></div>
     </div>
   </div>
 
   <script src="https://ajaxorg.github.io/ace-builds/src/ace.js"></script>
-  <script src="./src/api.js"></script>
+  <script type="text/javascript" src="./src/api.js"></script>
   <script type="text/javascript" src="./src/index.js" defer></script>
-  
+  <script type="text/javascript" src="./src/custom.js" defer></script>
 </body>
 
 </html>
