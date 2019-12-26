@@ -52,6 +52,7 @@ editor.session.on('change', function (delta) {
   userCode = editor.getValue();
 });
 
+/** btn run in nav : run code */
 document.getElementById('btn-run').addEventListener('click', () => {
   iframeElement.src = 'data:text/html;charset=utf-8,' + encodeURI(userCode);
 })
@@ -59,4 +60,14 @@ document.getElementById('btn-run').addEventListener('click', () => {
 /** save code into localstorage */
 document.getElementById('btn-save').addEventListener('click', () => {
   localStorage.setItem('code-save', JSON.stringify(userCode))
+})
+
+/**  btn download in nav : download code */
+document.getElementById('btn-download').addEventListener('click', () =>{
+  downloadAsFile('code.js', userCode)
+})
+
+/**  btn clear in nav : clear editor */
+document.getElementById('btn-clear').addEventListener('click', () =>{
+  editor.setValue('');
 })
