@@ -25,12 +25,10 @@ editor.setValue(result);
 iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(result);
 
 editor.session.on('change', function (delta) {
-  // delta.start, delta.end, delta.lines, delta.action
-
   result = editor.getValue();
 });
 
 
-document.getElementById('run').addEventListener('click', () => {
+document.getElementById('btn-run').addEventListener('click', () => {
   iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(result);
 })
