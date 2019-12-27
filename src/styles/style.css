@@ -1,4 +1,4 @@
-.container-fluid {
+body, .container-fluid {
   background-color: #2f3129;
 }
 
@@ -12,7 +12,7 @@
 #editor-html,
 #editor-css,
 #editor-js {
-  height: 85vh;
+  height: 84vh;
   width: 100%;
   margin: 0;
   border: none;
@@ -22,8 +22,9 @@
   background-color: #fefefe;
   height: 100%;
   width: 100%;
+  border: none;
 }
-
+/*   */
 .navbar {
   background-color: #232323 !important;
   box-shadow: -3px 2rem 9rem 0px rgb(0, 0, 0), inset 0 -1px 17px 2px rgba(0, 0, 0, .1);
@@ -32,7 +33,7 @@
 label,
 .dropdown-item,
 .btn {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -61,10 +62,20 @@ label {
 }
 
 /* tabs */
-li.active {
-  background-color: #2f3129;
+#nav-tab li.active {
+  background-color: #44443e;
+}
+
+#nav-tab li {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+#nav-tab li a {
+  color: #dadada !important;
 }
 
 #nav-tab {
-   border-bottom: none;
+  border-bottom: 3px solid #232323;
+  background-color: #1a1818;
 }
