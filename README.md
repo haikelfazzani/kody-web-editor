@@ -8,3 +8,5 @@
 - [ ] resize view and editor
 - [ ] live mode
 - [ ] preview console
+- [ ] share code
+- [ ] add dependencies (react, bootstrap ..etc..)
