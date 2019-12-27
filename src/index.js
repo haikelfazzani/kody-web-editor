@@ -1,10 +1,13 @@
-var editorHTML = ace.edit("editor-html");
-var editorCSS = ace.edit("editor-css");
-var editorJS = ace.edit("editor-js");
+const [editorHTML, editorCSS, editorJS] = [
+  ace.edit("editor-html"),
+  ace.edit("editor-css"),
+  ace.edit("editor-js")
+];
+const editors = [editorHTML, editorCSS, editorJS];
+const iframeElement = document.getElementById("code");
+var editorConfig = {};
 
-var editors = [editorHTML, editorCSS, editorJS];
 ace.require("ace/ext/language_tools");
-
 editorHTML.session.setMode("ace/mode/html")
 editorCSS.session.setMode("ace/mode/css")
 editorJS.session.setMode("ace/mode/javascript")
@@ -18,13 +21,8 @@ editors.forEach(e => {
     autoScrollEditorIntoView: true,
     copyWithEmptySelection: true,
   });
-  e.session.setUseWrapMode(true);  
+  e.session.setUseWrapMode(true);
 })
-
-
-// init
-var iframeElement = document.getElementById("code");
-var editorConfig = {};
 
 /** get saved editor config */
 if (localStorage.getItem('editor-config')) {
@@ -38,12 +36,12 @@ else {
       html: '<p id="para">just text</p>',
       css: 'p { color: blue; }',
       js: `
-  window.onload = () => {
-    const para = document.getElementById('para');
-    para.addEventListener('click', () => {
-      para.textContent = "hello world";
-    });
-  };`
+window.onload = () => {
+  const para = document.getElementById('para');
+  para.addEventListener('click', () => {
+    para.textContent = "hello world";
+  });
+};`
     }
   };
 }
@@ -65,7 +63,8 @@ editorJSElement.style.fontSize = editorConfig.defaultFontSize + 'px';
 iframeElement.src = getGeneratedPageURL(editorConfig.codeSave);
 
 // live mode
-var checkLiveCode = document.getElementById('livecode')
+const checkLiveCode = document.getElementById('livecode');
+checkLiveCode.checked = editorConfig.liveCode;
 
 // editors.forEach(e => {
 //   e.session.on('change', function (delta) {
@@ -80,11 +79,9 @@ var checkLiveCode = document.getElementById('livecode')
 
 /** btn run in nav : run code */
 document.getElementById('btn-run').addEventListener('click', () => {
-
   iframeElement.src = getGeneratedPageURL({
     html: editorHTML.getValue(),
     css: editorCSS.getValue(),
     js: editorJS.getValue()
   });
-
 }, false)

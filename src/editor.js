@@ -1,16 +1,19 @@
 /** save editor config */
 function saveConfigs () {
-  editorConfig.codeSave = {
-    html: editorHTML.getValue(),
-    css: editorCSS.getValue(),
-    js: editorJS.getValue()
+  editorConfig = {
+    defaultFontSize: editorConfig.defaultFontSize,
+    liveCode: checkLiveCode.checked,
+    codeSave: {
+      html: editorHTML.getValue(),
+      css: editorCSS.getValue(),
+      js: editorJS.getValue()
+    }
   };
   localStorage.setItem('editor-config', JSON.stringify(editorConfig))
 }
 
 /** live code */
 checkLiveCode.addEventListener('change', (e) => {
-  editorConfig.liveCode = checkLiveCode.checked;
   saveConfigs()
 })
 
