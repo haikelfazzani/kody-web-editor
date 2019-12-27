@@ -1,12 +1,21 @@
 ## Online web editor
 
+if nothing appear in console try to :
+- save code (Ctrl + s)
+- then click run (Ctrl + r)
+
 ### Commands
-- win: 'Ctrl-r', mac: 'Command-r' : run code
-- win: 'Ctrl-s', mac: 'Command-s' : save code
+- [x] win: 'Ctrl-r', mac: 'Command-r' : run code
+- [x] win: 'Ctrl-s', mac: 'Command-s' : save code
+- [ ] win: 'Ctrl-w', mac: 'Command-w' : download code
+- [ ] win: 'Ctrl-1', mac: 'Command-t' : clear code
+
+- [x] win: 'Ctrl-o', mac: 'Command-o' : open close console
 
 ### TODO
-- [ ] resize view and editor
+- [ ] resize console
+- [x] resize view and editor
 - [ ] live mode
-- [ ] preview console
+- [x] preview console
 - [ ] share code
 - [ ] add dependencies (react, bootstrap ..etc..)

@@ -30,7 +30,10 @@
       <ul class="navbar-nav">
 
         <li class="nav-item mr-3">
-          <button type="button" class="btn btn-success" id="btn-run"><i class="fas fa-play"></i> RUN</button>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-success" id="btn-run"><i class="fas fa-play"></i> RUN</button>
+            <button type="button" class="btn btn-dark" id="btn-console"><i class="fas fa-terminal"></i> console</button>
+          </div>
         </li>
 
         <li class="nav-item mr-3">
@@ -78,7 +81,7 @@
 
     <!-- Tab panes -->
     <div id="flex-sc">
-      
+
       <div class="tab-content" id="tab-content">
         <div class="tab-pane active" id="html">
           <pre id="editor-html"></pre>
@@ -94,16 +97,29 @@
       </div>
 
       <iframe id="code"></iframe>
-    </div>
 
 
-    <script src="https://ajaxorg.github.io/ace-builds/src-noconflict/ace.js"></script>
-    <script type="text/javascript" src="./src/api.js"></script>
-    <script type="text/javascript" src="./src/tabs.js" defer></script>
-    <script type="text/javascript" src="./src/index.js" defer></script>
-    <script type="text/javascript" src="./src/editor.js" defer></script>
-    <script type="text/javascript" src="./src/custom.js" defer></script>
-    <script type="text/javascript" src="./src/editor-commands.js" defer></script>
+      <div class="console-wrapper">
+        <div>
+          <p class="text-muted">console</p>
+          <button class="btn btn-dark" id="close-console">close</button>
+        </div>
+        <iframe id="iframe-console" src="" frameborder="0"></iframe>
+      </div>
+    </div>    
+  </div>
+
+  
+
+  <script src="https://ajaxorg.github.io/ace-builds/src-noconflict/ace.js"></script>
+  <script type="text/javascript" src="./src/api.js"></script>
+  <script type="text/javascript" src="./src/tabs.js" defer></script>
+  <script type="text/javascript" src="./src/init.js" defer></script>
+  <script type="text/javascript" src="./src/editor.js" defer></script>
+  <script type="text/javascript" src="./src/custom.js" defer></script>
+  <script type="text/javascript" src="./src/editor-commands.js" defer></script>
+
+  <script type="text/javascript" src="./src/console.js" defer></script>
 </body>
 
 </html>

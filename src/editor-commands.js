@@ -22,4 +22,16 @@ editors.forEach(e => {
     },
     readOnly: true // false if this command should not apply in readOnly mode
   });
+
+  // save code
+  e.commands.addCommand({
+    name: 'opencloseconsole',
+    bindKey: { win: 'Ctrl-o', mac: 'Command-o' },
+    exec: function (editor) {
+      const ifCons = document.querySelector('.console-wrapper');
+  ifCons.style.display = ifCons.style.display === 'block' ? 'none' : 'block';
+    },
+    readOnly: true // false if this command should not apply in readOnly mode
+  });
+
 })

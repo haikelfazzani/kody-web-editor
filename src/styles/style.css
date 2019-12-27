@@ -1,14 +1,15 @@
 body,
 .container-fluid {
-  background-color: #111518;
+  background-color: #272822;
+  /*2f3129*/
   margin: 0;
   padding: 0;
 }
 
 /*   */
 .navbar {
-  background-color: rgb(28, 32, 34) !important;
-  border-bottom: 1px solid rgb(17, 21, 24);
+  background-color: #272822 !important;
+  border-bottom: none;
   box-shadow: -3px 2rem 9rem 0px rgb(0, 0, 0), inset 0 -1px 17px 2px rgba(0, 0, 0, .1);
 }
 
@@ -48,6 +49,11 @@ label {
   background-color: #44443e;
 }
 
+#nav-tab li a,
+#nav-tab li a:hover {
+  border: none;
+}
+
 #nav-tab li {
   font-size: 12px;
   font-weight: 600;
@@ -65,6 +71,7 @@ label {
 
 /*_________________________*/
 #flex-sc {
+  position: relative;
   width: 100%;
   display: flex;
 }
@@ -91,5 +98,59 @@ label {
 
 .gutter {
   cursor: w-resize;
-  background-color: #1c2022;
+  background-color: #272822;
+}
+
+/* console */
+.console-wrapper {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 300px;
+  width: 100%;
+  display: none;
+  color: #ffffff;
+  background-color: #1b1b1a !important;
+  z-index: 999;
+}
+
+.console-wrapper>div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.console-wrapper button {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.console-wrapper p {
+  margin: 0;
+  padding: 5px 20px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+#iframe-console {
+  height: 90.2%;
+  width: 100%;
+  background-color: #2f3129 !important;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: #272822;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #44443e;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(54, 56, 58);
 }
