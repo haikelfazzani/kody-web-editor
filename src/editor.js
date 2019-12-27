@@ -1,8 +1,9 @@
-// default font size : 18px
+// get editors elements
 const editorHTMLElement = document.getElementById('editor-html');
 const editorCSSElement = document.getElementById('editor-css');
 const editorJSElement = document.getElementById('editor-js');
 
+// set default font size : 18px
 changeFontSize(editorHTMLElement, editorConfig.defaultFontSize)
 changeFontSize(editorCSSElement, editorConfig.defaultFontSize)
 changeFontSize(editorJSElement, editorConfig.defaultFontSize)

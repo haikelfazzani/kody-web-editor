@@ -24,20 +24,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            FILE
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <button class="dropdown-item" id="btn-save"><i class="fas fa-save"></i> save</button>
-            <button class="dropdown-item" id="btn-clear"><i class="fas fa-retweet"></i> clear</button>
-            <div class="dropdown-divider"></div>
-            <button class="dropdown-item" id="btn-download"><i class="fas fa-download"></i> download</button>
-          </div>
-        </li>
-      </ul>
+      <ul class="navbar-nav mr-auto"></ul>
 
       <ul class="navbar-nav">
 
@@ -50,6 +37,14 @@
             <button type="button" class="btn btn-dark"><i class="fas fa-font"></i></button>
             <button type="button" class="btn btn-dark" id="btn-font-plus"><i class="fas fa-plus"></i></button>
             <button type="button" class="btn btn-dark" id="btn-font-minus"><i class="fas fa-minus"></i></button>
+          </div>
+        </li>
+
+        <li class="nav-item mr-3">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-warning" id="btn-save"><i class="fas fa-save"></i></button>
+            <button type="button" class="btn btn-warning" id="btn-clear"><i class="fas fa-retweet"></i></button>
+            <button type="button" class="btn btn-warning" id="btn-download"><i class="fas fa-download"></i></button>
           </div>
         </li>
 
@@ -80,7 +75,6 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
-
           <div class="tab-pane active" id="html">
             <pre id="editor-html"></pre>
           </div>
@@ -92,7 +86,6 @@
           <div class="tab-pane" id="js">
             <pre id="editor-js"></pre>
           </div>
-
         </div>
       </div>
 

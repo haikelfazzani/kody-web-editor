@@ -9,11 +9,10 @@
   padding: 0;
 }
 
-#code,
 #editor-html,
 #editor-css,
 #editor-js {
-  height: 84vh;
+  height: 85vh;
   width: 100%;
   margin: 0;
   border: none;
@@ -21,6 +20,8 @@
 
 #code {
   background-color: #fefefe;
+  height: 100%;
+  width: 100%;
 }
 
 .navbar {
