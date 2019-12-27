@@ -15,9 +15,6 @@ editorJS.session.setMode("ace/mode/javascript")
 editors.forEach(e => {
   e.setTheme("ace/theme/monokai");
   e.setOptions({
-    enableBasicAutocompletion: true,
-    enableSnippets: true,
-    enableLiveAutocompletion: false,
     autoScrollEditorIntoView: true,
     copyWithEmptySelection: true,
   });
@@ -47,18 +44,9 @@ window.onload = () => {
 }
 
 // default values for editors
-editorHTML.setValue(editorConfig.codeSave.html)
-editorCSS.setValue(editorConfig.codeSave.css)
-editorJS.setValue(editorConfig.codeSave.js)
-
-// default font size : 18px
-const editorHTMLElement = document.getElementById('editor-html');
-const editorCSSElement = document.getElementById('editor-css');
-const editorJSElement = document.getElementById('editor-js');
-
-editorHTMLElement.style.fontSize = editorConfig.defaultFontSize + 'px';
-editorCSSElement.style.fontSize = editorConfig.defaultFontSize + 'px';
-editorJSElement.style.fontSize = editorConfig.defaultFontSize + 'px';
+editorHTML.setValue(editorConfig.codeSave.html || '<p id="para">just text</p>');
+editorCSS.setValue(editorConfig.codeSave.css || 'p { color: blue; }');
+editorJS.setValue(editorConfig.codeSave.js || '// js code');
 
 iframeElement.src = getGeneratedPageURL(editorConfig.codeSave);
 

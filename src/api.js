@@ -11,6 +11,10 @@ function downloadAsFile(filename, text) {
   document.body.removeChild(element);
 }
 
+function changeFontSize (element, newSize) {
+  element.style.fontSize = newSize + 'px';
+}
+
 const getGeneratedPageURL = ({ html, css, js }) => {
   const getBlobURL = (code, type) => {
     const blob = new Blob([code], { type })

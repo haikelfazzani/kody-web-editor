@@ -1,3 +1,12 @@
+// default font size : 18px
+const editorHTMLElement = document.getElementById('editor-html');
+const editorCSSElement = document.getElementById('editor-css');
+const editorJSElement = document.getElementById('editor-js');
+
+changeFontSize(editorHTMLElement, editorConfig.defaultFontSize)
+changeFontSize(editorCSSElement, editorConfig.defaultFontSize)
+changeFontSize(editorJSElement, editorConfig.defaultFontSize)
+
 /** save editor config */
 function saveConfigs () {
   editorConfig = {
@@ -30,22 +39,22 @@ document.getElementById('btn-download').addEventListener('click', () => {
 
 /**  btn clear in nav : clear editor */
 document.getElementById('btn-clear').addEventListener('click', () => {
-  editor.setValue('');
+  editors.forEach(e => { e.setValue(''); });
 }, false)
 
 /** Font size : increase - decrease */
 document.getElementById('btn-font-plus').addEventListener('click', () => {
   editorConfig.defaultFontSize++;
-  editorHTMLElement.style.fontSize = editorConfig.defaultFontSize + 'px';
-  editorCSSElement.style.fontSize = editorConfig.defaultFontSize + 'px';
-  editorJSElement.style.fontSize = editorConfig.defaultFontSize + 'px';
+  changeFontSize(editorHTMLElement, editorConfig.defaultFontSize)
+  changeFontSize(editorCSSElement, editorConfig.defaultFontSize)
+  changeFontSize(editorJSElement, editorConfig.defaultFontSize)
   saveConfigs();
 })
 
 document.getElementById('btn-font-minus').addEventListener('click', () => {
   editorConfig.defaultFontSize--;
-  editorHTMLElement.style.fontSize = editorConfig.defaultFontSize + 'px';
-  editorCSSElement.style.fontSize = editorConfig.defaultFontSize + 'px';
-  editorJSElement.style.fontSize = editorConfig.defaultFontSize + 'px';
+  changeFontSize(editorHTMLElement, editorConfig.defaultFontSize)
+  changeFontSize(editorCSSElement, editorConfig.defaultFontSize)
+  changeFontSize(editorJSElement, editorConfig.defaultFontSize)
   saveConfigs();
 });
