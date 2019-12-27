@@ -5,5 +5,6 @@
 - win: 'Ctrl-s', mac: 'Command-s' : save code
 
 ### TODO
+- [ ] resize view and editor
 - [ ] live mode
-- [ ] console
+- [ ] preview console
