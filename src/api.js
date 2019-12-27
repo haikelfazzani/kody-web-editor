@@ -1,14 +1,28 @@
-function downloadAsFile(filename, text) {
-  var element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-  element.setAttribute('download', filename);
+function downloadAsFile (filename, code) {
 
-  element.style.display = 'none';
-  document.body.appendChild(element);
+  const codeToDownload = `
+  <!doctype html>
+  <html>
+    <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+      <style>${code.css || ''}</style>
+    </head>
+    <body>
+      ${code.html || ''}
+      <script src="${code.js || ''}"></script>
+    </body>
+  </html>`;
 
-  element.click();
+  const linkEl = document.createElement('a');
+  linkEl.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(codeToDownload));
+  linkEl.setAttribute('download', filename);
 
-  document.body.removeChild(element);
+  linkEl.style.display = 'none';
+  document.body.appendChild(linkEl);
+
+  linkEl.click();
+
+  document.body.removeChild(linkEl);
 }
 
 function changeFontSize (element, newSize) {
@@ -25,17 +39,17 @@ const getGeneratedPageURL = ({ html, css, js }) => {
   const jsURL = getBlobURL(js, 'text/javascript')
 
   const source = `
-    <html>
-      <head>
-      <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-        ${css && `<link rel="stylesheet" type="text/css" href="${cssURL}" />`}
-        ${js && `<script src="${jsURL}"></script>`}
-      </head>
-      <body>
-        ${html || ''}
-      </body>
-    </html>
-  `
+<!doctype html>
+<html>
+  <head>
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    ${css && `<link rel="stylesheet" type="text/css" href="${cssURL}" />`}
+    ${js && `<script src="${jsURL}"></script>`}
+  </head>
+  <body>
+    ${html || ''}
+  </body>
+</html>`;
 
   return getBlobURL(source, 'text/html')
 }

@@ -34,8 +34,7 @@ document.getElementById('btn-save').addEventListener('click', () => {
 
 /**  btn download in nav : download code */
 document.getElementById('btn-download').addEventListener('click', () => {
-  const codeSave = Object.keys(editorConfig.codeSave).map(c => editorConfig.codeSave[c]).join(' ')
-  downloadAsFile('code.js', codeSave);
+  downloadAsFile('code.html', editorConfig.codeSave);
 }, false)
 
 /**  btn clear in nav : clear editor */
