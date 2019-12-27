@@ -15,6 +15,7 @@
 </head>
 
 <body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.11/split.min.js" defer></script>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#"><i class="fas fa-terminal"></i> WEB EDITOR</a>
@@ -66,40 +67,35 @@
     </div>
   </nav>
 
-
   <div class="container-fluid">
-    <div class="row">
 
-      <div class="col-md-7">
+    <!-- Tabs -->
+    <ul id="nav-tab" class="nav nav-tabs ml-5">
+      <li class="nav-item active"><a class="nav-link" href="#html">html</a></li>
+      <li class="nav-item"><a class="nav-link" href="#css">css</a></li>
+      <li class="nav-item"><a class="nav-link" href="#js">js</a></li>
+    </ul>
 
-        <!-- Tabs -->
-        <ul id="nav-tab" class="nav nav-tabs ml-5">
-          <li class="nav-item active"><a class="nav-link" href="#html">html</a></li>
-          <li class="nav-item"><a class="nav-link" href="#css">css</a></li>
-          <li class="nav-item"><a class="nav-link" href="#js">js</a></li>
-        </ul>
+    <!-- Tab panes -->
+    <div id="flex-sc">
+      
+      <div class="tab-content" id="tab-content">
+        <div class="tab-pane active" id="html">
+          <pre id="editor-html"></pre>
+        </div>
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <div class="tab-pane active" id="html">
-            <pre id="editor-html"></pre>
-          </div>
+        <div class="tab-pane" id="css">
+          <pre id="editor-css"></pre>
+        </div>
 
-          <div class="tab-pane" id="css">
-            <pre id="editor-css"></pre>
-          </div>
-
-          <div class="tab-pane" id="js">
-            <pre id="editor-js"></pre>
-          </div>
+        <div class="tab-pane" id="js">
+          <pre id="editor-js"></pre>
         </div>
       </div>
 
-      <div class="col-md-1"></div>
-
-      <div class="col-md-5"><iframe id="code"></iframe></div>
-
+      <iframe id="code"></iframe>
     </div>
+
 
     <script src="https://ajaxorg.github.io/ace-builds/src-noconflict/ace.js"></script>
     <script type="text/javascript" src="./src/api.js"></script>
