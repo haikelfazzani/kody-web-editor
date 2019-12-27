@@ -1,5 +1,10 @@
 /** save editor config */
 function saveConfigs () {
+  editorConfig.codeSave = {
+    html: editorHTML.getValue(),
+    css: editorCSS.getValue(),
+    js: editorJS.getValue()
+  };
   localStorage.setItem('editor-config', JSON.stringify(editorConfig))
 }
 
@@ -9,29 +14,15 @@ checkLiveCode.addEventListener('change', (e) => {
   saveConfigs()
 })
 
-/** on change editor value */
-editor.session.on('change', function (delta) {
-  if (editorConfig.liveCode) {
-    userCode = editor.getValue();
-    iframeElement.src = 'data:text/html;charset=utf-8,' + encodeURI(userCode);
-  }
-});
-
-/** btn run in nav : run code */
-document.getElementById('btn-run').addEventListener('click', () => {
-  if (!editorConfig.liveCode) {
-    iframeElement.src = 'data:text/html;charset=utf-8,' + encodeURI(userCode);
-  }
-}, false)
-
 /** save code into localstorage */
 document.getElementById('btn-save').addEventListener('click', () => {
-  localStorage.setItem('code-save', JSON.stringify(userCode))
+  saveConfigs()
 }, false)
 
 /**  btn download in nav : download code */
 document.getElementById('btn-download').addEventListener('click', () => {
-  downloadAsFile('code.js', userCode)
+  const codeSave = Object.keys(editorConfig.codeSave).map(c => editorConfig.codeSave[c]).join(' ')
+  downloadAsFile('code.js', codeSave);
 }, false)
 
 /**  btn clear in nav : clear editor */
@@ -40,15 +31,18 @@ document.getElementById('btn-clear').addEventListener('click', () => {
 }, false)
 
 /** Font size : increase - decrease */
-editorElement.style.fontSize = editorConfig.defaultFontSize + 'px';
 document.getElementById('btn-font-plus').addEventListener('click', () => {
   editorConfig.defaultFontSize++;
-  editorElement.style.fontSize = editorConfig.defaultFontSize + 'px';
-  saveConfigs()
+  editorHTMLElement.style.fontSize = editorConfig.defaultFontSize + 'px';
+  editorCSSElement.style.fontSize = editorConfig.defaultFontSize + 'px';
+  editorJSElement.style.fontSize = editorConfig.defaultFontSize + 'px';
+  saveConfigs();
 })
 
 document.getElementById('btn-font-minus').addEventListener('click', () => {
   editorConfig.defaultFontSize--;
-  editorElement.style.fontSize = editorConfig.defaultFontSize + 'px';
-  saveConfigs()
-})
+  editorHTMLElement.style.fontSize = editorConfig.defaultFontSize + 'px';
+  editorCSSElement.style.fontSize = editorConfig.defaultFontSize + 'px';
+  editorJSElement.style.fontSize = editorConfig.defaultFontSize + 'px';
+  saveConfigs();
+});

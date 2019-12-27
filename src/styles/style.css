@@ -2,14 +2,18 @@
   background-color: #2f3129;
 }
 
+.col-md-1,
+.col-md-7,
 .col-md-4,
 .col-md-8 {
   padding: 0;
 }
 
 #code,
-#editor {
-  height: 90vh;
+#editor-html,
+#editor-css,
+#editor-js {
+  height: 84vh;
   width: 100%;
   margin: 0;
   border: none;
@@ -32,6 +36,11 @@ label,
   text-transform: uppercase;
 }
 
+.btn {
+  box-shadow: 0 0 2px rgba(0, 0, 0, .1), 0 2px 2px rgba(0, 0, 0, .2);
+  transition: all .2s;
+}
+
 label {
   color: #ffffff !important;
 }
@@ -48,4 +57,13 @@ label {
 .form-check label {
   margin: 0 !important;
   padding: 0;
+}
+
+/* tabs */
+li.active {
+  background-color: #2f3129;
+}
+
+#nav-tab {
+   border-bottom: none;
 }

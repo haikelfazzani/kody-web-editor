@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>WEB EDITOR</title>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="./src/styles/style.css">
+  <link rel="stylesheet" href="./src/style.css">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
-
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#"><i class="fas fa-terminal"></i> WEB EDITOR</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
+  
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
@@ -38,13 +36,13 @@
           </div>
         </li>
       </ul>
-
+  
       <ul class="navbar-nav">
-
+  
         <li class="nav-item mr-3">
           <button type="button" class="btn btn-success" id="btn-run"><i class="fas fa-play"></i> RUN</button>
         </li>
-
+  
         <li class="nav-item mr-3">
           <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-dark"><i class="fas fa-font"></i></button>
@@ -52,61 +50,22 @@
             <button type="button" class="btn btn-dark" id="btn-font-minus"><i class="fas fa-minus"></i></button>
           </div>
         </li>
-
+  
         <li class="nav-item">
           <div class="form-group form-check">
             <input type="checkbox" id="livecode" class="mr-2">
             <label for="livecode">LIVE</label>
           </div>
         </li>
-
+  
       </ul>
-
+  
     </div>
   </nav>
 
+  <iframe id="iframe"></iframe>
+  <script src="./test.js"></script>
 
-  <div class="container-fluid">
-    <div class="row">
-
-      <div class="col-md-8">
-
-        <!-- Tabs -->
-        <ul id="nav-tab" class="nav nav-tabs">
-          <li class="nav-item active"><a class="nav-link" href="#html">html</a></li>
-          <li class="nav-item"><a class="nav-link" href="#css">css</a></li>
-          <li class="nav-item"><a class="nav-link" href="#js">js</a></li>
-        </ul>
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-
-          <div class="tab-pane active" id="html">
-            <pre id="editor-html"></pre>
-          </div>
-
-          <div class="tab-pane" id="css">
-            <pre id="editor-css"></pre>
-          </div>
-
-          <div class="tab-pane" id="js">
-            <pre id="editor-js"></pre>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="col-md-4"><iframe id="code"></iframe></div>
-
-    </div>
-
-    <script src="https://ajaxorg.github.io/ace-builds/src-noconflict/ace.js"></script>
-    <script type="text/javascript" src="./src/api.js"></script>
-    <script src="./src/tabs.js" defer></script>
-    <script type="text/javascript" src="./src/index.js" defer></script>
-    <script type="text/javascript" src="./src/editor.js" defer></script>
-    <script type="text/javascript" src="./src/custom.js" defer></script>
-    <script type="text/javascript" src="./src/editor-commands.js" defer></script>
+  
 </body>
-
 </html>
