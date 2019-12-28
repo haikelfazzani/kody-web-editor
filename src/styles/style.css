@@ -71,7 +71,6 @@ label {
 
 /*_________________________*/
 #flex-sc {
-  position: relative;
   width: 100%;
   display: flex;
 }
@@ -89,13 +88,23 @@ label {
   width: 70%;
 }
 
-#code {
+
+/* result */
+.output-container {
   background-color: #fefefe;
-  height: 85vh;
+  height: 82vh;
   width: 30%;
   border: none;
+  display: flex;
+  flex-direction: column;
 }
 
+#code {
+  width: 100%;  
+  height: 80%;
+}
+
+/* split js */
 .gutter {
   cursor: w-resize;
   background-color: #272822;
@@ -103,15 +112,10 @@ label {
 
 /* console */
 .console-wrapper {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  height: 300px;
-  width: 100%;
-  display: none;
+  width: 100%;  
   color: #ffffff;
   background-color: #1b1b1a !important;
-  z-index: 999;
+  display: none;
 }
 
 .console-wrapper>div {
@@ -133,7 +137,6 @@ label {
 }
 
 #iframe-console {
-  height: 90.2%;
   width: 100%;
   background-color: #2f3129 !important;
 }

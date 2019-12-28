@@ -96,20 +96,23 @@
         </div>
       </div>
 
-      <iframe id="code"></iframe>
+      <div class="output-container">
+        <iframe id="code"></iframe>
 
-
-      <div class="console-wrapper">
-        <div>
-          <p class="text-muted">console</p>
-          <button class="btn btn-dark" id="close-console">close</button>
+        <div class="console-wrapper">
+          <div>
+            <p class="text-muted">console</p>
+            <button class="btn btn-dark" id="close-console">close</button>
+          </div>
+          <iframe id="iframe-console" src="" frameborder="0"></iframe>
         </div>
-        <iframe id="iframe-console" src="" frameborder="0"></iframe>
       </div>
-    </div>    
+
+
+    </div>
   </div>
 
-  
+
 
   <script src="https://ajaxorg.github.io/ace-builds/src-noconflict/ace.js"></script>
   <script type="text/javascript" src="./src/api.js"></script>
