@@ -21,7 +21,9 @@ if nothing appear in console try to :
 - [ ] add dependencies (react, bootstrap ..etc..)
 
 ### Credit
-- ace editor
-- split.js
-- axios
-- javascript compiled by [glot-run](https://github.com/prasmussen/glot-run/tree/master/api_docs)
+- [ace editor](https://ace.c9.io/)
+- [split.js](https://split.js.org/)
+- [axios](https://github.com/axios/axios)
+- console output compiled by [glot-run](https://github.com/prasmussen/glot-run)
+- [bootstrap](https://getbootstrap.com/)
+- [fontawesome](https://fontawesome.com/)
