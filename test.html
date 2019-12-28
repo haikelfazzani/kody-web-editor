@@ -10,22 +10,32 @@
 
 <body>
 
-  <script>
-    const jo = { "files": [{ "name": "main.py", "content": "print(42)" }] };
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    fetch("https://run.glot.io/languages/python/latest", {
-      body: JSON.stringify(jo),
+  <script>
+    const jo = {"files": [
+  {
+    "name": "main.js", 
+   	"content": "(function () { console.log(4+42) })()"
+  }
+]};
+
+    axios.post('https://run.glot.io/languages/javascript/latest', jo,{
       headers: {
-        "Authorization": "Token 4deaff5f-18db-44b9-a25c-04fd55f0be78",
-        "Content-Type": "application/json"
+        'Authorization': 'Token 4deaff5f-18db-44b9-a25c-04fd55f0be78',
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+        'Accept': '*/*',
       },
-      method: "POST"
     })
       .then(r => {
-        console.log(JSON.stringify(r.json()))
+        console.log(r.data);
+
+
       })
       .catch(e => {
-        console.log(JSON.stringify(e))
+        console.log(e);
+
       })
   </script>
 
