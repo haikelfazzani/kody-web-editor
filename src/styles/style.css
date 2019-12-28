@@ -6,6 +6,8 @@ body,
   padding: 0;
 }
 
+.container-fluid {border-bottom: 4px solid #2f3129;}
+
 /*   */
 .navbar {
   background-color: #272822 !important;
@@ -47,6 +49,10 @@ label {
 /* tabs */
 #nav-tab li.active {
   background-color: #44443e;
+}
+
+#nav-tab li.active > a {
+  color: #ffc107 !important;
 }
 
 #nav-tab li a,
@@ -92,7 +98,7 @@ label {
 /* result */
 #output-container {
   background-color: #fefefe;
-  height: 86vh;
+  height: 85vh;
   width: 30%;
   border: none;
   display: flex;

@@ -1,3 +1,5 @@
+ace.require("ace/ext/language_tools");
+
 const [editorHTML, editorCSS, editorJS] = [
   ace.edit("editor-html"),
   ace.edit("editor-css"),
@@ -7,7 +9,6 @@ const editors = [editorHTML, editorCSS, editorJS];
 const iframeElement = document.getElementById("code");
 var editorConfig = {};
 
-ace.require("ace/ext/language_tools");
 editorHTML.session.setMode("ace/mode/html")
 editorCSS.session.setMode("ace/mode/css")
 editorJS.session.setMode("ace/mode/javascript")
@@ -15,8 +16,9 @@ editorJS.session.setMode("ace/mode/javascript")
 editors.forEach(e => {
   e.setTheme("ace/theme/monokai");
   e.setOptions({
-    autoScrollEditorIntoView: true,
-    copyWithEmptySelection: true,
+    enableBasicAutocompletion: true,
+    enableSnippets: true,
+    enableLiveAutocompletion: false
   });
   e.session.setUseWrapMode(true);
 })
