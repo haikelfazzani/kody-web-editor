@@ -1,13 +1,7 @@
 const ifCons = document.querySelector('.console-wrapper');
 
 document.getElementById('btn-console').addEventListener('click', () => {
-  if (ifCons.style.display === 'block') {
-
-    ifCons.style.display = 'none';
-  }
-  else {
-    ifCons.style.display = 'block';
-  }
+  ifCons.style.display = ifCons.style.display === 'block' ? 'none' : 'block';
 })
 
 document.getElementById('close-console').addEventListener('click', () => {

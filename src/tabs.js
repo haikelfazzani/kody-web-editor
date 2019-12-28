@@ -11,5 +11,4 @@ function onTabClick(event) {
 }
 
 const element = document.getElementById('nav-tab');
-
 element.addEventListener('click', onTabClick, false);

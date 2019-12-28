@@ -1,13 +1,11 @@
-editors.forEach(e => {  
+editors.forEach(e => {
   // run code
   e.commands.addCommand({
     name: 'runcode',
     bindKey: { win: 'Ctrl-r', mac: 'Command-r' },
     exec: function (editor) {
       iframeElement.src = getGeneratedPageURL({
-        html: editorHTML.getValue(),
-        css: editorCSS.getValue(),
-        js: editorJS.getValue()
+        html: editorHTML.getValue(), css: editorCSS.getValue(), js: editorJS.getValue()
       });
     },
     readOnly: true // false if this command should not apply in readOnly mode
@@ -18,20 +16,19 @@ editors.forEach(e => {
     name: 'savecode',
     bindKey: { win: 'Ctrl-s', mac: 'Command-s' },
     exec: function (editor) {
-      saveConfigs ()
+      saveConfigs()
     },
-    readOnly: true // false if this command should not apply in readOnly mode
+    readOnly: true
   });
 
-  // save code
+  // open close the console
   e.commands.addCommand({
     name: 'opencloseconsole',
     bindKey: { win: 'Ctrl-o', mac: 'Command-o' },
     exec: function (editor) {
       const ifCons = document.querySelector('.console-wrapper');
-  ifCons.style.display = ifCons.style.display === 'block' ? 'none' : 'block';
+      ifCons.style.display = ifCons.style.display === 'block' ? 'none' : 'block';
     },
-    readOnly: true // false if this command should not apply in readOnly mode
+    readOnly: true
   });
-
 })
