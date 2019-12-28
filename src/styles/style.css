@@ -142,11 +142,6 @@ label {
   font-size: 12px;
 }
 
-#iframe-console {
-  width: 100%;
-  background-color: #2f3129 !important;
-}
-
 /* scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -162,4 +157,24 @@ label {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(54, 56, 58);
+}
+
+/* console */
+.iframe-console {
+  width: 100%;
+}
+
+.iframe-console ul {background-color: #1b1b1a; 
+  list-style:none; 
+  width: 100%;
+  padding:0; 
+  margin:0; 
+}
+
+.iframe-console ul li { 
+  word-wrap: break-word;
+  width: 100%;
+  padding: 10px 20px;
+  color: #fff;
+  border-bottom: 4px solid #2f3129 !important;
 }
