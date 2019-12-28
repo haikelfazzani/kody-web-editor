@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    const jo = { "files": [{ "name": "main.py", "content": "print(42)" }] };
+
+    fetch("https://run.glot.io/languages/python/latest", {
+      body: JSON.stringify(jo),
+      headers: {
+        "Authorization": "Token 4deaff5f-18db-44b9-a25c-04fd55f0be78",
+        "Content-Type": "application/json"
+      },
+      method: "POST"
+    })
+      .then(r => {
+        console.log(JSON.stringify(r.json()))
+      })
+      .catch(e => {
+        console.log(JSON.stringify(e))
+      })
+  </script>
+
+</body>
+
+</html>
