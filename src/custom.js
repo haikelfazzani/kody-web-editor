@@ -5,6 +5,6 @@ dropDown.addEventListener('click',() =>{
   dropMenu.style.display = dropMenu.style.display === 'block' ? 'none' : 'block'
 })
 
-Split(['#tab-content', '.output-container'], {
+Split(['#tab-content', '#output-container'], {
   sizes: [70, 30],
 });

@@ -1,18 +1,11 @@
 const ifCons = document.querySelector('.console-wrapper');
 
-const splitOutputContainer = Split(['#code', '.console-wrapper'], {
-  sizes: [100, 0],
-  direction: 'vertical',
-  minSize: 0,
-});
-
 document.getElementById('btn-console').addEventListener('click', () => {
   if (ifCons.style.display === 'block') {
-    splitOutputContainer.setSizes([100, 0])
+
     ifCons.style.display = 'none';
   }
   else {
-    splitOutputContainer.setSizes([80, 20])
     ifCons.style.display = 'block';
   }
 })

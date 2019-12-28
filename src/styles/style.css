@@ -90,9 +90,9 @@ label {
 
 
 /* result */
-.output-container {
+#output-container {
   background-color: #fefefe;
-  height: 82vh;
+  height: 86vh;
   width: 30%;
   border: none;
   display: flex;
@@ -101,7 +101,7 @@ label {
 
 #code {
   width: 100%;  
-  height: 80%;
+  height: 100%;
 }
 
 /* split js */
