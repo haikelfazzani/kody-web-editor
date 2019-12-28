@@ -119,9 +119,11 @@ label {
 /* console */
 .console-wrapper {
   width: 100%;  
+  max-height: 350px;
   color: #ffffff;
   background-color: #1b1b1a !important;
   display: none;
+  overflow: auto;
 }
 
 .console-wrapper>div {
@@ -162,6 +164,7 @@ label {
 /* console */
 .iframe-console {
   width: 100%;
+  overflow: auto;
 }
 
 .iframe-console ul {background-color: #1b1b1a; 
