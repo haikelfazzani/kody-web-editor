@@ -19,3 +19,9 @@ if nothing appear in console try to :
 - [x] preview console
 - [ ] share code
 - [ ] add dependencies (react, bootstrap ..etc..)
+
+### Credit
+- ace editor
+- split.js
+- axios
+- javascript compiled by [glot-run](https://github.com/prasmussen/glot-run/tree/master/api_docs)
