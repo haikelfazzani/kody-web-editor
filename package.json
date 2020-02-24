@@ -1,24 +1,35 @@
 {
-  "name": "online-web-editor",
-  "version": "1.0.0",
-  "description": "online web editor",
-  "main": "build/index.js",
+  "name": "kody",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "ace-builds": "^1.4.8",
+    "react": "^16.12.0",
+    "react-ace": "^8.0.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "react-split": "^2.0.7"
+  },
   "scripts": {
-    "start": "parcel index.html",
-    "build": "rimraf -rf dist/* && parcel build index.html",
-    "test": "npm run build && jest"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/haikelfazzani/online-web-editor.git"
+  "eslintConfig": {
+    "extends": "react-app"
   },
-  "bugs": {
-    "url": "https://github.com/haikelfazzani/online-web-editor.git/issues"
-  },
-  "homepage": "https://github.com/haikelfazzani/online-web-editor.git#readme",
-  "author": "Haikel Fazzani",
-  "license": "MIT",
-  "devDependencies": {
-    "cssnano": "^4.1.10"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

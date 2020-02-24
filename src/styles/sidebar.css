@@ -1,0 +1,45 @@
+.side-bar {
+  width: 94px;
+  height: 93%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;  
+}
+
+.side-bar li {
+  width: 80%;
+}
+
+.side-bar li button {
+  background-color: #242729;
+  color: #dadada;
+  border: 1px solid #1c1d1f;
+  font-size: 12px !important;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color .3s;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+.side-bar li button:hover {
+  background-color: rgb(73, 70, 252);
+  color: #ffffff;
+}
+
+.side-bar select {
+  width: 100%;
+  padding: 7px 0;
+  background-color: rgb(73, 70, 252);
+  color: #dadada;
+  border: 0;
+  border-radius: 2px;
+  text-align-last: center;
+  cursor: pointer;
+}

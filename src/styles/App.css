@@ -1,0 +1,86 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #ffffff;
+  text-align: left;
+  background-color: #35393b;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  width: 100%;
+  height: 93%;
+  display: flex;
+}
+
+.container {
+  width: 93%;
+  height: 100%;
+  display: flex;
+}
+
+.container>div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+#kody-ace-editor,
+.result {
+  width: 50%;
+  height: 100% !important;
+}
+
+.result iframe {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  border: 0;
+}
+
+#kody-ace-editor,
+.ace_gutter-layer {
+  background-color: #242729 !important;
+}
+
+.gutter {
+  background: #35393a !important;
+  cursor: col-resize;
+  transition: background-color .2s;
+}
+
+.gutter:hover { background-color: #0080db !important; }
+
+/* util */
+.m-0 {margin: 0 !important;}
+
+.mr-10 {margin-right: 10px;}
+
+.p-0 {padding: 0 !important;}
+
+.border-top {border-top: 1px solid #2c2d2e; padding-top: 10px;}
