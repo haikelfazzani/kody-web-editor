@@ -2,15 +2,12 @@ footer {
   height: 35px !important;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 0 15px;
   background-color: #333333;
-  border-bottom: 2px solid #222;
+  border-top: 2px solid #222;
+  font-size: 12px;
 }
 
 footer > div {display: flex;}
-
-h3 {
-    letter-spacing: 4px;
-}

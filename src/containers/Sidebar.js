@@ -3,6 +3,7 @@ import '../styles/sidebar.css';
 import { KodyContext } from '../hooks/KodyProvider';
 import Select from '../components/Select';
 import Button from '../components/Button';
+import beautify from 'js-beautify';
 
 const fontSizes = ['10', '12', '14', '16', '18', '20', '22', '24'];
 
@@ -26,7 +27,16 @@ export default function Sidebar () {
   }
 
   const livePreview = () => {
-    setState({ ...state, live: !state.live, runcode: true });
+    setState({ ...state, live: !state.live, runcode: !state.live });
+  }
+
+  const formatCode = () =>{
+    setState({ 
+      ...state, 
+      html: beautify.html(state.html),
+      css: beautify.css(state.css),
+      javascript: beautify.js(state.javascript, { indent_size: 2, space_in_empty_paren: true })
+    });
   }
 
   return <div className="side-bar">
@@ -43,14 +53,22 @@ export default function Sidebar () {
     </ul>
 
     <ul>
-      <li className="border-top"><Select onChange={onFontSize} data={fontSizes} /></li>
-
       <li className="border-top">
+        <Button
+          onClick={formatCode}
+          text="Format"
+        />
+      </li>
+
+      <li>
         <Button
           onClick={livePreview}
           text="Live"
-          clx={state.live ? "bg-green" : "bg-dark"} />
+          clx={state.live ? "bg-green" : "bg-dark"}
+        />
       </li>
+
+      <li className="mb-10"><Select onChange={onFontSize} data={fontSizes} /></li>
     </ul>
   </div>;
 }
