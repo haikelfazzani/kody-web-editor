@@ -14,4 +14,4 @@ With Kody online code editor, you can edit HTML, CSS and JavaScript code, and vi
 - [ ] Fetch code
 
 ### Capture
-![](https://i.ibb.co/zPPP919/kody.png)
+![](https://i.ibb.co/vDS5g69/2020-02-25-23h40-06.gif)

@@ -71,7 +71,7 @@ export default function Sidebar () {
         <button onClick={showSettings} className="bg-gray"><i className="fas fa-cogs"></i></button>
       </li>
 
-      <li className="border-top mb-10"><Link to="/"><img src={logo} alt="logo.." /></Link></li>
+      <li className="border-top mb-10"><Link to="/"><img src={logo} alt="logo.." className="img-logo" /></Link></li>
     </ul>
 
     <Settings />
