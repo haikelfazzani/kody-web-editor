@@ -22,7 +22,7 @@
 h4 {text-transform: uppercase;}
 
 .modal-content input {margin: 0;}
-.modal-content label { font-size: 12px; font-weight: 600; text-transform: uppercase; }
+.modal-content label { font-size: 12px; text-transform: uppercase; }
 .modal-content p {color: #a0a0a0 !important;}
 
 .modal-content select {

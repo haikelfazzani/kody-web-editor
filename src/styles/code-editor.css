@@ -14,7 +14,6 @@ main {
 
 #kody-ace-editor,
 .result {
-  width: 50%;
   height: 100% !important;
 }
 
@@ -25,8 +24,9 @@ main {
   border: 0;
 }
 
-.ace_scrollbar-h { overflow-x: hidden !important;}
+.ace-monokai .ace_gutter {background-color: #1e1e1e !important;}
 .ace-monokai {background-color: #1e1e1e !important; }
+.ace_content {width: 100% !important;}
 
 .gutter {
   background: #35393a !important;
