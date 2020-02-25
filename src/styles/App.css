@@ -34,17 +34,12 @@ body {
 
 main {
   width: 100%;
-  height: 93%;
+  height: 95%;
   display: flex;
+  border-top: 10px solid #333333;
 }
 
-.container {
-  width: 93%;
-  height: 100%;
-  display: flex;
-}
-
-.container>div {
+.container, .container>div {
   width: 100%;
   height: 100%;
   display: flex;
@@ -84,3 +79,8 @@ main {
 .p-0 {padding: 0 !important;}
 
 .border-top {border-top: 1px solid #2c2d2e; padding-top: 10px;}
+
+.bg-yellow {background-color: #eaee05 !important; }
+.bg-green {background-color: #4caf50 !important; }
+.bg-dark {background-color: #242729;}
+.bg-choc {background-color: #795548 !important;}

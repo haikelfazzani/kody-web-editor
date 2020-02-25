@@ -1,5 +1,5 @@
-nav {
-  height: 52px !important;
+footer {
+  height: 35px !important;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -9,7 +9,7 @@ nav {
   border-bottom: 2px solid #222;
 }
 
-nav > div {display: flex;}
+footer > div {display: flex;}
 
 h3 {
     letter-spacing: 4px;

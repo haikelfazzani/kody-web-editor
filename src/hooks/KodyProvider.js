@@ -20,7 +20,9 @@ let initState = {
   javascript: kodyLocal.javascript || 'document.getElementById("para").innerHTML = "welcome";',
   jsx: kodyLocal.jsx || codeJsx,
   mode: kodyLocal.mode || 'html',
-  fontSize: kodyLocal.fontSize || 16
+  fontSize: kodyLocal.fontSize || 16,
+  runcode: kodyLocal.runcode || false,
+  live: kodyLocal.live || false
 } || kodyLocal;
 
 export const KodyContext = createContext();

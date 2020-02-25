@@ -5,16 +5,16 @@ import './styles/App.css';
 import './styles/scroll.css';
 
 import Home from './pages/Home';
+import Footer from './components/Footer';
 
 function App () {
-
-
-  return (
+  
+  return (<>
     <Router>
       <Route exact path="/" component={Home} />
-
     </Router>
-  );
+    <Footer />
+  </>);
 }
 
 export default App;
