@@ -36,7 +36,7 @@ export default function Modal () {
     <div className="modal-content ">
       
       <div className="d-flex-sp border-bottom mb-20">
-        <h4 className="m-0 cl-blue-sky">settings</h4>
+        <h4 className="m-0 cl-blue-sky"><i className="fas fa-cog"></i> settings</h4>
         <small onClick={hideModal} className="btn-close-modal">&#10005;</small>
       </div>
 

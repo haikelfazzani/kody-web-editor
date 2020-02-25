@@ -7,4 +7,14 @@
   align-items: center;
 }
 
-.home h1 {font-size: 50px; margin: 0;}
+.home h1 {font-size: 50px; margin: 0; font-family: Sriracha;}
+
+.btn-start {
+  background-color: #293df7;
+    color: #fff;
+    padding: 10px 30px;
+    text-decoration: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+}

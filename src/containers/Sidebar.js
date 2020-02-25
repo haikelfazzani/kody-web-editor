@@ -38,7 +38,11 @@ export default function Sidebar () {
   return <div className="side-bar">
     <ul>
 
-      <li><Button onClick={runCode} text='RUN' clx={state.runcode ? "bg-green" : "bg-choc"} /></li>
+      <li>
+        <button onClick={runCode} className={state.runcode ? "bg-green" : "bg-choc"}>
+          <i className="fas fa-play"></i>
+        </button>
+      </li>
 
       <li className="border-top"><Button onClick={() => switchTab('html')} text="html" /></li>
       <li><Button onClick={() => switchTab('css')} text="css" /></li>
@@ -52,7 +56,9 @@ export default function Sidebar () {
     <ul>
       <li className="border-top"><Button onClick={formatCode} text="Format" clx="bg-gray" /></li>
 
-      <li><Button onClick={showSettings} text="Settings" clx="bg-gray" /></li>
+      <li>
+        <button onClick={showSettings} className="bg-gray"><i className="fas fa-cogs"></i></button>
+      </li>
 
       <li className="border-top mb-10">
         <Link to="/"><img src={logo} alt="logo.." /></Link>
