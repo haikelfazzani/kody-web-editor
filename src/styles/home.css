@@ -7,10 +7,10 @@
   align-items: center;
 }
 
-.home h1 {font-size: 50px; margin: 0; font-family: Sriracha;}
+.home h1 {font-size: 45px; margin: 0; font-family: Sriracha; color: #FF9800;}
 
 .btn-start {
-  background-color: #293df7;
+  background-color: #FF9800;
     color: #fff;
     padding: 10px 30px;
     text-decoration: none;
