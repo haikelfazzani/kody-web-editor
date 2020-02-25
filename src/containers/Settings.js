@@ -15,15 +15,12 @@ export default function Modal () {
   }
 
   const livePreview = (e) => {
-    let value = e.target.checked;
-    let name = e.target.name;
-
     let editorSettings = { ...state.editorSettings };
-    editorSettings[name] = value;
+    editorSettings[e.target.name] = e.target.checked;
 
     setState({
       ...state,
-      runcode: e.target.name === 'live' ? e.target.checked : '',
+      runcode: e.target.name === 'live' ? e.target.checked : state.runcode,
       editorSettings
     });
   }
@@ -34,7 +31,7 @@ export default function Modal () {
 
   return (<div className="modal" style={{ display: state.showSettingsModal ? 'flex' : 'none' }}>
     <div className="modal-content ">
-      
+
       <div className="d-flex-sp border-bottom mb-20">
         <h4 className="m-0 cl-blue-sky"><i className="fas fa-cog"></i> settings</h4>
         <small onClick={hideModal} className="btn-close-modal">&#10005;</small>
@@ -54,7 +51,7 @@ export default function Modal () {
       <div className="d-flex mb-10 border-top">
         <input type="checkbox"
           onChange={livePreview}
-          checked={state.editorSettings.showPrintMargin}          
+          checked={state.editorSettings.showPrintMargin}
           className="mr-10"
           name="showPrintMargin"
         />
