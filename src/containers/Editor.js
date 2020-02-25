@@ -15,6 +15,7 @@ export default function Editor () {
 
   const { state, setState } = useContext(KodyContext);
   const [value, setValue] = useState();
+  let { fontSize, showPrintMargin, wrapEnabled, enableLiveAutocompletion } = state.editorSettings;
 
   useEffect(() => {
     switch (state.mode) {
@@ -65,15 +66,15 @@ export default function Editor () {
     theme="monokai"
     name="kody-ace-editor"
     onChange={onChange}
-    fontSize={state.fontSize}
-    showPrintMargin={false}
+    fontSize={fontSize}
+    showPrintMargin={showPrintMargin}
     showGutter={true}
     highlightActiveLine={true}
     value={value}
-    wrapEnabled={true}
+    wrapEnabled={wrapEnabled}
     setOptions={{
       enableBasicAutocompletion: true,
-      enableLiveAutocompletion: true,
+      enableLiveAutocompletion: enableLiveAutocompletion,
       enableSnippets: false,
       showLineNumbers: true,
       tabSize: 2,

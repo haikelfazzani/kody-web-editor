@@ -5,16 +5,12 @@ import './styles/App.css';
 import './styles/scroll.css';
 
 import Home from './pages/Home';
-import Footer from './components/Footer';
+import CodeEditor from './pages/CodeEditor';
 
-function App () {
-  
-  return (<>
-    <Router>
-      <Route exact path="/" component={Home} />
-    </Router>
-    <Footer />
-  </>);
+export default function App () {
+
+  return <Router>
+    <Route exact path="/" component={Home} />
+    <Route path="/editor" component={CodeEditor} />
+  </Router>;
 }
-
-export default App;

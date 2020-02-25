@@ -1,0 +1,39 @@
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border-top: 10px solid #333333;
+  border-bottom: 10px solid #333333;
+}
+
+.container, .container>div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+#kody-ace-editor,
+.result {
+  width: 50%;
+  height: 100% !important;
+}
+
+.result iframe {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  border: 0;
+}
+
+#kody-ace-editor,
+.ace_gutter-layer {
+  background-color: #1e1e1e !important;
+}
+
+.gutter {
+  background: #35393a !important;
+  cursor: col-resize;
+  transition: background-color .2s;
+}
+
+.gutter:hover { background-color: #0080db !important; }

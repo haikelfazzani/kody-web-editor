@@ -4,9 +4,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  padding-top: 10px;  
+  align-items: center;  
   background-color: #333333;
+  padding-top: 10px;  
   border-right: 2px solid #222;
 }
 
@@ -16,14 +16,14 @@
   width: 80%;
 }
 
-.side-bar li button {
+.side-bar li button,a {
   background-color: #242729;
-  color: #dadada;
-  border: 1px solid #1c1d1f;
-  font-size: 12px !important;
+  color: #dadada;  
+  font-size: 10px !important;
   margin-bottom: 10px;
   width: 100%;
   padding: 10px;
+  border: 1px solid #1c1d1f;
   cursor: pointer;
   transition: background-color .3s;
   text-transform: uppercase;
@@ -33,15 +33,4 @@
 .side-bar li button:hover {
   background-color: rgb(73, 70, 252);
   color: #ffffff;
-}
-
-.side-bar select {
-  width: 100%;
-  padding: 7px 0;
-  background-color: rgb(73, 70, 252);
-  color: #dadada;
-  border: 0;
-  border-radius: 2px;
-  text-align-last: center;
-  cursor: pointer;
 }

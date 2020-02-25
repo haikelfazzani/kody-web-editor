@@ -14,15 +14,28 @@ ReactDOM.render(
 let localStor = localStorage.getItem('kody-code');
 let kodyLocal = localStor ? JSON.parse(localStor) : {};
 
+/** init values ace editor settings */
+let { editorSettings } = kodyLocal.editorSettings || {};
+let { fontSize, live, showPrintMargin, wrapEnabled, enableLiveAutocompletion } = editorSettings || {};
+
+let initEditorSettings = {
+  fontSize: fontSize || 16,
+  live: live || false,
+  showPrintMargin: showPrintMargin || false,
+  wrapEnabled: wrapEnabled || true,
+  enableLiveAutocompletion: enableLiveAutocompletion || true
+}
+
+/** init values global state */
 let initState = {
   html: kodyLocal.html || '<p id="para">hello world</p>',
   css: kodyLocal.css || 'body {color: #000 }',
   javascript: kodyLocal.javascript || 'document.getElementById("para").innerHTML = "welcome";',
   jsx: kodyLocal.jsx || codeJsx,
   mode: kodyLocal.mode || 'html',
-  fontSize: kodyLocal.fontSize || 16,
   runcode: kodyLocal.runcode || false,
-  live: kodyLocal.live || false
+  showSettingsModal: kodyLocal.showSettingsModal || false,
+  editorSettings: initEditorSettings
 } || kodyLocal;
 
 export const KodyContext = createContext();

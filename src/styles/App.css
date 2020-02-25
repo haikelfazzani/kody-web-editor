@@ -32,55 +32,35 @@ body {
   flex-direction: column;
 }
 
-main {
-  width: 100%;
-  height: 95%;
-  display: flex;
-  border-top: 10px solid #333333;
-}
-
-.container, .container>div {
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
-
-#kody-ace-editor,
-.result {
-  width: 50%;
-  height: 100% !important;
-}
-
-.result iframe {
-  width: 100%;
-  height: 100%;
-  background-color: #ffffff;
-  border: 0;
-}
-
-#kody-ace-editor,
-.ace_gutter-layer {
-  background-color: #1e1e1e !important;
-}
-
-.gutter {
-  background: #35393a !important;
-  cursor: col-resize;
-  transition: background-color .2s;
-}
-
-.gutter:hover { background-color: #0080db !important; }
-
 /* util */
+.d-flex-sp {display: flex; justify-content: space-between; align-items: center;}
+.d-flex {display: flex; align-items: center;}
+
 .m-0 {margin: 0 !important;}
+
+.mt-0 {margin-top: 0 !important;}
+.mt-5 {margin-top: 5px !important;}
+.mt-10 {margin-top: 10px !important;}
+
 .mb-10 {margin-bottom: 10px !important;}
+.mb-20 {margin-bottom: 20px !important;}
+
 .mr-10 {margin-right: 10px !important;}
 
+
 .p-0 {padding: 0 !important;}
+.pb-0 {padding-bottom: 10px !important;}
+.pt-10 {padding-top: 10px !important;}
+.pb-10 {padding-bottom: 10px !important;}
 
 .border-top {border-top: 1px solid #2c2d2e; padding-top: 10px;}
+.border-bottom {border-bottom: 1px solid #2c2d2e; padding-bottom: 10px;}
 
 .bg-yellow {background-color: #eaee05 !important; }
 .bg-green {background-color: #4caf50 !important; }
 .bg-dark {background-color: #242729;}
 .bg-choc {background-color: #795548 !important;}
+
+.cl-blue-sky {color: #2196f3 !important;}
+
+.fs-12 {font-size: 12px !important;}

@@ -14,11 +14,11 @@ export default function CodeResult () {
   return <div className="result">
     {
       state.runcode
-        ? <iframe
+        ? <iframe title="kody iframe"
           id={state.mode === 'jsx' ? "iframe-react" : "iframe-result"}
           src={state.mode === 'jsx' ? reactToBlob(state.jsx) : htmlToBlob(state.html, state.css, state.javascript)}>
         </iframe>
-        : <iframe id="empty"></iframe>
+        : <iframe title="kody empty" id="empty"></iframe>
     }
   </div>;
 }
