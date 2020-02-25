@@ -16,14 +16,14 @@ let kodyLocal = localStor ? JSON.parse(localStor) : {};
 
 /** init values ace editor settings */
 let { editorSettings } = kodyLocal ? kodyLocal : {};
-let { fontSize, live, showPrintMargin, wrapEnabled, enableLiveAutocompletion } = editorSettings || {};
 
 let initEditorSettings = {
-  fontSize: fontSize || 16,
-  live: live || false,
-  showPrintMargin: showPrintMargin || false,
-  wrapEnabled: wrapEnabled || true,
-  enableLiveAutocompletion: enableLiveAutocompletion || true
+  theme: editorSettings ? editorSettings.theme : 'monokai',
+  fontSize: editorSettings ? editorSettings.fontSize : 16,
+  live: editorSettings ? editorSettings.live : false,
+  showPrintMargin: editorSettings ? editorSettings.showPrintMargin : false,
+  wrapEnabled: editorSettings ? editorSettings.wrapEnabled : true,
+  enableLiveAutocompletion: editorSettings ? editorSettings.enableLiveAutocompletion : true
 }
 
 /** init values global state */

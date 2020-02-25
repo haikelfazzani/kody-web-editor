@@ -4,6 +4,7 @@ import { KodyContext } from '../hooks/KodyProvider';
 import '../styles/Settings.css';
 
 const fontSizes = ['10', '12', '14', '16', '18', '20', '22', '24'];
+const themes = ['monokai', 'dracula'];
 
 export default function Modal () {
 
@@ -11,6 +12,11 @@ export default function Modal () {
 
   const onFontSize = (e) => {
     let editorSettings = { ...state.editorSettings, fontSize: +e.target.value };
+    setState({ ...state, editorSettings });
+  }
+
+  const onThemes = (e) => {
+    let editorSettings = { ...state.editorSettings, theme: e.target.value };
     setState({ ...state, editorSettings });
   }
 
@@ -78,9 +84,14 @@ export default function Modal () {
         <label htmlFor="enableLiveAutocompletion">Enable Live Autocompletion</label>
       </div>
 
-      <div>
+      <div className="mb-10">
         <label htmlFor="fontsize">Font Size</label>
         <Select onChange={onFontSize} data={fontSizes} clx="mt-5" />
+      </div>
+
+      <div>
+        <label htmlFor="themes">themes</label>
+        <Select onChange={onThemes} data={themes} clx="mt-5" />
       </div>
 
     </div>

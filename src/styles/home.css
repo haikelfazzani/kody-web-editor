@@ -7,15 +7,21 @@
   align-items: center;
 }
 
-.home h1 {font-size: 45px; margin: 0; font-family: Sriracha; color: #FF9800;}
+.home h1 {
+  font-size: 45px;
+  margin: 0;
+  font-family: Sriracha;
+  color: #FF9800;
+  margin-bottom: 20px;
+}
 
 .btn-start {
   background-color: #FF9800;
-    color: #fff;
-    padding: 10px 30px;
-    text-decoration: none;
-    border-radius: 4px;
-    text-transform: uppercase;
-    font-weight: 600;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.61), 0 4px 5px 2px rgba(0,0,0,.2);
+  color: #fff;
+  padding: 10px 30px;
+  text-decoration: none;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+  box-shadow: 0 0 2px rgba(0,0,0,.1), 0 2px 2px rgba(0,0,0,.2);
 }

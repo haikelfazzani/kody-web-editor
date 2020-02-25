@@ -35,4 +35,4 @@
   color: #ffffff;
 }
 
-.side-bar li img {max-width: 100%;}
+.side-bar li img {max-width: 100%; box-shadow: 0 0 2px rgba(0,0,0,.1), 0 2px 2px rgba(0,0,0,.2);}

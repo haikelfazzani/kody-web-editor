@@ -7,6 +7,8 @@ import "ace-builds/src-noconflict/mode-css";
 import "ace-builds/src-noconflict/mode-jsx";
 
 import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/theme-dracula";
+
 import "ace-builds/src-noconflict/ext-language_tools";
 
 import { KodyContext } from "../hooks/KodyProvider";
@@ -15,7 +17,7 @@ export default function Editor () {
 
   const { state, setState } = useContext(KodyContext);
   const [value, setValue] = useState();
-  let { fontSize, showPrintMargin, wrapEnabled, enableLiveAutocompletion } = state.editorSettings;
+  let { theme, fontSize, showPrintMargin, wrapEnabled, enableLiveAutocompletion } = state.editorSettings;
 
   useEffect(() => {
     switch (state.mode) {
@@ -63,7 +65,7 @@ export default function Editor () {
   return <AceEditor
     placeholder="Placeholder Text"
     mode={state.mode}
-    theme="monokai"
+    theme={theme}
     name="kody-ace-editor"
     onChange={onChange}
     fontSize={fontSize}

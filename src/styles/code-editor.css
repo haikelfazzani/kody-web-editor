@@ -27,7 +27,7 @@ main {
 
 #kody-ace-editor,
 .ace_gutter-layer {
-  background-color: #1e1e1e !important;
+  background-color: #1e1e1e;
 }
 
 .gutter {
