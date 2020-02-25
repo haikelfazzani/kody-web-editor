@@ -15,7 +15,7 @@ let localStor = localStorage.getItem('kody-code');
 let kodyLocal = localStor ? JSON.parse(localStor) : {};
 
 /** init values ace editor settings */
-let { editorSettings } = kodyLocal.editorSettings || {};
+let { editorSettings } = kodyLocal ? kodyLocal : {};
 let { fontSize, live, showPrintMargin, wrapEnabled, enableLiveAutocompletion } = editorSettings || {};
 
 let initEditorSettings = {

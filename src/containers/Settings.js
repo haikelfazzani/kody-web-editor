@@ -43,7 +43,7 @@ export default function Modal () {
       <div className="d-flex">
         <input type="checkbox"
           onChange={livePreview}
-          checked={state.live}
+          checked={state.editorSettings.live}
           className="mr-10"
           name="live"
         />
@@ -54,7 +54,7 @@ export default function Modal () {
       <div className="d-flex mb-10 border-top">
         <input type="checkbox"
           onChange={livePreview}
-          checked={state.editorSettings.showPrintMargin}
+          checked={state.editorSettings.showPrintMargin}          
           className="mr-10"
           name="showPrintMargin"
         />
