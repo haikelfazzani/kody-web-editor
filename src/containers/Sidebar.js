@@ -21,6 +21,9 @@ export default function Sidebar () {
     <li><button onClick={() => switchTab('html')}>html</button></li>
     <li><button onClick={() => switchTab('css')}>css</button></li>
     <li><button onClick={() => switchTab('javascript')}>js</button></li>
+
+    <li className="border-top"><button onClick={() => switchTab('jsx')}>reactjs</button></li>
+
     <li className="border-top"><Select onChange={onFontSize} data={fontSizes} /></li>
   </ul>;
 }

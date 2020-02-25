@@ -4,6 +4,7 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/mode-html";
 import "ace-builds/src-noconflict/mode-css";
+import "ace-builds/src-noconflict/mode-jsx";
 
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools";
@@ -25,6 +26,10 @@ export default function Editor () {
         setValue(state.javascript);
         break;
 
+      case 'jsx':
+        setValue(state.jsx);
+        break;
+
       default:
         setValue(state.html);
         break;
@@ -37,15 +42,19 @@ export default function Editor () {
 
     switch (state.mode) {
       case 'css':
-        setState({...state, css: code});
+        setState({ ...state, css: code });
         break;
 
       case 'javascript':
-        setState({...state, javascript: code});
+        setState({ ...state, javascript: code });
+        break;
+
+      case 'jsx':
+        setState({ ...state, jsx: code });
         break;
 
       default:
-        setState({...state, html: code});
+        setState({ ...state, html: code });
         break;
     }
   }

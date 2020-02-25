@@ -21,7 +21,7 @@ body {
   line-height: 1.5;
   color: #ffffff;
   text-align: left;
-  background-color: #35393b;
+  background-color: #1e1e1e;
   overflow-x: hidden;
 }
 
@@ -65,7 +65,7 @@ main {
 
 #kody-ace-editor,
 .ace_gutter-layer {
-  background-color: #242729 !important;
+  background-color: #1e1e1e !important;
 }
 
 .gutter {

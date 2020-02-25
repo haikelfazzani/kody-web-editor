@@ -1,11 +1,12 @@
 nav {
-  height: 42px !important;
+  height: 52px !important;
   width: 100%;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.75);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 15px;
+  background-color: #333333;
+  border-bottom: 2px solid #222;
 }
 
 nav > div {display: flex;}
