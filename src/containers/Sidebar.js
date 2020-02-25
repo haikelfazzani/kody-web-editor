@@ -5,6 +5,7 @@ import { KodyContext } from '../hooks/KodyProvider';
 import Button from '../components/Button';
 import Settings from './Settings';
 import beautify from 'js-beautify';
+import logo from '../img/logo192.png';
 
 export default function Sidebar () {
 
@@ -36,6 +37,7 @@ export default function Sidebar () {
 
   return <div className="side-bar">
     <ul>
+
       <li><Button onClick={runCode} text='RUN' clx={state.runcode ? "bg-green" : "bg-choc"} /></li>
 
       <li className="border-top"><Button onClick={() => switchTab('html')} text="html" /></li>
@@ -48,11 +50,13 @@ export default function Sidebar () {
     </ul>
 
     <ul>
-      <li className="border-top"><Button onClick={formatCode} text="Format" /></li>
+      <li className="border-top"><Button onClick={formatCode} text="Format" clx="bg-gray" /></li>
 
-      <li><Button onClick={showSettings} text="Settings" /></li>
+      <li><Button onClick={showSettings} text="Settings" clx="bg-gray" /></li>
 
-      <li className="border-top mb-10"><Link to="/">HOME</Link></li>
+      <li className="border-top mb-10">
+        <Link to="/"><img src={logo} alt="logo.." /></Link>
+      </li>
     </ul>
 
     <Settings />

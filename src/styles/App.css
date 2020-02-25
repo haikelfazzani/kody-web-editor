@@ -57,6 +57,7 @@ body {
 .border-bottom {border-bottom: 1px solid #2c2d2e; padding-bottom: 10px;}
 
 .bg-yellow {background-color: #eaee05 !important; }
+.bg-gray {background: #494d4e !important;}
 .bg-green {background-color: #4caf50 !important; }
 .bg-dark {background-color: #242729;}
 .bg-choc {background-color: #795548 !important;}

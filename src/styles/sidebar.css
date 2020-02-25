@@ -16,7 +16,7 @@
   width: 80%;
 }
 
-.side-bar li button,a {
+.side-bar li button {
   background-color: #242729;
   color: #dadada;  
   font-size: 10px !important;
@@ -34,3 +34,5 @@
   background-color: rgb(73, 70, 252);
   color: #ffffff;
 }
+
+.side-bar li img {max-width: 100%;}
