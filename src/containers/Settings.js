@@ -20,7 +20,7 @@ export default function Modal () {
     setState({ ...state, editorSettings });
   }
 
-  const livePreview = (e) => {
+  const onSettings = (e) => {
     let editorSettings = { ...state.editorSettings };
     editorSettings[e.target.name] = e.target.checked;
 
@@ -45,7 +45,7 @@ export default function Modal () {
 
       <div className="d-flex">
         <input type="checkbox"
-          onChange={livePreview}
+          onChange={onSettings}
           checked={state.editorSettings.live}
           className="mr-10"
           name="live"
@@ -56,7 +56,7 @@ export default function Modal () {
 
       <div className="d-flex mb-10 border-top">
         <input type="checkbox"
-          onChange={livePreview}
+          onChange={onSettings}
           checked={state.editorSettings.showPrintMargin}
           className="mr-10"
           name="showPrintMargin"
@@ -66,7 +66,7 @@ export default function Modal () {
 
       <div className="d-flex mb-10">
         <input type="checkbox"
-          onChange={livePreview}
+          onChange={onSettings}
           checked={state.editorSettings.wrapEnabled}
           className="mr-10"
           name="wrapEnabled"
@@ -76,7 +76,7 @@ export default function Modal () {
 
       <div className="d-flex mb-10">
         <input type="checkbox"
-          onChange={livePreview}
+          onChange={onSettings}
           checked={state.editorSettings.enableLiveAutocompletion}
           className="mr-10"
           name="enableLiveAutocompletion"

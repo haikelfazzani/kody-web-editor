@@ -25,7 +25,8 @@ main {
   border: 0;
 }
 
-.ace-monokai {background-color: #1e1e1e !important;}
+.ace_scrollbar-h { overflow-x: hidden !important;}
+.ace-monokai {background-color: #1e1e1e !important; }
 
 .gutter {
   background: #35393a !important;

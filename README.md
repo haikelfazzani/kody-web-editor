@@ -9,7 +9,7 @@ With Kody online code editor, you can edit HTML, CSS and JavaScript code, and vi
 
 ### Todo
 - [x] Format code
-- [ ] download code
+- [x] download code
 - [ ] share code
 - [ ] Fetch code
 

@@ -10,7 +10,7 @@ export default function CodeEditor () {
     <Sidebar />
 
     <div className="container">
-      <Split sizes={[50, 50]} gutterSize={7} gutterAlign="center" direction="horizontal">
+      <Split sizes={[50, 50]} minSize={0} gutterSize={7} gutterAlign="center" direction="horizontal">
         <Editor />
         <CodeResult />
       </Split>

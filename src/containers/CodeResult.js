@@ -16,7 +16,9 @@ export default function CodeResult () {
       state.runcode
         ? <iframe title="kody iframe"
           id={state.mode === 'jsx' ? "iframe-react" : "iframe-result"}
-          src={state.mode === 'jsx' ? reactToBlob(state.jsx) : htmlToBlob(state.html, state.css, state.javascript)}>
+          src={state.mode === 'jsx'
+            ? reactToBlob(state.jsx)
+            : htmlToBlob(state.html, state.css, state.javascript)}>
         </iframe>
         : <iframe title="kody empty" id="empty"></iframe>
     }

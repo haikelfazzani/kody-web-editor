@@ -6,10 +6,7 @@ function Main() {
   return <div>hello</div>  
 }  
 
-ReactDOM.render(
-  <Main />,
-  document.getElementById('root')
-);`
+ReactDOM.render(<Main />,document.getElementById('root'));`
 
 let localStor = localStorage.getItem('kody-code');
 let kodyLocal = localStor ? JSON.parse(localStor) : {};
