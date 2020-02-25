@@ -4,7 +4,7 @@ import { KodyContext } from '../hooks/KodyProvider';
 import '../styles/Settings.css';
 
 const fontSizes = ['10', '12', '14', '16', '18', '20', '22', '24'];
-const themes = ['monokai', 'dracula'];
+const themes = ['monokai', 'dracula', 'eclipse'];
 
 export default function Modal () {
 
@@ -85,12 +85,12 @@ export default function Modal () {
       </div>
 
       <div className="mb-10">
-        <label htmlFor="fontsize">Font Size</label>
+        <label htmlFor="fontsize">Font Size ({state.editorSettings.fontSize})</label>
         <Select onChange={onFontSize} data={fontSizes} clx="mt-5" />
       </div>
 
       <div>
-        <label htmlFor="themes">themes</label>
+        <label htmlFor="themes">themes ({state.editorSettings.theme})</label>
         <Select onChange={onThemes} data={themes} clx="mt-5" />
       </div>
 

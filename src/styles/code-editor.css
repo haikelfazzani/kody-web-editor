@@ -25,10 +25,7 @@ main {
   border: 0;
 }
 
-#kody-ace-editor,
-.ace_gutter-layer {
-  background-color: #1e1e1e;
-}
+.ace-monokai {background-color: #1e1e1e !important;}
 
 .gutter {
   background: #35393a !important;
