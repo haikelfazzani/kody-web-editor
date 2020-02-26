@@ -4,7 +4,7 @@ import { KodyContext } from '../hooks/KodyProvider';
 import '../styles/Settings.css';
 
 const fontSizes = ['10', '12', '14', '16', '18', '20', '22', '24'];
-const themes = ['monokai', 'dracula', 'eclipse'];
+const themes = ['ayu_dark', 'dracula', 'cobalt', 'monokai', 'material', 'vs_dark'];
 
 export default function Modal () {
 

@@ -46,7 +46,7 @@ export default function Sidebar () {
   return <div className="side-bar">
     <ul>
       <li>
-        <button onClick={runCode} className={state.runcode ? "bg-green" : "bg-choc"}>
+        <button onClick={runCode} className={state.runcode ? "bg-green" : "bg-rose"}>
           <i className="fas fa-play"></i>
         </button>
       </li>
