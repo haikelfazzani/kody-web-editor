@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/sidebar.css';
-import { KodyContext } from '../hooks/KodyProvider';
+import KodyContext from '../providers/KodyContext';
 import Button from '../components/Button';
 import Settings from './Settings';
 import beautify from 'js-beautify';
@@ -20,7 +20,7 @@ export default function Sidebar () {
     setState({ ...state, runcode: true });
     setTimeout(() => {
       setState({ ...state, runcode: false });
-    }, 5000);
+    }, 800);
   }
 
   const formatCode = () => {

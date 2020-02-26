@@ -8,14 +8,15 @@ import "ace-builds/src-noconflict/mode-jsx";
 
 import "ace-builds/src-min-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/theme-dracula";
+import "ace-builds/src-noconflict/theme-cobalt";
+
 import "ace-builds/src-noconflict/theme-ayu_dark";
 import "ace-builds/src-noconflict/theme-vs_dark";
 import "ace-builds/src-noconflict/theme-material";
-import "ace-builds/src-noconflict/theme-cobalt";
 
 import "ace-builds/src-noconflict/ext-language_tools";
 
-import { KodyContext } from "../hooks/KodyProvider";
+import KodyContext from "../providers/KodyContext";
 
 export default function Editor () {
 

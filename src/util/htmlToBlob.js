@@ -16,7 +16,7 @@ export default function htmlToBlob (html, css, js) {
   </head>
   <body>
     ${html}   
-    <script src="${jsURL}"></script>
+    <script src="${jsURL}" defer></script>
   </body>
 </html>`;
 

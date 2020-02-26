@@ -27,13 +27,15 @@ main {
 
 .ace-monokai .ace_gutter {background-color: #1e1e1e !important;}
 .ace-monokai {background-color: #1e1e1e !important; }
-#ace-editor {overflow-x: auto;}
+#ace-editor,.ace_scrollbar-h {overflow-x: hidden;}
 
 .ace-editor,
 .ace_content {
   width: 100%;
   height: 100% !important;
 }
+
+.ace_content {    width: 100% !important;}
 
 .gutter {
   background: #35393a !important;

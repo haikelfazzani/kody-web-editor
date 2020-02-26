@@ -1,4 +1,5 @@
-import React, { useState, createContext } from 'react';
+import React, { useState } from 'react';
+import KodyContext from './KodyContext';
 
 let codeJsx = `
 // <div id="root"></div>
@@ -34,8 +35,6 @@ let initState = {
   showSettingsModal: kodyLocal.showSettingsModal || false,
   editorSettings: initEditorSettings
 } || kodyLocal;
-
-export const KodyContext = createContext();
 
 export function KodyProvider ({ children }) {
 

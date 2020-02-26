@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Select from '../components/Select';
-import { KodyContext } from '../hooks/KodyProvider';
+import KodyContext from '../providers/KodyContext';
 import '../styles/Settings.css';
 
 const fontSizes = ['10', '12', '14', '16', '18', '20', '22', '24'];
