@@ -16,7 +16,7 @@ const Iframe = React.memo(({ codeWeb, codeJsx, mode }) => {
 });
 
 const IframeConsole = React.memo(({ codeWeb }) => {
-  return <iframe id="iframe-console" src={cosLogs(codeWeb.html, codeWeb.javascript)}></iframe>
+  return <iframe title="iframe-console" src={cosLogs(codeWeb.html, codeWeb.javascript)}></iframe>
 });
 
 export default function CodeResult () {

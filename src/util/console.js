@@ -30,7 +30,6 @@ console.log = function () {
 
 let dp = `
 let fv=consoleBuffer.flat();
-console.log(fv)
 for(let i = 0; i < fv.length ;i++) {
   if (typeof fv[i] === 'object') {
     document.getElementById('dp').innerHTML += '<li><pre>'+ JSON.stringify(fv[i], null,2) +'</pre></li>';
