@@ -70,7 +70,7 @@ export default function cosLogs (html, js) {
 
     <p>Console</p>
     <ul id="dp"></ul>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="${ovURL}"></script>
     <script src="${jsURL}"></script>    
     <script src="${dpURL}"></script>

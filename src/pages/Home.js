@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import '../styles/home.css';
+import jqLogo from '../img/jquery.svg';
 
 export default function Home () {
   return <div className="home">
@@ -10,7 +11,8 @@ export default function Home () {
     <p className="mt-0">
       <i className="fab fa-html5 fs-40 mr-20"></i>
       <i className="fab fa-css3-alt fs-40 mr-20"></i>
-      <i className="fab fa-js-square fs-40 mr-20"></i>
+      <i className="fab fa-js-square fs-40 mr-10"></i>
+      <img src={jqLogo} alt="jquery" style={{maxWidth:'36px'}} className="mr-10" />
       <i className="fab fa-react fs-40"></i>
     </p>
 
