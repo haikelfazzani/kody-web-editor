@@ -6,7 +6,8 @@ main {
   border-bottom: 10px solid #333333;
 }
 
-.container, .container>div {
+.container,
+.container>div {
   width: 100%;
   height: 100%;
   display: flex;
@@ -18,16 +19,18 @@ main {
   height: 100% !important;
 }
 
-.result iframe {
-  width: 100%;
-  height: 100%;
-  background-color: #ffffff;
-  border: 0;
+.ace-monokai .ace_gutter {
+  background-color: #1e1e1e !important;
 }
 
-.ace-monokai .ace_gutter {background-color: #1e1e1e !important;}
-.ace-monokai {background-color: #1e1e1e !important; }
-#ace-editor,.ace_scrollbar-h {overflow-x: hidden;}
+.ace-monokai {
+  background-color: #1e1e1e !important;
+}
+
+#ace-editor,
+.ace_scrollbar-h {
+  overflow-x: hidden;
+}
 
 .ace-editor,
 .ace_content {
@@ -35,12 +38,29 @@ main {
   height: 100% !important;
 }
 
-.ace_content {    width: 100% !important;}
+.ace_content {
+  width: 100% !important;
+}
 
 .gutter {
   background: #35393a !important;
-  cursor: col-resize;
   transition: background-color .2s;
 }
 
-.gutter:hover { background-color: #0080db !important; }
+.gutter:hover {
+  background-color: #0080db !important;
+}
+
+/* code result: iframes */
+.result > div {
+display: flex;
+flex-direction: column;
+height: 100%;
+}
+
+#iframe-console,.result iframe {
+  width: 100%;
+  background-color: #ffffff;
+  border: 0;
+}
+
