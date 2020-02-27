@@ -20,7 +20,7 @@ export default function Sidebar () {
     setState({ ...state, runcode: true });
     setTimeout(() => {
       setState({ ...state, runcode: false });
-    }, 800);
+    }, 500);
   }, [state, setState]);
 
   const formatCode = () => {

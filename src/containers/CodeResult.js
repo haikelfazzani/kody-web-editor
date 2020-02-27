@@ -3,8 +3,7 @@ import KodyContext from '../providers/KodyContext';
 import htmlToBlob from '../util/htmlToBlob';
 import reactToBlob from '../util/reactToBlob';
 import cosLogs from '../util/console';
-
-import Split from 'react-split';
+import SplitPane from '../components/SplitPane';
 
 const Iframe = React.memo(({ codeWeb, codeJsx, mode }) => {
   return <iframe title="kody iframe"
@@ -25,11 +24,6 @@ export default function CodeResult () {
   const [codeWeb, setCodeWeb] = useState({ html: '', css: '', javascript: '' });
   const [codeJsx, setCodeJsx] = useState('');
 
-  const [sizes] = useState(() => {
-    let localSizes = localStorage.getItem('kody-split-result-iframes');
-    return localSizes ? JSON.parse(localSizes) : [50, 50];
-  });
-
   useEffect(() => {
     localStorage.setItem('kody-code', JSON.stringify(state));
     if (state.runcode && state.mode !== 'jsx') {
@@ -40,20 +34,10 @@ export default function CodeResult () {
     }
   }, [state, setState]);
 
-  const onDragEnd = v => {
-    localStorage.setItem('kody-split-result-iframes', JSON.stringify(v));
-  }
-
   return <div className="result">
-    <Split
-      sizes={sizes} onDragEnd={onDragEnd}
-      minSize={0}
-      cursor="row-resize"
-      gutterSize={7}
-      gutterAlign="center"
-      direction="vertical">
+    <SplitPane name="kody-split-result-iframes" direction="vertical">
       <Iframe codeWeb={codeWeb} codeJsx={codeJsx} mode={state.mode} />
       <IframeConsole codeWeb={codeWeb} />
-    </Split>
+    </SplitPane>
   </div>;
 }

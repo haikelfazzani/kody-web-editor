@@ -20,7 +20,7 @@ let initEditorSettings = {
   fontSize: editorSettings ? editorSettings.fontSize : 16,
   live: editorSettings ? editorSettings.live : false,
   showPrintMargin: editorSettings ? editorSettings.showPrintMargin : false,
-  wrapEnabled: editorSettings ? editorSettings.wrapEnabled : true,
+  wrapEnabled: editorSettings ? editorSettings.wrapEnabled : false,
   enableLiveAutocompletion: editorSettings ? editorSettings.enableLiveAutocompletion : true
 }
 
