@@ -1,23 +1,17 @@
 let ov = `
 var origLog = console.log;
 var consoleBuffer = [];
+var ulElement = document.getElementById('dp');
 
 window.onerror = function (msg, url, lineNo, columnNo, error) {
-  var string = msg.toLowerCase();
-  var substring = "script error";
-  if (string.indexOf(substring) > -1){
-    consoleBuffer.push('Script Error: See Browser Console for Detail');
-  } else {
-    var message = [
-      'Message: ' + msg ,
-      '<br>Line: ' + (lineNo-28) ,
-      '<br>Column: ' + columnNo ,
-      '<br>Error object: ' + JSON.stringify(error)
-    ].join(' ');
+  var message = [
+    'Message: ' + msg ,
+    '<br>Line: ' + lineNo ,
+    '<br>Column: ' + columnNo ,
+    '<br>Error object: ' + JSON.stringify(error)
+  ].join(' ');
 
-    consoleBuffer.push('<span style="color: #f35c5c">'+ message +'</span>');
-  }
-
+  ulElement.innerHTML += ('<li><pre style="color: #f35c5c">'+ message +'</pre></li>');
   return false;
 };
 
@@ -32,12 +26,12 @@ let dp = `
 let fv=consoleBuffer.flat();
 for(let i = 0; i < fv.length ;i++) {
   if (typeof fv[i] === 'object') {
-    document.getElementById('dp').innerHTML += '<li><pre>'+ JSON.stringify(fv[i], null,2) +'</pre></li>';
+    ulElement.innerHTML += '<li><pre>'+ JSON.stringify(fv[i], null,2) +'</pre></li>';
   }
   else if (typeof fv[i] === 'number') {
-    document.getElementById('dp').innerHTML += '<li><pre style="color: #d0782a">'+ fv[i] +'</pre></li>';
+    ulElement.innerHTML += '<li><pre style="color: #d0782a">'+ fv[i] +'</pre></li>';
   }
-  else document.getElementById('dp').innerHTML += '<li><pre>'+ fv[i] +'</pre></li>';
+  else ulElement.innerHTML += '<li><pre>'+ fv[i] +'</pre></li>';
 }`;
 
 export default function cosLogs (html, js) {
@@ -46,7 +40,8 @@ export default function cosLogs (html, js) {
     return URL.createObjectURL(blob)
   }
 
-  let jsURL = getBlobURL(ov + js, 'text/javascript');
+  let jsURL = getBlobURL(js, 'text/javascript');
+  let ovURL = getBlobURL(ov , 'text/javascript');
   let dpURL = getBlobURL(dp, 'text/javascript');
 
   const source = `
@@ -75,7 +70,9 @@ export default function cosLogs (html, js) {
 
     <p>Console</p>
     <ul id="dp"></ul>
-    <script src="${jsURL}"></script>
+
+    <script src="${ovURL}"></script>
+    <script src="${jsURL}"></script>    
     <script src="${dpURL}"></script>
   </body>
 </html>`;

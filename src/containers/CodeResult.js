@@ -38,7 +38,6 @@ export default function CodeResult () {
     else {
       setCodeJsx(state.jsx);
     }
-
   }, [state, setState]);
 
   const onDragEnd = v => {

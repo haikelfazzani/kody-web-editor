@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/sidebar.css';
 import KodyContext from '../providers/KodyContext';
@@ -16,12 +16,12 @@ export default function Sidebar () {
     setState({ ...state, mode: tab });
   }
 
-  const runCode = () => {
+  const runCode = useCallback(() => {
     setState({ ...state, runcode: true });
     setTimeout(() => {
       setState({ ...state, runcode: false });
     }, 800);
-  }
+  }, [state, setState]);
 
   const formatCode = () => {
     setState({
@@ -46,31 +46,23 @@ export default function Sidebar () {
   return <div className="side-bar">
     <ul>
       <li>
-        <button onClick={runCode} className={state.runcode ? "bg-green" : "bg-rose"}>
-          <i className="fas fa-play"></i>
-        </button>
+        <Button
+          onClick={runCode}
+          clx={state.runcode ? "bg-green" : "bg-rose"}
+          text={<i className="fas fa-play"></i>}
+        />
       </li>
 
       <li className="border-top"><Button onClick={() => switchTab('html')} text="html" /></li>
       <li><Button onClick={() => switchTab('css')} text="css" /></li>
       <li><Button onClick={() => switchTab('javascript')} text="js" /></li>
-
-      <li className="border-top">
-        <Button onClick={() => switchTab('jsx')} text={'react'} />
-      </li>
+      <li className="border-top"><Button onClick={() => switchTab('jsx')} text={'react'} /></li>
     </ul>
 
     <ul>
       <li className="border-top"><Button onClick={formatCode} text="Format" clx="bg-gray" /></li>
-
-      <li>
-        <button onClick={downloadFile} className="bg-gray"><i className="fas fa-download"></i></button>
-      </li>
-
-      <li>
-        <button onClick={showSettings} className="bg-gray"><i className="fas fa-cogs"></i></button>
-      </li>
-
+      <li><Button onClick={downloadFile} clx="bg-gray" text={<i className="fas fa-download"></i>} /></li>
+      <li><Button onClick={showSettings} clx="bg-gray" text={<i className="fas fa-cogs"></i>} /></li>
       <li className="border-top mb-10"><Link to="/"><img src={logo} alt="logo.." className="img-logo" /></Link></li>
     </ul>
 
