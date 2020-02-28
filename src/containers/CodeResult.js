@@ -29,7 +29,7 @@ export default function CodeResult () {
     if (state.runcode && state.mode !== 'jsx') {
       setCodeWeb({ html: state.html, css: state.css, javascript: state.javascript });
     }
-    else {
+    if (state.runcode && state.mode === 'jsx') {
       setCodeJsx(state.jsx);
     }
   }, [state, setState]);
