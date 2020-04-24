@@ -35,7 +35,7 @@ export default function Modal () {
     setState({ ...state, showSettingsModal: false });
   }
 
-  return (<div className="modal" style={{ display: state.showSettingsModal ? 'flex' : 'none' }}>
+  return <div className="modal" style={{ display: state.showSettingsModal ? 'flex' : 'none' }}>
     <div className="modal-content ">
 
       <div className="d-flex-sp border-bottom mb-20">
@@ -95,5 +95,5 @@ export default function Modal () {
       </div>
 
     </div>
-  </div>);
+  </div>;
 }

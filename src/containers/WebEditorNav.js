@@ -1,14 +1,12 @@
 import React, { useContext, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/sidebar.css';
 import KodyContext from '../providers/KodyContext';
 import Button from '../components/Button';
-import Settings from './Settings';
 import beautify from 'js-beautify';
 import logo from '../img/logo192.png';
-import { downloadAsHTML, downloadAsJsx } from '../util/download-file';
+import { downloadAsHTML } from '../util/download-file';
 
-export default function Sidebar () {
+export default function WebEditorNav () {
 
   const { state, setState } = useContext(KodyContext);
 
@@ -32,18 +30,11 @@ export default function Sidebar () {
     });
   }
 
-  const showSettings = () => {
-    setState({ ...state, showSettingsModal: true });
-  }
-
   const downloadFile = () => {
-    if (state.mode === 'html' || state.mode === 'css' || state.mode === 'javascript') {
-      downloadAsHTML(state.html, state.css, state.javascript)
-    }
-    else { downloadAsJsx(state.jsx); }
+    downloadAsHTML(state.html, state.css, state.javascript);
   }
 
-  return <div className="side-bar">
+  return <>
     <ul>
       <li>
         <Button
@@ -56,16 +47,12 @@ export default function Sidebar () {
       <li className="border-top"><Button onClick={() => switchTab('html')} text="html" /></li>
       <li><Button onClick={() => switchTab('css')} text="css" /></li>
       <li><Button onClick={() => switchTab('javascript')} text="js" /></li>
-      <li className="border-top"><Button onClick={() => switchTab('jsx')} text={'react'} /></li>
     </ul>
 
     <ul>
       <li className="border-top"><Button onClick={formatCode} text="Format" clx="bg-gray" /></li>
-      <li><Button onClick={downloadFile} clx="bg-gray" text={<i className="fas fa-download"></i>} /></li>
-      <li><Button onClick={showSettings} clx="bg-gray" text={<i className="fas fa-cogs"></i>} /></li>
+      <li><Button onClick={downloadFile} clx="bg-gray" text={<i className="fas fa-download"></i>} /></li>      
       <li className="border-top mb-10"><Link to="/"><img src={logo} alt="logo.." className="img-logo" /></Link></li>
     </ul>
-
-    <Settings />
-  </div>;
+  </>;
 }

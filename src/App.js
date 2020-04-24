@@ -5,12 +5,14 @@ import './styles/App.css';
 import './styles/scroll.css';
 
 import Home from './pages/Home';
-import CodeEditor from './pages/CodeEditor';
+import WebEditor from './pages/WebEditor';
+import ReactPlay from './pages/ReactPlay';
 
 export default function App () {
 
   return <Router>
     <Route exact path="/" component={Home} />
-    <Route path="/editor" component={CodeEditor} />
+    <Route path="/editor" component={WebEditor} />
+    <Route path="/react" component={ReactPlay} />
   </Router>;
 }

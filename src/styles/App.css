@@ -36,6 +36,23 @@ p {font-family: 'Raleway' !important;}
 
 a {text-decoration: none;}
 a:hover {color: #ffffff !important;}
+
+
+.react-code-editor {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+/* React playground */
+.react-code-editor > div {
+  width: 100%;
+  display: flex;
+}
+.lve {display: none;}
+.lve, .lp {padding: 10px !important; font-size: 16px !important; }
+
+.lp pre { color: #ff5050 !important;}
+
 /* util */
 .d-flex-sp {display: flex; justify-content: space-between; align-items: center;}
 .d-flex {display: flex; align-items: center;}

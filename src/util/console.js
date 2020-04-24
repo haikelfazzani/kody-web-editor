@@ -55,7 +55,7 @@ export default function cosLogs (html, js) {
     body { background-color: #333333; margin:0; padding:0; overflow-x: hidden; }
     #dp { margin:0; list-style:none; width:100%; padding:0; }
     #dp  li {border-bottom: 1px solid #393838; padding:10px 15px;  word-break: break-all; }
-    p { margin:0; background-color: #222222; color: #fff; padding:10px 15px; font-size: 12px; }  
+    .header-console { margin:0; background-color: #222222; color: #fff; padding:10px 15px; font-size: 12px; }  
     pre {color: #c3cb59;  margin:0; font-size: 14px; } 
     
 ::-webkit-scrollbar {width: 7px;}
@@ -68,7 +68,7 @@ export default function cosLogs (html, js) {
   <body>
     <div style="display: none">${html}</div>
 
-    <p>Console</p>
+    <p class="header-console">Console</p>
     <ul id="dp"></ul>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="${ovURL}"></script>
