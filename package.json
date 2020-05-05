@@ -1,16 +1,14 @@
 {
-  "name": "kody",
+  "name": "play-sql",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "ace-builds": "^1.4.8",
-    "js-beautify": "^1.10.3",
-    "react": "^16.13.0",
-    "react-ace": "^8.0.0",
-    "react-dom": "^16.13.0",
-    "react-live": "^2.2.2",
+    "codemirror": "^5.53.2",
+    "react": "^16.13.1",
+    "react-codemirror2": "^7.1.0",
+    "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0",
+    "react-scripts": "3.4.1",
     "react-split": "^2.0.7"
   },
   "scripts": {
@@ -33,5 +31,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2"
   }
 }

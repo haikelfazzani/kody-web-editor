@@ -1,31 +1,42 @@
-.home {
-  width: 100%;
+.jumbotron {
   height: 100%;
+  width: 100%;
+  margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: linear-gradient(135deg, #181717 0%, #181717ea 100%), url(../img/bg.jpg);
+  color: #ffffff;
 }
 
-.home h1 {
-  font-size: 45px;
-  margin: 0;
-  font-family: Sriracha;
-  color: #03a9f4;
-  margin-bottom: 20px;
-}
-
-.btn-start {
-  background-color: #03a9f4;
-  color: #fff;
-  padding: 0;
-  padding: 7px 15px;
-  font-size: 14px !important;
-  line-height: 2;
-  text-decoration: none;
-  border: 0;
+.jumbotron h1 {
+  color: var(--warning);
+  font-family: 'Changa';
   text-transform: uppercase;
-  font-weight: 100;
-  box-shadow: 0 0 2px rgba(0,0,0,.1), 0 2px 2px rgba(0,0,0,.2);
+}
+
+.btn-modal {
+  position: fixed;
+  top: 12px;
+  right: 15px;
+  z-index: 9;
   cursor: pointer;
+}
+
+.menu-snippets {
+  width: 220px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: var(--bg-main);
+  overflow-y: auto;
+}
+
+.menu-snippets li {
+  background-color: inherit;
+  text-align: left;
+  font-size: 14px;
+  border: 1px solid rgb(43, 43, 43);
 }

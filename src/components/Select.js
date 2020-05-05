@@ -1,7 +1,13 @@
 import React from 'react';
 
-export default function Select ({ onChange, data, clx }) {
-  return <select onChange={onChange} className={clx}>
-    {data && data.map(d => <option value={d} key={d}>{d}</option>)}
-  </select>;
+export default function Select ({ data, onChange, value, toolTip, clx = "nav-link pr-1" }) {
+  return (<select
+    className={clx}
+    onChange={onChange}
+    value={value}
+    data-toggle="tooltip"
+    data-placement="top"
+    title={toolTip}>
+    {data.map((d, i) => <option value={d} key={d + i}>{d}</option>)}
+  </select>);
 }

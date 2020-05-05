@@ -1,44 +1,28 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-import KodyContext from '../providers/KodyContext';
-import Settings from '../containers/Settings';
-import Footer from '../components/Footer';
-import '../styles/home.css';
-import jqLogo from '../img/jquery.svg';
+import '../styles/Home.css';
 
 export default function Home () {
 
-  const { state, setState } = useContext(KodyContext);
+  return (
+    <div className="jumbotron text-center">
+      <h1 className="display-1">Reacto</h1>
 
-  const showSettings = () => {
-    setState({ ...state, showSettingsModal: true });
-  }
+      <p className="lead w-50 mx-auto m-0">Online React playground that auto-evaluates as you type.</p>
+      <p>Free and open source</p>
 
-  return <div className="home">
-    <h1>The Best Online web Editor</h1>
+      <div className="mb-3 w-20 d-flex justify-content-around fs-35">
+        <span><i className="fab fa-react"></i></span>
+        <span><i className="fab fa-js"></i></span>
+        <span><i className="fab fa-css3-alt"></i></span>
+        <span><i className="fab fa-html5"></i></span>
+      </div>
 
-    <p className="mt-0">
-      <i className="fab fa-html5 fs-40 mr-20"></i>
-      <i className="fab fa-css3-alt fs-40 mr-20"></i>
-      <i className="fab fa-js-square fs-40 mr-10"></i>
-      <img src={jqLogo} alt="jquery" style={{ maxWidth: '36px' }} className="mr-10" />
-      <i className="fab fa-react fs-40"></i>
-    </p>
+      <div className="w-40 d-flex justify-content-around">
+       <Link to={"/web-editor?room="+Date.now()} className="btn btn-outline-warning btn-lg"><i className="fab fa-html5"></i> Web Editor</Link>
+      </div>
 
-
-    <p className="cl-gray m-0">With Kody online code editor, </p>
-    <p className="cl-gray m-0">you can edit HTML, CSS and JavaScript code, </p>
-    <p className="cl-gray mt-0">and view the result in your browser.</p>
-
-    <div className="d-flex">
-      <Link to="react" className="btn-start mr-10">react <i className="fas fa-play-circle"></i></Link>
-      <Link to="editor" className="btn-start mr-10">web <i className="fas fa-play-circle"></i></Link>
-      <div onClick={showSettings} className="btn-start"><i className="fas fa-cogs"></i> Settings</div>
     </div>
-
-    <Settings />
-
-    <Footer />
-  </div>;
+  );
 }

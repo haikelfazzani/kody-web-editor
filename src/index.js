@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import GlobalProvider from './providers/GlobalProvider';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { KodyProvider } from './providers/KodyProvider';
 
 ReactDOM.render(
-  <KodyProvider>
-    <App />
-  </KodyProvider>,
+    <GlobalProvider>
+      <App />
+    </GlobalProvider>,
   document.getElementById('root')
 );
 

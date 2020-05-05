@@ -1,0 +1,25 @@
+nav {
+  font-size: 14px;
+  height: 35px;
+  width: 100%;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a,
+nav div {
+  color: #f1f1f1 !important;
+}
+
+nav a,
+nav div {
+  cursor: pointer;
+}
+
+nav select { background-color: var(--bg-main-light); color: #fff; font-size: 12px; }
+
+@media screen and (max-width: 600px) {
+  nav {display: none;}
+}
