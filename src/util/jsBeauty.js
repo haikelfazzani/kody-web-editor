@@ -7,6 +7,18 @@ const jsBeautyOptions = {
   'detect_packers': true
 };
 
-export default function jsBeauty (data) {
-  return window.js_beautify(data, jsBeautyOptions);
+export default function jsBeauty (data, lang) {
+  switch (lang) {
+    case 'javascript':
+      return window.js_beautify(data, jsBeautyOptions);
+
+    case 'css':
+      return window.css_beautify(data, jsBeautyOptions);
+
+    case 'htmlmixed':
+      return window.html_beautify(data, jsBeautyOptions);
+
+    default:
+      break;
+  }
 }

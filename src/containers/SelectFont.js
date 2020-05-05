@@ -1,19 +1,20 @@
-import React, { useContext } from 'react';
-import GlobalContext from '../providers/GlobalContext';
+import React from 'react';
+import { useStoreState, useStoreActions } from 'easy-peasy';
 
 const fontSizes = ['10px', '12px', '14px', '16px', '18px', '20px', '22px', '24px'];
 
 function SelectFont () {
 
-  const { state, setState } = useContext(GlobalContext);
+  const fontSize = useStoreState(state => state.editorSettings.fontSize);
+  const updateFontSize = useStoreActions(actions => actions.updateFontSize);
 
   return (
     <select
       className="nav-link pr-1 pl-1"
       name="font-sizes"
 
-      onChange={(e) => { setState({ ...state, fontSize: e.target.value }); }}
-      value={state.fontSize}
+      onChange={(e) => { updateFontSize(e.target.value); }}
+      value={fontSize}
 
       data-toggle="tooltip"
       data-placement="top"

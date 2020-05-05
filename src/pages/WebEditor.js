@@ -8,13 +8,14 @@ import writeContent from '../util/iframe';
 
 import '../styles/Tabs.css';
 import '../styles/WebEditor.css';
+import jsBeauty from '../util/jsBeauty';
 
 let local = localStorage.getItem('reacto-web-editor');
 let initTabState = local ? JSON.parse(local) : {
   tabs: [
-    { name: 'index.html', lang: 'htmlmixed', index: 0, code: '' },
-    { name: 'style.css', lang: 'css', index: 1, code: '' },
-    { name: 'app.js', lang: 'javascript', index: 2, code: '' }
+    { name: 'Index.html', lang: 'htmlmixed', index: 0, code: '', icon:'fab fa-html5' },
+    { name: 'Style.css', lang: 'css', index: 1, code: '', icon:'fab fa-css3' },
+    { name: 'App.js', lang: 'javascript', index: 2, code: '', icon:'fab fa-js' }
   ],
   activeTabIndex: 0
 };
@@ -30,17 +31,8 @@ export default function WebEditor () {
   const [jsValue, setJsValue] = useState(null);
 
   const onEditorChange = (v, e, data) => {
-
     setEditorVal(data);
     tabsState.tabs.find(t => t.index === tabsState.activeTabIndex).code = data;
-
-    let iframeDoc = iframe.current.contentWindow.document;
-    let content = writeContent(tabsState.tabs[0].code, tabsState.tabs[1].code, tabsState.tabs[2].code);
-    iframeDoc.open().write(content);
-    iframeDoc.close();
-
-    if(tabsState.activeTabIndex === 2) { setJsValue(tabsState.tabs[2].code) }
-    
     localStorage.setItem('reacto-web-editor', JSON.stringify(tabsState));
   }
 
@@ -49,6 +41,20 @@ export default function WebEditor () {
     setEditorVal(tab.code);
     setTabsState({ ...tabsState, activeTabIndex });
   }, []);
+
+  const beautifyCode = () => {
+    let tab = tabsState.tabs[tabsState.activeTabIndex];
+    let res = jsBeauty(tab.code, tab.lang);
+    setEditorVal(res);
+  }
+
+  const runCode = () => {
+    let iframeDoc = iframe.current.contentWindow.document;
+    let content = writeContent(tabsState.tabs[0].code, tabsState.tabs[1].code, tabsState.tabs[2].code);
+    iframeDoc.open().write(content);
+    iframeDoc.close();
+    if (tabsState.activeTabIndex === 2) { setJsValue(tabsState.tabs[2].code) }
+  }
 
   return <>
     <Navbar />
@@ -64,9 +70,16 @@ export default function WebEditor () {
                 <span
                   className={'tab ' + (tabsState.activeTabIndex === tab.index ? 'active-tab' : '')}
                   key={'wtab' + tab.index}>
-                  <div onClick={() => { onClickTab(tab.index); }}>{tab.name}</div>
+                  <div onClick={() => { onClickTab(tab.index); }}>
+                    <i className={tab.icon + ' mr-2'}></i><span className="tab-title">{tab.name}</span>
+                  </div>
                 </span>
               ))}
+            </div>
+
+            <div>
+              <button onClick={beautifyCode} className="btn btn-outline-light"><i className="fa fa-list"></i></button>
+              <button onClick={runCode} className="btn btn-outline-light"><i className="fa fa-play"></i></button>
             </div>
           </header>
 

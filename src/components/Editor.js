@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { UnControlled as CodeMirror } from 'react-codemirror2';
-import GlobalContext from '../providers/GlobalContext';
+import { useStoreState } from 'easy-peasy';
 
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/monokai.css';
@@ -30,7 +30,8 @@ const hintOptions = { disableKeywords: false, completeSingle: false, completeOnS
 
 export default function Editor ({ onChange, value, lang = 'jsx',readOnly = false }) {
 
-  const { state } = useContext(GlobalContext);
+  const fontSize = useStoreState(state => state.editorSettings.fontSize);
+
   const [options, setOptions] = useState({
     mode: lang,
     theme:'monokai',
@@ -45,13 +46,8 @@ export default function Editor ({ onChange, value, lang = 'jsx',readOnly = false
   });
 
   useEffect(() => {
-    // let allEditors = document.querySelectorAll('.CodeMirror');
-    // [...allEditors].forEach(e => {
-    //   e.style.fontSize = state.fontSize;
-    // });
-
-    document.querySelector('.CodeMirror').style.fontSize = state.fontSize;
-  }, [state.fontSize]);
+    document.querySelector('.CodeMirror').style.fontSize = fontSize;
+  }, [fontSize]);
 
   useEffect(() => {
     setOptions({ ...options, mode: lang });

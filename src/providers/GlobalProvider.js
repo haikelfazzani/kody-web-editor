@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import GlobalContext from './GlobalContext';
+import { createStore, action } from 'easy-peasy';
 
-/** init values global state */
-let initState = { fontSize: '16px' };
-try {
-  let local = window.localStorage ? localStorage.getItem('reacto-config') : null;
-  initState = local ? JSON.parse(local) : initState;
-} catch (error) {
-}
+const editorSettingsActions = {
+  updateFontSize: action((state, fontSize) => {
+    return { ...state, editorSettings: { ...state.editorSettings, fontSize } }
+  })
+};
 
-export default function GlobalProvider ({ children }) {
-  const [state, setState] = useState(initState);
 
-  useEffect(() => {
-    localStorage.setItem('reacto-config', JSON.stringify(state));
-  }, [state, setState]);
+let local = window.localStorage ? localStorage.getItem('reacto-config') : null;
 
-  return <GlobalContext.Provider value={{ state, setState }}>
-    {children}
-  </GlobalContext.Provider>;
-}
+const storeModel = {
+  editorSettings: local ? JSON.parse(local) : { fontSize: '16px' },
+  webeditor: {
+    addedLibraries: [], // jquery, react, vue
+    embedIframe: '',
+    generatedURL: '' // an url generated to be sahred
+  },
+  ...editorSettingsActions
+};
+
+const store = createStore(storeModel);
+
+export default store;

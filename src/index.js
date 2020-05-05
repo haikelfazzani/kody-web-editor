@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GlobalProvider from './providers/GlobalProvider';
+
+import { StoreProvider } from 'easy-peasy';
+import store from './providers/GlobalProvider';
+
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    <GlobalProvider>
-      <App />
-    </GlobalProvider>,
+  <StoreProvider store={store}>
+    <App />
+  </StoreProvider>,
   document.getElementById('root')
 );
 

@@ -6,6 +6,9 @@
   color: #afafaf;
   background-color: var(--bg-main-light);
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .tabs>div {
@@ -22,6 +25,7 @@
   justify-content: center;
   align-items: center;
   letter-spacing: 1px;
+  cursor: pointer;
 }
 
 .btn-plus {
@@ -38,4 +42,12 @@
 .active-tab {
   background-color: var(--bg-main);
   color: #ffffff;
+}
+
+
+@media screen and (max-width: 600px) {
+  .tab {
+    font-size: 12px;
+  }
+  .tab-title {display: none;}
 }
