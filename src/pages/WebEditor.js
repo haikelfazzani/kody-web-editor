@@ -1,11 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import Editor from '../components/Editor';
 import Navbar from '../containers/Navbar';
 import Split from 'react-split';
 
+import Linter from '../containers/Linter';
+import writeContent from '../util/iframe';
+
 import '../styles/Tabs.css';
 import '../styles/WebEditor.css';
-import writeContent from '../util/iframe';
 
 let local = localStorage.getItem('reacto-web-editor');
 let initTabState = local ? JSON.parse(local) : {
@@ -25,9 +27,9 @@ export default function WebEditor () {
   const [editorVal, setEditorVal] = useState(initEditorVal);
   const [tabsState, setTabsState] = useState(initTabState);
 
-  const [cs, setCs] = useState([]);
+  const [jsValue, setJsValue] = useState(null);
 
-  const onEditorChange = (v,e,data) => {
+  const onEditorChange = (v, e, data) => {
 
     setEditorVal(data);
     tabsState.tabs.find(t => t.index === tabsState.activeTabIndex).code = data;
@@ -37,19 +39,16 @@ export default function WebEditor () {
     iframeDoc.open().write(content);
     iframeDoc.close();
 
-    iframe.current.contentWindow.console.log = (args) => {
-      console.log(args);
-      setCs([...cs, args])
-    }
+    if(tabsState.activeTabIndex === 2) { setJsValue(tabsState.tabs[2].code) }
     
     localStorage.setItem('reacto-web-editor', JSON.stringify(tabsState));
   }
 
-  const onClickTab = (activeTabIndex) => {
+  const onClickTab = useCallback((activeTabIndex) => {
     let tab = tabsState.tabs[activeTabIndex];
     setEditorVal(tab.code);
     setTabsState({ ...tabsState, activeTabIndex });
-  }
+  }, []);
 
   return <>
     <Navbar />
@@ -78,12 +77,15 @@ export default function WebEditor () {
           />
         </div>
 
-        <div>
+        <div className="editor-output">
           <header className="tabs overflow-auto">
-            <span className="tab active-tab">Output</span>
+            <span className="tab active-tab"><i className="fa fa-circle mr-2"></i> Output</span>
           </header>
 
-          <iframe ref={iframe} title="web editor"></iframe>
+          <Split gutterSize={10} sizes={[50, 50]} direction="vertical" minSize={30}>
+            <iframe ref={iframe} title="web editor"></iframe>
+            <Linter jsValue={jsValue} />
+          </Split>
         </div>
       </Split>
     </main>

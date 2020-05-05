@@ -6,7 +6,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(135deg, #181717 0%, #181717ea 100%), url(../img/bg.jpg);
+  /* background-image: linear-gradient(135deg, #001528b4 0%, #001528dc 100%), url(../img/bg.jpg); */
+  background-color: inherit;
   color: #ffffff;
 }
 
@@ -14,29 +15,4 @@
   color: var(--warning);
   font-family: 'Changa';
   text-transform: uppercase;
-}
-
-.btn-modal {
-  position: fixed;
-  top: 12px;
-  right: 15px;
-  z-index: 9;
-  cursor: pointer;
-}
-
-.menu-snippets {
-  width: 220px;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  right: 0;
-  background-color: var(--bg-main);
-  overflow-y: auto;
-}
-
-.menu-snippets li {
-  background-color: inherit;
-  text-align: left;
-  font-size: 14px;
-  border: 1px solid rgb(43, 43, 43);
 }

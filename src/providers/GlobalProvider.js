@@ -5,7 +5,7 @@ import GlobalContext from './GlobalContext';
 let initState = { fontSize: '16px' };
 try {
   let local = window.localStorage ? localStorage.getItem('reacto-config') : null;
-  initState = local ? JSON.parse(local) : { fontSize: '16px' };;
+  initState = local ? JSON.parse(local) : initState;
 } catch (error) {
 }
 
