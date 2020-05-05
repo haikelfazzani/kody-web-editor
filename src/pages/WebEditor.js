@@ -75,9 +75,9 @@ export default function WebEditor () {
 
   useEffect(() => {
     let data = window.location.search.split('?w=')[1];
-    if(data) {
+    if (data) {
       let decodedData = JSON.parse(window.atob(data));
-    setTabsState(decodedData);
+      setTabsState(decodedData);
     }
   }, []);
 

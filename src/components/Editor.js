@@ -54,7 +54,7 @@ export default function Editor ({ onChange, value, lang = 'jsx',readOnly = false
   }, [lang]);
 
   const onKeyPress = (editor, event) => {
-    if (!readOnly && event.keyCode > 64 && event.keyCode < 123) {
+    if (!readOnly && !event.ctrlKey && event.keyCode > 64 && event.keyCode < 123) {
       setTimeout(() => { editor.showHint(hintOptions); }, 250);
     }
   }

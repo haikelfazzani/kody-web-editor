@@ -23,7 +23,7 @@ const Linter = ({ jsValue }) => {
     // babel transpiler
     let output = '';
     try {
-      output = window.Babel.transform(jsValue, { envName: 'production', presets: ['es2015'] }).code;
+      output = window.Babel.transform(jsValue, { envName: 'production', presets: ['react','es2015'] }).code;
       setTranspiledCode(output);
     } catch (error) {
       setTranspiledCode(error.message);

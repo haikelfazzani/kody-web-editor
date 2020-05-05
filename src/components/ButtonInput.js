@@ -46,6 +46,7 @@ export default function ButtonInput () {
 
       default:
         addLibrary(state.inputValue);
+        setState({ ...state, inputValue: '' });
         break;
     }
   }
@@ -62,6 +63,10 @@ export default function ButtonInput () {
 
     <button className="btn btn-primary mr-3" onClick={() => { onSetAction('embed') }}>
       <i className="fas fa-code"></i> embed
+      </button>
+
+      <button className="btn btn-primary mr-3">
+      <i className="fas fa-download"></i>
       </button>
 
     <div style={{ display: state.openInput ? 'block' : 'none' }}>
@@ -82,7 +87,7 @@ export default function ButtonInput () {
           : <><i className="fa fa-recycle"></i> Generate and copy url</>}
       </button>
       <button className="btn btn-danger" onClick={() => { setState({ ...state, openInput: false }); }}>
-      <i className="fa fa-times"></i> Close</button>
+        <i className="fa fa-times"></i> Close</button>
     </div>
   </div>);
 }

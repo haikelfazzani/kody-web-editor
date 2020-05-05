@@ -12,13 +12,13 @@ export default function writeContent (html, css, js, libraries = []) {
     </head>
     <body>      
 
-      ${libraries.map(library => `<script type="text/javascript" src="${library}"></script>`)}
-
+      ${libraries.map(library => library)}
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
       <style>${css}</style>
 
       ${html}
       
-      <script type="text/javascript" defer>${js}</script>
+      <script type="text/babel" defer>${js}</script>
     </body>
   </html>`
 };
