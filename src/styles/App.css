@@ -67,7 +67,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 a {text-decoration: none !important;}
 
 .fs-14 {font-size: 14px !important;}
-.fs-35 {font-size: 35px !important;}
+.fs-35 {font-size: 55px !important;}
 
 .ltsp {letter-spacing: 2px;}
 
@@ -94,4 +94,22 @@ a {text-decoration: none !important;}
   main {height: 100% !important;}
   .w-20 {width: 100%;}
   .w-40 {width: 100%;}
+}
+
+
+/**************/
+.btn-input>div {
+  width: 50%;
+  position: fixed;
+  top: 40px;
+  right: 0;
+  background-color: var(--bg-main-light);
+  padding: 10px;
+  z-index: 4;
+}
+
+.btn-input>div textarea {
+  background-color: var(--bg-main);
+  color: #ffffff;
+  border: 0;
 }

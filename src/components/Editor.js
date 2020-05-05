@@ -30,7 +30,7 @@ const hintOptions = { disableKeywords: false, completeSingle: false, completeOnS
 
 export default function Editor ({ onChange, value, lang = 'jsx',readOnly = false }) {
 
-  const fontSize = useStoreState(state => state.editorSettings.fontSize);
+  const fontSize = useStoreState(state => state.editorSettings.model.fontSize);
 
   const [options, setOptions] = useState({
     mode: lang,
@@ -54,7 +54,7 @@ export default function Editor ({ onChange, value, lang = 'jsx',readOnly = false
   }, [lang]);
 
   const onKeyPress = (editor, event) => {
-    if (event.keyCode > 64 && event.keyCode < 123) {
+    if (!readOnly && event.keyCode > 64 && event.keyCode < 123) {
       setTimeout(() => { editor.showHint(hintOptions); }, 250);
     }
   }

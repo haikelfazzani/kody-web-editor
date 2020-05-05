@@ -5,7 +5,7 @@
   align-items: center;
   color: #afafaf;
   background-color: var(--bg-main-light);
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.5);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .5);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,7 +14,7 @@
 .tabs>div {
   height: 100%;
   display: flex;
-  align-items: center;  
+  align-items: center;
   overflow: hidden;
 }
 
@@ -28,26 +28,27 @@
   cursor: pointer;
 }
 
-.btn-plus {
-  background-color: inherit;
-  color: #afafaf;
-  border: 0;
-}
-
-.btn-rm:hover {
-  color: #ff3d3d;
-  cursor: pointer;
-}
-
 .active-tab {
   background-color: var(--bg-main);
   color: #ffffff;
 }
 
+.tabs .btn-outline-light.focus,
+.tabs .btn-outline-light:focus,
+.tabs .btn.focus,
+.tabs .btn:focus {
+  box-shadow: none !important;
+  background-color: var(--success);
+}
+
+@media screen and (max-width: 1140px) {
+  .tab-title {
+    display: none;
+  }
+}
 
 @media screen and (max-width: 600px) {
   .tab {
     font-size: 12px;
   }
-  .tab-title {display: none;}
 }

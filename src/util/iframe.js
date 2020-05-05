@@ -1,18 +1,23 @@
-export default function writeContent (html, css, js) {
+export default function writeContent (html, css, js, libraries = []) {
   return `<html>
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Reacto - Online web editor</title>
       <style>
-      body {
-        color: #fff;
-      }
-      ${css}</style>
+        body {
+          color: #fff;
+        }        
+      </style>
     </head>
-    <body>        
+    <body>      
+
+      ${libraries.map(library => `<script type="text/javascript" src="${library}"></script>`)}
+
+      <style>${css}</style>
+
       ${html}
-      <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      
       <script type="text/javascript" defer>${js}</script>
     </body>
   </html>`

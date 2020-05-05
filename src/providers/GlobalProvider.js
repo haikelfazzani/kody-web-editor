@@ -1,22 +1,58 @@
 import { createStore, action } from 'easy-peasy';
+import copyToClipboard from '../util/copyToClipboard';
 
-const editorSettingsActions = {
+let localS = window.localStorage ? localStorage.getItem('reacto-config') : null;
+
+const editorSettings = {
+  model: localS ? JSON.parse(localS) : { fontSize: '16px' },
   updateFontSize: action((state, fontSize) => {
-    return { ...state, editorSettings: { ...state.editorSettings, fontSize } }
+    state.model.fontSize = fontSize;
   })
 };
 
 
-let local = window.localStorage ? localStorage.getItem('reacto-config') : null;
+let localW = window.localStorage ? localStorage.getItem('kody-webeditor-config') : null;
 
-const storeModel = {
-  editorSettings: local ? JSON.parse(local) : { fontSize: '16px' },
-  webeditor: {
-    addedLibraries: [], // jquery, react, vue
+const webeditor = {
+  model: localW ? JSON.parse(localW) : {
+    libraries: [], // jquery, react, vue etc..
     embedIframe: '',
     generatedURL: '' // an url generated to be sahred
   },
-  ...editorSettingsActions
+
+  addLibrary: action((state, library) => {
+    if (!state.model.libraries.includes(library) && library.length > 25) {
+      state.model.libraries.push(library);
+      localStorage.setItem('kody-webeditor-config', JSON.stringify(state.model));
+    }
+  }),
+
+  generateURL: action((state) => {
+       
+  }),
+
+  embedIframeURL: action((state, library) => {
+    let codeResult = localStorage.getItem('reacto-web-editor');
+
+    if(codeResult) {      
+
+      const encodedData = window.btoa(JSON.stringify(codeResult));
+      let url = window.location.origin + '/web-editor?w=' + encodedData;
+  
+      url = `<iframe src="${url}" title="kody" width="500" height="500"></iframe>`;
+  
+      copyToClipboard(url);
+
+      state.model.generatedURL = url;
+      return state
+    } 
+  })
+}
+
+
+const storeModel = {
+  editorSettings,
+  webeditor
 };
 
 const store = createStore(storeModel);

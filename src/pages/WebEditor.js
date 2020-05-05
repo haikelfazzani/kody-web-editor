@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import Editor from '../components/Editor';
 import Navbar from '../containers/Navbar';
 import Split from 'react-split';
@@ -9,13 +9,14 @@ import writeContent from '../util/iframe';
 import '../styles/Tabs.css';
 import '../styles/WebEditor.css';
 import jsBeauty from '../util/jsBeauty';
+import { useStoreState } from 'easy-peasy';
 
 let local = localStorage.getItem('reacto-web-editor');
 let initTabState = local ? JSON.parse(local) : {
   tabs: [
-    { name: 'Index.html', lang: 'htmlmixed', index: 0, code: '', icon:'fab fa-html5' },
-    { name: 'Style.css', lang: 'css', index: 1, code: '', icon:'fab fa-css3' },
-    { name: 'App.js', lang: 'javascript', index: 2, code: '', icon:'fab fa-js' }
+    { name: 'Index.html', lang: 'htmlmixed', index: 0, code: '', icon: 'fab fa-html5' },
+    { name: 'Style.css', lang: 'css', index: 1, code: '', icon: 'fab fa-css3' },
+    { name: 'App.js', lang: 'javascript', index: 2, code: '', icon: 'fab fa-js' }
   ],
   activeTabIndex: 0
 };
@@ -27,12 +28,14 @@ export default function WebEditor () {
   const iframe = useRef();
   const [editorVal, setEditorVal] = useState(initEditorVal);
   const [tabsState, setTabsState] = useState(initTabState);
+  const { libraries } = useStoreState(state => state.webeditor.model);
 
   const [jsValue, setJsValue] = useState(null);
 
   const onEditorChange = (v, e, data) => {
     setEditorVal(data);
     tabsState.tabs.find(t => t.index === tabsState.activeTabIndex).code = data;
+    if (tabsState.activeTabIndex === 2) { setJsValue(tabsState.tabs[2].code) }
     localStorage.setItem('reacto-web-editor', JSON.stringify(tabsState));
   }
 
@@ -50,11 +53,33 @@ export default function WebEditor () {
 
   const runCode = () => {
     let iframeDoc = iframe.current.contentWindow.document;
-    let content = writeContent(tabsState.tabs[0].code, tabsState.tabs[1].code, tabsState.tabs[2].code);
+
+    let content = writeContent(
+      tabsState.tabs[0].code,
+      tabsState.tabs[1].code,
+      tabsState.tabs[2].code,
+      libraries
+    );
+
     iframeDoc.open().write(content);
     iframeDoc.close();
-    if (tabsState.activeTabIndex === 2) { setJsValue(tabsState.tabs[2].code) }
   }
+
+  useEffect(() => {
+    document.addEventListener('keydown', function (event) {
+      if (event.ctrlKey && event.keyCode === 13) {
+        runCode();
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    let data = window.location.search.split('?w=')[1];
+    if(data) {
+      let decodedData = JSON.parse(window.atob(data));
+    setTabsState(decodedData);
+    }
+  }, []);
 
   return <>
     <Navbar />
@@ -69,16 +94,17 @@ export default function WebEditor () {
               {tabsState.tabs.map(tab => (
                 <span
                   className={'tab ' + (tabsState.activeTabIndex === tab.index ? 'active-tab' : '')}
-                  key={'wtab' + tab.index}>
-                  <div onClick={() => { onClickTab(tab.index); }}>
-                    <i className={tab.icon + ' mr-2'}></i><span className="tab-title">{tab.name}</span>
+                  key={'wtab' + tab.index} onClick={() => { onClickTab(tab.index); }}>
+                  <div>
+                    <i className={tab.icon}></i>
+                    <span className="tab-title ml-2">{tab.name}</span>
                   </div>
                 </span>
               ))}
             </div>
 
             <div>
-              <button onClick={beautifyCode} className="btn btn-outline-light"><i className="fa fa-list"></i></button>
+              <button onClick={beautifyCode} className="btn btn-outline-light"><i className="fa fa-stream"></i></button>
               <button onClick={runCode} className="btn btn-outline-light"><i className="fa fa-play"></i></button>
             </div>
           </header>
@@ -99,6 +125,7 @@ export default function WebEditor () {
             <iframe ref={iframe} title="web editor"></iframe>
             <Linter jsValue={jsValue} />
           </Split>
+
         </div>
       </Split>
     </main>

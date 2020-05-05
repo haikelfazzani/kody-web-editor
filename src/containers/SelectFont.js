@@ -5,8 +5,8 @@ const fontSizes = ['10px', '12px', '14px', '16px', '18px', '20px', '22px', '24px
 
 function SelectFont () {
 
-  const fontSize = useStoreState(state => state.editorSettings.fontSize);
-  const updateFontSize = useStoreActions(actions => actions.updateFontSize);
+  const fontSize = useStoreState(state => state.editorSettings.model.fontSize);
+  const updateFontSize = useStoreActions(actions => actions.editorSettings.updateFontSize);
 
   return (
     <select
