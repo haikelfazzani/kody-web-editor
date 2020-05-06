@@ -45,7 +45,9 @@ const Linter = ({ jsValue }) => {
       </span>
 
       <button onClick={onTranspile} className="btn btn-outline-light">
-        {isTranspiled ? <i className="fas fa-bug"></i> : <i className="fas fa-globe"></i>}
+        {isTranspiled 
+        ? <i className="fas fa-bug"></i> 
+        : <i className="fas fa-globe"></i>}
       </button>
     </div>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './Home.css';
+import '../styles/Home.css';
 
 export default function Home () {
 
@@ -15,8 +15,10 @@ export default function Home () {
         </Link>
       </div>
 
-      <p className="lead w-50 mx-auto m-0">Online web editor that auto-evaluates as you type.</p>
-      <p>Free and open source</p>
+      <div className="w-50 mb-3">
+        <p className="lead m-0">Online web editor that auto-evaluates as you type.</p>
+        <p className="lead m-0">Free and open source</p>
+      </div>
 
       <div className="mb-3 w-50 row fs-35">
         <div className="col-md-3"><i className="fab fa-react"></i></div>

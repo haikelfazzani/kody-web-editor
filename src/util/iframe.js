@@ -1,8 +1,18 @@
 export default function writeContent (html, css, js, libraries = []) {
 
-  let scripts = '';
+  let jsLinks = '';
+  let cssLinks = '';
+
   libraries.forEach(lib => {
-    scripts += "<script src=" + lib + "></script>";
+    let i = lib.lastIndexOf('.');
+    let extension = lib.slice(i + 1);
+
+    if (extension === 'css') {
+      cssLinks += '<link rel="stylesheet" href="' + lib + '"></link>';
+    }
+    else {
+      jsLinks += '<script src="' + lib + '"></script>';
+    }
   });
 
   return `<html>
@@ -10,16 +20,21 @@ export default function writeContent (html, css, js, libraries = []) {
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Reacto - Online web editor</title>
+
+      ${cssLinks}
+
       <style>
         body {
           color: #fff;
         }        
         ${css}
       </style>
-      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-      ${scripts}
+      
     </head>
-    <body>                  
+    <body>   
+    
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+      ${jsLinks}
 
       ${html}
       

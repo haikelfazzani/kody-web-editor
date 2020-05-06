@@ -63,5 +63,4 @@ const storeModel = {
 };
 
 const store = createStore(storeModel);
-
 export default store;

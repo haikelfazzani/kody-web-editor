@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import copyToClipboard from '../util/copyToClipboard';
-import AddLibrary from '../components/AddLibrary';
+import copyToClipboard from '../../util/copyToClipboard';
+import AddLibrary from './AddLibrary';
 
 export default function ButtonInput () {
 

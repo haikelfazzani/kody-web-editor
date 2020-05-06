@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SelectFont from './SelectFont';
 
-import '../styles/Navbar.css';
+import './Navbar.css';
 import ButtonInput from './ButtonInput';
 
 export default function Navbar () {  
