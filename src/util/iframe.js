@@ -1,4 +1,10 @@
-export default function writeContent (html, css, js) {
+export default function writeContent (html, css, js, libraries = []) {
+
+  let scripts = '';
+  libraries.forEach(lib => {
+    scripts += "<script src=" + lib + "></script>";
+  });
+
   return `<html>
     <head>
       <meta charset="UTF-8">
@@ -8,12 +14,12 @@ export default function writeContent (html, css, js) {
         body {
           color: #fff;
         }        
+        ${css}
       </style>
-    </head>
-    <body>      
-
       <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-      <style>${css}</style>
+      ${scripts}
+    </head>
+    <body>                  
 
       ${html}
       

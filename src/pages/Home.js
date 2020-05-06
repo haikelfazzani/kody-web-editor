@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../styles/Home.css';
+import './Home.css';
 
 export default function Home () {
 
@@ -10,7 +10,6 @@ export default function Home () {
       <h1 className="display-1 mb-0">Kody</h1>
 
       <div className="w-40 d-flex justify-content-around mb-3">
-        {/* <Link to={"/web-editor?room="+Date.now()} className="btn btn-outline-warning btn-lg"><i className="fab fa-html5"></i> Web Editor</Link> */}
         <Link to="/web-editor" className="btn btn-warning btn-lg">
           <i className="fa fa-play"></i> play
         </Link>
