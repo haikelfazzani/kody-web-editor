@@ -57,12 +57,17 @@ export default function WebEditor () {
     let content = writeContent(
       tabsState.tabs[0].code,
       tabsState.tabs[1].code,
-      tabsState.tabs[2].code,
-      libraries
+      tabsState.tabs[2].code
     );
 
     iframeDoc.open().write(content);
     iframeDoc.close();
+
+    libraries.forEach(lib => {
+      let script = iframeDoc.createElement('script');
+      script.src = lib;
+      iframeDoc.body.append(script);
+    });
   }
 
   useEffect(() => {

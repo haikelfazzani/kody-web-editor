@@ -1,4 +1,4 @@
-export default function writeContent (html, css, js, libraries = []) {
+export default function writeContent (html, css, js) {
   return `<html>
     <head>
       <meta charset="UTF-8">
@@ -12,7 +12,6 @@ export default function writeContent (html, css, js, libraries = []) {
     </head>
     <body>      
 
-      ${libraries.map(library => `<script src="${library}"></script>`)}
       <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
       <style>${css}</style>
 

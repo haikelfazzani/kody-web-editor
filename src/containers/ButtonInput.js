@@ -53,14 +53,10 @@ export default function ButtonInput () {
 
     <button className="btn btn-primary mr-3" onClick={() => { onSetAction('share') }}>
       <i className="fas fa-share"></i> share
-      </button>
+    </button>
 
     <button className="btn btn-primary mr-3" onClick={() => { onSetAction('embed') }}>
       <i className="fas fa-code"></i> embed
-      </button>
-
-    <button className="btn btn-primary mr-3">
-      <i className="fas fa-download"></i>
     </button>
 
     <div style={{ display: state.openInput ? 'block' : 'none' }}>

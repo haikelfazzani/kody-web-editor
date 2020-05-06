@@ -19,7 +19,7 @@ export default function AddLibrary () {
   const onAddPlus = () => {
     if (state.library.length > 25) {
       setState({ ...state, library: '' });
-      addLibrary(state.library);
+      addLibrary(state.library.trim());
     }
   }
 

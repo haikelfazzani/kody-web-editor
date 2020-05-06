@@ -1,17 +1,22 @@
 # Online web editor
 
-- [x] beautify code
+- [x] beautify code (Jsbeautify)
 - [x] share code
 - [x] embed iframe
-- [x] add library (example: ```html <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>```')
+- [x] add library
 
-- [x] transpile code
-- [x] Linter
+- [x] transpile code (Babel)
+- [x] Linter (JsHint)
 
+- [x] download code
 - [ ] console
-- [ ] download code
-
+- [ ] real time code share (websocket)
 
 ### Keys
 - run code : ctrl + enter
 - beautify code : ctrl + alt + f
+
+### Capture
+- ![](https://i.ibb.co/WkBNDm0/kody.png)
+
+### License
