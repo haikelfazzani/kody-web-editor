@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { useStoreActions } from 'easy-peasy';
 import copyToClipboard from '../util/copyToClipboard';
+import AddLibrary from '../components/AddLibrary';
 
 export default function ButtonInput () {
-
-  const { addLibrary } = useStoreActions(actions => actions.webeditor);
 
   const [state, setState] = useState({
     openInput: false,
@@ -45,17 +43,13 @@ export default function ButtonInput () {
         break;
 
       default:
-        addLibrary(state.inputValue);
-        setState({ ...state, inputValue: '' });
         break;
     }
   }
 
   return (<div className="btn-input">
 
-    <button className="btn btn-primary ml-3 mr-3" onClick={() => { onSetAction('add Library') }}>
-      <i className="fas fa-plus"></i> library
-      </button>
+    <AddLibrary />
 
     <button className="btn btn-primary mr-3" onClick={() => { onSetAction('share') }}>
       <i className="fas fa-share"></i> share
@@ -65,9 +59,9 @@ export default function ButtonInput () {
       <i className="fas fa-code"></i> embed
       </button>
 
-      <button className="btn btn-primary mr-3">
+    <button className="btn btn-primary mr-3">
       <i className="fas fa-download"></i>
-      </button>
+    </button>
 
     <div style={{ display: state.openInput ? 'block' : 'none' }}>
 
@@ -82,12 +76,12 @@ export default function ButtonInput () {
       />
 
       <button className="btn btn-success mr-3" onClick={onAction}>
-        {state.actionName.includes('add')
-          ? <><i className="fa fa-plus"></i> Add Library</>
-          : <><i className="fa fa-recycle"></i> Generate and copy url</>}
+        <i className="fa fa-recycle"></i> Generate and copy url
       </button>
+
       <button className="btn btn-danger" onClick={() => { setState({ ...state, openInput: false }); }}>
-        <i className="fa fa-times"></i> Close</button>
+        <i className="fa fa-times"></i> Close
+      </button>
     </div>
   </div>);
 }

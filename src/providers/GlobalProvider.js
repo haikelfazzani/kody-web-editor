@@ -27,6 +27,13 @@ const webeditor = {
     }
   }),
 
+  onRemoveLibrary: action((state, library) => {
+    if (state.model.libraries.includes(library)) {
+      state.model.libraries = state.model.libraries.filter(lib => lib !== library);
+      localStorage.setItem('kody-webeditor-config', JSON.stringify(state.model));
+    }
+  }),
+
   generateURL: action((state) => {
        
   }),

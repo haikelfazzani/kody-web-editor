@@ -70,6 +70,10 @@ export default function WebEditor () {
       if (event.ctrlKey && event.keyCode === 13) {
         runCode();
       }
+
+      if (event.ctrlKey && event.altKey && event.keyCode === 70) {
+        beautifyCode();
+      }
     });
   }, []);
 

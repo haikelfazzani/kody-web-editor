@@ -12,7 +12,7 @@ export default function writeContent (html, css, js, libraries = []) {
     </head>
     <body>      
 
-      ${libraries.map(library => library)}
+      ${libraries.map(library => `<script src="${library}"></script>`)}
       <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
       <style>${css}</style>
 
