@@ -7,6 +7,7 @@ const editorSettings = {
   model: localS ? JSON.parse(localS) : { fontSize: '16px' },
   updateFontSize: action((state, fontSize) => {
     state.model.fontSize = fontSize;
+    localStorage.setItem('kody-config', JSON.stringify(state.model));
   })
 };
 

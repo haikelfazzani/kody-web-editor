@@ -9,8 +9,9 @@
 - [x] Linter (JsHint)
 
 - [x] download code
-- [ ] console
+- [x] console
 - [ ] real time code share (websocket)
+- [ ] Enable Sass
 
 ### Keys
 - run code : ctrl + enter

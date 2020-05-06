@@ -4,42 +4,12 @@ import SelectFont from './SelectFont';
 
 import './Navbar.css';
 import ButtonInput from './ButtonInput';
+import AppUtil from '../../util/AppUtil';
 
 export default function Navbar () {  
 
   const onDownload = () => {
-    let codeResult = localStorage.getItem('kody-tabs');
-
-    if (codeResult) {
-      codeResult = JSON.parse(codeResult).tabs;
-
-      let text = `
-<html>
-  <head>
-    <style>
-      ${codeResult[1].code}
-    </style>
-  </head>
-  <body>
-
-    ${codeResult[0].code} 
-
-    <script>
-      ${codeResult[2].code}
-    </script>
-  </body>
-</html>
-      `;
-
-      let element = document.createElement('a');
-      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-      element.setAttribute('download', 'kody.html');
-
-      element.style.display = 'none';
-      document.body.appendChild(element);
-      element.click();
-      document.body.removeChild(element);
-    }
+    AppUtil.generateTemplateAndDownload();
   }
 
   return <nav className="cs-header">

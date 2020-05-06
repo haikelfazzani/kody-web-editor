@@ -1,6 +1,46 @@
-.editor-output>div {
-  height: 93%;
+.editor-output {
+  max-height: 100%;
 }
+
+.editor-output>div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-output header,
+.linter header {
+  height: 35px;
+}
+
+iframe {
+  border: 0;
+  background-color: var(--bg-main);
+  height: 94%;
+  width: 100%;
+}
+
+.linter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.linter header {
+  height: 35px;
+}
+
+.linter-output {
+  height: 94%;
+  width: 100%;
+  overflow: auto;
+}
+
+.linter-output .react-codemirror2 {
+  height: 100% !important;
+}
+
+/*************************************/
 
 .tabs {
   width: 100%;
@@ -44,6 +84,8 @@
   box-shadow: none !important;
   background-color: var(--success);
 }
+
+/****************************************/
 
 @media screen and (max-width: 1140px) {
   .tab-title {

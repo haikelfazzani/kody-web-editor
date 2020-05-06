@@ -1,4 +1,32 @@
-export default function writeContent (html, css, js, libraries = []) {
+export default function writeContent (html, css, js, libraries = [], sass = false) {
+
+  return new Promise( async (resolve, reject) => {
+
+    let content = '';
+
+    if (sass) {
+      let script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/sass.js@0.11.1/dist/sass.sync.min.js';
+
+      document.body.insertBefore(script, document.body.firstChild);
+
+      if (window.Sass) {
+        window.Sass.compile(css, function (result) {
+          content = getContent(result.text, html, js, libraries);
+          resolve(content);
+        });
+      }
+    }
+    else {
+      content = getContent(css, html, js, libraries);
+      resolve(content);
+    }
+
+    await handleConsole ();
+  });
+};
+
+function getContent (cssValue, html, jsValue, libraries) {
 
   let jsLinks = '';
   let cssLinks = '';
@@ -16,29 +44,62 @@ export default function writeContent (html, css, js, libraries = []) {
   });
 
   return `<html>
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Reacto - Online web editor</title>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kody - Online web editor</title>
 
-      ${cssLinks}
+    ${cssLinks}
 
-      <style>
-        body {
-          color: #fff;
-        }        
-        ${css}
-      </style>
-      
-    </head>
-    <body>   
+    <style>
+      body {
+        color: #fff;
+      }        
+      ${cssValue}
+    </style>
     
-      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-      ${jsLinks}
+  </head>
+  <body>   
+  
+    <!--<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>-->
+    ${jsLinks}
 
-      ${html}
-      
-      <script type="text/babel" defer>${js}</script>
-    </body>
-  </html>`
-};
+    ${html}
+    
+    <script type="text/javascript" defer>${jsValue}</script>
+  </body>
+</html>`
+}
+
+function handleConsole () {
+
+  return new Promise((resolve, reject) => {
+    let iframe = document.getElementById('kody-iframe');
+
+    iframe.contentWindow.onerror = (message, file, line, col, error) => {
+      iframe.contentWindow.parent.postMessage(`(${line}:${col}) -> ${error}`);
+    };
+
+    let logMessages = [];
+
+    iframe.contentWindow.console.log = function () {
+      logMessages.push.apply(logMessages, arguments);
+
+      let b = logMessages.map(v => {
+        if (v.toString() === '[object Map]' || v.toString() === '[object Set]') {
+          let arr = [...v];
+          v = v.toString() + ` (${arr.length}) ` + JSON.stringify(arr, null, 2);
+        }
+        if (v.toString() === '[object Object]') {
+          v = v.toString() + ' ' + JSON.stringify(v, null, 2);
+        }
+        if (Array.isArray(v)) {
+          v = `Array (${v.length}) ` + JSON.stringify(v, null, 2);
+        }
+        return v
+      });
+
+      iframe.contentWindow.parent.postMessage(b.join('\n'));
+    }
+  })
+}

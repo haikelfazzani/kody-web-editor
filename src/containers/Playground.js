@@ -8,24 +8,13 @@ import writeContent from '../util/iframe';
 
 import jsBeauty from '../util/jsBeauty';
 import { useStoreState } from 'easy-peasy';
-
-let local = localStorage.getItem('kody-tabs');
-let initTabState = local ? JSON.parse(local) : {
-  tabs: [
-    { name: 'Index.html', lang: 'htmlmixed', index: 0, code: '', icon: 'fab fa-html5' },
-    { name: 'Style.css', lang: 'css', index: 1, code: '', icon: 'fab fa-css3' },
-    { name: 'App.js', lang: 'javascript', index: 2, code: '', icon: 'fab fa-js' }
-  ],
-  activeTabIndex: 0
-};
-
-let initEditorVal = initTabState.tabs[initTabState.activeTabIndex].code;
+import AppUtil from '../util/AppUtil';
 
 export default function Playground () {
 
   const iframe = useRef();
-  const [editorVal, setEditorVal] = useState(initEditorVal);
-  const [tabsState, setTabsState] = useState(initTabState);
+  const [editorVal, setEditorVal] = useState(AppUtil.getCurrentTabCode());
+  const [tabsState, setTabsState] = useState(AppUtil.getTabState());
   const { libraries } = useStoreState(state => state.webeditor.model);
 
   const [jsValue, setJsValue] = useState(null);
@@ -49,14 +38,15 @@ export default function Playground () {
     setEditorVal(res);
   }
 
-  const runCode = () => {
+  const runCode = async () => {
     let iframeDoc = iframe.current.contentWindow.document;
 
-    let content = writeContent(
+    let content = await writeContent(
       tabsState.tabs[0].code,
       tabsState.tabs[1].code,
       tabsState.tabs[2].code,
-      libraries
+      libraries,
+      false
     );
 
     iframeDoc.open().write(content);
@@ -64,9 +54,9 @@ export default function Playground () {
   }
 
   useEffect(() => {
-    document.addEventListener('keydown', function (event) {
+    document.addEventListener('keydown', async (event) => {
       if (event.ctrlKey && event.keyCode === 13) {
-        runCode();
+        await runCode();
       }
 
       if (event.ctrlKey && event.altKey && event.keyCode === 70) {
@@ -114,16 +104,19 @@ export default function Playground () {
       </div>
 
       <div className="editor-output">
-        <header className="tabs overflow-auto">
-          <span className="tab active-tab"><i className="fa fa-circle mr-2"></i> Output</span>
-        </header>
+        <Split gutterSize={10} sizes={[50, 50]} direction="vertical" minSize={40}>
 
-        <Split gutterSize={10} sizes={[50, 50]} direction="vertical" minSize={30}>
-          <iframe ref={iframe} title="web editor"></iframe>
-          <Linter jsValue={jsValue} />
+          <div>
+            <header className="tabs overflow-auto">
+              <span className="tab active-tab"><i className="fa fa-circle mr-2"></i> Output</span>
+            </header>
+            <iframe ref={iframe} title="kody web editor" id="kody-iframe"></iframe>
+          </div>
+
+          <Linter jsValue={jsValue} kodyConsole={true} />
         </Split>
-
       </div>
-      </Split>
+
+    </Split>
   );
 }

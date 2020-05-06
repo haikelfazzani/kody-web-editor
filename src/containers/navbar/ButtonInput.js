@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import copyToClipboard from '../../util/copyToClipboard';
 import AddLibrary from './AddLibrary';
+import AppUtil from '../../util/AppUtil';
 
 export default function ButtonInput () {
 
@@ -19,27 +19,11 @@ export default function ButtonInput () {
   const onAction = () => {
     switch (state.actionName) {
       case 'share':
-        let codeResultt = localStorage.getItem('kody-tabs');
-
-        const encodedData = window.btoa(codeResultt);
-        let url = window.location.origin + '/playground?bin=' + encodedData;
-
-        copyToClipboard(url);
-        setState({ ...state, inputValue: url });
+        setState({ ...state, inputValue: AppUtil.generateSharedURL() });
         break;
 
       case 'embed':
-        let codeResult = localStorage.getItem('kody-tabs');
-
-        if (codeResult) {
-          const encodedData = window.btoa(codeResult);
-          let url = window.location.origin + '/playground?bin=' + encodedData;
-
-          url = `<iframe src="${url}" title="kody" width="500" height="500"></iframe>`;
-
-          copyToClipboard(url);
-          setState({ ...state, inputValue: url });
-        }
+        setState({ ...state, inputValue: AppUtil.generateSharedIframe() });
         break;
 
       default:
