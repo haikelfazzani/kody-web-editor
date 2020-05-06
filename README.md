@@ -12,6 +12,7 @@
 - [x] console
 - [ ] real time code share (websocket)
 - [ ] Enable Sass
+- [ ] set custom JSHINT
 
 ### Keys
 - run code : ctrl + enter

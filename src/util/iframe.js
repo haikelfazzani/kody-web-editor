@@ -1,6 +1,6 @@
 export default function writeContent (html, css, js, libraries = [], sass = false) {
 
-  return new Promise( async (resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
 
     let content = '';
 
@@ -22,7 +22,7 @@ export default function writeContent (html, css, js, libraries = [], sass = fals
       resolve(content);
     }
 
-    await handleConsole ();
+    await handleConsole();
   });
 };
 
@@ -75,31 +75,46 @@ function handleConsole () {
 
   return new Promise((resolve, reject) => {
     let iframe = document.getElementById('kody-iframe');
-
+    let iframeErrors = false;
+    
+    // handle errors
     iframe.contentWindow.onerror = (message, file, line, col, error) => {
+      iframeErrors = true;
       iframe.contentWindow.parent.postMessage(`(${line}:${col}) -> ${error}`);
+      reject(iframeErrors);
     };
 
-    let logMessages = [];
+    // get console outputs as string
+    handleConsoleOutput(iframe, result => {
+      iframeErrors = false;
+      iframe.contentWindow.parent.postMessage(result);
+      resolve(iframeErrors);
+    });
 
-    iframe.contentWindow.console.log = function () {
-      logMessages.push.apply(logMessages, arguments);
+  });
+}
 
-      let b = logMessages.map(v => {
-        if (v.toString() === '[object Map]' || v.toString() === '[object Set]') {
-          let arr = [...v];
-          v = v.toString() + ` (${arr.length}) ` + JSON.stringify(arr, null, 2);
-        }
-        if (v.toString() === '[object Object]') {
-          v = v.toString() + ' ' + JSON.stringify(v, null, 2);
-        }
-        if (Array.isArray(v)) {
-          v = `Array (${v.length}) ` + JSON.stringify(v, null, 2);
-        }
-        return v
-      });
 
-      iframe.contentWindow.parent.postMessage(b.join('\n'));
-    }
-  })
+function handleConsoleOutput (iframe, resolve) {
+  let logMessages = [];
+
+  iframe.contentWindow.console.log = function () {
+    logMessages.push.apply(logMessages, arguments);
+
+    let b = logMessages.map(v => {
+      if (v.toString() === '[object Map]' || v.toString() === '[object Set]') {
+        let arr = [...v];
+        v = v.toString() + ` (${arr.length}) ` + JSON.stringify(arr, null, 2);
+      }
+      if (v.toString() === '[object Object]') {
+        v = v.toString() + ' ' + JSON.stringify(v, null, 2);
+      }
+      if (Array.isArray(v)) {
+        v = `Array (${v.length}) ` + JSON.stringify(v, null, 2);
+      }
+      return v
+    });
+
+    resolve(b.join('\n'));
+  };
 }

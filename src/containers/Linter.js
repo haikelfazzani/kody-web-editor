@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Editor from '../components/Editor';
+import jshint from '../util/jshint';
 
 const initState = {
   tabs: [
@@ -50,18 +51,11 @@ const Linter = ({ jsValue }) => {
 
       default:
         // JShint errors
-        window.JSHINT(jsValue, { asi: true, lastsemic: false, esnext: true });
-
-        let res = window.JSHINT.errors.reduce((a, e) => {
-          a += `line ${e.line}: ${e.reason} \n`;
-          return a
-        }, '');
-
+        let res = jshint(jsValue);
         state.tabs[0].code = res;
         setState({ ...state, currentTabContent: res });
         break;
     }
-
   }, [jsValue, state.currentTabId]);
 
   return <div className="linter">
