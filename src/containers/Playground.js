@@ -9,7 +9,7 @@ import writeContent from '../util/iframe';
 import jsBeauty from '../util/jsBeauty';
 import { useStoreState } from 'easy-peasy';
 
-let local = localStorage.getItem('reacto-web-editor');
+let local = localStorage.getItem('kody-tabs');
 let initTabState = local ? JSON.parse(local) : {
   tabs: [
     { name: 'Index.html', lang: 'htmlmixed', index: 0, code: '', icon: 'fab fa-html5' },
@@ -34,7 +34,7 @@ export default function Playground () {
     setEditorVal(data);
     tabsState.tabs.find(t => t.index === tabsState.activeTabIndex).code = data;
     if (tabsState.activeTabIndex === 2) { setJsValue(tabsState.tabs[2].code); }
-    localStorage.setItem('reacto-web-editor', JSON.stringify(tabsState));
+    localStorage.setItem('kody-tabs', JSON.stringify(tabsState));
   }
 
   const onClickTab = useCallback((activeTabIndex) => {
@@ -76,7 +76,7 @@ export default function Playground () {
   }, []);
 
   useEffect(() => {
-    let data = window.location.search.split('?w=')[1];
+    let data = window.location.search.split('?bin=')[1];
     if (data) {
       let decodedData = JSON.parse(window.atob(data));
       setTabsState(decodedData);
@@ -84,7 +84,7 @@ export default function Playground () {
   }, []);
 
   return (
-    <>
+    <Split gutterSize={10} sizes={[50, 50]}>
       <div>
         <header className="tabs overflow-auto">
           <div>
@@ -124,6 +124,6 @@ export default function Playground () {
         </Split>
 
       </div>
-    </>
+      </Split>
   );
 }

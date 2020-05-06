@@ -16,3 +16,5 @@
   font-family: 'Changa';
   text-transform: uppercase;
 }
+
+.card {background-color: var(--bg-main-light);}

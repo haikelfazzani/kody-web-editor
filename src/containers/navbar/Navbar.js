@@ -8,7 +8,7 @@ import ButtonInput from './ButtonInput';
 export default function Navbar () {  
 
   const onDownload = () => {
-    let codeResult = localStorage.getItem('reacto-web-editor');
+    let codeResult = localStorage.getItem('kody-tabs');
 
     if (codeResult) {
       codeResult = JSON.parse(codeResult).tabs;

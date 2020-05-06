@@ -12,8 +12,7 @@ export default function App () {
     <Switch>
 
       <Route exact path="/" component={Home} />
-
-      <Route path="/web-editor" component={WebEditor} />
+      <Route path="/playground" component={WebEditor} />
 
       <Redirect path="*" to="/" />
     </Switch>

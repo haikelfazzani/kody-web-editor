@@ -1,7 +1,7 @@
 import { createStore, action } from 'easy-peasy';
 import copyToClipboard from '../util/copyToClipboard';
 
-let localS = window.localStorage ? localStorage.getItem('reacto-config') : null;
+let localS = window.localStorage ? localStorage.getItem('kody-config') : null;
 
 const editorSettings = {
   model: localS ? JSON.parse(localS) : { fontSize: '16px' },

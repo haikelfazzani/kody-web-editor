@@ -19,21 +19,21 @@ export default function ButtonInput () {
   const onAction = () => {
     switch (state.actionName) {
       case 'share':
-        let codeResultt = localStorage.getItem('reacto-web-editor');
+        let codeResultt = localStorage.getItem('kody-tabs');
 
         const encodedData = window.btoa(codeResultt);
-        let url = window.location.origin + '/web-editor?w=' + encodedData;
+        let url = window.location.origin + '/playground?bin=' + encodedData;
 
         copyToClipboard(url);
         setState({ ...state, inputValue: url });
         break;
 
       case 'embed':
-        let codeResult = localStorage.getItem('reacto-web-editor');
+        let codeResult = localStorage.getItem('kody-tabs');
 
         if (codeResult) {
           const encodedData = window.btoa(codeResult);
-          let url = window.location.origin + '/web-editor?w=' + encodedData;
+          let url = window.location.origin + '/playground?bin=' + encodedData;
 
           url = `<iframe src="${url}" title="kody" width="500" height="500"></iframe>`;
 
@@ -68,6 +68,7 @@ export default function ButtonInput () {
         onChange={onInputChange}
         value={state.inputValue}
         placeholder={state.actionName}
+        rows="6"
         required
       />
 
