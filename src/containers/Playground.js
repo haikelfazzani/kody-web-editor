@@ -15,7 +15,7 @@ export default function Playground () {
   const iframe = useRef();
   const [editorVal, setEditorVal] = useState(AppUtil.getCurrentTabCode());
   const [tabsState, setTabsState] = useState(AppUtil.getTabState());
-  const { libraries } = useStoreState(state => state.webeditor.model);
+  const { libraries, isSassEnabled } = useStoreState(state => state.webeditor.model);
 
   const [jsValue, setJsValue] = useState(null);
 
@@ -42,11 +42,11 @@ export default function Playground () {
     let iframeDoc = iframe.current.contentWindow.document;
 
     let content = await writeContent(
-      tabsState.tabs[0].code,
-      tabsState.tabs[1].code,
-      tabsState.tabs[2].code,
+      tabsState.tabs[0].code, // html
+      tabsState.tabs[1].code, // css
+      tabsState.tabs[2].code, // javasript
       libraries,
-      false
+      isSassEnabled // enable sass
     );
 
     iframeDoc.open().write(content);
@@ -113,7 +113,7 @@ export default function Playground () {
             <iframe ref={iframe} title="kody web editor" id="kody-iframe"></iframe>
           </div>
 
-          <Linter jsValue={jsValue} kodyConsole={true} />
+          <Linter jsValue={jsValue} />
         </Split>
       </div>
 

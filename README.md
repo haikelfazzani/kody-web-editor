@@ -1,18 +1,13 @@
-# Online web editor
+# Online web editor : fast and modern
 
-- [x] beautify code (Jsbeautify)
-- [x] share code
-- [x] embed iframe
-- [x] add library
-
-- [x] transpile code (Babel)
-- [x] Linter (JsHint)
-
-- [x] download code
-- [x] console
-- [ ] real time code share (websocket)
-- [ ] Enable Sass
-- [ ] set custom JSHINT
+### Techs
+- React /Easy peasy/ React router dom/ React split
+- JsBeautify
+- JsHint
+- Sass.js
+- Babel
+- Codemirror
+- Bootstrap / Fontawesome / Google fonts
 
 ### Keys
 - run code : ctrl + enter
@@ -20,5 +15,20 @@
 
 ### Capture
 - ![](https://i.ibb.co/WkBNDm0/kody.png)
+
+### Done
+- [x] beautify code (html/css/js)
+- [x] share code
+- [x] embed iframe
+- [x] add library
+- [x] transpile code (Babel)
+- [x] Linter (JsHint)
+- [x] download code
+- [x] console
+- [x] Enable Sass
+
+### TODO
+- [ ] set custom JSHINT
+- [ ] real time code share (websocket)
 
 ### License

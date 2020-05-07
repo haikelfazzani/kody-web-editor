@@ -3,7 +3,7 @@ import { useStoreActions, useStoreState } from 'easy-peasy';
 
 export default function AddLibrary () {
 
-  const libraries = useStoreState(actions => actions.webeditor.model.libraries);
+  const libraries = useStoreState(state => state.webeditor.model.libraries);
   const { addLibrary, onRemoveLibrary } = useStoreActions(actions => actions.webeditor);
 
   const [state, setState] = useState({
