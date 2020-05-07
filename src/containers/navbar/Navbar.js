@@ -37,7 +37,9 @@ export default function Navbar () {
     <div className="w-75 d-flex justify-content-end">
       <SelectFont />
 
-      <button className={"btn btn-primary ml-3 " + (isSassEnabled ? "bg-success" : "")} onClick={onEnableSass}>
+      <button className={"btn btn-primary ml-3 " + (isSassEnabled ? "bg-pink" : "")} 
+      onClick={onEnableSass}
+      data-toggle="tooltip" data-placement="bottom" title="Enable sass">
         <i className="fab fa-sass"></i>
       </button>
 

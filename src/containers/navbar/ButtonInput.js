@@ -11,7 +11,7 @@ export default function ButtonInput () {
   });
 
   const onSetAction = (actionName) => {
-    setState({ ...state, openInput: true, actionName, inputValue: '' });
+    setState({ ...state, openInput: !state.openInput, actionName, inputValue: '' });
   }
 
   const onInputChange = (e) => { setState({ ...state, inputValue: e.target.value }); }

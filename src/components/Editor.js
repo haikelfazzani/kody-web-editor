@@ -4,7 +4,7 @@ import { useStoreState } from 'easy-peasy';
 
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/monokai.css';
-import 'codemirror/mode/jsx/jsx';
+
 import 'codemirror/mode/css/css';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/mode/javascript/javascript';
@@ -26,36 +26,31 @@ import 'codemirror/addon/fold/foldgutter';
 import 'codemirror/addon/fold/brace-fold';
 import 'codemirror/addon/fold/xml-fold';
 
-const hintOptions = { disableKeywords: false, completeSingle: false, completeOnSingleClick: false };
+import 'codemirror/addon/comment/comment';
 
-export default function Editor ({ onChange, value, lang = 'jsx',readOnly = false }) {
+
+export default function Editor ({ onChange, value, lang = 'javascript', readOnly = false }) {
 
   const fontSize = useStoreState(state => state.editorSettings.model.fontSize);
 
-  const [options, setOptions] = useState({
-    mode: lang,
-    theme:'monokai',
-    lineNumbers: true,
-    matchBrackets: true,
-    autoCloseBrackets: true,
-    autoCloseTags: true,
-    matchTags: true,
-    foldGutter: true,
-    readOnly,
-    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
-  });
+  const [mode, setMode] = useState(lang);
 
   useEffect(() => {
     document.querySelector('.CodeMirror').style.fontSize = fontSize;
   }, [fontSize]);
 
   useEffect(() => {
-    setOptions({ ...options, mode: lang });
+    setMode(lang);
   }, [lang]);
 
-  const onKeyPress = (editor, event) => {
+  const onKeyDown = (editor, event) => {
+
+    if (!readOnly && event.ctrlKey && (event.keyCode === 58 || event.keyCode === 191)) {
+      editor.execCommand('toggleComment')
+    }
+
     if (!readOnly && !event.ctrlKey && event.keyCode > 64 && event.keyCode < 123) {
-      setTimeout(() => { editor.showHint(hintOptions); }, 250);
+      setTimeout(() => { editor.showHint(); }, 250);
     }
   }
 
@@ -64,8 +59,19 @@ export default function Editor ({ onChange, value, lang = 'jsx',readOnly = false
       autoCursor={false}
       onChange={onChange}
       value={value}
-      options={options}      
-      onKeyPress={onKeyPress}
+      onKeyDown={onKeyDown}
+      options={{
+        mode: mode,
+        theme: 'monokai',
+        lineNumbers: true,
+        matchBrackets: true,
+        autoCloseBrackets: true,
+        autoCloseTags: true,
+        matchTags: true,
+        foldGutter: true,
+        readOnly,
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+      }}
     />
   );
 

@@ -1,7 +1,7 @@
 # Online web editor : fast and modern
 
 ### Techs
-- React /Easy peasy/ React router dom/ React split
+- React / Easy peasy (Redux) / React router dom / React split
 - JsBeautify
 - JsHint
 - Sass.js
@@ -18,12 +18,11 @@
 
 ### Done
 - [x] beautify code (html/css/js)
-- [x] share code
+- [x] share/download code
 - [x] embed iframe
 - [x] add library
 - [x] transpile code (Babel)
 - [x] Linter (JsHint)
-- [x] download code
 - [x] console
 - [x] Enable Sass
 

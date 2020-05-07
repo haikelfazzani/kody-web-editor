@@ -108,7 +108,7 @@ export default function Playground () {
 
           <div>
             <header className="tabs overflow-auto">
-              <span className="tab active-tab"><i className="fa fa-circle mr-2"></i> Output</span>
+              <span className="tab active-tab"><i className="fa fa-eye mr-2"></i> View</span>
             </header>
             <iframe ref={iframe} title="kody web editor" id="kody-iframe"></iframe>
           </div>

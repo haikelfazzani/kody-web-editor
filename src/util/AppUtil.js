@@ -2,9 +2,9 @@ import copyToClipboard from './copyToClipboard';
 
 let initTabState = {
   tabs: [
-    { name: 'Index.html', lang: 'htmlmixed', index: 0, code: '', icon: 'fab fa-html5' },
-    { name: 'Style.css', lang: 'css', index: 1, code: '', icon: 'fab fa-css3' },
-    { name: 'App.js', lang: 'javascript', index: 2, code: '', icon: 'fab fa-js' }
+    { name: 'Index.html', lang: 'htmlmixed', index: 0, code: '<h1>Welcome to Kody</h1>', icon: 'fab fa-html5' },
+    { name: 'Style.css', lang: 'css', index: 1, code: 'body { color: red; }', icon: 'fab fa-css3' },
+    { name: 'App.js', lang: 'javascript', index: 2, code: 'console.log("hello world")', icon: 'fab fa-js' }
   ],
   activeTabIndex: 0
 };

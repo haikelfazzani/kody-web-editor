@@ -1,20 +1,45 @@
-.jumbotron {
+.home-page {
   height: 100%;
   width: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* background-image: linear-gradient(135deg, #001528b4 0%, #001528dc 100%), url(../img/bg.jpg); */
-  background-color: inherit;
-  color: #ffffff;
+  background-image: linear-gradient(135deg, #001528ef 0%, #001528ee 100%), url(../img/bg.jpg);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-.jumbotron h1 {
-  color: var(--warning);
+.navbar {
+  background-color: transparent !important;
+  font-family: 'Changa';
+  font-size: 20px !important;
+  letter-spacing: 2px;
+}
+
+.home-page .row img {
+  width: 165%;
+}
+
+.home-page h1 {
+  color: var(--success);
   font-family: 'Changa';
   text-transform: uppercase;
 }
 
-.card {background-color: var(--bg-main-light);}
+
+.card {
+  background-color: var(--bg-main-light);
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 2px;
+  border-top: 2px solid var(--dark-bleu);
+  background-color: var(--bg-main-light);
+}
+
+@media screen and (max-width: 600px) {
+  .home-page .row img {
+    display: none;
+  }
+}
