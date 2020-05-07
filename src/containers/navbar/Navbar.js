@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SelectFont from './SelectFont';
+import { useStoreState, useStoreActions } from 'easy-peasy';
 
-import './Navbar.css';
+import AddLibrary from './AddLibrary';
+import SelectFont from './SelectFont';
 import ButtonInput from './ButtonInput';
 import AppUtil from '../../util/AppUtil';
-import { useStoreState, useStoreActions } from 'easy-peasy';
 import Timer from './Timer';
+import SelectFramework from './SelectFramework';
+
+import './Navbar.css';
 
 export default function Navbar () {
 
@@ -36,17 +39,22 @@ export default function Navbar () {
 
 
     <div className="w-75 d-flex justify-content-end">
+
       <SelectFont />
+
+      <SelectFramework />
 
       <button className={"btn btn-primary ml-3 " + (isSassEnabled ? "bg-pink" : "")}
         onClick={onEnableSass}
         data-toggle="tooltip" data-placement="bottom" title="Enable sass">
         <i className="fab fa-sass"></i>
-      </button>
+      </button>     
 
-      <ButtonInput />
+      <AddLibrary /> 
 
       <Timer />
+
+      <ButtonInput />
 
       <button className="btn btn-primary mr-3" onClick={onDownload}>
         <i className="fas fa-download"></i>

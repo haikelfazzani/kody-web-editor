@@ -43,6 +43,12 @@ function getContent (cssValue, html, jsValue, libraries) {
     }
   });
 
+
+  jsValue = window.Babel.transform(jsValue, {
+    envName: 'production',
+    presets: ['react', 'es2015']
+  }).code;
+  
   return `<html>
   <head>
     <meta charset="UTF-8">
@@ -61,7 +67,6 @@ function getContent (cssValue, html, jsValue, libraries) {
   </head>
   <body>   
   
-    <!--<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>-->
     ${jsLinks}
 
     ${html}

@@ -1,16 +1,35 @@
 import { action } from 'easy-peasy';
 
+const frameworksCDN = {
+  react: [
+    'https://unpkg.com/react@16/umd/react.production.min.js',
+    'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js'
+  ],
+  vue: ['https://cdn.jsdelivr.net/npm/vue/dist/vue.js'],
+  jquery: ['https://code.jquery.com/jquery-3.5.1.min.js'],
+  javascript: []
+}
+
 let localW = window.localStorage ? localStorage.getItem('kody-webeditor-config') : null;
 
 let model = localW ? JSON.parse(localW) : {
   libraries: [], // jquery, react, vue etc..
-  embedIframe: '',
-  generatedURL: '', // an url generated to be sahred
-  isSassEnabled: false
+  isSassEnabled: false,
+  selectedFramework: 'javascript',
 }
 
 const webeditor = {
   model,
+
+  chooseFramework: action((state, frameworkName) => {
+
+    let getCDNs = frameworksCDN[frameworkName];
+
+    state.model.libraries = getCDNs;
+    state.model.selectedFramework = frameworkName;
+
+    localStorage.setItem('kody-webeditor-config', JSON.stringify(state.model));
+  }),
 
   addLibrary: action((state, library) => {
     if (!state.model.libraries.includes(library) && library.length > 25) {

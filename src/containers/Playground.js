@@ -12,10 +12,10 @@ import AppUtil from '../util/AppUtil';
 
 export default function Playground () {
 
+  const { libraries, isSassEnabled } = useStoreState(state => state.webeditor.model);
   const iframe = useRef();
   const [editorVal, setEditorVal] = useState(AppUtil.getCurrentTabCode());
   const [tabsState, setTabsState] = useState(AppUtil.getTabState());
-  const { libraries, isSassEnabled } = useStoreState(state => state.webeditor.model);
 
   const [jsValue, setJsValue] = useState(null);
 
@@ -52,6 +52,7 @@ export default function Playground () {
     iframeDoc.open().write(content);
     iframeDoc.close();
   }
+
 
   useEffect(() => {
     document.addEventListener('keydown', async (event) => {

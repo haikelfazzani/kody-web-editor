@@ -6,7 +6,7 @@ export default function jshint (jsValue) {
     esnext: true,
     latedef: true,
     undef: true,
-    predef: [ "console", "Vue", "React", "ReactDOM" ]
+    predef: [ "console", "Vue", "React", "ReactDOM", "$" ]
   });
 
   let res = window.JSHINT.errors.reduce((a, e) => {

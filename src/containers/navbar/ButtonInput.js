@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import AddLibrary from './AddLibrary';
 import AppUtil from '../../util/AppUtil';
 
 export default function ButtonInput () {
@@ -33,14 +32,12 @@ export default function ButtonInput () {
 
   return (<div className="btn-input">
 
-    <AddLibrary />
-
     <button className="btn btn-primary mr-3" onClick={() => { onSetAction('share') }}>
-      <i className="fas fa-share"></i> share
+      <i className="fas fa-share"></i>
     </button>
 
     <button className="btn btn-primary mr-3" onClick={() => { onSetAction('embed') }}>
-      <i className="fas fa-code"></i> embed
+      <i className="fas fa-code"></i>
     </button>
 
     <div style={{ display: state.openInput ? 'block' : 'none' }}>

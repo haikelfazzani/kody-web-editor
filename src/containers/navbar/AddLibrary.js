@@ -34,7 +34,7 @@ export default function AddLibrary () {
     </button>
 
 
-    <div style={{ display: state.isModelOpen ? 'block' : 'none' }}>
+    <div className="add-library-modal" style={{ display: state.isModelOpen ? 'block' : 'none' }}>
 
       <form className="form-inline">
         <input

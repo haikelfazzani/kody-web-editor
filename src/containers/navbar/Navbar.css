@@ -18,16 +18,33 @@ nav div {
   cursor: pointer;
 }
 
-nav select { background-color: var(--bg-main-light); color: #fff; font-size: 12px; }
+nav select,
+.dropdown-menu,
+.btn-input>div,
+.add-library-modal {
+  background-color: var(--bg-main-light);
+  color: #fff;
+}
 
+nav select {
+  font-size: 12px;
+}
+
+.dropdown {width: 140px;}
+.dropdown > button {width: 100%;}
+.dropdown-item:hover {
+  background-color: var(--bg-main);
+}
+
+.dropdown-item-active { background-color: var(--gray); }
 
 /**************/
-.btn-input>div {
+.btn-input>div,
+.add-library-modal {
   width: 50%;
   position: fixed;
   top: 40px;
   right: 15px;
-  background-color: var(--bg-main-light);
   padding: 10px;
   z-index: 999;
 }
@@ -37,5 +54,7 @@ nav select { background-color: var(--bg-main-light); color: #fff; font-size: 12p
 }
 
 @media screen and (max-width: 800px) {
-  nav {display: none;}
+  nav {
+    display: none;
+  }
 }
