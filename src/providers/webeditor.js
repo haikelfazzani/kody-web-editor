@@ -13,7 +13,7 @@ const frameworksCDN = {
 let localW = window.localStorage ? localStorage.getItem('kody-webeditor-config') : null;
 
 let model = localW ? JSON.parse(localW) : {
-  libraries: [], // jquery, react, vue etc..
+  libraries: [], // cdn url: jquery, react, vue etc..
   isSassEnabled: false,
   selectedFramework: 'javascript',
 }
@@ -40,7 +40,12 @@ const webeditor = {
 
   onRemoveLibrary: action((state, library) => {
     if (state.model.libraries.includes(library)) {
+
       state.model.libraries = state.model.libraries.filter(lib => lib !== library);
+      if (state.model.libraries.length < 1) {
+        state.model.selectedFramework = 'javascript';
+      }
+
       localStorage.setItem('kody-webeditor-config', JSON.stringify(state.model));
     }
   }),

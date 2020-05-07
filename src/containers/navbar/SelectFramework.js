@@ -17,13 +17,18 @@ export default function SelectFramework () {
 
   const openDrop = () => { setIsDropOpen(!isDropOpen); }
 
-  const onSelect = (f) => { chooseFramework(f.name); }
+  const onSelect = (f) => { 
+    chooseFramework(f.name); 
+    setIsDropOpen(!isDropOpen);
+  }
 
 
   return (
     <div className="dropdown ml-3">
 
-      <button type="button" className="btn btn-primary pb-2" onClick={openDrop}>
+      <button type="button"
+        className="btn btn-primary pb-2"
+        onClick={openDrop}>
         {selectedFramework}<i className={"ml-2 fas fa-caret-" + (isDropOpen ? "up" : "down")}></i>
       </button>
 

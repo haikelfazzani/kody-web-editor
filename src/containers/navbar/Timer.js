@@ -53,7 +53,7 @@ export default function Timer () {
 
   return (<div className="timer">
 
-    <button className="btn btn-primary mr-3"
+    <button className="btn btn-primary pb-2"
       onClick={() => { setTimerOps({ ...timerOps, showTimer: !timerOps.showTimer }) }}>
       {dispTimer} <i className="fas fa-stopwatch"></i>
     </button>
@@ -64,8 +64,9 @@ export default function Timer () {
       </button>
 
 
-      {(!timerOps.isPlay && !timerOps.isPaused) && <button className="btn btn-success w-100 mb-3" onClick={onStart}>
-        <i className="fa fa-play"></i> start
+      {(!timerOps.isPlay && !timerOps.isPaused)
+        && <button className="btn btn-success w-100 mb-3" onClick={onStart}>
+          <i className="fa fa-play"></i> start
       </button>}
 
       {(timerOps.isResumed || timerOps.isPlay)

@@ -75,7 +75,7 @@ export default function Playground () {
   }, []);
 
   return (
-    <Split gutterSize={10} sizes={[50, 50]}>
+    <Split gutterSize={10} sizes={[50, 50]} minSize={150}>
       <div>
         <header className="tabs overflow-auto">
           <div>

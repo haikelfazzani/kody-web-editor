@@ -29,10 +29,10 @@ export default function AddLibrary () {
 
   return (<>
 
-    <button className="btn btn-primary ml-3 mr-3" onClick={() => { setState({ ...state, isModelOpen: !state.isModelOpen }) }}>
+    <button className="btn btn-primary ml-3 mr-3"
+      onClick={() => { setState({ ...state, isModelOpen: !state.isModelOpen }) }}>
       <i className="fas fa-plus"></i> library
     </button>
-
 
     <div className="add-library-modal" style={{ display: state.isModelOpen ? 'block' : 'none' }}>
 
