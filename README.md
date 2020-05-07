@@ -25,6 +25,7 @@
 - [x] Linter (JsHint)
 - [x] console
 - [x] Enable Sass
+- [x] Timer
 
 ### TODO
 - [ ] set custom JSHINT

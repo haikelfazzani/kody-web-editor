@@ -1,0 +1,16 @@
+.timer {
+  position: relative; 
+  width: 155px; 
+}
+
+.timer-modal {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  border: 10px solid var(--bg-main-light);
+  background-color: var(--bg-main);
+  padding: 10px;
+  z-index: 999;
+}
+
+.timer .btn {    box-shadow: 0 3px 10px -3px var(--bg-main);}

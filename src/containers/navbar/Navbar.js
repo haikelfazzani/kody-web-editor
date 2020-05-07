@@ -6,6 +6,7 @@ import './Navbar.css';
 import ButtonInput from './ButtonInput';
 import AppUtil from '../../util/AppUtil';
 import { useStoreState, useStoreActions } from 'easy-peasy';
+import Timer from './Timer';
 
 export default function Navbar () {
 
@@ -37,13 +38,15 @@ export default function Navbar () {
     <div className="w-75 d-flex justify-content-end">
       <SelectFont />
 
-      <button className={"btn btn-primary ml-3 " + (isSassEnabled ? "bg-pink" : "")} 
-      onClick={onEnableSass}
-      data-toggle="tooltip" data-placement="bottom" title="Enable sass">
+      <button className={"btn btn-primary ml-3 " + (isSassEnabled ? "bg-pink" : "")}
+        onClick={onEnableSass}
+        data-toggle="tooltip" data-placement="bottom" title="Enable sass">
         <i className="fab fa-sass"></i>
       </button>
 
       <ButtonInput />
+
+      <Timer />
 
       <button className="btn btn-primary mr-3" onClick={onDownload}>
         <i className="fas fa-download"></i>
