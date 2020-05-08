@@ -45,8 +45,8 @@ export default function Timer () {
     let h = (timer / 3600) | 0;
 
     sec = sec < 10 ? '0' + sec : sec;
-    min = (min < 1 || min > 59) ? '00' : '0' + min;
-    h = (h < 1 || h > 59) ? '00' : '0' + h;
+    min = (min < 1 || min > 59) ? '00' : min > 9 ? min : '0' + min;
+    h = (h < 1 || h > 59) ? '00' : h > 9 ? h : '0' + h;
 
     setDispTimer(h + ':' + min + ':' + sec);
   }, [timer, setTimer]);
