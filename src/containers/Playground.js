@@ -17,12 +17,20 @@ export default function Playground () {
   const [editorVal, setEditorVal] = useState(AppUtil.getCurrentTabCode());
   const [tabsState, setTabsState] = useState(AppUtil.getTabState());
 
-  const [jsValue, setJsValue] = useState(null);
+  const [linterValues, setLinterValues] = useState({
+    jsValue: '',
+    cssVal: ''
+  });
 
   const onEditorChange = (v, e, data) => {
+
     setEditorVal(data);
     tabsState.tabs.find(t => t.index === tabsState.activeTabIndex).code = data;
-    if (tabsState.activeTabIndex === 2) { setJsValue(tabsState.tabs[2].code); }
+
+    if (tabsState.activeTabIndex === 2 || tabsState.activeTabIndex === 1) {
+      setLinterValues({ cssVal: tabsState.tabs[1].code, jsValue: tabsState.tabs[2].code });
+    }
+
     localStorage.setItem('kody-tabs', JSON.stringify(tabsState));
   }
 
@@ -114,7 +122,7 @@ export default function Playground () {
             <iframe ref={iframe} title="kody web editor" id="kody-iframe"></iframe>
           </div>
 
-          <Linter jsValue={jsValue} />
+          <Linter jsValue={linterValues.jsValue} cssVal={linterValues.cssVal} />
         </Split>
       </div>
 

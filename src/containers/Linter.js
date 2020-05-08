@@ -1,18 +1,19 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Editor from '../components/Editor';
-import jshint from '../util/jshint';
+import linterUtil from '../util/linterUtil';
 
 const initState = {
   tabs: [
-    { name: 'Linter', code: '', id: 0, icon: 'bug' },
-    { name: 'Babel', code: '', id: 1, icon: 'globe' },
-    { name: 'Console', code: '', id: 2, icon: 'terminal' }
+    { name: 'Linter', code: '', id: 0, icon: 'fa fa-bug' },
+    { name: 'Babel', code: '', id: 1, icon: 'fa fa-globe' },
+    { name: 'Prefixer', code: '', id: 2, icon: 'fab fa-css3' },
+    { name: 'Console', code: '', id: 3, icon: 'fa fa-terminal' }
   ],
   currentTabId: 0,
   currentTabContent: ''
 };
 
-export default function Linter ({ jsValue }) {
+export default function Linter ({ jsValue, cssVal }) {
 
   const [state, setState] = useState(initState);
 
@@ -22,41 +23,27 @@ export default function Linter ({ jsValue }) {
   }, []);
 
   useEffect(() => {
-    if (state.currentTabId === 2) {
+    if (state.currentTabId === 3) {
       window.addEventListener('message', (msg) => {
         if (msg) {
-          state.tabs[2].code = msg.data;
+          state.tabs[3].code = msg.data;
           setState({ ...state, currentTabContent: msg.data });
         }
       })
     }
 
-    if (state.currentTabId === 1) {
-      // babel transpiler
-      let output = '';
-      try {
-        output = window.Babel.transform(jsValue, {
-          envName: 'production',
-          presets: ['react', 'es2015']
-        }).code;
 
-        state.tabs[1].code = output;
-        setState({ ...state, currentTabContent: output });
-      } catch (error) {
-        state.tabs[1].code = error.message;
-        setState({ ...state, currentTabContent: error.message });
-      }
-    }
+    linterUtil(state.currentTabId, jsValue, cssVal)
+      .then(result => {
+        state.tabs[state.currentTabId].code = result;
+        setState({ ...state, currentTabContent: result });
+      })
+      .catch(e => {
+        state.tabs[state.currentTabId].code = e;
+        setState({ ...state, currentTabContent: e });
+      });
 
-    if (state.currentTabId === 0) {
-      // JShint errors
-      if (jsValue) {
-        let res = jshint(jsValue);
-        state.tabs[0].code = res;
-        setState({ ...state, currentTabContent: res });
-      }
-    }
-  }, [jsValue, state.currentTabId]);
+  }, [jsValue, cssVal, state.currentTabId]);
 
   return <div className="linter">
     <header>
@@ -67,7 +54,8 @@ export default function Linter ({ jsValue }) {
               className={"tab " + (state.currentTabId === i ? "active-tab" : "")}
               key={tab.name}
               onClick={() => { onTabClick(i) }}>
-              <i className={'mr-2 fa fa-' + tab.icon}></i><span className="tab-title">{tab.name}</span>
+              <i className={'mr-2 ' + tab.icon}></i>
+              <span className="tab-title">{tab.name}</span>
             </span>)}
         </div>
       </div>
