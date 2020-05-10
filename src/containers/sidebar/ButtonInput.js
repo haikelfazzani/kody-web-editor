@@ -32,11 +32,11 @@ export default function ButtonInput () {
 
   return (<div className="btn-input">
 
-    <button className="btn btn-primary mr-3" onClick={() => { onSetAction('share') }}>
+    <button className="btn btn-primary btn-block mt-3" onClick={() => { onSetAction('share') }}>
       <i className="fas fa-share"></i>
     </button>
 
-    <button className="btn btn-primary mr-3" onClick={() => { onSetAction('embed') }}>
+    <button className="btn btn-primary btn-block mb-2" onClick={() => { onSetAction('embed') }}>
       <i className="fas fa-code"></i>
     </button>
 

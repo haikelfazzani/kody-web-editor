@@ -1,0 +1,19 @@
+.sidebar {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 95px;
+}
+
+
+.sidebar>div {
+  border: 5px solid var(--bg-main-light);
+  background-color: var(--bg-main);
+  padding: 10px;
+}
+
+.sidebar>* {
+  width: 100%;
+}
+
+.sidebar select {font-size: 12px;}

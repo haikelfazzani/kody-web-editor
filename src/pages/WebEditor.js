@@ -3,6 +3,7 @@ import Playground from '../containers/Playground';
 import Navbar from '../containers/navbar/Navbar';
 
 import '../styles/WebEditor.css';
+import Sidebar from '../containers/sidebar/Sidebar';
 
 export default function WebEditor () {
 
@@ -12,5 +13,7 @@ export default function WebEditor () {
     <main>
       <Playground />
     </main>
+
+    <Sidebar />
   </div>;
 }
