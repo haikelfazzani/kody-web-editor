@@ -17,10 +17,7 @@ export default function Playground () {
   const [editorVal, setEditorVal] = useState(AppUtil.getCurrentTabCode());
   const [tabsState, setTabsState] = useState(AppUtil.getTabState());
 
-  const [linterValues, setLinterValues] = useState({
-    jsValue: '',
-    cssVal: ''
-  });
+  const [linterValues, setLinterValues] = useState({ jsValue: '', cssVal: '' });
 
   const onEditorChange = (v, e, data) => {
 
@@ -61,7 +58,6 @@ export default function Playground () {
     iframeDoc.close();
   }
 
-
   useEffect(() => {
     document.addEventListener('keydown', async (event) => {
       if (event.ctrlKey && event.keyCode === 13) {
@@ -75,11 +71,13 @@ export default function Playground () {
   }, []);
 
   useEffect(() => {
-    let data = window.location.search.split('?bin=')[1];
-    if (data) {
-      let decodedData = JSON.parse(window.atob(data));
-      setTabsState(decodedData);
-    }
+    try {
+      let data = window.location.search.split('?bin=')[1];
+      if (data) {
+        let decodedData = JSON.parse(window.atob(data));
+        setTabsState(decodedData);
+      }
+    } catch (error) { }
   }, []);
 
   return (

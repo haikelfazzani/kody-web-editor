@@ -3,6 +3,7 @@
   right: 20px;
   bottom: 20px;
   width: 95px;
+  z-index: 999;
 }
 
 
@@ -17,3 +18,7 @@
 }
 
 .sidebar select {font-size: 12px;}
+
+@media screen and (max-width: 600px) {
+  .sidebar { display: none;}
+}

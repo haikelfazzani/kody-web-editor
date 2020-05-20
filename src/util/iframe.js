@@ -48,7 +48,7 @@ function getContent (cssValue, html, jsValue, libraries) {
     envName: 'production',
     presets: ['react', 'es2015']
   }).code;
-  
+
   return `<html>
   <head>
     <meta charset="UTF-8">
@@ -80,22 +80,17 @@ function handleConsole () {
 
   return new Promise((resolve, reject) => {
     let iframe = document.getElementById('kody-iframe');
-    let iframeErrors = false;
-    
     // handle errors
     iframe.contentWindow.onerror = (message, file, line, col, error) => {
-      iframeErrors = true;
       iframe.contentWindow.parent.postMessage(`(${line}:${col}) -> ${error}`);
-      reject(iframeErrors);
+      reject(`(${line}:${col}) -> ${error}`);
     };
 
     // get console outputs as string
     handleConsoleOutput(iframe, result => {
-      iframeErrors = false;
       iframe.contentWindow.parent.postMessage(result);
-      resolve(iframeErrors);
+      resolve(result);
     });
-
   });
 }
 
@@ -103,23 +98,32 @@ function handleConsole () {
 function handleConsoleOutput (iframe, resolve) {
   let logMessages = [];
 
-  iframe.contentWindow.console.log = function () {
-    logMessages.push.apply(logMessages, arguments);
+  const apply = ['log', 'error', 'dir', 'info', 'warn', 'assert', 'debug', 'clear'];
 
-    let b = logMessages.map(v => {
-      if (v.toString() === '[object Map]' || v.toString() === '[object Set]') {
-        let arr = [...v];
-        v = v.toString() + ` (${arr.length}) ` + JSON.stringify(arr, null, 2);
-      }
-      if (v.toString() === '[object Object]') {
-        v = v.toString() + ' ' + JSON.stringify(v, null, 2);
-      }
-      if (Array.isArray(v)) {
-        v = `Array (${v.length}) ` + JSON.stringify(v, null, 2);
-      }
-      return v
-    });
+  apply.forEach(method => {
+    iframe.contentWindow.console[method] = (...args) => {
 
-    resolve(b.join('\n'));
-  };
+      logMessages.push.apply(logMessages, args);
+
+      let output = logMessages.map(msg => {
+
+        if (msg && (msg.toString() === '[object Map]' || msg.toString() === '[object Set]')) {
+          let arr = [...msg];
+          msg = msg.toString() + ` (${arr.length}) ` + JSON.stringify(arr, null, 2);
+        }
+
+        if (msg && (msg.toString() === '[object Object]')) {
+          msg = msg.toString() + ' ' + JSON.stringify(msg, null, 2);
+        }
+
+        if (msg && Array.isArray(msg)) {
+          msg = `Array (${msg.length}) ` + JSON.stringify(msg, null, 2);
+        }
+
+        return msg === undefined ? 'undefined' : msg;
+      });
+
+      resolve(output.join('\n'));
+    };
+  });
 }
