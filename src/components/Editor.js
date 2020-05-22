@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { UnControlled as CodeMirror } from 'react-codemirror2';
-import { useStoreState } from 'easy-peasy';
 
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/monokai.css';
@@ -30,13 +29,7 @@ import 'codemirror/addon/comment/comment';
 
 export default function Editor ({ onChange, value, lang = 'javascript', readOnly = false }) {
 
-  const fontSize = useStoreState(state => state.editorSettings.model.fontSize);
-
   const [mode, setMode] = useState(lang);
-
-  useEffect(() => {
-    document.querySelector('.CodeMirror').style.fontSize = fontSize;
-  }, [fontSize]);
 
   useEffect(() => {
     setMode(lang);

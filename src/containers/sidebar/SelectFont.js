@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useStoreState, useStoreActions } from 'easy-peasy';
 
 const fontSizes = ['10px', '12px', '14px', '16px', '18px', '20px', '22px', '24px'];
@@ -7,6 +7,10 @@ function SelectFont () {
 
   const fontSize = useStoreState(state => state.editorSettings.model.fontSize);
   const updateFontSize = useStoreActions(actions => actions.editorSettings.updateFontSize);
+
+  useEffect(() => {
+    document.querySelector('.CodeMirror').style.fontSize = fontSize;
+  }, [fontSize]);
 
   return (
     <select

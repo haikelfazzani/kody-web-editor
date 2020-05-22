@@ -44,18 +44,20 @@ export default function Playground () {
   }
 
   const runCode = async () => {
-    let iframeDoc = iframe.current.contentWindow.document;
+    if (iframe) {
+      let iframeDoc = iframe.current.contentWindow.document;
 
-    let content = await writeContent(
-      tabsState.tabs[0].code, // html
-      tabsState.tabs[1].code, // css
-      tabsState.tabs[2].code, // javasript
-      libraries,
-      isSassEnabled // enable sass
-    );
+      let content = await writeContent(
+        tabsState.tabs[0].code, // html
+        tabsState.tabs[1].code, // css
+        tabsState.tabs[2].code, // javasript
+        libraries,
+        isSassEnabled // enable sass
+      );
 
-    iframeDoc.open().write(content);
-    iframeDoc.close();
+      iframeDoc.open().write(content);
+      iframeDoc.close();
+    }
   }
 
   useEffect(() => {

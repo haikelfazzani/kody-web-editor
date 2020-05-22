@@ -22,7 +22,7 @@ export default function writeContent (html, css, js, libraries = [], sass = fals
       resolve(content);
     }
 
-    await handleConsole();
+    handleConsole();
   });
 };
 
@@ -78,52 +78,47 @@ function getContent (cssValue, html, jsValue, libraries) {
 
 function handleConsole () {
 
-  return new Promise((resolve, reject) => {
-    let iframe = document.getElementById('kody-iframe');
+  let iframe = document.getElementById('kody-iframe');
+
+  if (iframe) {
     // handle errors
     iframe.contentWindow.onerror = (message, file, line, col, error) => {
       iframe.contentWindow.parent.postMessage(`(${line}:${col}) -> ${error}`);
-      reject(`(${line}:${col}) -> ${error}`);
     };
 
     // get console outputs as string
-    handleConsoleOutput(iframe, result => {
-      iframe.contentWindow.parent.postMessage(result);
-      resolve(result);
+    let logMessages = [];
+    const apply = ['log', 'error', 'dir', 'info', 'warn', 'assert', 'debug', 'clear'];
+
+    apply.forEach(method => {
+      iframe.contentWindow.console[method] = (...args) => {
+
+        logMessages.push.apply(logMessages, args);
+
+        let output = formatOutput(logMessages).join('\n');
+        iframe.contentWindow.parent.postMessage(output);
+      };
     });
-  });
+  }
 }
 
 
-function handleConsoleOutput (iframe, resolve) {
-  let logMessages = [];
+function formatOutput (logMessages) {
+  return logMessages.map(msg => {
 
-  const apply = ['log', 'error', 'dir', 'info', 'warn', 'assert', 'debug', 'clear'];
+    if (msg && (msg.toString() === '[object Map]' || msg.toString() === '[object Set]')) {
+      let arr = [...msg];
+      msg = msg.toString() + ` (${arr.length}) ` + JSON.stringify(arr, null, 2);
+    }
 
-  apply.forEach(method => {
-    iframe.contentWindow.console[method] = (...args) => {
+    if (msg && (msg.toString() === '[object Object]')) {
+      msg = msg.toString() + ' ' + JSON.stringify(msg, null, 2);
+    }
 
-      logMessages.push.apply(logMessages, args);
+    if (msg && Array.isArray(msg)) {
+      msg = `Array (${msg.length}) ` + JSON.stringify(msg, null, 2);
+    }
 
-      let output = logMessages.map(msg => {
-
-        if (msg && (msg.toString() === '[object Map]' || msg.toString() === '[object Set]')) {
-          let arr = [...msg];
-          msg = msg.toString() + ` (${arr.length}) ` + JSON.stringify(arr, null, 2);
-        }
-
-        if (msg && (msg.toString() === '[object Object]')) {
-          msg = msg.toString() + ' ' + JSON.stringify(msg, null, 2);
-        }
-
-        if (msg && Array.isArray(msg)) {
-          msg = `Array (${msg.length}) ` + JSON.stringify(msg, null, 2);
-        }
-
-        return msg === undefined ? 'undefined' : msg;
-      });
-
-      resolve(output.join('\n'));
-    };
+    return msg === undefined ? 'undefined' : msg;
   });
 }
