@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Editor from '../components/Editor';
 import linterUtil from '../util/linterUtil';
+import { formatOutput } from '../util/iframe';
 
 const initState = {
   tabs: [
@@ -23,15 +24,19 @@ export default function Linter ({ jsValue, cssVal }) {
   }, []);
 
   useEffect(() => {
+ 
     if (state.currentTabId === 3) {
-      window.addEventListener('message', (msg) => {
-        if (msg) {
-          state.tabs[3].code = msg.data;
-          setState({ ...state, currentTabContent: msg.data });
-        }
-      })
-    }
+      let iframe = document.getElementById('kody-iframe');
+      let logMessages = [];
 
+      iframe.contentWindow.console.log = (...args) => {
+        logMessages.push.apply(logMessages, args);
+
+        state.tabs[3].code = formatOutput(logMessages);
+        setState({ ...state, currentTabContent:  formatOutput(logMessages) });        
+      };
+    }
+    
 
     linterUtil(state.currentTabId, jsValue, cssVal)
       .then(result => {

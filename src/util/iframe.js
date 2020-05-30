@@ -1,6 +1,7 @@
-export default function writeContent (html, css, js, libraries = [], sass = false) {
+export function writeContent (html, css, js, libraries = [], sass = false) {
 
   return new Promise(async (resolve, reject) => {
+    
 
     let content = '';
 
@@ -13,16 +14,18 @@ export default function writeContent (html, css, js, libraries = [], sass = fals
       if (window.Sass) {
         window.Sass.compile(css, function (result) {
           content = getContent(result.text, html, js, libraries);
-          resolve(content);
         });
       }
     }
     else {
       content = getContent(css, html, js, libraries);
-      resolve(content);
     }
 
-    handleConsole();
+    let iframe = document.getElementById('kody-iframe');
+    let iframeDoc = iframe.contentWindow.document;
+    iframeDoc.open().write(content);
+    iframeDoc.close();
+
   });
 };
 
@@ -76,34 +79,35 @@ function getContent (cssValue, html, jsValue, libraries) {
 </html>`
 }
 
-function handleConsole () {
+export function handleConsole (iframe) {
 
-  let iframe = document.getElementById('kody-iframe');
+  return new Promise((resolve, reject) => {    
 
-  if (iframe) {
-    // handle errors
-    iframe.contentWindow.onerror = (message, file, line, col, error) => {
-      iframe.contentWindow.parent.postMessage(`(${line}:${col}) -> ${error}`);
-    };
-
-    // get console outputs as string
-    let logMessages = [];
-    const apply = ['log', 'error', 'dir', 'info', 'warn', 'assert', 'debug', 'clear'];
-
-    apply.forEach(method => {
-      iframe.contentWindow.console[method] = (...args) => {
-
-        logMessages.push.apply(logMessages, args);
-
-        let output = formatOutput(logMessages).join('\n');
-        iframe.contentWindow.parent.postMessage(output);
+    if (iframe) {
+      // handle errors
+      iframe.contentWindow.onerror = (message, file, line, col, error) => {
+        reject(`(${line}:${col}) -> ${error}`);
       };
-    });
-  }
+
+      // get console outputs as string
+      let logMessages = [];
+      const apply = ['log', 'error', 'dir', 'info', 'warn', 'assert', 'debug', 'clear'];
+
+      apply.forEach(method => {
+        iframe.contentWindow.console[method] = (...args) => {
+
+          logMessages.push.apply(logMessages, args);
+
+          let output = formatOutput(logMessages);
+          resolve(output);
+        };
+      });
+    }
+  });
 }
 
 
-function formatOutput (logMessages) {
+export function formatOutput (logMessages) {
   return logMessages.map(msg => {
 
     if (msg && (msg.toString() === '[object Map]' || msg.toString() === '[object Set]')) {
@@ -120,5 +124,6 @@ function formatOutput (logMessages) {
     }
 
     return msg === undefined ? 'undefined' : msg;
-  });
+  })
+  .join('\n');
 }

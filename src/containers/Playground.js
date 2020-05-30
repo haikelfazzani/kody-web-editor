@@ -4,7 +4,7 @@ import Editor from '../components/Editor';
 import Split from 'react-split';
 
 import Linter from './Linter';
-import writeContent from '../util/iframe';
+import {writeContent} from '../util/iframe';
 
 import jsBeauty from '../util/jsBeauty';
 import { useStoreState } from 'easy-peasy';
@@ -45,18 +45,15 @@ export default function Playground () {
 
   const runCode = async () => {
     if (iframe) {
-      let iframeDoc = iframe.current.contentWindow.document;
 
-      let content = await writeContent(
-        tabsState.tabs[0].code, // html
-        tabsState.tabs[1].code, // css
-        tabsState.tabs[2].code, // javasript
-        libraries,
-        isSassEnabled // enable sass
-      );
-
-      iframeDoc.open().write(content);
-      iframeDoc.close();
+        await writeContent(
+          tabsState.tabs[0].code, // html
+          tabsState.tabs[1].code, // css
+          tabsState.tabs[2].code, // javasript
+          libraries,
+          isSassEnabled // enable sass
+        );
+      
     }
   }
 
