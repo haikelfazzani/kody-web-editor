@@ -6,7 +6,7 @@
 - [ ] add library (using url or script tag)
 
 ### Captures
-![](src/img/Capture.png)
+![](/src/img/editor.png)
 
 ### Author
 - Haikel Fazzani

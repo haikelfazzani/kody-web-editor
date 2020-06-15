@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './Home.css';
-import kodyImg from '../img/Capture.png';
-import kodyLogo from '../img/logo192.png';
+import kodyImg from '../img/editor.png';
+import kodyLogo from '../img/logo.png';
 
 const icons = ['react', 'vuejs', 'angular', 'ember', 'sass', 'js'];
 
