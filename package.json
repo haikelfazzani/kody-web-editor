@@ -1,16 +1,12 @@
 {
-  "name": "play-sql",
+  "name": "regex",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "autoprefixer": "^9.7.6",
-    "codemirror": "^5.53.2",
-    "easy-peasy": "^3.3.0",
-    "postcss": "^7.0.29",
     "react": "^16.13.1",
-    "react-codemirror2": "^7.1.0",
+    "react-ace": "^9.0.0",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-split": "^2.0.7"
   },
@@ -34,10 +30,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2"
   }
 }

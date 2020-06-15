@@ -1,10 +1,8 @@
+
 import React from "react";
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-
 import Home from "./pages/Home";
-import WebEditor from "./pages/WebEditor";
-
-import './styles/App.css';
+import Playground from "./pages/Playground";
 
 export default function App () {
 
@@ -12,7 +10,7 @@ export default function App () {
     <Switch>
 
       <Route exact path="/" component={Home} />
-      <Route path="/playground" component={WebEditor} />
+      <Route exact path="/playground" component={Playground} />
 
       <Redirect path="*" to="/" />
     </Switch>

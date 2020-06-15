@@ -1,0 +1,80 @@
+:root {
+  --dark-bleu: #02203c;
+  --dark-bleu-main: #001528;
+  --light-bleu: #15314b;
+}
+
+body {
+  background-color: var(--dark-bleu);
+  font-family: 'Noto Sans';
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  display: block;    
+}
+
+main {
+  padding: 0 10px;
+}
+
+.btn-secondary {
+  background-color: var(--light-bleu);
+  border-color: var(--light-bleu);
+}
+
+button,
+.btn {
+  letter-spacing: 2px;
+  font-size: 14px;
+  border-radius: 0;
+}
+
+a {color: var(--dark);}
+a:hover {color: #000;}
+
+hr {
+  margin: 0;
+  border: 1px solid rgb(255, 255, 255);
+  width: 100%;
+}
+/***************************/
+.content {
+  height: 100vh;
+  width: 100vw;
+  display: block;
+  padding: 10px 0;
+}
+
+/************ Sidebar ************/
+.HW_badge_cont {
+  width: auto !important;
+  height: 13px !important;
+}
+
+.HW_badge {
+   top: 0 !important; 
+}
+
+/*********************/
+@media screen and (max-width: 600px) {
+  .dsp-none {
+     display: none !important;
+   }
+ }
+
+ /**********************/
+ ::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--light-bleu);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}

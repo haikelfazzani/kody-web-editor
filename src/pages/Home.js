@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../styles/Home.css';
-import kodyImg from '../img/Capture.PNG';
+import './Home.css';
+import kodyImg from '../img/Capture.png';
 import kodyLogo from '../img/logo192.png';
 
 const icons = ['react', 'vuejs', 'angular', 'ember', 'sass', 'js'];
@@ -35,7 +35,7 @@ export default function Home () {
           <div className="row fs-35 mb-3">
             {icons.map(icon => <div className="col-md-4 mb-3" key={icon}>
               <div className="card">
-                <div className="card-body text-center p-0"><i className={"fab fa-" + icon}></i></div>
+                <div className="card-body text-center"><i className={"fab fa-" + icon}></i></div>
               </div>
             </div>)}
           </div>

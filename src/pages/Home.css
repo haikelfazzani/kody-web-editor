@@ -1,9 +1,10 @@
 .home-page {
   height: 100%;
   width: 100%;
+  color: #fff;
   background-image: linear-gradient(135deg, #001528ef 0%, #001528ee 100%), url(../img/bg.jpg);
-  overflow-x: hidden;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .navbar {
@@ -25,8 +26,9 @@
 
 
 .card {
-  background-color: var(--bg-main-light);
+  background-color: var(--light-bleu) !important;
 }
+.card i {font-size: 50px;}
 
 footer {
   width: 100%;
@@ -34,7 +36,6 @@ footer {
   text-transform: uppercase;
   font-size: 10px;
   letter-spacing: 2px;
-  border-top: 2px solid var(--dark-bleu);
   background-color: var(--bg-main-light);
 }
 

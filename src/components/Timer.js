@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './Timer.css';
 
 var idFnTimer;
 
 export default function Timer () {
 
-  const [timerOps, setTimerOps] = useState({
-    showTimer: false,
-    isPlay: false,
-    isPaused: false,
-    isResumed: false
-  });
-
+  const [timerOps, setTimerOps] = useState({ isPlay: false, isPaused: false, isResumed: false });
   const [timer, setTimer] = useState(0);
   const [dispTimer, setDispTimer] = useState('00:00:00');
 
@@ -51,36 +44,30 @@ export default function Timer () {
     setDispTimer(h + ':' + min + ':' + sec);
   }, [timer, setTimer]);
 
-  return (<div className="timer">
+  return (<div className="w-100">
 
-    <button className="btn btn-primary pb-2"
-      onClick={() => { setTimerOps({ ...timerOps, showTimer: !timerOps.showTimer }) }}>
+    <button className="btn btn-primary btn-block mb-2">
       {dispTimer} <i className="fas fa-stopwatch"></i>
     </button>
 
-    <div className="timer-modal" style={{ display: timerOps.showTimer ? 'block' : 'none' }}>
-      <button className="btn btn-warning mb-3 fs-14 w-100">
-        {dispTimer} <i className="fas fa-stopwatch"></i>
-      </button>
-
-
-      {(!timerOps.isPlay && !timerOps.isPaused)
-        && <button className="btn btn-success w-100 mb-3" onClick={onStart}>
-          <i className="fa fa-play"></i> start
+    {(!timerOps.isPlay && !timerOps.isPaused)
+      && <button className="btn btn-success btn-block mb-2" onClick={onStart}>
+        <i className="fa fa-play"></i>
       </button>}
 
-      {(timerOps.isResumed || timerOps.isPlay)
-        && <button className="btn btn-success w-100 mb-3" onClick={onPause}>
-          <i className="fa fa-pause"></i> pause
+    {(timerOps.isResumed || timerOps.isPlay)
+      && <button className="btn btn-success btn-block mb-2" onClick={onPause}>
+        <i className="fa fa-pause"></i>
       </button>}
 
-      {timerOps.isPaused && <button className="btn btn-success w-100 mb-3" onClick={() => { onStart('resume') }}>
-        <i className="fa fa-play"></i> resume
+    {timerOps.isPaused
+      && <button className="btn btn-success btn-block" onClick={() => { onStart('resume') }}>
+        <i className="fa fa-play"></i>
       </button>}
 
-      <button className="btn btn-danger w-100" onClick={onReset}>
-        <i className="fa fa-recycle"></i> reset
-      </button>
-    </div>
+    <button className="btn btn-danger btn-block" onClick={onReset}>
+      <i className="fa fa-recycle"></i>
+    </button>
+
   </div>);
 }

@@ -1,34 +1,15 @@
-# Online web editor : fast and modern
+# Kody online modern web editor
 
-### Techs
-- React / Easy peasy (Redux) / React router dom / React split
-- JsBeautify
-- JsHint
-- Sass.js
-- Babel
-- Codemirror
-- Bootstrap / Fontawesome / Google fonts
+- [ ] Auto-run (button)
+- [ ] PWA
+- [ ] Save snippets
+- [ ] add library (using url or script tag)
 
-### Keys
-- run code : ctrl + enter
-- beautify code : ctrl + alt + f
+### Captures
+![](src/img/Capture.png)
 
-### Capture
-- ![](https://i.ibb.co/WkBNDm0/kody.png)
-
-### Done
-- [x] beautify code (html/css/js)
-- [x] share/download code
-- [x] embed iframe
-- [x] add library
-- [x] transpile code (Babel)
-- [x] Linter (JsHint)
-- [x] console
-- [x] Enable Sass
-- [x] Timer
-
-### TODO
-- [ ] set custom JSHINT
-- [ ] real time code share (websocket)
+### Author
+- Haikel Fazzani
 
 ### License
+MIT

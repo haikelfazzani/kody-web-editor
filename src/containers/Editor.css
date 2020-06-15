@@ -1,0 +1,67 @@
+.content>div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.gutter {
+  cursor: col-resize;
+}
+
+.gutter:hover {
+  background-color: var(--primary);
+}
+
+.ace-playground {
+  height: calc(100% - 33px);
+}
+
+.ace-monokai,.ace_gutter {
+  background-color: var(--dark-bleu-main) !important;
+}
+.ace-monokai .ace_marker-layer .ace_active-line,.ace-monokai .ace_gutter-active-line {
+  background: #000d19c2;
+}
+/*******************************/
+.tabs {
+  min-height:33px;
+  background-color: var(--light-bleu);
+  display: flex;
+  justify-content: space-between;
+}
+
+.active-tab {background-color: var(--dark-bleu-main) !important;}
+
+.tabs button {
+  border: 0;  
+}
+
+.tabs .btn {
+  border: 0;
+  box-shadow: none;
+  outline: none !important;
+}
+
+/*****************/
+.output {
+  display: flex;
+}
+
+.output>div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+iframe, pre {
+  margin: 0;
+  border: 0;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100%;
+  background-color: #ffffff;
+  color: #000000;
+  overflow: auto;
+}
+
