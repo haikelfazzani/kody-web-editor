@@ -13,7 +13,7 @@
 }
 
 .ace-playground {
-  height: calc(100% - 33px);
+  height: calc(100% - 35px);
 }
 
 .ace-monokai,.ace_gutter {
@@ -24,7 +24,7 @@
 }
 /*******************************/
 .tabs {
-  min-height:33px;
+  min-height:35px;
   background-color: var(--light-bleu);
   display: flex;
   justify-content: space-between;

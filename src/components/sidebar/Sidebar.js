@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
 import './Sidebar.css';
 import { Link } from 'react-router-dom';
-import templates from '../util/templates';
-import { GlobalContext } from '../state/GlobalState';
+import templates from '../../util/templates';
+import { GlobalContext } from '../../state/GlobalState';
 import Timer from './Timer';
+import FormSavePaste from '../../containers/FormSavePaste';
 
 if (window.Headway) {
   window.Headway.init({ selector: ".changes", account: "ypRAj7" })
@@ -27,7 +28,7 @@ export default function Sidebar () {
 
       <div className="sidebar-content">
 
-      <div className="btn-group mb-3">
+        <div className="btn-group">
           <Link className="btn btn-light" to="/"><i className="fas fa-home"></i></Link>
 
           <a className="btn btn-light" href="https://github.com/haikelfazzani/picode">
@@ -39,29 +40,32 @@ export default function Sidebar () {
           <button className="btn btn-light"><i className="fas fa-compress"></i></button>
         </div>
 
-        <div className="form-group">
-          <label><i className="fa fa-pen"></i> Font Size</label>
-          <select className="form-control" onChange={(e) => {
-            setGlobalState({ ...globalState, fontSize: e.target.value });
-          }}>
-            {fontSizes.map(font => <option key={font}>{font}</option>)}
-          </select>
-        </div>
+        <FormSavePaste />
 
-        <div className="form-group mb-3">
-          <label><i className="fa fa-file"></i> Templates</label>
-          <select className="form-control"
-            onChange={(e) => {
-              setGlobalState({ ...globalState, template: e.target.value });
+        <div className="w-100 bg-p">
+          <div className="form-group">
+            <label><i className="fa fa-pen"></i> Font Size</label>
+            <select className="form-control" onChange={(e) => {
+              setGlobalState({ ...globalState, fontSize: e.target.value });
             }}>
-            {Object.keys(templates).map(v => <option key={v} value={v}>{v}</option>)}
-          </select>
+              {fontSizes.map(font => <option key={font}>{font}</option>)}
+            </select>
+          </div>
+
+          <div className="form-group mb-3">
+            <label><i className="fa fa-file"></i> Templates</label>
+            <select className="form-control"
+              onChange={(e) => {
+                setGlobalState({ ...globalState, template: e.target.value });
+              }}>
+              {Object.keys(templates).map(v => <option key={v} value={v}>{v}</option>)}
+            </select>
+          </div>
+
+          <p className="text-white mb-1"><i className="fab fa-sass"></i> Enbale sass</p>
+          <button className="btn btn-light btn-block"><i className="fab fa-sass"></i> Enable Sass</button>
         </div>
 
-        <p className="text-white mb-1"><i className="fab fa-sass"></i> Enbale sass</p>
-        <button className="btn btn-light btn-block"><i className="fab fa-sass"></i> Enable Sass</button>
-
-        <p className="text-white mb-1 mt-3"><i className="fa fa-clock"></i> Chronometre</p>
         <Timer />
 
         <div className="btn-group mt-3">

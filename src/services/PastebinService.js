@@ -22,6 +22,53 @@ export default class PastebinService {
     return resp;
   }
 
+  static async getUserInfo () {
+    try {
+      let resp = await fetch('https://myboxss.000webhostapp.com/pastebin/user', {
+        method: 'POST',
+        body: JSON.stringify({
+          "user_key": this.getApiKey()
+        })
+      });
+
+      resp = await resp.json();
+
+      if (resp === 'Bad API request, invalid api_user_key') {
+        throw new Error('Bad API request, invalid api_user_key');
+      }
+
+      return resp;
+    } catch (error) {
+      return error.message;
+    }
+  }
+
+  static async createPaste (filename, expireDate) {
+    try {
+      let resp = await fetch('https://myboxss.000webhostapp.com/pastebin/create', {
+        method: 'POST',
+        body: JSON.stringify({
+          "user_key": this.getApiKey(),
+          "code": this.getUserCode(),
+          "private": "0",
+          "filename": filename + '.html',
+          "expire_date": expireDate,
+          "format": "html5"
+        })
+      });
+
+      resp = await resp.text();
+
+      if (resp === 'Bad API request, invalid login') {
+        throw new Error('Bad API request, invalid login');
+      }
+
+      return resp;
+    } catch (error) {
+      return error.message;
+    }
+  }
+
   static async getPaste (paste_key) {
     let resp = await fetch(BASE_URL + '/pastebin/get?paste_key=' + paste_key);
     resp = await resp.text();
@@ -45,7 +92,7 @@ export default class PastebinService {
 
   static async deletePaste (paste_key) {
 
-    const resp = await fetch(BASE_URL + '/pastebin/delete', {
+    let resp = await fetch(BASE_URL + '/pastebin/delete', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -63,8 +110,27 @@ export default class PastebinService {
     return key || null;
   }
 
-  static getUsername() {
+  static getUsername () {
     let username = localStorage.getItem('kody-api-username');
     return username || null;
+  }
+
+  static getUserCode () {
+    let local = localStorage.getItem('kody-tabs');
+    let temp = 'empty';
+
+    if (local) {
+      local = JSON.parse(local);
+      temp = `<html>
+        <head>
+          <style>${local[1]}</style>
+        </head>
+          <body>${local[0]}
+          <script>${local[2]}</script>
+        </body>
+      </html>`;
+      return temp
+    }
+    return temp;
   }
 }

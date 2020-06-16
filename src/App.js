@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Home from "./pages/Home";
 import Playground from "./pages/Playground";
 import Profile from "./pages/Profile";
+import PrivateRoute from "./components/PrivateRoute";
 
 export default function App () {
 
@@ -11,9 +12,11 @@ export default function App () {
     <Switch>
 
       <Route exact path="/" component={Home} />
+      
       <Route exact path="/playground" component={Playground} />
+      <Route path="/playground/:id" component={Playground} />
 
-      <Route exact path="/profile" component={Profile} />
+      <PrivateRoute exact path="/profile" component={Profile} />
 
       <Redirect path="*" to="/" />
     </Switch>

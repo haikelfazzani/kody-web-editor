@@ -18,10 +18,13 @@ export default function Tabs ({ getTabIndex }) {
 
   return (<div>
     <Link className="btn btn-success dsp-none" to="/"><i className="fa fa-home"></i></Link>
-    {tabs.map((tab, i) => <button
+
+    {tabs.map((tab, i) => <span
       className={"btn btn-secondary " + (currTabIndex === i ? 'active-tab' : '')}
-      onClick={() => { setTabIndex(i) }} key={'tab' + i}>
+      onClick={() => { setTabIndex(i) }}
+      key={'tab' + i}>
       <i className={"fab fa-" + tab.icon}></i><span className="dsp-none ml-2">{tab.name}</span>
-    </button>)}
+    </span>)}
+
   </div>);
 }

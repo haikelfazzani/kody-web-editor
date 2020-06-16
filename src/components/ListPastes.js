@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PastebinService from '../services/PastebinService';
+import { Link } from 'react-router-dom';
 
 export default function ListPastes () {
 
@@ -8,6 +9,8 @@ export default function ListPastes () {
   useEffect(() => {
     PastebinService.getPastes()
       .then(r => {
+        console.log(r);
+        
         if (Array.isArray(r)) setPastes(r);
       })
       .catch(e => { });
@@ -17,8 +20,11 @@ export default function ListPastes () {
     <ul className="list-group">
       {pastes && pastes.map(paste =>
         <li className="list-group-item d-flex justify-content-between align-items-center" key={paste.paste_key}>
-          <a href={paste.paste_url}>{paste.paste_title}</a>
-          <span className="badge badge-primary badge-pill">{paste.paste_expire_date}</span>
+          <Link to={"/playground/" + paste.paste_key}>
+            <i className="far fa-file-code mr-3"></i>
+            <span>{paste.paste_title}</span>
+          </Link>
+          <a className="badge badge-primary badge-pill" href={paste.paste_url}><i className="fa fa-link"></i></a>
         </li>)}
     </ul>
   );

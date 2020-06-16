@@ -25,7 +25,7 @@ export default function Navbar () {
           <ul className="navbar-nav">
             <li className="nav-item">
               {username
-                ? <Link to="/profile"><i className="fa fa-user"></i> {username}</Link>
+                ? <Link to="/profile" className="fs-14"><i className="fa fa-user"></i> {username}</Link>
                 : <button className="btn btn-success" onClick={() => { setShowModal(!showModal); }}>Login</button>}
             </li>
           </ul>

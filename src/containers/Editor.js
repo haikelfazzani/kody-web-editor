@@ -13,7 +13,7 @@ import DomUtil from '../util/DomUtil';
 
 let localTabs = localStorage.getItem('kody-tabs');
 
-export default function Editor () {
+export default function Editor ({ pasteContent }) {
 
   const { globalState } = useContext(GlobalContext);
   const [editorValue, setEditorValue] = useState('');
@@ -23,7 +23,7 @@ export default function Editor () {
 
   const onEditorChange = (value) => {
     setEditorValue(value);
-    tabs[currentTabIndex] = value;    
+    tabs[currentTabIndex] = value;
   }
 
   const getTabIndex = (currTabIndex) => {
@@ -33,14 +33,19 @@ export default function Editor () {
   }
 
   useEffect(() => {
+    setEditorValue(pasteContent);
+    setTabs([pasteContent, '', '']);
+  }, [pasteContent]);
+
+  useEffect(() => {
     let typeAsset = globalState.template;
-    if(typeAsset === 'typescript') DomUtil.appendScript();
+    if (typeAsset === 'typescript') DomUtil.appendScript();
     else DomUtil.removeElement();
     setTabs(templates[typeAsset]);
     setEditorValue(templates[typeAsset][currentTabIndex]);
   }, [globalState.template]);
 
-  const onRun = () => {    
+  const onRun = () => {
     let iframeUtil = new IframeUtil(globalState.template);
 
     let messages = [];
@@ -48,7 +53,7 @@ export default function Editor () {
       messages.push.apply(messages, [args]);
       setLogMessages(iframeUtil.formatOutput(messages));
     };
-    
+
     iframeUtil.write(...tabs);
   }
 
