@@ -16,6 +16,16 @@ body {
   display: block;    
 }
 
+.navbar {
+  background-color: transparent !important;
+  font-family: 'Changa';
+  font-size: 20px !important;
+  letter-spacing: 2px;
+}
+
+.navbar a {color: var(--secondary); text-decoration: none; }
+.navbar a:hover {color: var(--light);}
+
 main {
   padding: 0 10px;
 }
@@ -57,6 +67,13 @@ hr {
 .HW_badge {
    top: 0 !important; 
 }
+
+/*************************/
+.modal {
+  background-color: #000000a9;
+}
+
+.modal-content {background-color: var(--dark-bleu);}
 
 /*********************/
 @media screen and (max-width: 600px) {

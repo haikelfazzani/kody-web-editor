@@ -7,13 +7,6 @@
   overflow-x: hidden;
 }
 
-.navbar {
-  background-color: transparent !important;
-  font-family: 'Changa';
-  font-size: 20px !important;
-  letter-spacing: 2px;
-}
-
 .home-page .row img {
   width: 165%;
 }

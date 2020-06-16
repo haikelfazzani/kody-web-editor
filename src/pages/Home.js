@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 import './Home.css';
 import kodyImg from '../img/editor.png';
-import kodyLogo from '../img/logo.png';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const icons = ['react', 'vuejs', 'angular', 'ember', 'sass', 'js'];
 
@@ -11,11 +12,7 @@ export default function Home () {
 
   return (<div className="home-page">
 
-    <nav className="navbar navbar-light bg-light mb-5">
-      <div className="container">
-        <div><img src={kodyLogo} width="30" height="30" alt="" /> Kody</div>
-      </div>
-    </nav>
+    <Navbar />
 
     <div className="container py-lg-5 py-md-3">
 
@@ -51,8 +48,6 @@ export default function Home () {
 
     </div>
 
-    <footer className="py-2 pt-1 mt-5">
-      <p className="text-muted m-0">Created with <i className="fas fa-heart"></i> and <i className="fas fa-coffee"></i> by <a href="https://github.com/haikelfazzani/soundme" className="text-muted" target="_blank" rel="noopener noreferrer">Haikel Fazzani</a></p>
-    </footer>
+    <Footer />
   </div>);
 }
