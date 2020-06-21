@@ -16,14 +16,12 @@ export default function Tabs ({ getTabIndex }) {
     setCurrTabIndex(tabIndex)
   }
 
-  return (<div>
-    <Link className="btn btn-success dsp-none" to="/"><i className="fa fa-home"></i></Link>
-
+  return (<div className="w-100 d-flex flex-column">
+    <Link className="btn btn-success btn-block" to="/"><i className="fas fa-home"></i></Link>
     {tabs.map((tab, i) => <span
-      className={"btn btn-secondary " + (currTabIndex === i ? 'active-tab' : '')}
+      className={"w-100 tab " + (currTabIndex === i ? 'active-tab' : '')}
       onClick={() => { setTabIndex(i) }}
-      key={'tab' + i}>
-      <i className={"fab fa-" + tab.icon}></i><span className="dsp-none ml-2">{tab.name}</span>
+      key={'tab' + i}><i className={"fab fa-" + tab.icon}></i>
     </span>)}
 
   </div>);

@@ -26,19 +26,7 @@ export default function Sidebar () {
         <button className="nav__toggle" onClick={onShow}>{show ? 'X' : '+'}</button>
       </div>
 
-      <div className="sidebar-content">
-
-        <div className="btn-group">
-          <Link className="btn btn-light" to="/"><i className="fas fa-home"></i></Link>
-
-          <a className="btn btn-light" href="https://github.com/haikelfazzani/picode">
-            <i className="fab fa-github"></i>
-          </a>
-
-          <button className="btn btn-light changes"></button>
-
-          <button className="btn btn-light"><i className="fas fa-compress"></i></button>
-        </div>
+      <div className="sidebar-content">        
 
         <FormSavePaste />
 

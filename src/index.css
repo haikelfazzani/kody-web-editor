@@ -26,10 +26,6 @@ body {
 .navbar a {color: var(--secondary); text-decoration: none; }
 .navbar a:hover {color: var(--light);}
 
-main {
-  padding: 0 10px;
-}
-
 .btn-secondary {
   background-color: var(--light-bleu);
   border-color: var(--light-bleu);
@@ -58,7 +54,6 @@ hr {
   height: 100vh;
   width: 100vw;
   display: block;
-  padding: 10px 0;
 }
 
 /************ Sidebar ************/

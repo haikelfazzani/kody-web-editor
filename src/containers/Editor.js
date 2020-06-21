@@ -10,6 +10,7 @@ import './Editor.css';
 import { GlobalContext } from '../state/GlobalState';
 import templates from '../util/templates';
 import DomUtil from '../util/DomUtil';
+import { Link } from 'react-router-dom';
 
 let localTabs = localStorage.getItem('kody-tabs');
 
@@ -67,32 +68,39 @@ export default function Editor ({ pasteContent }) {
 
   return (
     <>
-      <div className="content">
+      <div className="playground">
+
+        <header className="tabs">
+          <Tabs getTabIndex={getTabIndex} />
+
+          <div>                      
+            <button className="btn btn-secondary btn-block"></button>
+
+            <button className="btn btn-secondary btn-block"><i className="fas fa-compress"></i></button>
+
+            <a className="btn btn-secondary btn-block" href="https://github.com/haikelfazzani/picode">
+              <i className="fab fa-github"></i>
+            </a>
+          </div>
+
+        </header>
 
         <Split split="vertical">
-          <div className="h-100 editor">
-
-            <div className="tabs">
-              <Tabs getTabIndex={getTabIndex} />
-
-              <div>
-                <button className="btn btn-secondary dsp-none" onClick={onClearEditor}><i className="fa fa-trash"></i></button>
-                <button className="btn btn-secondary dsp-none" onClick={onPrettier}><i className="fa fa-stream"></i></button>
-                <button className="btn btn-secondary" onClick={onRun}><i className="fa fa-play"></i></button>
-              </div>
-            </div>
-
-            <div className="ace-playground">
-              <EditorAce
-                onEditorChange={onEditorChange}
-                value={editorValue}
-                lang={currentTabIndex}
-                fontSize={+globalState.fontSize}
-              />
+          <div className="editor">
+            <EditorAce
+              onEditorChange={onEditorChange}
+              value={editorValue}
+              lang={currentTabIndex}
+              fontSize={+globalState.fontSize}
+            />
+            <div className="editor-menu">
+              <button className="btn btn-secondary dsp-none" onClick={onClearEditor}><i className="fa fa-trash"></i></button>
+              <button className="btn btn-secondary dsp-none" onClick={onPrettier}><i className="fa fa-stream"></i></button>
+              <button className="btn btn-secondary" onClick={onRun}><i className="fa fa-play"></i></button>
             </div>
           </div>
 
-          <div className="output pr-4">
+          <div className="output pr-1">
             <Split gutterSize={10} sizes={[50, 50]} direction="vertical" minSize={40}>
               <div className="iframe-sandbox">
                 <iframe title="Kody online web editor" id="sandbox"></iframe>
