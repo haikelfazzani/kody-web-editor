@@ -2,14 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
-import GlobalState from './state/GlobalState';
+import * as serviceWorker from './serviceWorker';;
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalState>
     <App />
-    </GlobalState>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,8 +1,9 @@
 # Kody online modern web editor
 
+- [x] Oauth 2.0 Dropbox
+- [ ] Sass
 - [ ] Auto-run (button)
 - [ ] PWA
-- [ ] Save snippets
 - [ ] add library (using url or script tag)
 
 ### Captures

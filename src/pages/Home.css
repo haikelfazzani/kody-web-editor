@@ -1,27 +1,27 @@
 .home-page {
   height: 100%;
   width: 100%;
-  color: #fff;
-  background-image: linear-gradient(135deg, #001528ef 0%, #001528ee 100%), url(../img/bg.jpg);
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-.home-page .row img {
-  width: 165%;
+/* .home-page .row {
+  background-image: linear-gradient(135deg, #f0ceceef 0%, #fdfdfdee 100%), url(/static/media/bg.9991689f.jpg);
+} */
+
+.img-fluid{
+  box-shadow: 0 15px 45px rgba(16,30,54,.15);
 }
 
 .home-page h1 {
-  color: var(--success);
-  font-family: 'Changa';
   text-transform: uppercase;
 }
 
-
 .card {
-  background-color: var(--light-bleu) !important;
+  box-shadow: 0 15px 45px rgba(16,30,54,.15);
+  border: 0;
 }
-.card i {font-size: 50px;}
+.card i {font-size: 80px;}
 
 footer {
   width: 100%;
@@ -33,7 +33,5 @@ footer {
 }
 
 @media screen and (max-width: 600px) {
-  .home-page .row img {
-    display: none;
-  }
+
 }

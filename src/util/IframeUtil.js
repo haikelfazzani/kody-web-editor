@@ -24,7 +24,17 @@ export class IframeUtil {
 
   write (html, cssValue, jsValue) {
     if (this.typeLang === 'typescript') {
-      jsValue = this.compileTypescript(jsValue);
+      jsValue = window.ts.transpileModule(jsValue, {
+        compilerOptions: {
+          allowJs: true,
+          declaration: true,
+          emitDeclarationOnly: true,
+          noEmitOnError: true,
+          noImplicitAny: true,
+          target: window.ts.ScriptTarget.ES5,
+          module: window.ts.ModuleKind.CommonJS
+        }
+      }).outputText;
     }
 
     this.iframeDoc.open();

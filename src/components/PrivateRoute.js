@@ -1,16 +1,12 @@
-import React from 'react';
+import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import PastebinService from '../services/PastebinService';
+import { DropboxAuth } from "../services/DropboxService";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute = (props) => {
 
-  return (
-    <Route {...rest} render={props => (
-      PastebinService.getUsername()
-        ? <Component {...props} />
-        : <Redirect to="/" />
-    )} />
-  );
-}
+  return DropboxAuth.getToken()
+    ? <Route {...props} />
+    : <Redirect to="/" />;
+};
 
 export default PrivateRoute;

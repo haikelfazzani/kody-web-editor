@@ -50,24 +50,27 @@ export default function Timer () {
       {dispTimer} <i className="fas fa-stopwatch"></i>
     </button>
 
-    {(!timerOps.isPlay && !timerOps.isPaused)
-      && <button className="btn btn-success btn-block mb-2" onClick={onStart}>
-        <i className="fa fa-play"></i>
-      </button>}
+    <div className="w-100 btn-group" role="group" aria-label="Basic example">
 
-    {(timerOps.isResumed || timerOps.isPlay)
-      && <button className="btn btn-success btn-block mb-2" onClick={onPause}>
-        <i className="fa fa-pause"></i>
-      </button>}
+      {(!timerOps.isPlay && !timerOps.isPaused)
+        && <button className="btn btn-success" onClick={onStart}>
+          <i className="fa fa-play"></i>
+        </button>}
 
-    {timerOps.isPaused
-      && <button className="btn btn-success btn-block" onClick={() => { onStart('resume') }}>
-        <i className="fa fa-play"></i>
-      </button>}
+      {(timerOps.isResumed || timerOps.isPlay)
+        && <button className="btn btn-success" onClick={onPause}>
+          <i className="fa fa-pause"></i>
+        </button>}
 
-    <button className="btn btn-danger btn-block" onClick={onReset}>
-      <i className="fa fa-recycle"></i>
-    </button>
+      {timerOps.isPaused
+        && <button className="btn btn-success" onClick={() => { onStart('resume') }}>
+          <i className="fa fa-play"></i>
+        </button>}
+
+      <button className="btn btn-danger" onClick={onReset}>
+        <i className="fa fa-recycle"></i>
+      </button>
+    </div>
 
   </div>);
 }

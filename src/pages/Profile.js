@@ -1,50 +1,86 @@
 import React, { useEffect, useState } from 'react';
-import ListPastes from '../components/ListPastes';
-import imgProfile from '../img/bg.jpg';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import PastebinService from '../services/PastebinService';
+import { DropboxService } from '../services/DropboxService';
+import { withRouter, Link } from 'react-router-dom';
 
-export default function Profile () {
+function Profile (props) {
 
-  const [user, setUser] = useState(null);
+  const [userAccount, setUserAccount] = useState(null);
+  const [userFiles, setUserFiles] = useState(null);
 
   useEffect(() => {
-    PastebinService.getUserInfo()
-      .then(r => {
-        //console.log(r);
-        setUser(r.user)
+    Promise.all([DropboxService.userAccount(), DropboxService.getFiles()])
+      .then(([account, files]) => {
+        if (account && files) {
+          setUserAccount(account);
+          setUserFiles(files);
+        }
       })
       .catch(e => {
-        //console.log(e);
+        props.history.push('/')
       });
   }, []);
 
-  return (<div className="home-page mb-5">
-
+  return (<>
     <Navbar />
 
-    {user && <div className="container">
+    <div className="container profile py-5">
+
       <div className="row">
 
-        <div className="col-md-3">
-          <div className="card">
-            <img src={user.user_avatar_url} className="card-img-top" alt="..." className="w-100" />
-            <div className="card-body">
-              <p className="card-text"><i className="fa fa-user fs-14"></i> {user.user_name}</p>
-              <p className="card-text"><i className="fa fa-map fs-14"></i> {user.user_location}</p>
+        {userAccount
+          && <div className="col-md-3">
+            <div className="card text-dark">
+
+              <img
+                src={userAccount.profile_photo_url}
+                className="card-img-top rounded-circle w-50 mx-auto"
+                alt={userAccount.name.display_name}
+              />
+
+              <div className="card-body">
+                <h5 className="card-title">{userAccount.name.display_name}</h5>
+                <p className="card-text fs-12 text-muted"><i className="fa fa-envelope fs-12"></i> {userAccount.email}</p>
+                <Link to="/playground" className="btn btn-dark"><i className="fa fa-terminal fs-14"></i></Link>
+              </div>
             </div>
-          </div>
-        </div>
+          </div>}
 
 
         <div className="col-md-9">
-          <ListPastes />
+
+          {userFiles && <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">filename</th>
+                <th scope="col">server modified</th>
+                <th scope="col">actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {userFiles.map((file, i) => <tr key={file.name}>
+                <th scope="row">{i + 1}</th>
+                <td>{file.name}</td>
+                <td>{file.server_modified}</td>
+                <td><Link className="btn btn-dark fs-12" to={"/playground/" + file.name}>
+                  <i className="fa fa-pen-square"></i> Open</Link></td>
+              </tr>)}
+            </tbody>
+          </table>}
+
         </div>
 
+
       </div>
-    </div>}
+
+    </div>
 
     <Footer />
-  </div>);
+
+  </>);
 }
+
+
+export default withRouter(Profile);

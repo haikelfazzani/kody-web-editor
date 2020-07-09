@@ -1,8 +1,9 @@
 
 import React from "react";
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from "./pages/Home";
 import Playground from "./pages/Playground";
+import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -16,9 +17,11 @@ export default function App () {
       <Route exact path="/playground" component={Playground} />
       <Route path="/playground/:id" component={Playground} />
 
-      <PrivateRoute exact path="/profile" component={Profile} />
+      <Route path="/auth" component={Auth} />
 
-      <Redirect path="*" to="/" />
+      <PrivateRoute path="/profile" component={Profile} />
+      
+      {/* <Redirect path="*" to="/" /> */}
     </Switch>
   </BrowserRouter>;
 } 
