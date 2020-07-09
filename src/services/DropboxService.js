@@ -1,11 +1,14 @@
 import axios from 'axios';
 
+const isDev = false;
+
 const KODY_DROPBOX_TOKEN = 'kody-dropbox-token';
 const DROPBOX_API_BASE_URL = 'https://api.dropboxapi.com/2/';
+const redirect_uri = isDev ? 'http://localhost:3000' : 'https://kody.now.sh';
 
 export class DropboxAuth {
   static login () {
-    const url = 'https://www.dropbox.com/oauth2/authorize?client_id=yq8yx0blit1kcuv&redirect_uri=http://localhost:3000/auth&response_type=token'
+    const url = `https://www.dropbox.com/oauth2/authorize?client_id=${process.env.REACT_APP_DROPBOX_CLIENT_ID}&redirect_uri=${redirect_uri}&response_type=token`;
     window.location.href = url;
   }
 
