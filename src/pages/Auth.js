@@ -5,7 +5,7 @@ export default function Auth (props) {
 
   useEffect(() => {
     DropboxAuth.setToken();
-    props.history.push('/playground');
+    props.history.push('/');
   }, []);
 
   return (<div>Loading..</div>);

@@ -7,10 +7,6 @@ import Timer from './Timer';
 
 import './Sidebar.css';
 
-if (window.Headway) {
-  window.Headway.init({ selector: ".changes", account: "ypRAj7" })
-}
-
 const fontSizes = [12, 14, 16, 18, 20, 22, 24];
 
 export default function Sidebar () {

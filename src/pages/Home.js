@@ -21,15 +21,24 @@ function Home () {
       <section className="py-5">
         <div className="row">
 
-          <div className="col-md-6">
-            <h1 className="display-3 mb-0">Web Development Made Faster</h1>
+          <div className="col-md-6 d-flex flex-column justify-content-center">
+            <h1 className="display-4 mb-0">The online code editor for web</h1>
+            <p className="lead text-muted text-uppercase m-0"><i className="fa fa-smile-beam"></i> Free and open source.</p>
 
-            <p className="lead text-uppercase m-0">Test your ideas early and often..</p>
-            <p className="lead text-uppercase m-0">Free and open source.</p>
+            <div className="fs-34">
+              <i className="fab fa-html5 text-danger mr-3"></i>
+              <i className="fab fa-css3 text-primary mr-3"></i>
+              <i className="fab fa-js text-warning mr-3"></i>
+              <i className="fab fa-vuejs text-success mr-3"></i>
+              <i className="fab fa-react text-info mr-3"></i>
+              <i className="fab fa-sass text-pink"></i>
+            </div>
 
-            <Link to="/playground" className="btn btn-success btn-lg my-3">
-              <i className="fa fa-terminal"></i> START NOW
+            <div>
+            <Link to="/playground" className="btn btn-dark btn-lg my-3">
+              <i className="fa fa-terminal"></i> START NOW, it's free
             </Link>
+            </div>
 
           </div>
 
@@ -41,8 +50,8 @@ function Home () {
 
 
       <section className="py-5">
-        <h3 className="text-muted text-center">All in one</h3>
-        <h2 className="text-center mb-5">Choose framework.</h2>
+        <h3 className="text-muted text-center">All in one place</h3>
+        <h2 className="text-center mb-5">Choose template.</h2>
         <div className="row fs-35">
           {icons.map(icon => <div className="col-md-4 mb-3" key={icon}>
             <div className="card">

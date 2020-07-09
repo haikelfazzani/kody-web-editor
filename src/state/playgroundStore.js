@@ -11,14 +11,14 @@ const editorModel = {
     state.editorValue = payload;
   }),
 
-  setTemplate: action((state, template) => { // template : vuejs, react...
-    localStorage.setItem('kody-template', template);
+  setTemplate: action((state, template) => { // template : vuejs, react...    
     state.template = template;
+    localStorage.setItem('kody-template', template);
   }),
 
-  setFontSize: action((state, fontSize) => {
-    localStorage.setItem('kody-fontSize', fontSize);
+  setFontSize: action((state, fontSize) => {    
     state.fontSize = fontSize;
+    localStorage.setItem('kody-fontSize', fontSize);
   }),
 
   runCode: action((state, { template, tabs }) => {

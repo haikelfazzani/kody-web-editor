@@ -35,12 +35,12 @@ function FormSavePaste (props) {
 
       <form className="bg-p" onSubmit={onSaveSnippet}>
 
-        <div className="form-group">
+        <div className="form-group mb-0">
           <label htmlFor="filename">file name</label>
           <input type="text" className="form-control" placeholder="Main" required />
         </div>
 
-        <small className="form-text text-white mb-2">* Dropbox authentification required</small>
+        <small className="form-text text-white fs-10 text-uppercase mb-2">* Dropbox authentification required</small>
 
         <button type="submit" className="btn btn-warning btn-block" disabled={isSaved}>
           <i className="fab fa-dropbox"></i> save snippet

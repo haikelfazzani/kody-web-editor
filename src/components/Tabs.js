@@ -5,7 +5,11 @@ const tabs = [
   { name: 'Index.html', icon: 'html5' },
   { name: 'Style.css', icon: 'css3' },
   { name: 'App.js', icon: 'js' }
-]
+];
+
+if (window.Headway) {
+  window.Headway.init({ selector: ".changes", account: "ypRAj7" })
+}
 
 export default function Tabs ({ getTabIndex }) {
 
@@ -30,7 +34,7 @@ export default function Tabs ({ getTabIndex }) {
       </div>
 
       <div>
-        <button className="btn btn-secondary btn-block"></button>
+        <button className="btn btn-secondary btn-block changes"></button>
 
         <button className="btn btn-secondary btn-block"><i className="fas fa-compress"></i></button>
 

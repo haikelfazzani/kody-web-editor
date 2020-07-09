@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const isDev = false;
+const isDev = true;
 
 const KODY_DROPBOX_TOKEN = 'kody-dropbox-token';
 const DROPBOX_API_BASE_URL = 'https://api.dropboxapi.com/2/';
@@ -43,9 +43,13 @@ export class DropboxAuth {
 
 export class DropboxService {
 
+  static init() {
+    return new window.Dropbox.Dropbox({ fetch: window.fetch, accessToken: DropboxAuth.getToken() });
+  }
+
   static async userAccount () {
     try {
-      const dbx = new window.Dropbox.Dropbox({ accessToken: DropboxAuth.getToken() });
+      const dbx = this.init();
       let response = await dbx.usersGetCurrentAccount();
       return response;
     } catch (error) {
@@ -56,7 +60,7 @@ export class DropboxService {
 
   static async downloadFile (file) {
     try {
-      const dbx = new window.Dropbox.Dropbox({ accessToken: DropboxAuth.getToken() });
+      const dbx = this.init();
       let response = await dbx.filesDownload({ path: '/' + file });
       return response;
     } catch (error) {
@@ -66,8 +70,9 @@ export class DropboxService {
 
   static async uploadFile (filename, fileContent) {
     try {
-      let file = new File([fileContent], filename + ".html", { type: "text/html" });
-      const dbx = new window.Dropbox.Dropbox({ accessToken: DropboxAuth.getToken() });
+      const dbx = this.init();
+
+      let file = new File([fileContent], filename + ".html", { type: "text/html" });      
       let response = await dbx.filesUpload({ path: '/' + filename + ".html", contents: file });
       return response;
     } catch (error) {
