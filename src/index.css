@@ -95,7 +95,7 @@ left: 0 !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--light-bleu);
+  background: #5b85aac2;
   border-radius: 10px;
 }
 

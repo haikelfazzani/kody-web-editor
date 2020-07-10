@@ -35,7 +35,7 @@ function Home () {
             </div>
 
             <div>
-            <Link to="/playground" className="btn btn-dark btn-lg my-3">
+            <Link to="/playground" className="btn btn-success btn-lg my-3">
               <i className="fa fa-terminal"></i> START NOW, it's free
             </Link>
             </div>

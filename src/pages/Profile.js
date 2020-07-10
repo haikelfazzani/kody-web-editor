@@ -44,8 +44,8 @@ function Profile (props) {
                 <p className="card-text fs-12 text-muted"><i className="fa fa-envelope fs-12"></i> {userAccount.email}</p>
 
                 <div className="btn-group" role="group" aria-label="Basic example">
-                  <Link to="/" className="btn btn-dark"><i className="fa fa-home fs-14"></i></Link>
-                  <Link to="/playground" className="btn btn-dark"><i className="fa fa-terminal fs-14"></i></Link>
+                  <Link to="/" className="btn btn-secondary"><i className="fa fa-home fs-14"></i></Link>
+                  <Link to="/playground" className="btn btn-secondary"><i className="fa fa-terminal fs-14"></i></Link>
                 </div>
 
               </div>
@@ -56,25 +56,27 @@ function Profile (props) {
         <div className="col-md-9">
 
           {userFiles
-            && <table className="table table-responsive">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">filename</th>
-                  <th scope="col">server modified</th>
-                  <th scope="col">actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {userFiles.map((file, i) => <tr key={file.name}>
-                  <th scope="row">{i + 1}</th>
-                  <td>{file.name}</td>
-                  <td>{file.server_modified}</td>
-                  <td><Link className="btn btn-dark fs-12" to={"/playground/" + file.name}>
-                    <i className="fa fa-pen-square"></i> Open</Link></td>
-                </tr>)}
-              </tbody>
-            </table>}
+            && <div class="table-responsive">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">filename</th>
+                    <th scope="col">server modified</th>
+                    <th scope="col">actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {userFiles.map((file, i) => <tr key={file.name}>
+                    <th scope="row">{i + 1}</th>
+                    <td>{file.name}</td>
+                    <td>{file.server_modified}</td>
+                    <td><Link className="btn btn-secondary fs-12" to={"/playground/" + file.name}>
+                      <i className="fa fa-pen-square"></i> Open</Link></td>
+                  </tr>)}
+                </tbody>
+              </table>
+            </div>}
 
         </div>
 

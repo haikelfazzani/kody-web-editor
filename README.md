@@ -1,4 +1,4 @@
-# Kody online modern web editor
+# Kody the online code editor for the web
 
 - [x] Oauth 2.0 Dropbox
 - [ ] Sass

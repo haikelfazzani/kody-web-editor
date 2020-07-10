@@ -23,6 +23,7 @@ export default function Editor () {
 
   const [tabs, setTabs] = useState(templates[template]);
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
+  const [showConsole, setShowConsole] = useState(false);
 
   useEffect(() => {
     DropboxService.downloadFile(id)
@@ -71,6 +72,8 @@ export default function Editor () {
     setEditorValue(r);
   }
 
+  const onShowConsole = () => { setShowConsole(!showConsole); }
+
   const onClearEditor = () => { setEditorValue(''); }
 
   return (
@@ -79,27 +82,39 @@ export default function Editor () {
       <Tabs getTabIndex={getTabIndex} />
 
       <Split split="vertical" gutterSize={5}>
+
         <div className="editor">
+
           <EditorAce
             onEditorChange={onEditorChange}
             value={editorValue}
             lang={currentTabIndex}
           />
-          <div className="editor-menu">
+
+          <div className="editor-menu btn-group" role="group" aria-label="..">
             <button className="btn btn-secondary" onClick={onRun}><i className="fa fa-play"></i></button>
             <button className="btn btn-secondary dsp-none" onClick={onPrettier}><i className="fa fa-stream"></i></button>
             <button className="btn btn-secondary dsp-none" onClick={onClearEditor}><i className="fa fa-trash"></i></button>
+            <button className="btn btn-secondary dsp-none" onClick={onShowConsole}><i className="fa fa-terminal"></i></button>
           </div>
         </div>
 
         <div className="output">
-          <Split gutterSize={5} sizes={[50, 50]} direction="vertical" minSize={40}>
-            <div className="iframe-sandbox">
-              <iframe title="Kody online web editor" id="sandbox"></iframe>
+
+          <div className="h-100 iframe-sandbox">
+            <iframe title="Kody online web editor" id="sandbox"></iframe>
+          </div>
+
+          <div className="w-100 h-50 console" style={{ display: showConsole ? 'block' : 'none' }}>
+            <div className="console-header fs-12 text-uppercase">
+              <p className="m-0"><i className="fa fa-terminal mr-2"></i><span>console</span></p>
+              <button onClick={onShowConsole} className="btn btn-link"><i className="fa fa-times-circle"></i></button>
             </div>
             <EditorAce value={consoleLogs} readOnly={true} />
-          </Split>
+          </div>
+
         </div>
+
       </Split>
 
     </div>

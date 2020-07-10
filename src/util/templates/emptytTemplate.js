@@ -1,6 +1,6 @@
 const emptytTemplate = [
   '<h1>Welcome to Kody</h1>',
-  'body { color: red; }',
+  'body { background: #fff; color: red; }',
   `console.log('Welcome to Kody')`
 ];
 
