@@ -25,7 +25,7 @@ function Navbar () {
       <div className="container">
         <Link to="/" className="navbar-brand d-flex align-items-center">
           <img src={kodyLogo} width="30" height="30" alt="" loading="lazy" className="rounded-circle mr-2" />
-          <span className="fs-12">Picode</span>
+          <span className="fs-12">Kody</span>
         </Link>
 
         <button className="navbar-toggler" type="button" data-toggle="collapse" onClick={onNavToggle}>
