@@ -1,4 +1,4 @@
-const typescriptUrl = 'https://cdnjs.cloudflare.com/ajax/libs/typescript/3.9.5/typescript.min.js';
+const typescriptUrl = 'https://cdnjs.cloudflare.com/ajax/libs/typescript/4.0.5/typescript.min.js';
 
 export default class DomUtil {
 
@@ -7,7 +7,9 @@ export default class DomUtil {
     let script = document.createElement('script');
     script.id = elementId;
     script.src = url;
-    document.body.appendChild(script);
+    // insert before root div element
+    const rootEl = document.getElementById('root');
+    rootEl.parentNode.insertBefore(script, rootEl.previousElementSibling)
   }
 
   static removeElement (id = 'typescript') {

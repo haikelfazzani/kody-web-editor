@@ -31,29 +31,30 @@ function FormSavePaste (props) {
   }
 
   return (<>
-    {DropboxAuth.getToken() && <>
+    {DropboxAuth.getToken()
+      && <>
 
-      <form className="bg-p" onSubmit={onSaveSnippet}>
+        <form className="bg-p" onSubmit={onSaveSnippet}>
 
-        <div className="form-group mb-0">
-          <label htmlFor="filename">file name</label>
-          <input type="text" className="form-control" placeholder="Main" required />
-        </div>
+          <div className="form-group mb-0">
+            <label htmlFor="filename">file name</label>
+            <input type="text" className="form-control" placeholder="Main" required readOnly={isSaved}/>
+          </div>
 
-        <small className="form-text text-white fs-10 text-uppercase mb-2">* Dropbox authentification required</small>
+          <small className="form-text text-white fs-10 text-uppercase mb-2">* Dropbox authentification required</small>
 
-        <button type="submit" className="btn btn-warning btn-block" disabled={isSaved}>
-          <i className="fab fa-dropbox"></i> save snippet
-      </button>
-      </form>
+          <button type="submit" className="btn btn-warning btn-block" disabled={isSaved}>
+            <i className="fab fa-dropbox"></i> save snippet
+        </button>
+        </form>
 
-      {isSaved
-        && <div className="alert alert-success d-flex flex-column" role="alert">
-          <strong><i className="fas fa-file-code"></i> {snippetUrl.name}</strong>
-          <small><i className="fas fa-clock"></i> {snippetUrl.server_modified}</small>
-        </div>}
+        {isSaved
+          && <div className="alert alert-dark d-flex flex-column mt-2" role="alert">
+            <a href={'https://www.dropbox.com/home?preview=' + snippetUrl.name}><i className="fas fa-file-code"></i> Dropbox Link</a>
+            <small><i className="fas fa-clock"></i> {snippetUrl.server_modified}</small>
+          </div>}
 
-    </>}
+      </>}
   </>
   );
 }

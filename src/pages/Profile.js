@@ -15,6 +15,7 @@ function Profile (props) {
         if (account && files) {
           setUserAccount(account);
           setUserFiles(files);
+          console.log(account);
         }
       })
       .catch(e => {
@@ -29,7 +30,7 @@ function Profile (props) {
 
       <div className="row">
 
-        {userAccount
+        {userAccount && userAccount.name
           && <div className="col-md-3">
             <div className="card text-dark">
 
@@ -56,7 +57,7 @@ function Profile (props) {
         <div className="col-md-9">
 
           {userFiles
-            && <div class="table-responsive">
+            && <div className="table-responsive">
               <table className="table">
                 <thead>
                   <tr>

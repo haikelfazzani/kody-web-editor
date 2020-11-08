@@ -74,14 +74,12 @@ export default function Editor () {
 
   const onShowConsole = () => { setShowConsole(!showConsole); }
 
-  const onClearEditor = () => { setEditorValue(''); }
-
   return (
     <div className="playground">
 
       <Tabs getTabIndex={getTabIndex} />
 
-      <Split split="vertical" gutterSize={5}>
+      <Split split="vertical" gutterSize={7}>
 
         <div className="editor">
 
@@ -94,8 +92,7 @@ export default function Editor () {
           <div className="editor-menu btn-group" role="group" aria-label="..">
             <button className="btn btn-secondary" onClick={onRun}><i className="fa fa-play"></i></button>
             <button className="btn btn-secondary dsp-none" onClick={onPrettier}><i className="fa fa-stream"></i></button>
-            <button className="btn btn-secondary dsp-none" onClick={onClearEditor}><i className="fa fa-trash"></i></button>
-            <button className="btn btn-secondary dsp-none" onClick={onShowConsole}><i className="fa fa-terminal"></i></button>
+            <button className="btn btn-secondary" onClick={onShowConsole}><i className="fa fa-terminal"></i></button>
           </div>
         </div>
 

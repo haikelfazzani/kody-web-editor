@@ -24,17 +24,7 @@ export class IframeUtil {
 
   write (html, cssValue, jsValue) {
     if (this.typeLang === 'typescript') {
-      jsValue = window.ts.transpileModule(jsValue, {
-        compilerOptions: {
-          allowJs: true,
-          declaration: true,
-          emitDeclarationOnly: true,
-          noEmitOnError: true,
-          noImplicitAny: true,
-          target: window.ts.ScriptTarget.ES5,
-          module: window.ts.ModuleKind.CommonJS
-        }
-      }).outputText;
+      jsValue = this.compileTypescript(jsValue);
     }
 
     this.iframeDoc.open();
@@ -55,7 +45,7 @@ export class IframeUtil {
   }
 
   compileTypescript (jsValue) {
-    let resultCompiler = window.ts.transpileModule(jsValue, {
+    return window.ts.transpileModule(jsValue, {
       compilerOptions: {
         allowJs: true,
         declaration: true,
@@ -65,9 +55,7 @@ export class IframeUtil {
         target: window.ts.ScriptTarget.ES5,
         module: window.ts.ModuleKind.CommonJS
       }
-    });
-
-    return resultCompiler.outputText;
+    }).outputText;
   }
 
   removeElement (id) {

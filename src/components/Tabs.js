@@ -33,15 +33,5 @@ export default function Tabs ({ getTabIndex }) {
 
       </div>
 
-      <div>
-        <button className="btn btn-secondary btn-block changes"></button>
-
-        <button className="btn btn-secondary btn-block"><i className="fas fa-compress"></i></button>
-
-        <a className="btn btn-secondary btn-block" href="https://github.com/haikelfazzani/kody-web-editor">
-          <i className="fab fa-github"></i>
-        </a>
-      </div>
-
     </header>);
 }

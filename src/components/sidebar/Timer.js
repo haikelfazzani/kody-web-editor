@@ -44,7 +44,9 @@ export default function Timer () {
     setDispTimer(h + ':' + min + ':' + sec);
   }, [timer, setTimer]);
 
-  return (<div className="w-100 bg-p">
+  return (<div className="w-100">
+
+    <span className="text-white text-uppercase ltsp">chronometre</span>
 
     <button className="btn btn-primary btn-block mb-2">
       {dispTimer} <i className="fas fa-stopwatch"></i>

@@ -11,11 +11,6 @@
   z-index: 9;
 }
 
-.bg-p {
-  background-color: var(--dark-bleu);
-  padding: 10px;
-  margin: 10px 0;
-}
 /*******************/
 .nav .sidebar-content {
   width: 100%;

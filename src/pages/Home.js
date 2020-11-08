@@ -6,7 +6,7 @@ import kodyImg from '../img/editor.png';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-import laptopImg from '../img/laptop.png';
+import laptopImg from '../img/2.png';
 
 const icons = ['react', 'vuejs', 'angular', 'ember', 'sass', 'js'];
 
@@ -16,9 +16,8 @@ function Home () {
 
     <Navbar />
 
-    <div className="container py-lg-5 py-md-3">
-
-      <section className="py-5">
+    <section className="bg-dark clip-p text-white py-5">
+      <div className="container py-3">
         <div className="row">
 
           <div className="col-md-6 d-flex flex-column justify-content-center">
@@ -35,9 +34,9 @@ function Home () {
             </div>
 
             <div>
-            <Link to="/playground" className="btn btn-success btn-lg my-3">
-              <i className="fa fa-terminal"></i> START NOW, it's free
-            </Link>
+              <Link to="/playground" className="btn btn-success btn-lg py-3 my-3">
+                <i className="fa fa-terminal"></i> START NOW, it's free
+              </Link>
             </div>
 
           </div>
@@ -46,7 +45,10 @@ function Home () {
             <img src={laptopImg} alt="..." className="w-100" />
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+
+    <div className="container py-lg-5 py-md-3">
 
 
       <section className="py-5">

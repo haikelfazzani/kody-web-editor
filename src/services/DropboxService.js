@@ -1,6 +1,13 @@
 import axios from 'axios';
 
-const isDev = false;
+let fetch;
+try {
+  fetch = window.fetch.bind(window);
+} catch (Exception) {
+  fetch = window.fetch.bind(window);
+}
+
+const isDev = true;
 
 const KODY_DROPBOX_TOKEN = 'kody-dropbox-token';
 const DROPBOX_API_BASE_URL = 'https://api.dropboxapi.com/2/';
@@ -44,14 +51,14 @@ export class DropboxAuth {
 export class DropboxService {
 
   static init() {
-    return new window.Dropbox.Dropbox({ fetch: window.fetch, accessToken: DropboxAuth.getToken() });
+    return new window.Dropbox.Dropbox({ fetch, accessToken: DropboxAuth.getToken() });
   }
 
   static async userAccount () {
     try {
       const dbx = this.init();
       let response = await dbx.usersGetCurrentAccount();
-      return response;
+      return response.result;
     } catch (error) {
       DropboxAuth.clearToken();
       return null;
@@ -62,7 +69,7 @@ export class DropboxService {
     try {
       const dbx = this.init();
       let response = await dbx.filesDownload({ path: '/' + file });
-      return response;
+      return response.result;
     } catch (error) {
       return null;
     }
@@ -74,7 +81,7 @@ export class DropboxService {
 
       let file = new File([fileContent], filename + ".html", { type: "text/html" });      
       let response = await dbx.filesUpload({ path: '/' + filename + ".html", contents: file });
-      return response;
+      return response.result;
     } catch (error) {
       return null;
     }
