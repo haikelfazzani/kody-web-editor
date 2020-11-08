@@ -6,8 +6,6 @@ import kodyImg from '../img/editor.png';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-import laptopImg from '../img/2.png';
-
 const icons = ['react', 'vuejs', 'angular', 'ember', 'sass', 'js'];
 
 function Home () {
@@ -16,35 +14,16 @@ function Home () {
 
     <Navbar />
 
-    <section className="bg-dark clip-p text-white py-5">
-      <div className="container py-3">
-        <div className="row">
+    <section className="d-flex flex-column justify-content-center align-items-center clip-p py-5">
+      <h1 className="display-4 mb-0">The online code</h1>
+      <h2>editor for the web</h2>
+      
+      <p className="">see result in live view or in editor console</p>
 
-          <div className="col-md-6 d-flex flex-column justify-content-center">
-            <h1 className="display-4 mb-0">The online code editor for web</h1>
-            <p className="lead text-muted text-uppercase m-0"><i className="fa fa-smile-beam"></i> Free and open source.</p>
-
-            <div className="fs-34">
-              <i className="fab fa-html5 text-danger mr-3"></i>
-              <i className="fab fa-css3 text-primary mr-3"></i>
-              <i className="fab fa-js text-warning mr-3"></i>
-              <i className="fab fa-vuejs text-success mr-3"></i>
-              <i className="fab fa-react text-info mr-3"></i>
-              <i className="fab fa-sass text-pink"></i>
-            </div>
-
-            <div>
-              <Link to="/playground" className="btn btn-success btn-lg py-3 my-3">
-                <i className="fa fa-terminal"></i> START NOW, it's free
-              </Link>
-            </div>
-
-          </div>
-
-          <div className="col-md-6">
-            <img src={laptopImg} alt="..." className="w-100" />
-          </div>
-        </div>
+      <div>
+        <Link to="/playground" className="btn btn-outline-success btn-lg py-3 my-3">
+          <i className="fa fa-terminal"></i> START NOW, it's free
+        </Link>
       </div>
     </section>
 

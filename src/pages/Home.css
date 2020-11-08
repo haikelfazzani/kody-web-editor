@@ -5,9 +5,14 @@
   overflow-x: hidden;
 }
 
-/* .home-page .row {
-  background-image: linear-gradient(135deg, #f0ceceef 0%, #fdfdfdee 100%), url(/static/media/bg.9991689f.jpg);
-} */
+.home-page > section {
+  background-image: linear-gradient(to bottom, rgb(24 31 39), rgb(24 31 39 / 93%) 50%, rgb(24 31 39 / 83%) 100%), url(../img/2.jpg);
+  color: #ffffff;
+  min-height: 90vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 .img-fluid{
   box-shadow: 0 15px 45px rgba(16,30,54,.15);
