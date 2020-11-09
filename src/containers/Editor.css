@@ -2,7 +2,7 @@
   display: flex;
   height: 100vh;
   width: 100vw;
-  border: 5px solid var(--dark-bleu);;
+  border: 5px solid var(--light-bleu);
 }
 .playground>div {
   width: calc(100% - 45px);
@@ -41,26 +41,34 @@
   background: #000d19c2;
 }
 /*******************************/
-.tabs {
-  width:45px;
-  height: 100%;
-  background-color: var(--light-bleu);
+.side-tabs {
+  width: 350px;
+  background-color: var(--light-bleu); 
+  font-size: 12px;
   color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;  
+  letter-spacing: .6px;
 }
 
-.tab {
-  color: #f1f1f1;
-  text-align: center;
-    font-size: 25px;
-    padding: 5px 0;
-    cursor: pointer;
+.tabs {
+  width:55px;
+  height: 100%;  
+  display: flex;   
+  border: 1px solid var(--dark-bleu-main);
+  font-size: 18px;
 }
 
-.active-tab {background-color: var(--dark-bleu-main) !important; }
+.side-tabs .list-group-item  {  
+  background-color: var(--light-bleu);
+  color: #b6b6b6;
+  cursor: pointer;
+  padding: .75rem 1rem;
+  border-radius: 0;
+}
 
+.active-tab {background-color: var(--dark-bleu) !important; }
+.active-file-index {color: var(--white) !important; }
+
+.w-side-tabs {width: 55px;}
 /*****************/
 .output {
   position: relative;
@@ -102,3 +110,6 @@ iframe, pre {
   overflow: auto;
 }
 
+.w-20 {
+  width: 55px!important;
+}

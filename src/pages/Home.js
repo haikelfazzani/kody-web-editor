@@ -14,10 +14,10 @@ function Home () {
 
     <Navbar />
 
-    <section className="d-flex flex-column justify-content-center align-items-center clip-p py-5">
+    <section className="d-flex flex-column justify-content-center align-items-center">
       <h1 className="display-4 mb-0">The online code</h1>
-      <h2>editor for the web</h2>
-      
+      <h1>editor for the web</h1>
+
       <p className="">see result in live view or in editor console</p>
 
       <div>
@@ -28,7 +28,6 @@ function Home () {
     </section>
 
     <div className="container py-lg-5 py-md-3">
-
 
       <section className="py-5">
         <h3 className="text-muted text-center">All in one place</h3>
@@ -42,15 +41,11 @@ function Home () {
         </div>
       </section>
 
-
-      <section className="py-5">
-        <div className="w-100 d-flex flex-column justify-content-center">
-          <h3 className="text-muted text-center">Built for developers</h3>
-          <h2 className="text-center mb-5">Create your own views.</h2>
-          <img src={kodyImg} alt="kody web editor" className="img-fluid mx-auto" />
-        </div>
+      <section className="py-5 text-center">
+        <h3 className="text-muted text-center">Built for developers</h3>
+        <h2 className="text-center mb-5">CREATE YOUR OWN VIEWS.</h2>
+        <img src={kodyImg} alt="kody web editor" className="img-fluid mx-auto" />
       </section>
-
 
     </div>
 

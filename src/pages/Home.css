@@ -6,9 +6,9 @@
 }
 
 .home-page > section {
-  background-image: linear-gradient(to bottom, rgb(24 31 39), rgb(24 31 39 / 93%) 50%, rgb(24 31 39 / 83%) 100%), url(../img/2.jpg);
+  background-image: linear-gradient(to bottom, rgb(19 22 24), rgb(24 31 39 / 93%) 50%, rgb(24 31 39 / 83%) 100%), url(../img/2.jpg);
   color: #ffffff;
-  min-height: 90vh;
+  min-height: 92vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -40,4 +40,5 @@ footer {
 
 @media screen and (max-width: 600px) {
 .display-4 {font-size:42px;}
+.sec-1 {display: none;}
 }

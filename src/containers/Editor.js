@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useStoreState, useStoreActions } from 'easy-peasy';
-
-import Tabs from '../components/Tabs';
+import { Link } from 'react-router-dom';
+import Sidebar from '../components/sidebar/Sidebar';
 import EditorAce from '../components/EditorAce';
 import Split from 'react-split';
 
@@ -77,7 +77,7 @@ export default function Editor () {
   return (
     <div className="playground">
 
-      <Tabs getTabIndex={getTabIndex} />
+      <Sidebar getTabIndex={getTabIndex} />
 
       <Split split="vertical" gutterSize={7}>
 
@@ -93,6 +93,7 @@ export default function Editor () {
             <button className="btn btn-secondary" onClick={onRun}><i className="fa fa-play"></i></button>
             <button className="btn btn-secondary dsp-none" onClick={onPrettier}><i className="fa fa-stream"></i></button>
             <button className="btn btn-secondary" onClick={onShowConsole}><i className="fa fa-terminal"></i></button>
+            <Link className="btn btn-secondary" to="/"><i className="fas fa-home text-white"></i></Link>
           </div>
         </div>
 
@@ -105,7 +106,9 @@ export default function Editor () {
           <div className="w-100 h-50 console" style={{ display: showConsole ? 'block' : 'none' }}>
             <div className="console-header fs-12 text-uppercase">
               <p className="m-0"><i className="fa fa-terminal mr-2"></i><span>console</span></p>
-              <button onClick={onShowConsole} className="btn btn-link"><i className="fa fa-times-circle"></i></button>
+              <button onClick={onShowConsole} className="btn btn-link">
+                <i className="fa fa-times-circle"></i>
+              </button>
             </div>
             <EditorAce value={consoleLogs} readOnly={true} />
           </div>

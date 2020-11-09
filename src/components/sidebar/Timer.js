@@ -46,33 +46,31 @@ export default function Timer () {
 
   return (<div className="w-100">
 
-    <span className="text-white text-uppercase ltsp">chronometre</span>
+    <span className="text-white text-uppercase pl-3 pr-3 ltsp"><i className="fas fa-stopwatch"></i> chronometre</span>
 
-    <button className="btn btn-primary btn-block mb-2">
-      {dispTimer} <i className="fas fa-stopwatch"></i>
-    </button>
-
-    <div className="w-100 btn-group" role="group" aria-label="Basic example">
+    <ul className="w-100 list-group d-flex flex-row flex-fill fs-18 mt-2">
 
       {(!timerOps.isPlay && !timerOps.isPaused)
-        && <button className="btn btn-success" onClick={onStart}>
+        && <li className="list-group-item text-success" onClick={onStart}>
           <i className="fa fa-play"></i>
-        </button>}
+        </li>}
 
       {(timerOps.isResumed || timerOps.isPlay)
-        && <button className="btn btn-success" onClick={onPause}>
+        && <li className="list-group-item text-primary" onClick={onPause}>
           <i className="fa fa-pause"></i>
-        </button>}
+        </li>}
 
       {timerOps.isPaused
-        && <button className="btn btn-success" onClick={() => { onStart('resume') }}>
+        && <li className="list-group-item text-primary" onClick={() => { onStart('resume') }}>
           <i className="fa fa-play"></i>
-        </button>}
+        </li>}
 
-      <button className="btn btn-danger" onClick={onReset}>
+      <li className="list-group-item flex-grow-1 text-center">{dispTimer}</li>
+
+      <li className="list-group-item text-danger" onClick={onReset}>
         <i className="fa fa-recycle"></i>
-      </button>
-    </div>
+      </li>
+    </ul>
 
   </div>);
 }
