@@ -18,7 +18,7 @@ export default function Editor () {
 
   let { id } = useParams();
 
-  const { editorValue, consoleLogs, template } = useStoreState(state => state.editorModel);
+  const { editorValue, consoleLogs, template,resources } = useStoreState(state => state.editorModel);
   const { setEditorValue, runCode } = useStoreActions(actions => actions.editorModel)
 
   const [tabs, setTabs] = useState(templates[template]);
@@ -63,7 +63,7 @@ export default function Editor () {
   }
 
   const onRun = () => {
-    runCode({ template, tabs })
+    runCode({ template, tabs,resources })
   }
 
   const onPrettier = () => {

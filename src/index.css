@@ -1,8 +1,8 @@
 :root {
   --dark-bleu: #131618;
-  --dark-bleu-main: #101014;
-  --light-bleu: #272b30;
-  --dark-gray:#585d68;
+  --dark-bleu-main: #141416;
+  --light-bleu: #151618;
+  --dark-gray:#1f2124;
 }
 
 body {
@@ -32,7 +32,7 @@ thead, .navbar {
 /*****************************************/
 .btn {box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);}
 .bg-dark { background-color: var(--dark-bleu) !important; }
-.bg-dark-gray {background-color:var(--dark-gray) !important; }
+.bg-dark-gray {background-color:var(--dark-gray) !important; border-bottom: 1px solid #000; border-top: 1px solid #000; }
 .btn-warning, .btn-success {box-shadow: 0px 0px 15px 0px rgba(82, 82, 82, 0.473);}
 
 .btn-secondary {
@@ -59,8 +59,9 @@ button,
 
 hr {
   margin: 0;
-  border: 1px solid rgb(88 93 104);
+  border: 1px solid var(--dark-gray);
   width: 100%;
+  margin:10px 0;
 }
 
 h2 {

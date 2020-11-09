@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import AddPackage from './AddPackage';
 import FormSavePaste from './FormSavePaste'
 import Settings from './Settings';
 
 const edFiles = [
-  { name: 'Index.html', icon: 'html5' },
-  { name: 'Style.css', icon: 'css3' },
-  { name: 'App.js', icon: 'js' }
+  { name: 'Index.html', icon: 'html5',color:'text-danger' },
+  { name: 'Style.css', icon: 'css3',color:'text-primary' },
+  { name: 'App.js', icon: 'js',color:'text-warning' }
 ];
 
 const EditorFiles = ({ getFileIndex }) => {
@@ -17,19 +18,21 @@ const EditorFiles = ({ getFileIndex }) => {
     setcurrEdFileIndex(currIndex)
   }
 
-  return <ul className="list-group">
-    {edFiles.map((tab, i) => <span
+  return <ul className="list-group fs-14">
+    <li className="list-group-item"><i className="fa fa-folder-open text-info"></i> src</li>
+    {edFiles.map((tab, i) => <li
       className={"list-group-item " + (currEdFileIndex === i ? 'active-file-index' : '')}
       onClick={() => { setEdFileIndex(i) }}
-      key={'tab' + i}><i className={"fab fa-" + tab.icon}></i> {tab.name}
-    </span>)}
+      key={'tab' + i}><span className="ml-4"><i className={tab.color+" mr-2 fab fa-" + tab.icon}></i> {tab.name}</span>
+    </li>)}
   </ul>
 }
 
 const tabs = [
   { id: 0, name: 'files', icon: 'fa fa-file', comp: '' },
   { id: 1, name: 'save paste', icon: 'fa fa-save', comp: <FormSavePaste /> },
-  { id: 2, name: 'configuration', icon: 'fa fa-cog', comp: <Settings /> }
+  { id: 2, name: 'configuration', icon: 'fa fa-cog', comp: <Settings /> },
+  { id: 3, name: 'packages', icon: 'fa fa-cube', comp: <AddPackage /> }
 ];
 
 if (window.Headway) {
@@ -53,7 +56,7 @@ export default function Sidebar ({ getTabIndex }) {
   return (
     <header className={"h-100 side-tabs d-flex " + (showTab ? "w-side-tabs" : "")}>
 
-      <ul className="tabs list-group">
+      <ul className="tabs list-group">        
         {tabs.map(tab => <li className={"list-group-item " + (currTabIndex === tab.id ? 'text-warning' : '')}
           key={tab.name} onClick={() => { setTabIndex(tab) }}>
           <i className={tab.icon}></i></li>)}        

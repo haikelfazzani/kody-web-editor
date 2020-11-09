@@ -10,7 +10,7 @@ const fontSizes = [12, 14, 16, 18, 20, 22, 24];
 export default function Settings () {
 
   const { template, fontSize } = useStoreState(state => state.editorModel);
-  const { setTemplate, setFontSize } = useStoreActions(actions => actions.editorModel)
+  const { setTemplate, setFontSize } = useStoreActions(actions => actions.editorModel);
 
   return (
     <div className="w-100 mt-3">
@@ -22,7 +22,7 @@ export default function Settings () {
         selectedItem={template}
       />
 
-      <div className="mb-3"></div>
+      <hr />
 
       <DropDown
         text="Font Size"
@@ -31,7 +31,7 @@ export default function Settings () {
         selectedItem={fontSize}
       />
 
-      <div className="mb-3"></div>
+      <hr />
 
       <Timer />
     </div>

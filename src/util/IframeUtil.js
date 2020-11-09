@@ -5,7 +5,13 @@
 
 export class IframeUtil {
 
-  constructor (typeAsset) {
+  constructor (typeAsset, resources) {
+    console.log(resources);
+
+    this.cdns = resources.reduce((a, r) => {
+      return a + `<script type="text/javascript" src="${r.latest}"></script>`
+    }, '');
+
     this.typeJs = /react/g.test(typeAsset)
       ? "text/babel"
       : "text/javascript";
@@ -35,9 +41,10 @@ export class IframeUtil {
         <title>Kody - Online web editor</title>
         <style>${cssValue}</style>              
       </head>
-      <body>         
+      <body>      
+        ${this.cdns}   
         ${html}     
-        
+        <p>Welcome to Kody.</p>
         <script type="${this.typeJs}" defer>${jsValue}</script>
       </body>
     </html>`);
