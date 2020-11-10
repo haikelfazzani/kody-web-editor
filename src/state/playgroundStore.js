@@ -39,8 +39,8 @@ const editorModel = {
     localStorage.setItem('kody-fontSize', fontSize);
   }),
 
-  runCode: action((state, { template, tabs,resources }) => {
-    let iframeUtil = new IframeUtil(template,resources);
+  runCode: action((state, { template, tabs, resources }) => {
+    let iframeUtil = new IframeUtil(template, resources);
 
     let messages = [];
     iframeUtil.iframeWin.console.log = (...args) => {
@@ -48,7 +48,9 @@ const editorModel = {
       state.consoleLogs = iframeUtil.formatOutput(messages);
     };
 
-    iframeUtil.write(...tabs);
+    iframeUtil.write(...tabs, err => {
+      state.consoleLogs = err
+    });
   })
 };
 

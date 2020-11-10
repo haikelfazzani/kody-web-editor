@@ -2,7 +2,7 @@
   display: flex;
   height: 100vh;
   width: 100vw;
-  border: 5px solid var(--light-bleu);
+  border: 5px solid var(--dark-gray);
 }
 .playground>div {
   width: calc(100% - 45px);
@@ -27,7 +27,7 @@
 
 /****************************/
 .gutter {
-  background-color: var(--dark-gray);
+  background-color: var(--dark-bleu-main);
   cursor: col-resize;
   background-image: url(../img/split.png) !important;
       background-repeat: no-repeat;
@@ -37,10 +37,10 @@
 .gutter:hover {background-color: var(--light-bleu);}
 
 .ace-monokai,.ace_gutter {
-  background-color: var(--dark-bleu-main) !important;
+  background-color: var(--dark-gray) !important;
 }
 .ace-monokai .ace_marker-layer .ace_active-line,.ace-monokai .ace_gutter-active-line {
-  background: #0e0f0fc2;
+  background: #151616a9;
 }
 /*******************************/
 .side-tabs {

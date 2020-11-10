@@ -47,7 +47,7 @@ export default function AddPackage () {
 
     <div className="w-100 pl-3 pr-3 h-50 overflow-auto">
       <span className="text-uppercase"><i className="fa fa-cube"></i> Resources ({resources.length})</span>
-      {resources && <ul className="p-0">
+      {resources.length>0 && <ul className="p-0">
         {resources.map((p, i) => <li key={'p' + i} className="d-flex justify-content-between ml-3">
           <span className="text-muted"><i className="fa fa-thumbtack"></i> {p.name}({p.version}) </span>
           <span onClick={() => { onRemove(p); }}><i className="fa fa-trash text-danger"></i></span>

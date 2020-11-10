@@ -1,19 +1,14 @@
 const cdnjs = {
   react: [
     {
-      latest: 'https://cdnjs.cloudflare.com/ajax/libs/react/17.0.1/umd/react.production.min.js',
+      latest: 'https://unpkg.com/react@17/umd/react.development.js',
       name: 'react',
       version: '17.0.1'
     },
     {
-      latest: 'https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.1/umd/react-dom.production.min.js',
+      latest: 'https://unpkg.com/react-dom@17/umd/react-dom.development.js',
       name: 'react-dom',
       version: '17.0.1'
-    },
-    {
-      latest: 'https://unpkg.com/@babel/standalone/babel.min.js',
-      name: 'babel',
-      version: 'standalone'
     }
   ],
   default: [],
@@ -34,11 +29,6 @@ const cdnjs = {
       latest: 'https://unpkg.com/preact@10/hooks/dist/hooks.umd.js',
       name: 'preact-hooks',
       version: '10.5.5'
-    },
-    {
-      latest: 'https://unpkg.com/@babel/standalone/babel.min.js',
-      name: 'babel',
-      version: 'standalone'
     }
   ],
   rxjs: [

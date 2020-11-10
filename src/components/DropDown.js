@@ -19,7 +19,7 @@ export default function DropDown ({ text, items, selectedItem, onSelectItem }) {
           {items.map(i => <div
             className={"dropdown-item " + (selectedItem === i ? 'bg-success' : '')}
             key={i}
-            onClick={() => { onSelectItem(i); }}>{i}</div>)}
+            onClick={() => { onSelectItem(i); onToggle() }}>{i}</div>)}
         </div>
       </div>
     </div>);

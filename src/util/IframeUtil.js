@@ -4,7 +4,6 @@
  */
 
 export class IframeUtil {
-
   constructor (typeAsset, resources) {
 
     if (typeAsset !== 'typescript') {
@@ -20,7 +19,7 @@ export class IframeUtil {
       ? "text/babel"
       : "text/javascript";
 
-    this.typeLang = typeAsset; // typescript - javascript - react - vue etc...
+    this.typeAsset = typeAsset; // typescript - javascript - react - vue etc...
 
     this.iframe = document.createElement('iframe');
     this.iframe.id = 'sandbox';
@@ -32,13 +31,21 @@ export class IframeUtil {
     this.iframeWin = this.iframe.contentWindow;
   }
 
-  write (html, cssValue, jsValue) {
-    if (this.typeLang === 'typescript') {
-      jsValue = this.compileTypescript(jsValue);
-    }
+  write (html, cssValue, jsValue, resolve) {
+    try {
+      if (this.typeAsset === 'typescript') {
+        jsValue = this.compileTypescript(jsValue);
+      }
+      else {
+        jsValue = window.Babel.transform(jsValue, {
+          envName: 'production',
+          presets: ['react', 'es2015'],
+          babelrc: false
+        }).code;
+      }
 
-    this.iframeDoc.open();
-    this.iframeDoc.write(`<html>
+      this.iframeDoc.open();
+      this.iframeDoc.write(`<html>
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,13 +53,14 @@ export class IframeUtil {
         <style>${cssValue}</style>              
       </head>
       <body>      
-        ${this.cdns}   
-        ${html}     
-        <p>Welcome to Kody.</p>
-        <script type="${this.typeJs}" defer>${jsValue}</script>
+        ${this.cdns}${html}
+        <script type="text/javascript" defer>${jsValue}</script>
       </body>
     </html>`);
-    this.iframeDoc.close();
+      this.iframeDoc.close();
+    } catch (error) {
+      resolve(error.message)
+    }
   }
 
   compileTypescript (jsValue) {
@@ -80,6 +88,7 @@ export class IframeUtil {
 
   concatArgs (logMessages) {
     let splitArgs = false;
+    console.log(logMessages);
     return logMessages.map(msg => {
 
       if (msg) {

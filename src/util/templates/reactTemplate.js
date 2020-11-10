@@ -1,31 +1,18 @@
 const reactTemplate = [
   `<div id="app"></div>`,
   'body { color: red; }',
-  `class App extends React.Component {
-state = {
-  count: 0
-}
-
-inc = () => this.setState({
-  count: this.state.count + 1
-});
-
-dec = () => this.setState({
-  count: this.state.count - 1
-});
-
-render() {
+  `function App(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    <li key={number}>{number}</li>
+  );
   return (
-    <div>
-      <h1>React</h1>
-      <h2>{ this.state.count }</h2>
-      <button onClick={this.inc}>Increment</button>
-      <button onClick={this.dec}>Decrement</button>
-    </div>
-  )
-}
+    <ul>{listItems}</ul>
+  );
 }
 
-ReactDOM.render(<App />, document.getElementById('app'))`];
+const numbers = [1, 2, 3, 4, 5];
+
+ReactDOM.render(<App numbers={numbers} />, document.getElementById('app'))`];
 
 export default reactTemplate;
