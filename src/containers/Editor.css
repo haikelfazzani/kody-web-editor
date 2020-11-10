@@ -27,12 +27,14 @@
 
 /****************************/
 .gutter {
-  background-color: var(--light-bleu);
+  background-color: var(--dark-gray);
   cursor: col-resize;
   background-image: url(../img/split.png) !important;
       background-repeat: no-repeat;
       background-position: 50%;
 }
+
+.gutter:hover {background-color: var(--light-bleu);}
 
 .ace-monokai,.ace_gutter {
   background-color: var(--dark-bleu-main) !important;
@@ -115,4 +117,4 @@ iframe, pre {
   width: 55px!important;
 }
 
-.list-packages ul { max-height: 300px; overflow-y: auto !important;}
+.list-packages ul { max-height: 250px; overflow-y: auto !important;}

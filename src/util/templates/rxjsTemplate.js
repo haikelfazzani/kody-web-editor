@@ -1,6 +1,5 @@
 const rxjsTemplate = [
-  `<h1>Welcome to Kody</h1>
-<script src="https://unpkg.com/rxjs@5.2.0/bundles/Rx.min.js"></script>`,
+  `<h1>Welcome to Kody</h1>`,
   'body { color: red; }',
   `const source = Rx.Observable.timer(1000, 2000);
 

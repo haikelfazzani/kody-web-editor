@@ -1,10 +1,12 @@
 import { createStore, action } from 'easy-peasy';
 import { IframeUtil } from '../util/IframeUtil';
+import cdnjs from '../util/cdnjs';
 
+let template = localStorage.getItem('kody-template') || 'default';
 let resources = [];
 try {
   resources = localStorage.getItem('kody-resources');
-  resources = resources ? JSON.parse(resources) : [];
+  resources = resources ? JSON.parse(resources) : cdnjs[template];
 } catch (error) {
   resources = [];
 }
@@ -12,7 +14,7 @@ try {
 const editorModel = {
   editorValue: '<div>hello</div>',
   consoleLogs: '// console',
-  template: localStorage.getItem('kody-template') || 'default',
+  template,
   fontSize: localStorage.getItem('kody-fontSize') || 16,
   resources, // packages as cdn: react...
 
@@ -20,14 +22,16 @@ const editorModel = {
     state.editorValue = payload;
   }),
 
-  setResources: action((state, resources) => { // template : vuejs, react...    
+  setResources: action((state, resources) => { // template : vuejs, react...   
     state.resources = resources;
     localStorage.setItem('kody-resources', JSON.stringify(resources));
   }),
 
   setTemplate: action((state, template) => { // template : vuejs, react...    
     state.template = template;
+    state.resources = cdnjs[template];
     localStorage.setItem('kody-template', template);
+    localStorage.setItem('kody-resources', JSON.stringify(cdnjs[template]));
   }),
 
   setFontSize: action((state, fontSize) => {

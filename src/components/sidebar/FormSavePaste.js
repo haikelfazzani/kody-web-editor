@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { DropboxAuth } from '../../services/DropboxService';
 import { withRouter } from 'react-router-dom';
 import PasteService from '../../services/PasteService';
+import { useStoreState } from 'easy-peasy';
 
 function FormSavePaste () {
 
+  const { resources } = useStoreState(state => state.editorModel);
   const [pasteService, setPasteService] = useState('dropbox');
   const [isSaved, setIsSaved] = useState(false);
   const [snippetUrl, setSnippetUrl] = useState(null);
@@ -16,8 +18,12 @@ function FormSavePaste () {
 
     if (pasteService && getTabs && JSON.parse(getTabs).length === 3) {
 
+      let nResources=resources.reduce((a, r) => {
+        return a + `<script type="text/javascript" src="${r.latest}"></script>`
+      }, '');
+
       getTabs = JSON.parse(getTabs);
-      getTabs = [getTabs[0], `<style>${getTabs[1]}</style>`, `<script type="text/babel">${getTabs[2]}</script>`];
+      getTabs = [nResources,getTabs[0], `<style>${getTabs[1]}</style>`, `<script type="text/babel">${getTabs[2]}</script>`];
 
       let code = getTabs.join('\n');
       let pService = e.target.elements[0].value;

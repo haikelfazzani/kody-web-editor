@@ -18,7 +18,7 @@ export default function Editor () {
 
   let { id } = useParams();
 
-  const { editorValue, consoleLogs, template,resources } = useStoreState(state => state.editorModel);
+  const { editorValue, consoleLogs, template, resources } = useStoreState(state => state.editorModel);
   const { setEditorValue, runCode } = useStoreActions(actions => actions.editorModel)
 
   const [tabs, setTabs] = useState(templates[template]);
@@ -44,8 +44,7 @@ export default function Editor () {
   }, [id]);
 
   useEffect(() => {
-    if (template === 'typescript') DomUtil.appendScript();
-    else DomUtil.removeElement();
+    (template === 'typescript') ? DomUtil.appendScript() : DomUtil.removeElement();
     setEditorValue(templates[template][currentTabIndex]);
     setTabs(templates[template]);
   }, [template]);
@@ -63,7 +62,7 @@ export default function Editor () {
   }
 
   const onRun = () => {
-    runCode({ template, tabs,resources })
+    runCode({ template, tabs,resources });
   }
 
   const onPrettier = () => {

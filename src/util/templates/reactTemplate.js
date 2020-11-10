@@ -1,10 +1,5 @@
 const reactTemplate = [
-  `<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>  
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-<div id="app"></div>
-  `,
+  `<div id="app"></div>`,
   'body { color: red; }',
   `class App extends React.Component {
 state = {

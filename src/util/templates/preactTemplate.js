@@ -1,8 +1,5 @@
 const preactTemplate = [
-  `<script src="https://unpkg.com/preact@10/dist/preact.umd.js"></script>
-<script src="https://unpkg.com/preact@10/hooks/dist/hooks.umd.js"></script>    
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  `,
+  `<div></div>`,
   'body { color: red; }', // css
   `/** @jsx h */
 const { h, render } = preact;

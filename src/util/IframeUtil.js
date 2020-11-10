@@ -6,11 +6,15 @@
 export class IframeUtil {
 
   constructor (typeAsset, resources) {
-    console.log(resources);
 
-    this.cdns = resources.reduce((a, r) => {
-      return a + `<script type="text/javascript" src="${r.latest}"></script>`
-    }, '');
+    if (typeAsset !== 'typescript') {
+      this.cdns = resources.reduce((a, r) => {
+        return a + `<script type="text/javascript" src="${r.latest}"></script>`
+      }, '');
+    }
+    else {
+      this.cdns = '';
+    }
 
     this.typeJs = /react/g.test(typeAsset)
       ? "text/babel"
