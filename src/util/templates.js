@@ -5,9 +5,7 @@ import preactTemplate from './templates/preactTemplate';
 import rxjsTemplate from './templates/rxjsTemplate';
 import typescriptTemplate from './templates/typescriptTemplate';
 import jqueryTemplate from './templates/jqueryTemplate';
-
-// let localTabs = localStorage.getItem('kody-tabs');
-// localTabs = localTabs ? JSON.parse(localTabs) : emptytTemplate;
+import coffeescriptTemplate from './templates/coffeescriptTemplate';
 
 const templates = {
   default: emptytTemplate,
@@ -17,6 +15,7 @@ const templates = {
   rxjs: rxjsTemplate,
   typescript: typescriptTemplate,
   jquery: jqueryTemplate,
+  coffeescript: coffeescriptTemplate,
 }
 
 export default templates;

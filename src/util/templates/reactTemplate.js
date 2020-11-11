@@ -3,6 +3,14 @@ const reactTemplate = [
   'body { color: red; }',
   `function App(props) {
   const numbers = props.numbers;
+  
+  React.useEffect(()=>{
+    
+    fetch('https://jsonplaceholder.typicode.com/users')
+  .then(response => response.json())
+  .then(json => console.log(json))
+  },[])
+  
   const listItems = numbers.map((number) =>
     <li key={number}>{number}</li>
   );

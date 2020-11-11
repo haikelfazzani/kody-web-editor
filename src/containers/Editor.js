@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useStoreState, useStoreActions } from 'easy-peasy';
-import { Link } from 'react-router-dom';
+
 import Sidebar from '../components/sidebar/Sidebar';
 import EditorAce from '../components/EditorAce';
 import Split from 'react-split';
@@ -19,34 +19,42 @@ export default function Editor () {
   let { id } = useParams();
 
   const { editorValue, consoleLogs, template, resources } = useStoreState(state => state.editorModel);
-  const { setEditorValue, runCode } = useStoreActions(actions => actions.editorModel)
+  const { setEditorValue, setConsoleLogs, runCode } = useStoreActions(actions => actions.editorModel)
 
   const [tabs, setTabs] = useState(templates[template]);
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
   const [showConsole, setShowConsole] = useState(false);
 
   useEffect(() => {
-    DropboxService.downloadFile(id)
-      .then(response => {
-        if (response) {
-          let reader = new FileReader();
+    if (id && id.length > 0) {
+      DropboxService.downloadFile(id)
+        .then(response => {
+          if (response) {
+            let reader = new FileReader();
 
-          reader.onload = function () {
-            if (this.result) {
-              setEditorValue(this.result);
-              setTabs([this.result, '', '']);
-            }
-          };
+            reader.onload = function () {
+              if (this.result) {
+                setEditorValue(this.result);
+                setTabs([this.result, '', '']);
+              }
+            };
 
-          reader.readAsText(response.fileBlob);
-        }
-      });
+            reader.readAsText(response.fileBlob);
+          }
+        });
+    }
   }, [id]);
 
   useEffect(() => {
     (template === 'typescript') ? DomUtil.appendScript() : DomUtil.removeElement();
     setEditorValue(templates[template][currentTabIndex]);
     setTabs(templates[template]);
+
+    window.addEventListener('message', function (e) {
+      if (e && e.data && e.data.message) {
+        setConsoleLogs(e.data.message + '\n' + e.data.stack);
+      }
+    }, false);
   }, [template]);
 
   const onEditorChange = (value) => {
@@ -62,7 +70,7 @@ export default function Editor () {
   }
 
   const onRun = () => {
-    runCode({ template, tabs,resources });
+    runCode({ template, tabs, resources });
   }
 
   const onPrettier = () => {
@@ -89,10 +97,9 @@ export default function Editor () {
           />
 
           <div className="editor-menu btn-group" role="group" aria-label="..">
-            <button className="btn btn-secondary" onClick={onRun}><i className="fa fa-play"></i></button>
-            <button className="btn btn-secondary dsp-none" onClick={onPrettier}><i className="fa fa-stream"></i></button>
-            <button className="btn btn-secondary" onClick={onShowConsole}><i className="fa fa-terminal"></i></button>
-            <Link className="btn btn-secondary" to="/"><i className="fas fa-home text-white"></i></Link>
+            <button className="btn btn-primary" onClick={onRun}><i className="fa fa-play"></i></button>
+            <button className="btn btn-primary dsp-none" onClick={onPrettier}><i className="fa fa-stream"></i></button>
+            <button className="btn btn-primary" onClick={onShowConsole}><i className="fa fa-terminal"></i></button>
           </div>
         </div>
 

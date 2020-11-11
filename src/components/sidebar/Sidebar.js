@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import AddPackage from './AddPackage';
 import FormSavePaste from './FormSavePaste'
 import Settings from './Settings';
 
 const edFiles = [
-  { name: 'Index.html', icon: 'html5',color:'text-danger' },
-  { name: 'Style.css', icon: 'css3',color:'text-primary' },
-  { name: 'App.js', icon: 'js',color:'text-warning' }
+  { name: 'Index.html', icon: 'html5', color: 'text-danger' },
+  { name: 'Style.css', icon: 'css3', color: 'text-primary' },
+  { name: 'App.js', icon: 'js', color: 'text-warning' }
 ];
 
 const EditorFiles = ({ getFileIndex }) => {
@@ -23,7 +24,7 @@ const EditorFiles = ({ getFileIndex }) => {
     {edFiles.map((tab, i) => <li
       className={"list-group-item " + (currEdFileIndex === i ? 'active-file-index' : '')}
       onClick={() => { setEdFileIndex(i) }}
-      key={'tab' + i}><span className="ml-4"><i className={tab.color+" mr-2 fab fa-" + tab.icon}></i> {tab.name}</span>
+      key={'tab' + i}><span className="ml-4"><i className={tab.color + " mr-2 fab fa-" + tab.icon}></i> {tab.name}</span>
     </li>)}
   </ul>
 }
@@ -42,7 +43,7 @@ if (window.Headway) {
 export default function Sidebar ({ getTabIndex }) {
 
   const [currTabIndex, setCurrTabIndex] = useState(0);
-  const [showTab, setShowTab] = useState(true);
+  const [showTab, setShowTab] = useState(false);
 
   const setTabIndex = (tab) => {
     setCurrTabIndex(tab.id);
@@ -56,13 +57,17 @@ export default function Sidebar ({ getTabIndex }) {
   return (
     <header className={"h-100 side-tabs d-flex " + (showTab ? "w-side-tabs" : "")}>
 
-      <ul className="tabs list-group">        
-        {tabs.map(tab => <li className={"list-group-item " + (currTabIndex === tab.id ? 'text-warning' : '')}
+      <ul className="tabs list-group">
+        {tabs.map(tab => <li className={"list-group-item " + (currTabIndex === tab.id ? 'active-tab' : '')}
           key={tab.name} onClick={() => { setTabIndex(tab) }}>
-          <i className={tab.icon}></i></li>)}        
+          <i className={tab.icon}></i></li>)}
+
+        <li className="list-group-item d-links">
+          <Link to="/"><i className="fas fa-home text-white"></i></Link>
+        </li>
       </ul>
 
-      <div className="h-100 w-100 flex-column">
+      <div className="h-100 w-100 flex-column overflow-auto">
 
         <div className="list-group-item bg-dark-gray text-uppercase text-warning">
           <i className="fas fa-caret-down fs-18"></i> {tabs[currTabIndex].name}

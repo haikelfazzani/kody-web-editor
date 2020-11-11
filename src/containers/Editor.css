@@ -32,6 +32,7 @@
   background-image: url(../img/split.png) !important;
       background-repeat: no-repeat;
       background-position: 50%;
+      z-index: 9999;
 }
 
 .gutter:hover {background-color: var(--light-bleu);}
@@ -56,6 +57,7 @@
   height: 100%;  
   display: flex;   
   font-size: 18px;
+  position: relative;
 }
 
 .side-tabs .list-group-item  {  
@@ -68,10 +70,16 @@
 
 .side-tabs>div,.tabs  { border: 1px solid #0e0f0fc2; }
 
-.active-tab {background-color: var(--dark-bleu) !important; }
+.active-tab {background-color: var(--dark-gray) !important; color:var(--warning) !important; }
 .active-file-index {color: var(--white) !important; }
 
 .w-side-tabs {width: 55px;}
+
+.d-links {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
 /*****************/
 .output {
   position: relative;

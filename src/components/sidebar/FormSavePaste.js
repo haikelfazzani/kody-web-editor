@@ -3,29 +3,53 @@ import { DropboxAuth } from '../../services/DropboxService';
 import { withRouter } from 'react-router-dom';
 import PasteService from '../../services/PasteService';
 import { useStoreState } from 'easy-peasy';
+import download from '../../util/download';
 
 function FormSavePaste () {
 
-  const { resources } = useStoreState(state => state.editorModel);
+  const { resources, template } = useStoreState(state => state.editorModel);
   const [pasteService, setPasteService] = useState('dropbox');
   const [isSaved, setIsSaved] = useState(false);
   const [snippetUrl, setSnippetUrl] = useState(null);
 
-  const onSaveSnippet = (e) => {
-    e.preventDefault();
-
+  const tabsToString = () => {
     let getTabs = localStorage.getItem('kody-tabs');
 
-    if (pasteService && getTabs && JSON.parse(getTabs).length === 3) {
+    if (getTabs && JSON.parse(getTabs).length === 3) {
 
-      let nResources=resources.reduce((a, r) => {
-        return a + `<script type="text/javascript" src="${r.latest}"></script>`
+      let nResources = resources.reduce((a, r) => {
+        return a + `<script src="${r.latest}"></script>`
       }, '');
 
       getTabs = JSON.parse(getTabs);
-      getTabs = [nResources,getTabs[0], `<style>${getTabs[1]}</style>`, `<script type="text/babel">${getTabs[2]}</script>`];
+      let jsValue = getTabs[2];
 
-      let code = getTabs.join('\n');
+      const cassets = ['react', 'preact'];
+      let typeAsset = template !== 'coffeescript' ? 'text/javascript' : 'text/coffeescript';
+
+      if (cassets.includes(template)) {
+        jsValue = window.Babel.transform(getTabs[2], {
+          envName: 'production',
+          presets: ['react', 'es2015'],
+          babelrc: false
+        }).code;
+      }
+
+      getTabs = [
+        nResources,
+        getTabs[0],
+        `<style>${getTabs[1]}</style>`,
+        `<script type="${typeAsset}">${jsValue}</script>`
+      ];
+
+      return getTabs.join('\n');
+    }
+  }
+
+  const onSaveSnippet = (e) => {
+    e.preventDefault();
+    if (pasteService) {
+      let code = tabsToString();
       let pService = e.target.elements[0].value;
       let filename = e.target.elements[1].value;
       let expire_date = e.target.elements[2].value;
@@ -41,6 +65,11 @@ function FormSavePaste () {
           setSnippetUrl(e.message);
         });
     }
+  }
+
+  const onDownload = () => {
+    let code = tabsToString();
+    download(code, 'kody.html');
   }
 
   if (DropboxAuth.getToken()) {
@@ -76,14 +105,14 @@ function FormSavePaste () {
         {pasteService === 'dropbox' && <small className="form-text text-white fs-10 text-uppercase mb-2">* You need to be signed in to save this sandbox to Dropbox.</small>}
 
         <button type="submit" className="btn btn-warning btn-block" disabled={isSaved}>
-          <i className="fab fa-dropbox"></i> save snippet
+          <i className="fab fa-dropbox"></i> save paste
           </button>
       </form>
 
-      {isSaved
-        && <div className="alert alert-light ml-3 mr-3 mt-3" role="alert">
-          <a href={snippetUrl}><i className="fas fa-file-code"></i> Snippet Url</a>
-        </div>}
+      <div className="form-group pl-3 pr-3 mt-3">
+        {isSaved && <input type="url" className="form-control mb-3" defaultValue={snippetUrl} readOnly />}
+        <button className="w-100 btn btn-primary pl-3 pr-3" onClick={onDownload}><i className="fa fa-download"></i> download</button>
+      </div>
     </>
     );
   }

@@ -51,6 +51,13 @@ const cdnjs = {
       name: 'jquery-compat',
       version: '3.0.0-alpha1'
     }
+  ],
+  coffeescript: [
+    {
+      latest: 'https://cdn.jsdelivr.net/npm/coffeescript@2.5.1/lib/coffeescript-browser-compiler-legacy/coffeescript.min.js',
+      name: 'coffeescript',
+      version: '2.5.1'
+    }
   ]
 };
 

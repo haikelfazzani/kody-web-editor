@@ -3,6 +3,8 @@
  * window.Sass.compile(css, function (result) { });
  */
 
+ const dAssets = ['react','preact'];
+
 export class IframeUtil {
   constructor (typeAsset, resources) {
 
@@ -15,8 +17,8 @@ export class IframeUtil {
       this.cdns = '';
     }
 
-    this.typeJs = /react/g.test(typeAsset)
-      ? "text/babel"
+    this.typeJs = /coffeescript/g.test(typeAsset)
+      ? "text/coffeescript"
       : "text/javascript";
 
     this.typeAsset = typeAsset; // typescript - javascript - react - vue etc...
@@ -36,13 +38,20 @@ export class IframeUtil {
       if (this.typeAsset === 'typescript') {
         jsValue = this.compileTypescript(jsValue);
       }
-      else {
+
+      if(dAssets.includes(this.typeAsset)) {
         jsValue = window.Babel.transform(jsValue, {
           envName: 'production',
           presets: ['react', 'es2015'],
           babelrc: false
         }).code;
       }
+
+      jsValue = this.typeJs==='coffeescript' ? `<script type="${this.typeJs}" defer>try {
+        ${jsValue} 
+        parent.postMessage("","*");}
+        catch(e) {parent.postMessage(e,"*");}</script>`
+      :`<script type="${this.typeJs}" defer>${jsValue}</script>`;
 
       this.iframeDoc.open();
       this.iframeDoc.write(`<html>
@@ -53,8 +62,7 @@ export class IframeUtil {
         <style>${cssValue}</style>              
       </head>
       <body>      
-        ${this.cdns}${html}
-        <script type="text/javascript" defer>${jsValue}</script>
+        ${this.cdns}${html}${jsValue}
       </body>
     </html>`);
       this.iframeDoc.close();
@@ -88,7 +96,6 @@ export class IframeUtil {
 
   concatArgs (logMessages) {
     let splitArgs = false;
-    console.log(logMessages);
     return logMessages.map(msg => {
 
       if (msg) {

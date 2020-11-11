@@ -1,4 +1,4 @@
-import { createStore, action } from 'easy-peasy';
+import { createStore, action, thunk } from 'easy-peasy';
 import { IframeUtil } from '../util/IframeUtil';
 import cdnjs from '../util/cdnjs';
 
@@ -39,27 +39,28 @@ const editorModel = {
     localStorage.setItem('kody-fontSize', fontSize);
   }),
 
-  runCode: action((state, { template, tabs, resources }) => {
+  setConsoleLogs: action((state, consoleLogs) => {
+    state.consoleLogs = consoleLogs;
+  }),
+
+  runCode: thunk(async (actions, { template, tabs, resources }) => {
     let iframeUtil = new IframeUtil(template, resources);
 
     let messages = [];
     iframeUtil.iframeWin.console.log = (...args) => {
       messages.push.apply(messages, [args]);
-      state.consoleLogs = iframeUtil.formatOutput(messages);
+      actions.setConsoleLogs(iframeUtil.formatOutput(messages));
     };
 
     iframeUtil.write(...tabs, err => {
-      state.consoleLogs = err
+      if (err) { actions.setConsoleLogs(err); }
     });
   })
 };
-
 
 const storeModel = {
   editorModel
 };
 
-
 const playgroundStore = createStore(storeModel);
-
 export default playgroundStore;
