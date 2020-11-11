@@ -3,7 +3,7 @@ const jsBeautyOptions = {
   'jslint_happy': false,
   'e4x': true,
   'brace_style': 'preserve-inline',
-  'break_chained_methods': true,
+  'break_chained_methods': false,
   'detect_packers': true
 };
 

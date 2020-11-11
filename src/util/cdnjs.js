@@ -1,4 +1,5 @@
 const cdnjs = {
+  vanilla: [],
   react: [
     {
       latest: 'https://unpkg.com/react@17/umd/react.development.js',
@@ -10,13 +11,12 @@ const cdnjs = {
       name: 'react-dom',
       version: '17.0.1'
     }
-  ],
-  default: [],
+  ],  
   vue: [
     {
-      latest: 'https://unpkg.com/vue@2.6.12/dist/vue.js',
+      latest: 'https://unpkg.com/vue@next',
       name: 'vue',
-      version: '2.6.12'
+      version: 'lastest'
     }
   ],
   preact: [

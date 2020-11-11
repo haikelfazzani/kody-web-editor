@@ -72,7 +72,7 @@ function Profile (props) {
                     <th scope="row">{i + 1}</th>
                     <td>{file.name}</td>
                     <td>{file.server_modified}</td>
-                    <td><Link className="btn btn-secondary fs-12" to={"/playground/" + file.name}>
+                    <td><Link className="btn btn-secondary fs-12" to={"/playground/dropbox/" + file.name}>
                       <i className="fa fa-pen-square"></i> Open</Link></td>
                   </tr>)}
                 </tbody>

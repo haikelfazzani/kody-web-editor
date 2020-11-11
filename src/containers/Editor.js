@@ -13,10 +13,11 @@ import templates from '../util/templates';
 import DomUtil from '../util/DomUtil';
 import { useParams } from 'react-router-dom';
 import { DropboxService } from '../services/DropboxService';
+import PasteService from '../services/PasteService';
 
 export default function Editor () {
 
-  let { id } = useParams();
+  let { service, id } = useParams();
 
   const { editorValue, consoleLogs, template, resources } = useStoreState(state => state.editorModel);
   const { setEditorValue, setConsoleLogs, runCode } = useStoreActions(actions => actions.editorModel)
@@ -26,24 +27,14 @@ export default function Editor () {
   const [showConsole, setShowConsole] = useState(false);
 
   useEffect(() => {
-    if (id && id.length > 0) {
-      DropboxService.downloadFile(id)
-        .then(response => {
-          if (response) {
-            let reader = new FileReader();
-
-            reader.onload = function () {
-              if (this.result) {
-                setEditorValue(this.result);
-                setTabs([this.result, '', '']);
-              }
-            };
-
-            reader.readAsText(response.fileBlob);
-          }
+    if (service && id && id.length > 0) {
+      PasteService.getContent(service, id)
+        .then(r => {
+          setEditorValue(r);
+          setTabs([r, '', '']);
         });
     }
-  }, [id]);
+  }, [service, id]);
 
   useEffect(() => {
     (template === 'typescript') ? DomUtil.appendScript() : DomUtil.removeElement();
@@ -116,7 +107,7 @@ export default function Editor () {
                 <i className="fa fa-times-circle"></i>
               </button>
             </div>
-            <EditorAce value={consoleLogs} readOnly={true} />
+            <EditorAce value={consoleLogs} lang={currentTabIndex} readOnly={true} />
           </div>
 
         </div>

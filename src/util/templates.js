@@ -1,4 +1,4 @@
-import emptytTemplate from './templates/emptytTemplate';
+import vanillatTemplate from './templates/vanillatTemplate';
 import reactTemplate from './templates/reactTemplate';
 import vueTemplate from './templates/vueTemplate';
 import preactTemplate from './templates/preactTemplate';
@@ -8,7 +8,7 @@ import jqueryTemplate from './templates/jqueryTemplate';
 import coffeescriptTemplate from './templates/coffeescriptTemplate';
 
 const templates = {
-  default: emptytTemplate,
+  vanilla: vanillatTemplate,
   react: reactTemplate,
   vue: vueTemplate,
   preact: preactTemplate,

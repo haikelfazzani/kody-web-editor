@@ -71,7 +71,7 @@
 .side-tabs>div,.tabs  { border: 1px solid #0e0f0fc2; }
 
 .active-tab {background-color: var(--dark-gray) !important; color:var(--warning) !important; }
-.active-file-index {color: var(--white) !important; }
+.active-file-index {background-color: var(--dark-gray) !important; color: var(--white) !important; }
 
 .w-side-tabs {width: 55px;}
 

@@ -39,20 +39,18 @@ export default function AddPackage () {
         <input type="text" className="form-control" placeholder="https://unpkg.com/vue@3.0.2" required />
         <small className="text-danger">* Add only javascript packages</small>
       </div>
-      
+
       <button type="submit" className="w-100 btn btn-warning"><i className="fa fa-plus"></i> Add package</button>
     </form>
 
     <hr />
 
-    <div className="w-100 pl-3 pr-3 h-50 overflow-auto">
-      <span className="text-uppercase"><i className="fa fa-cube"></i> Resources ({resources.length})</span>
-      {resources.length>0 && <ul className="p-0">
-        {resources.map((p, i) => <li key={'p' + i} className="d-flex justify-content-between ml-3">
-          <span className="text-muted"><i className="fa fa-thumbtack"></i> {p.name}({p.version}) </span>
-          <span onClick={() => { onRemove(p); }}><i className="fa fa-trash text-danger"></i></span>
-        </li>)}
-      </ul>}
-    </div>
+    <ul className="pl-3 pr-3">
+      <li className="text-uppercase"><i className="fa fa-cube"></i> Resources ({resources.length})</li>
+      {resources && resources.map((p, i) => <li key={'p' + i} className="d-flex justify-content-between pl-3">
+        <span className="text-muted"><i className="fa fa-thumbtack"></i> {p.name}({p.version}) </span>
+        <span onClick={() => { onRemove(p); }}><i className="fa fa-trash text-danger"></i></span>
+      </li>)}
+    </ul>
   </div>);
 }

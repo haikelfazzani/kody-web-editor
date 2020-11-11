@@ -57,11 +57,14 @@ button,
   text-transform: uppercase;
 }
 
+ul {list-style: none; }
+
 hr {
   margin: 0;
   border: 1px solid var(--dark-gray);
   width: 100%;
   margin:10px 0;
+  box-sizing: border-box;
 }
 
 h2 {

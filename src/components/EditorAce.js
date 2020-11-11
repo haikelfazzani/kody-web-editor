@@ -16,7 +16,7 @@ export default function EditorAce ({ value, onEditorChange, lang = 'html', readO
   const { fontSize } = useStoreState(state => state.editorModel);
 
   return <AceEditor
-    mode={lang === 0 ? 'html' : lang === 1 ? 'css' : 'jsx'}
+    mode={lang === 0 ? 'html' : lang === 1 ? 'css' : 'javascript'}
     theme="monokai"
     onChange={onEditorChange}
     name="ace-editor-container"

@@ -50,7 +50,7 @@ export class DropboxAuth {
 
 export class DropboxService {
 
-  static init() {
+  static init () {
     return new window.Dropbox.Dropbox({ fetch, accessToken: DropboxAuth.getToken() });
   }
 
@@ -66,10 +66,26 @@ export class DropboxService {
   }
 
   static async downloadFile (file) {
+    const dbx = this.init();
     try {
-      const dbx = this.init();
-      let response = await dbx.filesDownload({ path: '/' + file });
-      return response.result;
+      return new Promise(async (resolve, reject) => {
+        try {          
+          let response = await dbx.filesDownload({ path: '/' + file });
+          response = response.result;
+          let reader = new FileReader();
+
+          reader.onload = function () {
+            if (this.result) {
+              resolve(this.result);
+            }
+          };
+
+          reader.readAsText(response.fileBlob);
+        } catch (error) {
+          reject(error.message);
+        }
+      });
+
     } catch (error) {
       return null;
     }
@@ -79,7 +95,7 @@ export class DropboxService {
     try {
       const dbx = this.init();
 
-      let file = new File([fileContent], filename + ".html", { type: "text/html" });      
+      let file = new File([fileContent], filename + ".html", { type: "text/html" });
       let response = await dbx.filesUpload({ path: '/' + filename + ".html", contents: file });
       return response.result;
     } catch (error) {

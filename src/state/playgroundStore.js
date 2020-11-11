@@ -2,7 +2,7 @@ import { createStore, action, thunk } from 'easy-peasy';
 import { IframeUtil } from '../util/IframeUtil';
 import cdnjs from '../util/cdnjs';
 
-let template = localStorage.getItem('kody-template') || 'default';
+let template = localStorage.getItem('kody-template') || 'vanilla';
 let resources = [];
 try {
   resources = localStorage.getItem('kody-resources');

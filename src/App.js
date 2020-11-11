@@ -15,7 +15,7 @@ export default function App () {
       <Route exact path="/" component={Home} />
       
       <Route exact path="/playground" component={Playground} />
-      <Route path="/playground/:id" component={Playground} />
+      <Route path="/playground/:service/:id" component={Playground} />
 
       <Route path="/auth" component={Auth} />
 

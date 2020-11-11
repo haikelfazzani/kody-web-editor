@@ -1,22 +1,15 @@
 const vueTemplate = [
-  `<div id="app">
-  <h1>Vue</h1>
-  <h2>{{ count }}</h2>
-  <button @click="inc">inc</button>
-  <button @click="dec">dec</button>
+  `<div id="basic-event">
+  <button @click="counter += 1">Add 1</button>
+  <p>The button above has been clicked {{ counter }} times.</p>
 </div>`,
   'body { color: red; }',
-  `new Vue({
-  el: '#app',
-  data: { count: 0 },
-  methods: {
-    inc() {
-      this.count++
-    },
-    dec() {
-      this.count--
+  `Vue.createApp({
+  data() {
+    return {
+      counter: 1
     }
   }
-})`];
+}).mount('#basic-event')`];
 
 export default vueTemplate;
