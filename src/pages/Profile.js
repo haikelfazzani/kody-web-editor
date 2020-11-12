@@ -15,7 +15,6 @@ function Profile (props) {
         if (account && files) {
           setUserAccount(account);
           setUserFiles(files);
-          console.log(account);
         }
       })
       .catch(e => {

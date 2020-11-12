@@ -11,9 +11,36 @@ import './Editor.css';
 import templates from '../util/templates';
 
 import DomUtil from '../util/DomUtil';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { DropboxService } from '../services/DropboxService';
 import PasteService from '../services/PasteService';
+import Settings from '../components/sidebar/Settings';
+
+
+const edFiles = [
+  { name: 'Index.html', icon: 'html5', color: 'text-danger' },
+  { name: 'Style.css', icon: 'css3', color: 'text-primary' },
+  { name: 'App.js', icon: 'js', color: 'text-warning' }
+];
+
+const EditorFiles = ({ getFileIndex }) => {
+
+  const [currEdFileIndex, setcurrEdFileIndex] = useState(0);
+
+  const setEdFileIndex = (currIndex) => {
+    getFileIndex(currIndex);
+    setcurrEdFileIndex(currIndex)
+  }
+
+  return <ul className="list-group d-flex">
+    <li className="d-flex align-items-center list-group-item fs-12"><Link to="/"><i className="fas fa-home text-white"></i></Link></li>
+    {edFiles.map((tab, i) => <li
+      className={"d-flex align-items-center list-group-item " + (currEdFileIndex === i ? 'active-tab' : '')}
+      onClick={() => { setEdFileIndex(i) }}
+      key={'tab' + i}><i className={tab.color + " mr-2 fab fa-" + tab.icon}></i> {tab.name}
+    </li>)}
+  </ul>
+}
 
 export default function Editor () {
 
@@ -71,11 +98,15 @@ export default function Editor () {
   }
 
   const onShowConsole = () => { setShowConsole(!showConsole); }
+  const onClearConsole = () => { setConsoleLogs(''); }
 
   return (
     <div className="playground">
 
-      <Sidebar getTabIndex={getTabIndex} />
+      <header>
+        <EditorFiles getFileIndex={getTabIndex} />
+        <Settings />
+      </header>
 
       <Split split="vertical" gutterSize={7}>
 
@@ -87,9 +118,9 @@ export default function Editor () {
             lang={currentTabIndex}
           />
 
-          <div className="editor-menu btn-group" role="group" aria-label="..">
+          <div className="editor-menu btn-group">
             <button className="btn btn-primary" onClick={onRun}><i className="fa fa-play"></i></button>
-            <button className="btn btn-primary dsp-none" onClick={onPrettier}><i className="fa fa-stream"></i></button>
+            <button className="btn btn-primary" onClick={onPrettier}><i className="fa fa-stream"></i></button>
             <button className="btn btn-primary" onClick={onShowConsole}><i className="fa fa-terminal"></i></button>
           </div>
         </div>
@@ -103,11 +134,20 @@ export default function Editor () {
           <div className="w-100 h-50 console" style={{ display: showConsole ? 'block' : 'none' }}>
             <div className="console-header fs-12 text-uppercase">
               <p className="m-0"><i className="fa fa-terminal mr-2"></i><span>console</span></p>
-              <button onClick={onShowConsole} className="btn btn-link">
-                <i className="fa fa-times-circle"></i>
-              </button>
+
+              <div className="d-flex">
+                <button onClick={onClearConsole} className="btn-inherit">
+                  <i className="fa fa-eraser"></i>
+                </button>
+
+                <button onClick={onShowConsole} className="btn-inherit ml-3">
+                  <i className="fa fa-times-circle"></i>
+                </button>
+              </div>
             </div>
-            <EditorAce value={consoleLogs} lang={currentTabIndex} readOnly={true} />
+            <pre>
+              {consoleLogs}
+            </pre>
           </div>
 
         </div>

@@ -44,33 +44,26 @@ export default function Timer () {
     setDispTimer(h + ':' + min + ':' + sec);
   }, [timer, setTimer]);
 
-  return (<div className="w-100">
-
-    <span className="text-white text-uppercase pl-3 pr-3 ltsp"><i className="fas fa-stopwatch"></i> chronometre</span>
-
-    <ul className="w-100 list-group d-flex flex-row flex-fill fs-18 mt-2">
-
+  return (<div className="d-flex">
       {(!timerOps.isPlay && !timerOps.isPaused)
-        && <li className="list-group-item text-success" onClick={onStart}>
+        && <span className="list-group-item text-success" onClick={onStart}>
           <i className="fa fa-play"></i>
-        </li>}
+        </span>}
 
       {(timerOps.isResumed || timerOps.isPlay)
-        && <li className="list-group-item text-primary" onClick={onPause}>
+        && <span className="list-group-item text-primary" onClick={onPause}>
           <i className="fa fa-pause"></i>
-        </li>}
+        </span>}
 
       {timerOps.isPaused
-        && <li className="list-group-item text-primary" onClick={() => { onStart('resume') }}>
+        && <span className="list-group-item text-primary" onClick={() => { onStart('resume') }}>
           <i className="fa fa-play"></i>
-        </li>}
+        </span>}
 
-      <li className="list-group-item flex-grow-1 text-center">{dispTimer}</li>
+      <span className="list-group-item flex-grow-1 text-center">{dispTimer}</span>
 
-      <li className="list-group-item text-danger" onClick={onReset}>
+      <span className="list-group-item text-danger" onClick={onReset}>
         <i className="fa fa-recycle"></i>
-      </li>
-    </ul>
-
+      </span>
   </div>);
 }

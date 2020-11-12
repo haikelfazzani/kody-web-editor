@@ -54,28 +54,27 @@ export default function Sidebar ({ getTabIndex }) {
     }
   }
 
-  return (
-    <header className={"h-100 side-tabs d-flex " + (showTab ? "w-side-tabs" : "")}>
+  return (<header className={"h-100 side-tabs d-flex " + (showTab ? "w-side-tabs" : "")}>
 
-      <ul className="tabs list-group position-relative">
-        {tabs.map(tab => <li className={"list-group-item " + (currTabIndex === tab.id ? 'active-tab' : '')}
-          key={tab.name} onClick={() => { setTabIndex(tab) }}>
-          <i className={tab.icon}></i></li>)}
+    <ul className="tabs list-group position-relative">
+      {tabs.map(tab => <li className={"list-group-item " + (currTabIndex === tab.id ? 'active-tab' : '')}
+        key={tab.name} onClick={() => { setTabIndex(tab) }}>
+        <i className={tab.icon}></i></li>)}
 
-        <li className="w-100 d-links d-flex justify-content-center py-2">
-          <Link to="/" className="btn btn-link"><i className="fas fa-home text-white"></i></Link>
-        </li>
-      </ul>
+      <li className="w-100 d-links d-flex justify-content-center py-2">
+        <Link to="/" className="btn btn-link"><i className="fas fa-home text-white"></i></Link>
+      </li>
+    </ul>
 
-      <div className="h-100 w-100 flex-column overflow-auto">
+    <div className="h-100 w-100 flex-column overflow-auto">
 
-        <div className="list-group-item bg-dark-gray text-uppercase text-warning">
-          <i className="fas fa-caret-down fs-18"></i> {tabs[currTabIndex].name}
-        </div>
-
-        {tabs.map(tab => <div key={tab.name} style={{ display: tab.id === currTabIndex ? 'block' : 'none' }}>
-          {tab.name === 'files' ? <EditorFiles getFileIndex={getTabIndex} /> : tab.comp}</div>)}
+      <div className="list-group-item bg-dark-gray text-uppercase text-warning">
+        <i className="fas fa-caret-down fs-18"></i> {tabs[currTabIndex].name}
       </div>
 
-    </header>);
+      {tabs.map(tab => <div key={tab.name} style={{ display: tab.id === currTabIndex ? 'block' : 'none' }}>
+        {tab.name === 'files' ? <EditorFiles getFileIndex={getTabIndex} /> : tab.comp}</div>)}
+    </div>
+
+  </header>);
 }

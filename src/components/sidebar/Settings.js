@@ -13,8 +13,7 @@ export default function Settings () {
   const { setTemplate, setFontSize } = useStoreActions(actions => actions.editorModel);
 
   return (
-    <div className="w-100 mt-3">
-
+    <div className="d-flex">
       <DropDown
         text="Template"
         items={Object.keys(templates)}
@@ -22,16 +21,12 @@ export default function Settings () {
         selectedItem={template}
       />
 
-      <hr />
-
       <DropDown
         text="Font Size"
         items={fontSizes}
         onSelectItem={setFontSize}
         selectedItem={fontSize}
       />
-
-      <hr />
 
       <Timer />
     </div>

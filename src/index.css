@@ -1,7 +1,7 @@
 :root {
-  --dark-bleu: #131618;
-  --dark-bleu-main: #141416;
-  --light-bleu: #383838;
+  --dark-bleu: #001528;
+  --dark-bleu-main: #001528;
+  --light-bleu: #15314b;
   --dark-gray:#252525;
 }
 
@@ -39,14 +39,9 @@ thead {
 .bg-dark-gray {background-color:var(--dark-gray) !important; border-bottom: 1px solid #000; border-top: 1px solid #000; }
 .btn-warning, .btn-success {box-shadow: 0px 0px 15px 0px rgba(82, 82, 82, 0.473);}
 
-.btn-secondary {
-  background-color: var(--light-bleu);
-  border-color: var(--dark-bleu);
-  }
-
 .btn-primary {
-  background-color: #585d68;
-  border-color: var(--light-bleu);
+  background-color: var(--light-bleu) !important;
+  border-color: var(--light-bleu) !important;
 }
 
 .btn:focus, .btn:active {
@@ -60,6 +55,14 @@ button,
   font-size: 14px;
   text-transform: uppercase;
 }
+
+.btn-inherit {
+  background-color: inherit;
+  color: #ddd;
+    border: 0;
+}
+
+.btn-inherit:hover { color: var(--white);}
 
 ul {list-style: none; }
 
@@ -120,9 +123,10 @@ left: 0 !important;
  /**********************/
  ::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #585d68;
+  background: var(--gray);
   border-radius: 10px;
 }
