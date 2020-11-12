@@ -57,13 +57,13 @@ export default function Sidebar ({ getTabIndex }) {
   return (
     <header className={"h-100 side-tabs d-flex " + (showTab ? "w-side-tabs" : "")}>
 
-      <ul className="tabs list-group">
+      <ul className="tabs list-group position-relative">
         {tabs.map(tab => <li className={"list-group-item " + (currTabIndex === tab.id ? 'active-tab' : '')}
           key={tab.name} onClick={() => { setTabIndex(tab) }}>
           <i className={tab.icon}></i></li>)}
 
-        <li className="list-group-item d-links">
-          <Link to="/"><i className="fas fa-home text-white"></i></Link>
+        <li className="w-100 d-links d-flex justify-content-center py-2">
+          <Link to="/" className="btn btn-link"><i className="fas fa-home text-white"></i></Link>
         </li>
       </ul>
 

@@ -1,26 +1,16 @@
-.home-page {
-  height: 100%;
-  width: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
 .home-page > section {
-  background-image: linear-gradient(to bottom, rgb(19 22 24), rgb(24 31 39 / 93%) 50%, rgb(24 31 39 / 83%) 100%), url(../img/2.jpg);
-  color: #ffffff;
+  /* background-image: linear-gradient(to bottom, rgb(19 22 24), rgb(24 31 39 / 93%) 50%, rgb(24 31 39 / 83%) 100%), url(../img/2.jpg);
+  color: #ffffff; */
   min-height: 92vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.img-fluid{
-  box-shadow: 0 15px 45px rgba(16,30,54,.15);
-}
-
 .home-page h1 {
   font-weight: bolder;
   text-transform: uppercase;
+  font-weight: 700;
 }
 
 .card {

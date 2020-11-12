@@ -20,12 +20,12 @@ function Navbar () {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
 
       <div className="container">
-        <Link to="/" className="navbar-brand d-flex align-items-center">
-          <img src={kodyLogo} width="30" height="30" alt="" loading="lazy" className="rounded-circle mr-2" />
-          <span className="fs-12">Kody</span>
+        <Link to="/" className="navbar-brand d-flex align-items-center font-weight-bold">
+          <img src={kodyLogo} width="30" height="30" alt="kody" loading="lazy" className="mr-2" />
+          <span>Kody</span>
         </Link>
 
         <button className="navbar-toggler" type="button" data-toggle="collapse" onClick={onNavToggle}>
@@ -36,25 +36,22 @@ function Navbar () {
           <ul className="navbar-nav mr-auto"></ul>
 
           <ul className="navbar-nav">
-
             <li className="nav-item">
-              <span className="nav-link fs-10 mr-3"><i className="fa fa-circle text-success"></i> Status</span>
+              <span className="nav-link mr-3"><i className="fa fa-info-circle"></i> About</span>
             </li>
 
             {DropboxAuth.getToken()
               ? <>
                 <li className="nav-item">
-                  <Link className="nav-link fs-10 mr-3" to="/profile"><i className="fa fa-user"></i> Profile</Link>
+                  <Link className="nav-link mr-3" to="/profile"><i className="fa fa-user"></i> Profile</Link>
                 </li>
                 <li className="nav-item">
-                  <button onClick={onLogout} className="btn btn-success fs-10 h-100">
-                    <i className="fab fa-dropbox"></i> logout</button>
+                  <span onClick={onLogout} className="nav-link"><i className="fab fa-dropbox"></i> logout</span>
                 </li>
               </>
 
               : <li className="nav-item">
-                <button onClick={onLogin} className="btn btn-success fs-10 h-100">
-                  <i className="fab fa-dropbox"></i> Sign in</button>
+                <span onClick={onLogin} className="nav-link" title="Sign In With Dropbox"><i className="fab fa-dropbox"></i> Sign in</span>
               </li>}
 
           </ul>

@@ -74,7 +74,7 @@ function FormSavePaste () {
 
   return (<>
     <div className="form-group pl-3 pr-3 mt-3">
-      <button className="w-100 btn btn-dark" onClick={onDownload}><i className="fa fa-download"></i> download</button>
+      <button className="w-100 btn btn-dark" onClick={onDownload}><i className="fa fa-download"></i> download code</button>
     </div>
 
     <hr />
