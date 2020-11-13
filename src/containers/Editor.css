@@ -19,7 +19,13 @@
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.5);
 }
 .playground header .list-group { display:flex !important; flex-direction: row; }
-.playground header .list-group-item { background-color: var(--light-bleu); }
+.playground header .list-group-item { 
+  background-color: var(--light-bleu); 
+  border: 1px solid rgb(0 21 40);
+    cursor: pointer;
+}
+
+.playground header .list-group-item:hover {background-color: #ffffff1e;}
 
 .playground>div {
   width: 100%;
@@ -33,7 +39,7 @@
   position: relative;
 }
 
-.editor-menu {
+.editor .btn-group {
   position: absolute;
   right: 10px;
   top: 10px;
@@ -63,15 +69,15 @@
 /*******************************/
 .active-tab {background-color: var(--dark-bleu-main) !important;}
 /*****************/
-.output {
-  position: relative;
+.output > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
-.console {
-  position:absolute;
-  bottom:0;
-  right: 0;
-}
+.iframe-sandbox, .console {height:100%;}
+.gutter-vertical {background-color: transparent; background-image: none !important;}
 
 .console-header {
   height: 32px;

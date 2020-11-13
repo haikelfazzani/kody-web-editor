@@ -3,7 +3,7 @@
  * window.Sass.compile(css, function (result) { });
  */
 
- const dAssets = ['react','preact'];
+const dAssets = ['react', 'preact'];
 
 export class IframeUtil {
   constructor (typeAsset, resources) {
@@ -39,19 +39,19 @@ export class IframeUtil {
         jsValue = this.compileTypescript(jsValue);
       }
 
-      if(dAssets.includes(this.typeAsset)) {
+      if (dAssets.includes(this.typeAsset)) {
         jsValue = window.Babel.transform(jsValue, {
           envName: 'production',
           presets: ['react', 'es2015'],
           babelrc: false
         }).code;
       }
-
-      jsValue = this.typeJs==='coffeescript' ? `<script type="${this.typeJs}" defer>try {
+      
+      jsValue = this.typeJs === 'text/javascript' ? `<script type="${this.typeJs}" defer>try {
         ${jsValue} 
         parent.postMessage("","*");}
         catch(e) {parent.postMessage(e,"*");}</script>`
-      :`<script type="${this.typeJs}" defer>${jsValue}</script>`;
+        : `<script type="${this.typeJs}" defer>${jsValue}</script>`;
 
       this.iframeDoc.open();
       this.iframeDoc.write(`<html>

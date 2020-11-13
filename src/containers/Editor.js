@@ -108,7 +108,7 @@ export default function Editor () {
         <Settings />
       </header>
 
-      <Split split="vertical" gutterSize={7}>
+      <Split direction="horizontal" cursor="col-resize" gutterSize={7}>
 
         <div className="editor">
 
@@ -118,7 +118,7 @@ export default function Editor () {
             lang={currentTabIndex}
           />
 
-          <div className="editor-menu btn-group">
+          <div className="btn-group">
             <button className="btn btn-primary" onClick={onRun}><i className="fa fa-play"></i></button>
             <button className="btn btn-primary" onClick={onPrettier}><i className="fa fa-stream"></i></button>
             <button className="btn btn-primary" onClick={onShowConsole}><i className="fa fa-terminal"></i></button>
@@ -127,28 +127,32 @@ export default function Editor () {
 
         <div className="output">
 
-          <div className="h-100 iframe-sandbox">
-            <iframe title="Kody online web editor" id="sandbox"></iframe>
-          </div>
+          <Split direction="vertical" cursor="row-resize"
+            gutterSize={7}
+            sizes={showConsole ? [50, 50] : [100, 0]}
+            minSize={showConsole ? 70 : 0}>
 
-          <div className="w-100 h-50 console" style={{ display: showConsole ? 'block' : 'none' }}>
-            <div className="console-header fs-12 text-uppercase">
-              <p className="m-0"><i className="fa fa-terminal mr-2"></i><span>console</span></p>
-
-              <div className="d-flex">
-                <button onClick={onClearConsole} className="btn-inherit">
-                  <i className="fa fa-eraser"></i>
-                </button>
-
-                <button onClick={onShowConsole} className="btn-inherit ml-3">
-                  <i className="fa fa-times-circle"></i>
-                </button>
-              </div>
+            <div className="iframe-sandbox">
+              <iframe title="Kody online web editor" id="sandbox"></iframe>
             </div>
-            <pre>
-              {consoleLogs}
-            </pre>
-          </div>
+
+            <div className="w-100 console" style={{ display: showConsole ? 'block' : 'none' }}>
+              <div className="console-header fs-12 text-uppercase">
+                <p className="m-0"><i className="fa fa-terminal mr-2"></i><span>console</span></p>
+
+                <div className="d-flex">
+                  <button onClick={onClearConsole} className="btn-inherit">
+                    <i className="fa fa-eraser"></i>
+                  </button>
+
+                  <button onClick={onShowConsole} className="btn-inherit ml-3">
+                    <i className="fa fa-times-circle"></i>
+                  </button>
+                </div>
+              </div>
+              <pre>{consoleLogs}</pre>
+            </div>
+          </Split>
 
         </div>
 

@@ -46,23 +46,23 @@ export default function Timer () {
 
   return (<div className="d-flex">
       {(!timerOps.isPlay && !timerOps.isPaused)
-        && <span className="list-group-item text-success" onClick={onStart}>
+        && <span className="btn text-success" onClick={onStart}>
           <i className="fa fa-play"></i>
         </span>}
 
       {(timerOps.isResumed || timerOps.isPlay)
-        && <span className="list-group-item text-primary" onClick={onPause}>
+        && <span className="btn text-primary" onClick={onPause}>
           <i className="fa fa-pause"></i>
         </span>}
 
       {timerOps.isPaused
-        && <span className="list-group-item text-primary" onClick={() => { onStart('resume') }}>
+        && <span className="btn text-primary" onClick={() => { onStart('resume') }}>
           <i className="fa fa-play"></i>
         </span>}
 
-      <span className="list-group-item flex-grow-1 text-center">{dispTimer}</span>
+      <span className="btn text-white">{dispTimer}</span>
 
-      <span className="list-group-item text-danger" onClick={onReset}>
+      <span className="btn text-danger" onClick={onReset}>
         <i className="fa fa-recycle"></i>
       </span>
   </div>);

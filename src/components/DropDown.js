@@ -9,7 +9,7 @@ export default function DropDown ({ items, selectedItem, onSelectItem }) {
   }
 
   return (<div className="dropdown">
-    <div className="w-100 list-group-item border-0 dropdown-toggle" type="button" onClick={onToggle}>
+    <div className="btn dropdown-toggle text-white" onClick={onToggle}>
       {selectedItem}
     </div>
     <div className="dropdown-menu" style={{ display: toggle ? 'block' : 'none' }}>
