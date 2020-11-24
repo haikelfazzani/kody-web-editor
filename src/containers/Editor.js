@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useStoreState, useStoreActions } from 'easy-peasy';
 
-import Sidebar from '../components/sidebar/Sidebar';
 import EditorAce from '../components/EditorAce';
 import Split from 'react-split';
 
@@ -12,10 +11,8 @@ import templates from '../util/templates';
 
 import DomUtil from '../util/DomUtil';
 import { Link, useParams } from 'react-router-dom';
-import { DropboxService } from '../services/DropboxService';
 import PasteService from '../services/PasteService';
 import Settings from '../components/sidebar/Settings';
-
 
 const edFiles = [
   { name: 'Index.html', icon: 'html5', color: 'text-danger' },
@@ -33,7 +30,9 @@ const EditorFiles = ({ getFileIndex }) => {
   }
 
   return <ul className="list-group d-flex">
-    <li className="d-flex align-items-center list-group-item fs-12"><Link to="/"><i className="fas fa-home text-white"></i></Link></li>
+    <li className="d-flex align-items-center list-group-item">
+      <Link to="/"><i className="fas fa-home text-white"></i></Link>
+    </li>
     {edFiles.map((tab, i) => <li
       className={"d-flex align-items-center list-group-item " + (currEdFileIndex === i ? 'active-tab' : '')}
       onClick={() => { setEdFileIndex(i) }}
@@ -105,7 +104,7 @@ export default function Editor () {
 
       <header>
         <EditorFiles getFileIndex={getTabIndex} />
-        <Settings />
+        <Settings />        
       </header>
 
       <Split direction="horizontal" cursor="col-resize" gutterSize={7}>

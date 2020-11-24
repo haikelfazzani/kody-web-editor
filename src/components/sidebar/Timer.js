@@ -44,7 +44,7 @@ export default function Timer () {
     setDispTimer(h + ':' + min + ':' + sec);
   }, [timer, setTimer]);
 
-  return (<div className="d-flex">
+  return (<>
       {(!timerOps.isPlay && !timerOps.isPaused)
         && <span className="btn text-success" onClick={onStart}>
           <i className="fa fa-play"></i>
@@ -65,5 +65,5 @@ export default function Timer () {
       <span className="btn text-danger" onClick={onReset}>
         <i className="fa fa-recycle"></i>
       </span>
-  </div>);
+  </>);
 }

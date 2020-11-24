@@ -1,27 +1,32 @@
-
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from "./pages/Home";
-import Playground from "./pages/Playground";
-import Auth from "./pages/Auth";
-import Profile from "./pages/Profile";
 import PrivateRoute from "./components/PrivateRoute";
+import Spinner from "./components/Spinner";
+
+const Playground = lazy(() => import("./pages/Playground"));
+const Auth = lazy(() => import("./pages/Auth"));
+const Profile = lazy(() => import("./pages/Profile"));
+const About = lazy(() => import("./pages/About"));
 
 export default function App () {
 
   return <BrowserRouter>
-    <Switch>
+    <Suspense fallback={<Spinner />}>
+      <Switch>
 
-      <Route exact path="/" component={Home} />
-      
-      <Route exact path="/playground" component={Playground} />
-      <Route path="/playground/:service/:id" component={Playground} />
+        <Route exact path="/" component={Home} />
 
-      <Route path="/auth" component={Auth} />
+        <Route exact path="/playground" component={Playground} />
+        <Route path="/playground/:service/:id" component={Playground} />
 
-      <PrivateRoute path="/profile" component={Profile} />
-      
-      {/* <Redirect path="*" to="/" /> */}
-    </Switch>
+        <Route path="/auth" component={Auth} />
+
+        <PrivateRoute path="/profile" component={Profile} />
+        <Route path="/About" component={About} />
+
+        {/* <Redirect path="*" to="/" /> */}
+      </Switch>
+    </Suspense>
   </BrowserRouter>;
 } 

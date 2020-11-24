@@ -11,7 +11,7 @@ import * as langTools from "ace-builds/src-noconflict/ext-language_tools";
 
 import { useStoreState } from 'easy-peasy';
 
-var staticWordCompleter = {
+var jsCompleter = {
   getCompletions: function (editor, session, pos, prefix, callback) {
     var wordList = [
       { word: "document", value: "document", meta: "document" },
@@ -29,13 +29,22 @@ var staticWordCompleter = {
   }
 }
 
+var cssCompleter = {
+  getCompletions: function (editor, session, pos, prefix, callback) {
+    var wordList = [
+      { word: "color", value: "color" },
+      { word: "background", value: "background" },
+      { word: "border", value: "border()" }
+    ];
+    callback(null, wordList);
+  }
+}
+
 export default function EditorAce ({ value, onEditorChange, lang = 'html', readOnly = false }) {
 
   const { fontSize } = useStoreState(state => state.editorModel);
 
-  if (lang === 2) {
-    langTools.setCompleters([staticWordCompleter]);
-  }
+  langTools.setCompleters(lang === 1 ? [] : lang === 2 ? [jsCompleter] : [cssCompleter]);
 
   return <AceEditor
     mode={lang === 0 ? 'html' : lang === 1 ? 'css' : 'javascript'}

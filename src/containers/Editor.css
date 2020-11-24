@@ -15,17 +15,21 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--light-bleu);
+  border-bottom: 1px solid var(--gray);
+  font-size: 14px;
   color: #ffffff;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.5);
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 22%), 0 2px 0px 0px rgb(0 0 0 / 0%);
+  z-index: 99999;
 }
 .playground header .list-group { display:flex !important; flex-direction: row; }
 .playground header .list-group-item { 
+  color: rgb(155, 155, 155);
   background-color: var(--light-bleu); 
-  border: 1px solid rgb(0 21 40);
+  border-right: 1px solid var(--gray);
     cursor: pointer;
 }
 
-.playground header .list-group-item:hover {background-color: #ffffff1e;}
+.playground header .list-group-item:hover {color: #ffffff;}
 
 .playground>div {
   width: 100%;
@@ -67,7 +71,7 @@
   background: #1e212ba9;
 }
 /*******************************/
-.active-tab {background-color: var(--dark-bleu-main) !important;}
+.active-tab {color: var(--white) !important;}
 /*****************/
 .output > div {
   display: flex;

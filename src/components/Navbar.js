@@ -37,7 +37,7 @@ function Navbar () {
 
           <ul className="navbar-nav">
             <li className="nav-item">
-              <span className="nav-link mr-3"><i className="fa fa-info-circle"></i> About</span>
+              <Link to="/about" className="nav-link mr-3"><i className="fa fa-info-circle"></i> About</Link>
             </li>
 
             {DropboxAuth.getToken()
