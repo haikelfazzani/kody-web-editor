@@ -58,6 +58,13 @@ const cdnjs = {
       name: 'coffeescript',
       version: '2.5.1'
     }
+  ],
+  lodash: [
+    {
+      latest: 'https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js',
+      name: 'lodash',
+      version: '4.17.20'
+    }
   ]
 };
 

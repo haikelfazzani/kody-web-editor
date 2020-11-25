@@ -6,13 +6,14 @@ import Split from 'react-split';
 
 import jsBeauty from '../util/jsBeauty';
 
-import './Editor.css';
 import templates from '../util/templates';
 
 import DomUtil from '../util/DomUtil';
 import { Link, useParams } from 'react-router-dom';
 import PasteService from '../services/PasteService';
 import Settings from '../components/sidebar/Settings';
+
+import './Editor.css';
 
 const edFiles = [
   { name: 'Index.html', icon: 'html5', color: 'text-danger' },
@@ -41,7 +42,7 @@ const EditorFiles = ({ getFileIndex }) => {
   </ul>
 }
 
-export default function Editor () {
+export default function Editor (props) {
 
   let { service, id } = useParams();
 
@@ -58,6 +59,9 @@ export default function Editor () {
         .then(r => {
           setEditorValue(r);
           setTabs([r, '', '']);
+        })
+        .catch(e =>{
+          props.history.push('/');
         });
     }
   }, [service, id]);

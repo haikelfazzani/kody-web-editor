@@ -6,6 +6,7 @@ import rxjsTemplate from './templates/rxjsTemplate';
 import typescriptTemplate from './templates/typescriptTemplate';
 import jqueryTemplate from './templates/jqueryTemplate';
 import coffeescriptTemplate from './templates/coffeescriptTemplate';
+import lodashTemplate from './templates/lodashTemplate';
 
 const templates = {
   vanilla: vanillatTemplate,
@@ -16,6 +17,7 @@ const templates = {
   typescript: typescriptTemplate,
   jquery: jqueryTemplate,
   coffeescript: coffeescriptTemplate,
+  lodash: lodashTemplate,
 }
 
 export default templates;
