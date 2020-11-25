@@ -3,25 +3,15 @@
  * window.Sass.compile(css, function (result) { });
  */
 
-const dAssets = ['react', 'preact'];
-
 export class IframeUtil {
-  constructor (typeAsset, resources) {
+  constructor (preprocessors, resources) {
+    this.jsPreprocessor = preprocessors.js; // typescript - javascript - babel - coffeescript etc...
+    this.cssPreprocessor = preprocessors.css;
+    this.htmlPreprocessor = preprocessors.html;
 
-    if (typeAsset !== 'typescript') {
-      this.cdns = resources.reduce((a, r) => {
-        return a + `<script type="text/javascript" src="${r.latest}"></script>`
-      }, '');
-    }
-    else {
-      this.cdns = '';
-    }
-
-    this.typeJs = /coffeescript/g.test(typeAsset)
-      ? "text/coffeescript"
-      : "text/javascript";
-
-    this.typeAsset = typeAsset; // typescript - javascript - react - vue etc...
+    this.resources = resources.reduce((a, r) => {
+      return a + `<script type="text/javascript" src="${r.latest}"></script>`
+    }, '');
 
     this.iframe = document.createElement('iframe');
     this.iframe.id = 'sandbox';
@@ -35,23 +25,25 @@ export class IframeUtil {
 
   write (html, cssValue, jsValue, resolve) {
     try {
-      if (this.typeAsset === 'typescript') {
+      if (this.jsPreprocessor === 'typescript') {
         jsValue = this.compileTypescript(jsValue);
       }
 
-      if (dAssets.includes(this.typeAsset)) {
+      if (this.jsPreprocessor === 'babel') {
         jsValue = window.Babel.transform(jsValue, {
           envName: 'production',
           presets: ['react', 'es2015'],
           babelrc: false
         }).code;
       }
-      
-      jsValue = this.typeJs === 'text/javascript' ? `<script type="${this.typeJs}" defer>try {
+
+      jsValue = (this.jsPreprocessor !== 'coffeescript')
+        ? `<script type="text/javascript" defer>try {
         ${jsValue} 
         parent.postMessage("","*");}
         catch(e) {parent.postMessage(e,"*");}</script>`
-        : `<script type="${this.typeJs}" defer>${jsValue}</script>`;
+        : `<script src="https://cdn.jsdelivr.net/npm/coffeescript@2.5.1/lib/coffeescript-browser-compiler-legacy/coffeescript.min.js"></script>
+        <script type="text/${this.jsPreprocessor}" defer>${jsValue}</script>`;
 
       this.iframeDoc.open();
       this.iframeDoc.write(`<html>
@@ -61,13 +53,14 @@ export class IframeUtil {
         <title>Kody - Online web editor</title>
         <style>${cssValue}</style>              
       </head>
-      <body>      
-        ${this.cdns}${html}${jsValue}
+      <body>   
+        ${this.resources}${html}${jsValue}
       </body>
     </html>`);
       this.iframeDoc.close();
     } catch (error) {
-      resolve(error.message)
+      console.log(error);
+      resolve(error.message);
     }
   }
 

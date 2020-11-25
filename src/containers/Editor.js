@@ -1,52 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useStoreState, useStoreActions } from 'easy-peasy';
 
 import EditorAce from '../components/EditorAce';
 import Split from 'react-split';
-
+import Tabs from './Tabs';
 import jsBeauty from '../util/jsBeauty';
 
 import templates from '../util/templates';
 
-import DomUtil from '../util/DomUtil';
-import { Link, useParams } from 'react-router-dom';
 import PasteService from '../services/PasteService';
-import Settings from '../components/sidebar/Settings';
-
+import Settings from './settings/Settings';
+import Sidebar from './sidebar/Sidebar';
 import './Editor.css';
-
-const edFiles = [
-  { name: 'Index.html', icon: 'html5', color: 'text-danger' },
-  { name: 'Style.css', icon: 'css3', color: 'text-primary' },
-  { name: 'App.js', icon: 'js', color: 'text-warning' }
-];
-
-const EditorFiles = ({ getFileIndex }) => {
-
-  const [currEdFileIndex, setcurrEdFileIndex] = useState(0);
-
-  const setEdFileIndex = (currIndex) => {
-    getFileIndex(currIndex);
-    setcurrEdFileIndex(currIndex)
-  }
-
-  return <ul className="list-group d-flex">
-    <li className="d-flex align-items-center list-group-item">
-      <Link to="/"><i className="fas fa-home text-white"></i></Link>
-    </li>
-    {edFiles.map((tab, i) => <li
-      className={"d-flex align-items-center list-group-item " + (currEdFileIndex === i ? 'active-tab' : '')}
-      onClick={() => { setEdFileIndex(i) }}
-      key={'tab' + i}><i className={tab.color + " mr-2 fab fa-" + tab.icon}></i> {tab.name}
-    </li>)}
-  </ul>
-}
 
 export default function Editor (props) {
 
   let { service, id } = useParams();
 
-  const { editorValue, consoleLogs, template, resources } = useStoreState(state => state.editorModel);
+  const { preprocessors, editorValue, consoleLogs, template, resources } = useStoreState(state => state.editorModel);
   const { setEditorValue, setConsoleLogs, runCode } = useStoreActions(actions => actions.editorModel)
 
   const [tabs, setTabs] = useState(templates[template]);
@@ -60,23 +32,22 @@ export default function Editor (props) {
           setEditorValue(r);
           setTabs([r, '', '']);
         })
-        .catch(e =>{
+        .catch(e => {
           props.history.push('/');
         });
     }
   }, [service, id]);
 
-  useEffect(() => {
-    (template === 'typescript') ? DomUtil.appendScript() : DomUtil.removeElement();
-    setEditorValue(templates[template][currentTabIndex]);
-    setTabs(templates[template]);
-
+  useEffect(()=>{
     window.addEventListener('message', function (e) {
       if (e && e.data && e.data.message) {
         setConsoleLogs(e.data.message + '\n' + e.data.stack);
       }
     }, false);
-  }, [template]);
+
+    setEditorValue(templates[template][currentTabIndex]);
+    setTabs(templates[template]);
+  },[template]);
 
   const onEditorChange = (value) => {
     setEditorValue(value);
@@ -91,7 +62,7 @@ export default function Editor (props) {
   }
 
   const onRun = () => {
-    runCode({ template, tabs, resources });
+    runCode({ tabs, preprocessors, resources });
   }
 
   const onPrettier = () => {
@@ -107,9 +78,11 @@ export default function Editor (props) {
     <div className="playground">
 
       <header>
-        <EditorFiles getFileIndex={getTabIndex} />
-        <Settings />        
+        <Tabs getFileIndex={getTabIndex} />
+        <Settings />
       </header>
+
+      <Sidebar />
 
       <Split direction="horizontal" cursor="col-resize" gutterSize={7}>
 

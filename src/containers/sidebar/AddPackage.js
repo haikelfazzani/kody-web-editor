@@ -26,26 +26,30 @@ export default function AddPackage () {
     setResources(tmp);
   }
 
-  return (<div className="w-100 mt-3">
+  return (<div className="w-100 text-white mt-3">
 
-    <form onSubmit={onAdd} className="w-100 pl-3 pr-3 mb-3">
+    <p className="border-bottom text-uppercase pb-2"><i className="fa fa-box-open"></i> Add Library</p>
+
+    <form onSubmit={onAdd} className="w-100 mb-3">
       <div className="w-100 form-group">
+        <label htmlFor="">Library</label>
         <input type="text" className="form-control" placeholder="vue" required />
       </div>
       <div className="w-100 form-group">
+        <label htmlFor="">Version</label>
         <input type="text" className="form-control" placeholder="3.0.2" required />
       </div>
       <div className="w-100 form-group">
+        <label htmlFor="">Cdn</label>
         <input type="text" className="form-control" placeholder="https://unpkg.com/vue@3.0.2" required />
-        <small className="text-danger">* Add only javascript packages</small>
       </div>
 
-      <button type="submit" className="w-100 btn btn-warning"><i className="fa fa-plus"></i> Add package</button>
+      <button type="submit" className="w-100 btn btn-warning"><i className="fa fa-plus"></i> Library</button>
     </form>
 
     <hr />
 
-    <ul className="pl-3 pr-3">
+    <ul className="p-0">
       <li className="text-uppercase"><i className="fa fa-cube"></i> Resources ({resources.length})</li>
       {resources && resources.map((p, i) => <li key={'p' + i} className="d-flex justify-content-between pl-3">
         <span className="text-muted"><i className="fa fa-thumbtack"></i> {p.name}({p.version}) </span>

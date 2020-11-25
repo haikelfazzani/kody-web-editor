@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function DropDown ({ items, selectedItem, onSelectItem }) {
+export default function DropDown ({ items, selectedItem, onSelectItem,dispText=true }) {
 
   const [toggle, setToggle] = useState(false);
 
@@ -10,13 +10,13 @@ export default function DropDown ({ items, selectedItem, onSelectItem }) {
 
   return (<div className="dropdown">
     <div className="btn dropdown-toggle text-white" onClick={onToggle}>
-      {selectedItem}
+      {dispText && selectedItem}
     </div>
     <div className="dropdown-menu" style={{ display: toggle ? 'block' : 'none' }}>
       {items.map(i => <div
         className={"dropdown-item " + (selectedItem === i ? 'bg-success' : '')}
         key={i}
-        onClick={() => { onSelectItem(i); onToggle() }}>{i}</div>)}
+        onClick={() => { onSelectItem(i); onToggle(); }}>{i}</div>)}
     </div>
   </div>);
 }

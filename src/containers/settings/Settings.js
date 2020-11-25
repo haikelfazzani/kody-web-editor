@@ -1,11 +1,11 @@
 import React from 'react';
 import { useStoreState, useStoreActions } from 'easy-peasy';
 
-import DropDown from '../DropDown';
+import DropDown from '../../components/DropDown';
 import templates from '../../util/templates';
 import Timer from './Timer';
 import FormSavePaste from './FormSavePaste';
-import Modal from '../Modal';
+import Modal from '../../components/Modal';
 import download from '../../util/download';
 import tabsToString from '../../util/tabsToString';
 
