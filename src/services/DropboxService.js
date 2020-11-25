@@ -7,11 +7,9 @@ try {
   fetch = window.fetch.bind(window);
 }
 
-const isDev = true;
-
 const KODY_DROPBOX_TOKEN = 'kody-dropbox-token';
 const DROPBOX_API_BASE_URL = 'https://api.dropboxapi.com/2/';
-const redirect_uri = isDev ? 'http://localhost:3000/auth' : 'https://kody.ml/auth';
+const redirect_uri = window.location.host + '/auth';
 
 export class DropboxAuth {
   static login () {
