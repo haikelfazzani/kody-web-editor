@@ -12,7 +12,7 @@ export default function Sidebar () {
     <nav className={"nav " + (show ? 'nav-open' : '')}>
 
       <div>
-        <button className="nav__toggle" onClick={onShow}>{show ? 'X' : '+'}</button>
+        <button className="nav__toggle" onClick={onShow}>{show ? 'X' : <i className="fa fa-cog"></i>}</button>
       </div>
 
       <div className="sidebar-content">

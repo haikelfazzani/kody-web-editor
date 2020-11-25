@@ -1,14 +1,15 @@
 const reactTemplate = [
-  `<div id="app"></div>`,
+  `<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<div id="app"></div>`,
   'body { color: red; }',
   `function App(props) {
   const numbers = props.numbers;
   
-  React.useEffect(()=>{
-    
+  React.useEffect(()=>{    
     fetch('https://jsonplaceholder.typicode.com/users')
-  .then(response => response.json())
-  .then(json => console.log(json))
+      .then(response => response.json())
+      .then(json => console.log(json))
   },[])
   
   const listItems = numbers.map((number) =>

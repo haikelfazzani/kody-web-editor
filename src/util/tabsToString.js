@@ -4,7 +4,7 @@ export default function tabsToString (resources, template) {
   if (getTabs && JSON.parse(getTabs).length === 3) {
 
     let nResources = resources.reduce((a, r) => {
-      return a + `<script src="${r.latest}"></script>`
+      return a + `<script src="${r}"></script>`
     }, '');
 
     getTabs = JSON.parse(getTabs);

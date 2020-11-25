@@ -4,14 +4,10 @@
  */
 
 export class IframeUtil {
-  constructor (preprocessors, resources) {
+  constructor (preprocessors) {
     this.jsPreprocessor = preprocessors.js; // typescript - javascript - babel - coffeescript etc...
     this.cssPreprocessor = preprocessors.css;
     this.htmlPreprocessor = preprocessors.html;
-
-    this.resources = resources.reduce((a, r) => {
-      return a + `<script type="text/javascript" src="${r.latest}"></script>`
-    }, '');
 
     this.iframe = document.createElement('iframe');
     this.iframe.id = 'sandbox';
@@ -53,9 +49,7 @@ export class IframeUtil {
         <title>Kody - Online web editor</title>
         <style>${cssValue}</style>              
       </head>
-      <body>   
-        ${this.resources}${html}${jsValue}
-      </body>
+      <body>${html}${jsValue}</body>
     </html>`);
       this.iframeDoc.close();
     } catch (error) {

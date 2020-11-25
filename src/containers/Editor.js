@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useStoreState, useStoreActions } from 'easy-peasy';
 
@@ -10,9 +10,10 @@ import jsBeauty from '../util/jsBeauty';
 import templates from '../util/templates';
 
 import PasteService from '../services/PasteService';
-import Settings from './settings/Settings';
-import Sidebar from './sidebar/Sidebar';
 import './Editor.css';
+
+const Settings = React.lazy(() => import('./settings/Settings'));
+const Sidebar = React.lazy(() => import('./sidebar/Sidebar'));
 
 export default function Editor (props) {
 
@@ -38,7 +39,7 @@ export default function Editor (props) {
     }
   }, [service, id]);
 
-  useEffect(()=>{
+  useEffect(() => {
     window.addEventListener('message', function (e) {
       if (e && e.data && e.data.message) {
         setConsoleLogs(e.data.message + '\n' + e.data.stack);
@@ -47,7 +48,14 @@ export default function Editor (props) {
 
     setEditorValue(templates[template][currentTabIndex]);
     setTabs(templates[template]);
-  },[template]);
+  }, [template]);
+
+  useEffect(() => {
+    if (resources.length > 0) {
+      tabs[0] = resources[0] + '\n' + tabs[0];
+      setEditorValue(tabs[currentTabIndex]);
+    }
+  }, [resources]);
 
   const onEditorChange = (value) => {
     setEditorValue(value);
@@ -62,7 +70,7 @@ export default function Editor (props) {
   }
 
   const onRun = () => {
-    runCode({ tabs, preprocessors, resources });
+    runCode({ tabs, preprocessors });
   }
 
   const onPrettier = () => {
@@ -82,7 +90,9 @@ export default function Editor (props) {
         <Settings />
       </header>
 
-      <Sidebar />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Sidebar />
+      </Suspense>
 
       <Split direction="horizontal" cursor="col-resize" gutterSize={7}>
 

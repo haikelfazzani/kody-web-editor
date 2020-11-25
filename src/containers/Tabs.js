@@ -50,15 +50,15 @@ export default function Tabs ({ getFileIndex }) {
       <Link to="/"><i className="fas fa-home text-white"></i></Link>
     </li>
     {tabFiles.map((tab, i) => <li
-      className={"d-flex align-items-center list-group-item " + (currEdFileIndex === i ? 'active-tab' : '')}
+      className={"d-flex align-items-center list-group-item pr-2 " + (currEdFileIndex === i ? 'active-tab' : '')}
       key={'tab' + i}><i className={tab.color + " mr-2 fab fa-" + tab.icon}></i>
-      <span onClick={() => { setEdFileIndex(i) }}>{tab.name}</span>
+      <span onClick={() => { setEdFileIndex(i) }}>{preprocessors[tab.type]}</span>
       <DropDown
         dispText={false}
         items={tab.preprocessor}
         selectedItem={preprocessors[tab.type]}
         onSelectItem={(v) => { onSelectItem(v, tab) }}
-      >v</DropDown>
+      />
     </li>)}
   </ul>
 }

@@ -1,60 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStoreActions, useStoreState } from 'easy-peasy';
+import CDNService from '../../services/CDNService';
 
 export default function AddPackage () {
 
   const { resources } = useStoreState(state => state.editorModel);
-  const { setResources } = useStoreActions(actions => actions.editorModel)
+  const { setResources } = useStoreActions(actions => actions.editorModel);
+  const [searchResults, setSearchResults] = useState(null);
 
-  const onAdd = (e) => {
-    e.preventDefault();
-
-    let name = e.target.elements[0].value;
-    let version = e.target.elements[1].value;
-    let latest = e.target.elements[2].value;
+  const onAdd = (libURL) => {
+    let cdnUrl = `<script src="${libURL}"></script>`;
 
     let tmp = resources.slice(0);
-    if (!tmp.find(v => v.name === name)) {
-      tmp.push({ name, version, latest });
+    if (!resources.includes(cdnUrl)) {
+      tmp.push(cdnUrl);
       setResources(tmp);
     }
   }
 
-  const onRemove = (p) => {
-    let tmp = resources.slice(0);
-    tmp = tmp.filter(v => v.name !== p.name);
-    setResources(tmp);
+  const onSubmitLib = (e) => {
+    e.preventDefault();
+    onAdd(e.target.elements[0].value);
+  }
+
+  const onSearch = async (e) => {
+    e.preventDefault();
+    let result = await CDNService.search(e.target.elements[0].value);
+    setSearchResults(result);
   }
 
   return (<div className="w-100 text-white mt-3">
 
+    <p className="border-bottom text-uppercase pb-2"><i className="fa fa-box-open"></i> Search for Library</p>
+
+    <form onSubmit={onSearch} className="w-100 mb-3">
+      <div className="w-100 form-group">
+        <label htmlFor="lib-name">Library name</label>
+        <input type="text" name="lib-name" className="form-control" placeholder="react" required />
+      </div>
+
+      <button type="submit" className="w-100 btn btn-warning"><i className="fa fa-search"></i> CDNJS</button>
+    </form>
+
+    {searchResults && <ul className="list-group bg-dark overflow-auto" style={{ maxHeight: '300px' }}>
+      {searchResults.map((c, i) => <li className="list-group-item fs-12 py-2 pr-2 pl-2 bg-transparent" key={c.name + '' + i}>
+        <div className="w-100 d-flex justify-content-between align-items-center mb-2">
+          <span>{c.name} {c.version}</span>
+          <button type="button" onClick={() => { onAdd(c.latest); }} className="btn-inherit">
+            <i className="fa fa-plus-circle"></i>
+          </button>
+        </div>
+        <input type="text" name="lib-name" className="form-control fs-12 p-0" defaultValue={c.latest} />
+      </li>)}
+    </ul>}
+
+    <hr />
+
     <p className="border-bottom text-uppercase pb-2"><i className="fa fa-box-open"></i> Add Library</p>
 
-    <form onSubmit={onAdd} className="w-100 mb-3">
+    <form onSubmit={onSubmitLib} className="w-100 mb-3">
       <div className="w-100 form-group">
-        <label htmlFor="">Library</label>
-        <input type="text" className="form-control" placeholder="vue" required />
-      </div>
-      <div className="w-100 form-group">
-        <label htmlFor="">Version</label>
-        <input type="text" className="form-control" placeholder="3.0.2" required />
-      </div>
-      <div className="w-100 form-group">
-        <label htmlFor="">Cdn</label>
-        <input type="text" className="form-control" placeholder="https://unpkg.com/vue@3.0.2" required />
+        <label htmlFor="cdn">URL</label>
+        <input type="url" name="cdn" className="form-control" placeholder="https://unpkg.com/vue@3.0.2" required />
       </div>
 
       <button type="submit" className="w-100 btn btn-warning"><i className="fa fa-plus"></i> Library</button>
     </form>
-
-    <hr />
-
-    <ul className="p-0">
-      <li className="text-uppercase"><i className="fa fa-cube"></i> Resources ({resources.length})</li>
-      {resources && resources.map((p, i) => <li key={'p' + i} className="d-flex justify-content-between pl-3">
-        <span className="text-muted"><i className="fa fa-thumbtack"></i> {p.name}({p.version}) </span>
-        <span onClick={() => { onRemove(p); }}><i className="fa fa-trash text-danger"></i></span>
-      </li>)}
-    </ul>
   </div>);
 }

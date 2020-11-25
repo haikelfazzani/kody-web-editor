@@ -1,5 +1,6 @@
 const vueTemplate = [
-  `<div id="basic-event">
+  `<script src="https://unpkg.com/vue@next"></script>
+<div id="basic-event">
   <button @click="counter += 1">Add 1</button>
   <p>The button above has been clicked {{ counter }} times.</p>
 </div>`,
