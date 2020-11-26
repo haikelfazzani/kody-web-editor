@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from "./pages/Home";
+import Home from "./pages/home/Home";
 import Auth from "./pages/Auth";
 import PrivateRoute from "./components/PrivateRoute";
 import Spinner from "./components/Spinner";

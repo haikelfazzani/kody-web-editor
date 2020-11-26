@@ -3,11 +3,14 @@ import { useStoreState, useStoreActions } from 'easy-peasy';
 
 import DropDown from '../../components/DropDown';
 import templates from '../../util/templates';
-import Timer from './Timer';
-import FormSavePaste from './FormSavePaste';
-import Modal from '../../components/Modal';
+
 import download from '../../util/download';
 import tabsToString from '../../util/tabsToString';
+
+const Modal = React.lazy(() => import('../../components/Modal'));
+const AddPackage = React.lazy(() => import('./AddPackage'));
+const FormSavePaste = React.lazy(() => import('./FormSavePaste'));
+const Timer = React.lazy(() => import('./Timer'));
 
 const fontSizes = [12, 14, 16, 18, 20, 22, 24];
 
@@ -41,11 +44,10 @@ export default function Settings () {
         />
       </li>
 
-      <li className="d-flex align-items-center list-group-item pr-0 pl-0"><Timer /></li>
-
-      <li className="d-flex align-items-center list-group-item" onClick={onDownload}><i className="fa fa-download"></i></li>
-
+      <Modal icon="fa fa-archive"><AddPackage /></Modal>
       <Modal><FormSavePaste /></Modal>
+      <li className="d-flex align-items-center list-group-item pr-0 pl-0"><Timer /></li>
+      <li className="d-flex align-items-center list-group-item" onClick={onDownload}><i className="fa fa-download"></i></li>
     </ul>
   );
 }

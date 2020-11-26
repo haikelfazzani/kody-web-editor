@@ -44,7 +44,7 @@ function FormSavePaste () {
   }
 
   return (<>
-    <form className="w-50 text-white bg-dark py-3 pl-3 pr-3 mt-5" onSubmit={onSaveSnippet}>
+    <form className="w-100" onSubmit={onSaveSnippet}>
 
       <div className="form-group">
         <label htmlFor="pasteService"><i className="fa fa-database"></i> service</label>

@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 import './Home.css';
-import kodyImg from '../img/editor.png';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import kodyImg from '../../img/editor.png';
+import Navbar from '../../components/Navbar';
 
-const icons = ['javascript', 'jquery', 'react', 'preact', 'vue', 'backbone', 'typescript', 'coffeescript', 'lodash', 'rxjs', 'pouchdb', 'moment'];
+const SectionFrameworks = React.lazy(() => import('./SectionFrameworks'));
+const Footer = React.lazy(() => import('../../components/Footer'));
 
 function Home () {
 
@@ -35,30 +35,16 @@ function Home () {
 
       <div className="container py-lg-5 py-md-3">
 
-        <section className="py-5">
-          <h3 className="text-muted text-center">All in one place</h3>
-          <h2 className="text-center mb-5">Your favorite Frameworks and libraries.</h2>
-          <div className="row fs-35">
-            {icons.map(icon => <div className="col-md-2 mb-3" key={icon}>
-              <div className="card">
-                <div className="card-body text-center">
-                  <img className="mb-3" src={`https://deroados.sirv.com/logos/${icon}.svg`} alt={icon} width="100" height="100" />
-                  <span className="text-center text-uppercase font-weight-bold">{icon}</span>
-                </div>
-              </div>
-            </div>)}
-          </div>
-        </section>
+        <Suspense fallback=""><SectionFrameworks /></Suspense>
 
         <section className="py-5 text-center">
           <h3 className="text-muted text-center">Built for developers</h3>
           <h2 className="text-center mb-5">CREATE YOUR OWN VIEWS.</h2>
           <img src={kodyImg} alt="kody web editor" className="img-fluid mx-auto" />
         </section>
-
       </div>
 
-      <Footer />
+      <Suspense fallback=""><Footer /></Suspense>
     </div>
   </>);
 }

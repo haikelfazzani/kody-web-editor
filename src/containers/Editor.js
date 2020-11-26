@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useStoreState, useStoreActions } from 'easy-peasy';
 
@@ -13,7 +13,6 @@ import PasteService from '../services/PasteService';
 import './Editor.css';
 
 const Settings = React.lazy(() => import('./settings/Settings'));
-const Sidebar = React.lazy(() => import('./sidebar/Sidebar'));
 
 export default function Editor (props) {
 
@@ -84,20 +83,14 @@ export default function Editor (props) {
 
   return (
     <div className="playground">
-
       <header>
         <Tabs getFileIndex={getTabIndex} />
         <Settings />
       </header>
 
-      <Suspense fallback={<div>Loading...</div>}>
-        <Sidebar />
-      </Suspense>
-
       <Split direction="horizontal" cursor="col-resize" gutterSize={7}>
 
         <div className="editor">
-
           <EditorAce
             onEditorChange={onEditorChange}
             value={editorValue}
@@ -105,9 +98,9 @@ export default function Editor (props) {
           />
 
           <div className="btn-group">
-            <button className="btn btn-primary" onClick={onRun}><i className="fa fa-play"></i></button>
-            <button className="btn btn-primary" onClick={onPrettier}><i className="fa fa-stream"></i></button>
-            <button className="btn btn-primary" onClick={onShowConsole}><i className="fa fa-terminal"></i></button>
+            <button className="btn btn-primary" title="Run Code" onClick={onRun}><i className="fa fa-play"></i></button>
+            <button className="btn btn-primary" title="Format Code" onClick={onPrettier}><i className="fa fa-stream"></i></button>
+            <button className="btn btn-primary" title="Show Console" onClick={onShowConsole}><i className="fa fa-terminal"></i></button>
           </div>
         </div>
 
@@ -143,7 +136,6 @@ export default function Editor (props) {
         </div>
 
       </Split>
-
     </div>
   );
 }
