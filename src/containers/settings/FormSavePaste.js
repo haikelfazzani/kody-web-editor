@@ -7,7 +7,7 @@ import tabsToString from '../../util/tabsToString';
 
 function FormSavePaste () {
 
-  const { resources, template } = useStoreState(state => state.editorModel);
+  const { preprocessors } = useStoreState(state => state.editorModel);
   const [pasteService, setPasteService] = useState('pastebin');
   const [isSaved, setIsSaved] = useState(false);
   const [snippetInfos, setSnippetInfos] = useState({
@@ -18,7 +18,7 @@ function FormSavePaste () {
   const onSaveSnippet = (e) => {
     e.preventDefault();
     if (pasteService) {
-      let code = tabsToString(resources, template);
+      let code = tabsToString(preprocessors);
       let pService = e.target.elements[0].value;
       let filename = e.target.elements[1].value;
       let expire_date = e.target.elements[2].value;

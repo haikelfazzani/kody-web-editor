@@ -2,23 +2,13 @@ import { createStore, action, thunk } from 'easy-peasy';
 import { IframeUtil } from '../util/IframeUtil';
 import DomUtil from '../util/DomUtil';
 
-let preprocessors = { html: 'html', css: 'css', js: 'javascript' };
-
-try {
-  let lPreps = localStorage.getItem('kody-preprocessors');
-  preprocessors = lPreps ? JSON.parse(lPreps) : preprocessors;
-
-  DomUtil.appendScript(preprocessors.js);
-} catch (error) {
-}
-
 const editorModel = {
   editorValue: '<div>hello</div>',
   consoleLogs: '// console',
   template: 'vanilla',
   resources: [],
   fontSize: localStorage.getItem('kody-fontSize') || 16,
-  preprocessors,
+  preprocessors: { html: 'html', css: 'css', js: 'javascript' },
 
   setEditorValue: action((state, payload) => {
     state.editorValue = payload;

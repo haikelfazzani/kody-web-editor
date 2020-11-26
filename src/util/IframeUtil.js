@@ -3,6 +3,8 @@
  * window.Sass.compile(css, function (result) { });
  */
 
+import Compiler from "./Compiler";
+
 export class IframeUtil {
   constructor (preprocessors) {
     this.jsPreprocessor = preprocessors.js; // typescript - javascript - babel - coffeescript etc...
@@ -21,14 +23,12 @@ export class IframeUtil {
 
   async write (html, cssValue, jsValue, resolve) {
     try {
-      cssValue = await this.compileCss(cssValue);
-      jsValue = await this.compileJs(jsValue);
+      cssValue = await Compiler.toCss(this.cssPreprocessor, cssValue);
+      jsValue = await Compiler.toJs(this.jsPreprocessor, jsValue);
 
       jsValue = (this.jsPreprocessor !== 'coffeescript')
-        ? `<script type="text/javascript" defer>try {
-        ${jsValue} 
-        parent.postMessage("","*");}
-        catch(e) {parent.postMessage(e,"*");}</script>`
+        ? `<script type="text/javascript" defer>try {${jsValue} 
+        parent.postMessage("","*");} catch(e) {parent.postMessage(e,"*");}</script>`
         : `<script src="https://cdn.jsdelivr.net/npm/coffeescript@2.5.1/lib/coffeescript-browser-compiler-legacy/coffeescript.min.js"></script>
         <script type="text/${this.jsPreprocessor}" defer>${jsValue}</script>`;
 
@@ -46,61 +46,6 @@ export class IframeUtil {
     } catch (error) {
       resolve(error.message);
     }
-  }
-
-  compileJs (jsValue) {
-    return new Promise((resolve, reject) => {
-      if (this.jsPreprocessor === 'typescript') {
-        jsValue = window.ts.transpileModule(jsValue, {
-          compilerOptions: {
-            allowJs: true,
-            declaration: true,
-            emitDeclarationOnly: true,
-            noEmitOnError: true,
-            noImplicitAny: true,
-            target: window.ts.ScriptTarget.ES5,
-            module: window.ts.ModuleKind.CommonJS
-          }
-        }).outputText;
-
-        resolve(jsValue);
-      }
-
-      if (this.jsPreprocessor === 'babel') {
-        let options = { envName: 'production', presets: ['react', 'es2015'], babelrc: false };
-        window.Babel.transform(jsValue, options, function (err, result) {
-          resolve(result.code);
-          reject(err);
-        });
-      }
-
-      resolve(jsValue);
-    });
-  }
-
-  compileCss (cssValue) {
-    return new Promise((resolve, reject) => {
-      if (this.cssPreprocessor === 'css') {
-        resolve(cssValue);
-      }
-      if (this.cssPreprocessor === 'sass') {
-        window.Sass.compile(cssValue, (result) => {
-          resolve(result.text);
-          if (result.formatted) {
-            reject(result.formatted);
-            window.postMessage(result.formatted, "*")
-          }
-        });
-      }
-      else {
-        let options = { env: "production" };
-
-        window.less.render(cssValue, options, (error, output) => {
-          resolve(output.css);
-          reject(error);
-        });
-      }
-    });
   }
 
   removeElement (id) {

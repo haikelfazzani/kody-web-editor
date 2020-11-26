@@ -1,33 +1,27 @@
-export default function tabsToString (resources, template) {
-  let getTabs = localStorage.getItem('kody-tabs');
 
-  if (getTabs && JSON.parse(getTabs).length === 3) {
+import cdns from "./cdns";
+import Compiler from "./Compiler";
 
-    let nResources = resources.reduce((a, r) => {
-      return a + `<script src="${r}"></script>`
-    }, '');
+export default async function tabsToString (preprocessors) {
+  try {
+    let tabs = localStorage.getItem('kody-tabs');
+    tabs = JSON.parse(tabs);
 
-    getTabs = JSON.parse(getTabs);
-    let jsValue = getTabs[2];
+    if (tabs.length === 3) {
+      let typeText = preprocessors.js === 'babel'
+        ? 'text/babel' : preprocessors.js === 'coffeescript'
+          ? 'text/coffeescript' : 'text/javascript';
 
-    const cassets = ['react', 'preact'];
-    let typeAsset = template !== 'coffeescript' ? 'text/javascript' : 'text/coffeescript';
+      tabs[0] = `<script type="text/javascript" src="${cdns[preprocessors.js]}"></script>\n` + tabs[0];
 
-    if (cassets.includes(template)) {
-      jsValue = window.Babel.transform(getTabs[2], {
-        envName: 'production',
-        presets: ['react', 'es2015'],
-        babelrc: false
-      }).code;
+      tabs[1] = await Compiler.toCss(preprocessors.css, tabs[1]);
+      tabs[1] = `<style>${tabs[1]}</style>`;
+
+      tabs[2] = `<script type="${typeText}">${tabs[2]}</script>`;
     }
 
-    getTabs = [
-      nResources,
-      getTabs[0],
-      `<style>${getTabs[1]}</style>`,
-      `<script type="${typeAsset}">${jsValue}</script>`
-    ];
-
-    return getTabs.join('\n');
+    return tabs.join('\n');
+  } catch (error) {
+    return error.message;
   }
 }

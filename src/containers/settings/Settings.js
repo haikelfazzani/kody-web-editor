@@ -16,11 +16,11 @@ const fontSizes = [12, 14, 16, 18, 20, 22, 24];
 
 export default function Settings () {
 
-  const { resources, template, fontSize } = useStoreState(state => state.editorModel);
+  const { preprocessors, template, fontSize } = useStoreState(state => state.editorModel);
   const { setTemplate, setFontSize } = useStoreActions(actions => actions.editorModel);
 
-  const onDownload = () => {
-    let code = tabsToString(resources, template);
+  const onDownload = async () => {
+    let code = await tabsToString(preprocessors);
     download(code, 'kody.html');
   }
 
