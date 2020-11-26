@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { withRouter, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { DropboxService } from '../services/DropboxService';
-import { withRouter, Link } from 'react-router-dom';
 
 function Profile (props) {
 
@@ -54,11 +54,10 @@ function Profile (props) {
 
 
         <div className="col-md-9">
-
           {userFiles
             && <div className="table-responsive">
               <table className="table">
-                <thead>
+                <thead className="bg-dark">
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">filename</th>

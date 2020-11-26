@@ -80,7 +80,7 @@ function FormSavePaste () {
     </form>
 
     {snippetInfos.id && snippetInfos.url &&
-      <div className="w-50 form-group py-3 pr-3 pl-3 bg-dark text-white border-top">
+      <div className="form-group pt-3">
 
         <label htmlFor="pasteService"><i className="fa fa-database"></i> {pasteService} paste url</label>
         <input type="url" className="form-control mb-3" defaultValue={snippetInfos.url} readOnly />

@@ -1,12 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function useClickAway (ref) {
 
+  const [isHide, setIsHide] = useState();
+
   useEffect(() => {
     const handleClick = e => {
-      console.log(e.target);
-      console.log(ref.current);
-      ref.current.style.display = ref.current && ref.current.contains(e.target) ? 'block' : 'none';
+      let status = ref.current && ref.current.contains(e.target);
+      ref.current.style.display = status ? 'block' : 'none';
+      setIsHide(status);
       return;
     };
 
@@ -16,4 +18,6 @@ export default function useClickAway (ref) {
       document.removeEventListener("mousedown", handleClick);
     };
   }, [ref]);
+
+  return { isHide, setIsHide };
 }
