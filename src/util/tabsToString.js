@@ -18,9 +18,11 @@ export default async function tabsToString (preprocessors) {
       tabs[1] = `<style>${tabs[1]}</style>`;
 
       tabs[2] = `<script type="${typeText}">${tabs[2]}</script>`;
-    }
-
-    return tabs.join('\n');
+      return tabs.join('\n');
+    }    
+    else {
+      return tabs.join('\n');
+    }    
   } catch (error) {
     return error.message;
   }

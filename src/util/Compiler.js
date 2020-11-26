@@ -1,6 +1,6 @@
 export default class Compiler {
   static async toJs (jsPreprocessor, jsValue) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       if (jsPreprocessor === 'typescript') {
         let res = window.ts.transpileModule(jsValue, {
           compilerOptions: {

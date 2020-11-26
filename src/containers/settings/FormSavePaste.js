@@ -10,10 +10,7 @@ function FormSavePaste () {
   const { preprocessors } = useStoreState(state => state.editorModel);
   const [pasteService, setPasteService] = useState('pastebin');
   const [isSaved, setIsSaved] = useState(false);
-  const [snippetInfos, setSnippetInfos] = useState({
-    url: null,
-    id: null
-  });
+  const [snippetInfos, setSnippetInfos] = useState({ url: null, id: null });
 
   const onSaveSnippet = (e) => {
     e.preventDefault();

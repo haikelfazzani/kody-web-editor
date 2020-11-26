@@ -3,48 +3,16 @@ import AceEditor from "react-ace";
 
 import "ace-builds/src-noconflict/mode-html";
 import "ace-builds/src-noconflict/mode-css";
-import "ace-builds/src-noconflict/mode-jsx";
+import "ace-builds/src-noconflict/mode-javascript";
 
 import "ace-builds/src-noconflict/theme-monokai";
-
-import * as langTools from "ace-builds/src-noconflict/ext-language_tools";
+import "ace-builds/src-noconflict/ext-language_tools";
 
 import { useStoreState } from 'easy-peasy';
-
-var jsCompleter = {
-  getCompletions: function (editor, session, pos, prefix, callback) {
-    var wordList = [
-      { word: "document", value: "document", meta: "document" },
-      { word: "getElementById", value: "getElementById()", meta: "get element by id" },
-      { word: "querySelector", value: "querySelector()", meta: "get element by selector" },
-      { word: "querySelectorAll", value: "querySelectorAll()", meta: "get elements by selector" },
-      { word: "console.log", value: "console.log()", meta: "log" },
-      { word: "function", value: "function name() {}", meta: "Create function" },
-      { word: "return", value: "return", meta: "return" },
-      { word: "Date", value: "new Date()", meta: "Date" },
-      { word: "innerHTML", value: "innerHTML", meta: "innerHTML" },
-      { word: "Object.entries", value: "Object.entries({}) ", meta: "Object method" }
-    ];
-    callback(null, wordList);
-  }
-}
-
-var cssCompleter = {
-  getCompletions: function (editor, session, pos, prefix, callback) {
-    var wordList = [
-      { word: "color", value: "color" },
-      { word: "background", value: "background" },
-      { word: "border", value: "border()" }
-    ];
-    callback(null, wordList);
-  }
-}
 
 export default function EditorAce ({ value, onEditorChange, lang = 'html', readOnly = false }) {
 
   const { fontSize } = useStoreState(state => state.editorModel);
-
-  langTools.setCompleters(lang === 1 ? [] : lang === 2 ? [jsCompleter] : [cssCompleter]);
 
   return <AceEditor
     mode={lang === 0 ? 'html' : lang === 1 ? 'css' : 'javascript'}

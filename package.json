@@ -12,6 +12,9 @@
     "react-scripts": "3.4.1",
     "react-split": "^2.0.7"
   },
+  "alias": {
+    "ace/lib/es5-shim": "ace-builds/src-noconflict/ace.js"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
