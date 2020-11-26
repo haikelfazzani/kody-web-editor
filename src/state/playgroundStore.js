@@ -2,7 +2,6 @@ import { createStore, action, thunk } from 'easy-peasy';
 import { IframeUtil } from '../util/IframeUtil';
 import DomUtil from '../util/DomUtil';
 
-let template = localStorage.getItem('kody-template') || 'vanilla';
 let preprocessors = { html: 'html', css: 'css', js: 'javascript' };
 
 try {
@@ -16,7 +15,7 @@ try {
 const editorModel = {
   editorValue: '<div>hello</div>',
   consoleLogs: '// console',
-  template,
+  template: 'vanilla',
   resources: [],
   fontSize: localStorage.getItem('kody-fontSize') || 16,
   preprocessors,
@@ -27,7 +26,7 @@ const editorModel = {
 
   setPreprocessors: action((state, preprocessors) => {
     state.preprocessors = preprocessors;
-    localStorage.setItem('kody-preprocessors', JSON.stringify(preprocessors));
+    //localStorage.setItem('kody-preprocessors', JSON.stringify(preprocessors));
   }),
 
   setResources: action((state, resources) => { // template : vuejs, react...   
@@ -40,8 +39,7 @@ const editorModel = {
       state.preprocessors = { ...state.preprocessors, js: 'babel' };
       DomUtil.appendScript('babel');
       localStorage.setItem('kody-preprocessors', JSON.stringify(state.preprocessors));
-    }    
-    localStorage.setItem('kody-template', template);
+    }
   }),
 
   setFontSize: action((state, fontSize) => {

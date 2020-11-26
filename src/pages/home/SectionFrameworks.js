@@ -1,6 +1,6 @@
 import React from 'react';
 
-const icons = ['javascript', 'jquery', 'react', 'preact', 'vue', 'backbone', 'typescript', 'coffeescript', 'lodash', 'rxjs', 'pouchdb', 'moment'];
+const icons = ['javascript', 'jquery', 'react', 'preact', 'vue','less', 'sass', 'typescript', 'coffeescript', 'lodash', 'rxjs', 'moment'];
 
 export default function SectionFrameworks() {
   return <section className="py-5">

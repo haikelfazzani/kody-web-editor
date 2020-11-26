@@ -19,19 +19,10 @@ export class IframeUtil {
     this.iframeWin = this.iframe.contentWindow;
   }
 
-  write (html, cssValue, jsValue, resolve) {
+  async write (html, cssValue, jsValue, resolve) {
     try {
-      if (this.jsPreprocessor === 'typescript') {
-        jsValue = this.compileTypescript(jsValue);
-      }
-
-      if (this.jsPreprocessor === 'babel') {
-        jsValue = window.Babel.transform(jsValue, {
-          envName: 'production',
-          presets: ['react', 'es2015'],
-          babelrc: false
-        }).code;
-      }
+      cssValue = await this.compileCss(cssValue);
+      jsValue = await this.compileJs(jsValue);
 
       jsValue = (this.jsPreprocessor !== 'coffeescript')
         ? `<script type="text/javascript" defer>try {
@@ -53,23 +44,63 @@ export class IframeUtil {
     </html>`);
       this.iframeDoc.close();
     } catch (error) {
-      console.log(error);
       resolve(error.message);
     }
   }
 
-  compileTypescript (jsValue) {
-    return window.ts.transpileModule(jsValue, {
-      compilerOptions: {
-        allowJs: true,
-        declaration: true,
-        emitDeclarationOnly: true,
-        noEmitOnError: true,
-        noImplicitAny: true,
-        target: window.ts.ScriptTarget.ES5,
-        module: window.ts.ModuleKind.CommonJS
+  compileJs (jsValue) {
+    return new Promise((resolve, reject) => {
+      if (this.jsPreprocessor === 'typescript') {
+        jsValue = window.ts.transpileModule(jsValue, {
+          compilerOptions: {
+            allowJs: true,
+            declaration: true,
+            emitDeclarationOnly: true,
+            noEmitOnError: true,
+            noImplicitAny: true,
+            target: window.ts.ScriptTarget.ES5,
+            module: window.ts.ModuleKind.CommonJS
+          }
+        }).outputText;
+
+        resolve(jsValue);
       }
-    }).outputText;
+
+      if (this.jsPreprocessor === 'babel') {
+        let options = { envName: 'production', presets: ['react', 'es2015'], babelrc: false };
+        window.Babel.transform(jsValue, options, function (err, result) {
+          resolve(result.code);
+          reject(err);
+        });
+      }
+
+      resolve(jsValue);
+    });
+  }
+
+  compileCss (cssValue) {
+    return new Promise((resolve, reject) => {
+      if (this.cssPreprocessor === 'css') {
+        resolve(cssValue);
+      }
+      if (this.cssPreprocessor === 'sass') {
+        window.Sass.compile(cssValue, (result) => {
+          resolve(result.text);
+          if (result.formatted) {
+            reject(result.formatted);
+            window.postMessage(result.formatted, "*")
+          }
+        });
+      }
+      else {
+        let options = { env: "production" };
+
+        window.less.render(cssValue, options, (error, output) => {
+          resolve(output.css);
+          reject(error);
+        });
+      }
+    });
   }
 
   removeElement (id) {

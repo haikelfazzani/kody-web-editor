@@ -40,8 +40,9 @@ export default function Editor (props) {
 
   useEffect(() => {
     window.addEventListener('message', function (e) {
-      if (e && e.data && e.data.message) {
-        setConsoleLogs(e.data.message + '\n' + e.data.stack);
+      if (e && (e.data.message || e.data)) {
+        let result = (e.data.message || e.data);
+        setConsoleLogs(result);
       }
     }, false);
 

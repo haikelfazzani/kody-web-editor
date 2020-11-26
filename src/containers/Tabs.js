@@ -6,7 +6,7 @@ import DomUtil from '../util/DomUtil';
 
 const tabFiles = [
   { name: 'Index.html', type: 'html', icon: 'html5', color: 'text-danger', preprocessor: ['html'] },
-  { name: 'Style.css', type: 'css', icon: 'css3', color: 'text-primary', preprocessor: ['css'] },
+  { name: 'Style.css', type: 'css', icon: 'css3', color: 'text-primary', preprocessor: ['css', 'less','sass'] },
   {
     name: 'App.js', type: 'js', icon: 'js', color: 'text-warning',
     preprocessor: ['javascript', 'babel', 'typescript', 'coffeescript']
@@ -26,11 +26,13 @@ export default function Tabs ({ getFileIndex }) {
 
   const onSelectItem = (preposType, tab) => {
     switch (tab.type) {
-      case 'html':
+      case 'html':        
         setPreprocessors({ ...preprocessors, html: preposType });
         break;
 
       case 'css':
+        DomUtil.appendScript(preposType);
+        DomUtil.removeElement(preprocessors.css);
         setPreprocessors({ ...preprocessors, css: preposType });
         break;
 
