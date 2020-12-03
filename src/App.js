@@ -6,7 +6,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Spinner from "./components/Spinner";
 
 const Playground = lazy(() => import("./pages/Playground"));
-const Profile = lazy(() => import("./pages/Profile"));
+const Profile = lazy(() => import("./pages/profile/Profile"));
 const About = lazy(() => import("./pages/About"));
 
 export default function App () {

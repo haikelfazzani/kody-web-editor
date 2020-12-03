@@ -12,26 +12,28 @@ function FormSavePaste () {
   const [isSaved, setIsSaved] = useState(false);
   const [snippetInfos, setSnippetInfos] = useState({ url: null, id: null });
 
-  const onSaveSnippet = (e) => {
+  const onSaveSnippet = async (e) => {
     e.preventDefault();
     if (pasteService) {
-      let code = tabsToString(preprocessors);
       let pService = e.target.elements[0].value;
       let filename = e.target.elements[1].value;
       let expire_date = e.target.elements[2].value;
 
+      let code = await tabsToString(preprocessors);
       let data = { filename, code, expire_date };
 
       PasteService.savePaste(pService, data)
         .then(url => {
-          let lIndx = url.lastIndexOf('/');
-          let id = url.slice(lIndx + 1);
-          setSnippetInfos({ id, url });
-          setIsSaved(url !== null);
+          if (url) {
+            let lIndx = url.lastIndexOf('/');
+            let id = url.slice(lIndx + 1);
+            setSnippetInfos({ id, url });
+            setIsSaved(url !== null);
 
-          setTimeout(() => {
-            setIsSaved(false);
-          }, 5000);
+            setTimeout(() => {
+              setIsSaved(false);
+            }, 5000);
+          }
         })
         .catch(e => {
           setSnippetInfos({ id: null, url: e.message });
@@ -72,7 +74,7 @@ function FormSavePaste () {
       {pasteService === 'dropbox' && <small className="form-text text-white fs-10 text-uppercase mb-2">* You need to be signed in to save this sandbox to Dropbox.</small>}
 
       <button type="submit" className="btn btn-warning btn-block" disabled={isSaved}>
-        <i className="fab fa-dropbox"></i> save paste
+        <i className="fa fa-save"></i> save paste
       </button>
     </form>
 

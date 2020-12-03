@@ -17,11 +17,26 @@ const fontSizes = [12, 14, 16, 18, 20, 22, 24];
 export default function Settings () {
 
   const { preprocessors, template, fontSize } = useStoreState(state => state.editorModel);
-  const { setTemplate, setFontSize } = useStoreActions(actions => actions.editorModel);
+  const { setEditorValue,setTemplate, setFontSize } = useStoreActions(actions => actions.editorModel);
 
   const onDownload = async () => {
     let code = await tabsToString(preprocessors);
     download(code, 'kody.html');
+  }
+
+  const onLoadFromDesktop = () => {
+    document.getElementById('desktop-file').click();
+  }
+
+  const onLoadFile = (e) => {
+    let file = e.target.files.item(0);
+    if (file && file.type === 'text/html') {
+      const reader = new FileReader();
+      reader.readAsText(file);
+      reader.onload = () => {
+        setEditorValue(reader.result);
+      };
+    }
   }
 
   return (
@@ -44,9 +59,12 @@ export default function Settings () {
         />
       </li>
 
+      <input type="file" name="desktop-file" id="desktop-file" onChange={onLoadFile} hidden />
+
       <Modal icon="fa fa-archive"><AddPackage /></Modal>
       <Modal><FormSavePaste /></Modal>
       <li className="d-flex align-items-center list-group-item pr-0 pl-0"><Timer /></li>
+      <li className="d-flex align-items-center list-group-item" onClick={onLoadFromDesktop}><i className="fa fa-folder-open"></i></li>
       <li className="d-flex align-items-center list-group-item" onClick={onDownload}><i className="fa fa-download"></i></li>
     </ul>
   );

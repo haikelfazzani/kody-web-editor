@@ -39,15 +39,20 @@ export default function Editor (props) {
   }, [service, id]);
 
   useEffect(() => {
-    window.addEventListener('message', function (e) {
+    const listenToIframe = (e) => {
       if (e && (e.data.message || e.data)) {
         let result = (e.data.message + '\n' + e.data.stack);
         setConsoleLogs(result);
       }
-    }, false);
+    }
 
     setEditorValue(templates[template][currentTabIndex]);
     setTabs(templates[template]);
+    window.addEventListener('message', listenToIframe, false);
+    
+    return () => {
+      window.removeEventListener('message',listenToIframe);
+    }
   }, [template]);
 
   useEffect(() => {

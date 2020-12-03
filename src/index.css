@@ -101,8 +101,11 @@ h2 {
 /********** Profile page ******************/
 .profile .card {
   padding: 40px 10px 20px;
-  color: #ffffff;
   text-align: center;
+}
+
+.profile .card, .table-responsive {
+  background-color: var(--white);
 }
 
 /*************************/
