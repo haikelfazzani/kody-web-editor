@@ -21,7 +21,7 @@ function Home () {
             <h1 className="display-4 mb-0">The online code</h1>
             <h1 className="display-4">editor for the web</h1>
 
-            <p className="text-muted fs-18">Designed for developers by developers, Kody is free and open source web editor for JavaScripters .</p>
+            <p className="text-muted lead">Designed for developers by developers, Kody is free and open source web editor for JavaScripters .</p>
 
             <Link to="/playground" className="btn btn-dark py-2">
               <i className="fa fa-terminal"></i> START NOW, it's free

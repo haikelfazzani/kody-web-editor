@@ -91,6 +91,8 @@ h2 {
 .fs-12 {font-size: 12px !important;}
 
 .ltsp {letter-spacing: 1px;}
+
+.box-shadow {box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);}
 /***************************/
 .content {
   height: 100vh;
@@ -124,7 +126,7 @@ left: 0 !important;
   .dsp-none {
      display: none !important;
    }
-   .w-50 {width: 90% !important;}
+   .w-75,.w-50 {width: 90% !important;}
  }
 
  /**********************/

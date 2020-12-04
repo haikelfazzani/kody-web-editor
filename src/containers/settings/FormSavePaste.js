@@ -29,10 +29,6 @@ function FormSavePaste () {
             let id = url.slice(lIndx + 1);
             setSnippetInfos({ id, url });
             setIsSaved(url !== null);
-
-            setTimeout(() => {
-              setIsSaved(false);
-            }, 5000);
           }
         })
         .catch(e => {

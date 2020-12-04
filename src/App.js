@@ -8,6 +8,7 @@ import Spinner from "./components/Spinner";
 const Playground = lazy(() => import("./pages/Playground"));
 const Profile = lazy(() => import("./pages/profile/Profile"));
 const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
 
 export default function App () {
 
@@ -22,7 +23,8 @@ export default function App () {
         <Route path="/auth" component={Auth} />
 
         <PrivateRoute path="/profile" component={Profile} />
-        <Route path="/About" component={About} />
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
 
         <Redirect path="*" to="/" />
       </Switch>
