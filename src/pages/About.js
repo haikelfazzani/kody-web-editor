@@ -39,7 +39,6 @@ function About () {
     </div>
 
     <Footer />
-
   </main>);
 }
 

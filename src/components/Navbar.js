@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import kodyLogo from '../img/logo.png';
+
 import { Link, withRouter } from 'react-router-dom';
 import AuthRoutes from './AuthRoutes';
+import kodyLogo from '../img/logo.png';
 
 function Navbar () {
 

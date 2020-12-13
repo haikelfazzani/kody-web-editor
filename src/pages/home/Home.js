@@ -2,7 +2,6 @@ import React, { Suspense } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 import './Home.css';
-import kodyImg from '../../img/editor.png';
 import Navbar from '../../components/Navbar';
 
 const SectionFrameworks = React.lazy(() => import('./SectionFrameworks'));
@@ -39,8 +38,8 @@ function Home () {
 
         <section className="py-5 text-center">
           <h3 className="text-muted text-center">Built for developers</h3>
-          <h2 className="text-center mb-5">CREATE YOUR OWN VIEWS.</h2>
-          <img src={kodyImg} alt="kody web editor" className="img-fluid mx-auto" />
+          <h2 className="text-center">CREATE YOUR OWN VIEWS.</h2>
+          <img src="https://i.ibb.co/QkrTBbD/editor.png" alt="kody online web editor" className="img-fluid mx-auto" />
         </section>
       </div>
 

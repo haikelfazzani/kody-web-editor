@@ -10,7 +10,9 @@ export default function SectionFrameworks() {
     {icons.map(icon => <div className="col-md-2 mb-3" key={icon}>
       <div className="card">
         <div className="card-body text-center">
-          <img className="mb-3" src={`https://deroados.sirv.com/logos/${icon}.svg`} alt={icon} width="100" height="100" />
+          <img className="mb-3" src={`https://deroados.sirv.com/logos/${icon}.svg`} 
+          alt={icon} width="90" height="90" />
+
           <span className="text-center text-uppercase font-weight-bold">{icon}</span>
         </div>
       </div>

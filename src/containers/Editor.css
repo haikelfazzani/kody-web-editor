@@ -62,7 +62,7 @@
       z-index: 9999;
 }
 
-.gutter:hover {background-color: var(--primary);}
+.gutter:hover {background-color: var(--dark);}
 
 .ace-monokai,.ace_gutter {
   background-color: var(--dark-bleu-main) !important;
@@ -116,7 +116,7 @@ pre {
   max-width: 100%;
   height: calc(100% - 32px);
   background-color: var(--dark-bleu-main);
-  color: var(--white);
+  color: var(--warning);
   overflow: auto;
 }
 
