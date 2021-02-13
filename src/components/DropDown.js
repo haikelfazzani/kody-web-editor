@@ -7,7 +7,7 @@ export default function DropDown ({ items, selectedItem, onSelectItem, dispText 
   const { isHide, setIsHide } = useClickAway(dropRef);
 
   return (<div className="dropdown">
-    <div className="btn dropdown-toggle text-white" onClick={() => { setIsHide(!isHide); }}>
+    <div className="btn dropdown-toggle shadow-none text-white" onClick={() => { setIsHide(!isHide); }}>
       {dispText && selectedItem}
     </div>
     <div ref={dropRef} className="dropdown-menu" style={{ display: isHide ? 'block' : 'none' }}>

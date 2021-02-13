@@ -27,11 +27,10 @@ export class IframeUtil {
       jsValue = await Compiler.toJs(this.jsPreprocessor, jsValue);
 
       jsValue = (this.jsPreprocessor !== 'coffeescript')
-        ? `<script type="text/javascript" defer>try {${jsValue} 
-        parent.postMessage("","*");} catch(e) {parent.postMessage(e,"*");}</script>`
+        ? `<script type="module" defer>${jsValue}</script>`
         : `<script src="https://cdn.jsdelivr.net/npm/coffeescript@2.5.1/lib/coffeescript-browser-compiler-legacy/coffeescript.min.js"></script>
         <script type="text/${this.jsPreprocessor}" defer>${jsValue}</script>`;
-
+        
       this.iframeDoc.open();
       this.iframeDoc.write(`<html>
       <head>

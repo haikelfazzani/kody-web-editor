@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import Captcha from "../components/Captcha";
 
 export default function Contact () {
 
@@ -15,12 +16,15 @@ export default function Contact () {
     const email = ev.target.elements[1].value;
     const message = ev.target.elements[2].value;
 
+    const captcha = ev.target.elements[3].value;
+    const captchaData = ev.target.elements[3].dataset.captcha;
+
     const data = new FormData();
     data.append('fullname', fullname);
     data.append('email', email);
     data.append('message', message);
 
-    if (fullname && email && message.length > 30) {
+    if ((captcha === captchaData && fullname) && (email && message.length > 30)) {
       axios({
         url: process.env.REACT_APP_FORM_CONTACT,
         method: "POST",
@@ -37,6 +41,9 @@ export default function Contact () {
           setState('Invalid Email, please verify your email or try later!');
         });
     }
+    else {
+      setState('Invalid Captcha!');
+    }
   }
 
   return (<>
@@ -52,25 +59,29 @@ export default function Contact () {
       >
         <div className="form-group">
           <label>Full name*</label>
-          <input type="text" className="form-control" name="fullname" placeholder="Joe doe" required />
+          <input type="text" className="form-control form-control-lg" name="fullname" placeholder="Joe doe" required />
         </div>
 
         <div className="form-group">
           <label>Email*</label>
-          <input type="email" className="form-control" name="email" placeholder="example@gmail.com" required />
+          <input type="email" className="form-control form-control-lg" name="email" placeholder="example@gmail.com" required />
         </div>
 
         <div className="form-group">
           <label>Message*</label>
-          <textarea className="form-control" name="message" rows="5" defaultValue="Hello there :)"></textarea>
+          <textarea className="form-control form-control-lg" name="message" rows="5" defaultValue="Hello there :)" required></textarea>
         </div>
+
+        <Captcha />
 
         <button type="submit" className="btn btn-dark btn-block btn-lg">
           <i className="fa fa-paper-plane"></i> Send Message
         </button>
       </form>
 
-      {state && <div className="w-75 mx-auto alert alert-dark mt-3"><i className="fa fa-info-circle"></i> {state}</div>}
+      {state && <div className="w-75 mx-auto alert alert-dark mt-3">
+        <i className="fa fa-info-circle"></i> {state}
+      </div>}
     </div>
     <Footer />
   </>);
