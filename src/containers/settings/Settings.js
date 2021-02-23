@@ -16,8 +16,8 @@ const fontSizes = [12, 14, 16, 18, 20, 22, 24];
 
 export default function Settings () {
 
-  const { preprocessors, template, fontSize } = useStoreState(state => state.editorModel);
-  const { setEditorValue,setTemplate, setFontSize } = useStoreActions(actions => actions.editorModel);
+  const { preprocessors, template, fontSize, theme } = useStoreState(state => state.editorModel);
+  const { setEditorValue, setTemplate, setFontSize, setTheme } = useStoreActions(actions => actions.editorModel);
 
   const onDownload = async () => {
     let code = await tabsToString(preprocessors);
@@ -37,6 +37,10 @@ export default function Settings () {
         setEditorValue(reader.result);
       };
     }
+  }
+
+  const onTheme = _ => {
+    setTheme(theme === 'monokai' ? 'xcode' : 'monokai');
   }
 
   return (
@@ -66,6 +70,7 @@ export default function Settings () {
       <li className="d-flex align-items-center list-group-item pr-0 pl-0"><Timer /></li>
       <li className="d-flex align-items-center list-group-item" onClick={onLoadFromDesktop}><i className="fa fa-folder-open"></i></li>
       <li className="d-flex align-items-center list-group-item" onClick={onDownload}><i className="fa fa-download"></i></li>
+      <li className="d-flex align-items-center list-group-item" onClick={onTheme} title="Change Theme"><i className="fa fa-sun"></i></li>
     </ul>
   );
 }

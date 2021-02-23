@@ -6,6 +6,7 @@ const editorModel = {
   editorValue: '<div>hello</div>',
   consoleLogs: '// console',
   template: 'vanilla',
+  theme: localStorage.getItem('kody-theme') || 'monokai',
   resources: [],
   fontSize: localStorage.getItem('kody-fontSize') || 16,
   preprocessors: { html: 'html', css: 'css', js: 'javascript' },
@@ -35,6 +36,11 @@ const editorModel = {
   setFontSize: action((state, fontSize) => {
     state.fontSize = fontSize;
     localStorage.setItem('kody-fontSize', fontSize);
+  }),
+
+  setTheme: action((state, theme) => {
+    state.theme = theme;
+    localStorage.setItem('kody-theme', theme);
   }),
 
   setConsoleLogs: action((state, consoleLogs) => {
