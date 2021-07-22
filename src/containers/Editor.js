@@ -14,6 +14,8 @@ import './Editor.css';
 
 const Settings = React.lazy(() => import('./settings/Settings'));
 
+const isMobile = /iPhone|iPod|Android/i.test(navigator.userAgent);
+
 export default function Editor (props) {
 
   let { service, id } = useParams();
@@ -94,7 +96,7 @@ export default function Editor (props) {
         <Settings />
       </header>
 
-      <Split direction="horizontal" cursor="col-resize" gutterSize={7}>
+      <Split direction={isMobile ? "vertical":"horizontal"} cursor="col-resize" gutterSize={7}>
 
         <div className="editor">
           <EditorAce
@@ -112,7 +114,7 @@ export default function Editor (props) {
 
         <div className="output">
 
-          <Split direction="vertical" cursor="row-resize"
+          <Split direction={isMobile ? "vertical":"horizontal"} cursor="row-resize"
             gutterSize={7}
             sizes={showConsole ? [50, 50] : [100, 0]}
             minSize={showConsole ? 70 : 0}>

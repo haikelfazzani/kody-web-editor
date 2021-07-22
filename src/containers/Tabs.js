@@ -6,7 +6,7 @@ import DomUtil from '../util/DomUtil';
 
 const tabFiles = [
   { name: 'Index.html', type: 'html', icon: 'html5', color: 'text-danger', preprocessor: ['html'] },
-  { name: 'Style.css', type: 'css', icon: 'css3', color: 'text-primary', preprocessor: ['css', 'less','sass'] },
+  { name: 'Style.css', type: 'css', icon: 'css3', color: 'text-primary', preprocessor: ['css', 'less', 'sass'] },
   {
     name: 'App.js', type: 'js', icon: 'js', color: 'text-warning',
     preprocessor: ['javascript', 'babel', 'typescript', 'coffeescript']
@@ -26,7 +26,7 @@ export default function Tabs ({ getFileIndex }) {
 
   const onSelectItem = (preposType, tab) => {
     switch (tab.type) {
-      case 'html':        
+      case 'html':
         setPreprocessors({ ...preprocessors, html: preposType });
         break;
 
@@ -53,10 +53,11 @@ export default function Tabs ({ getFileIndex }) {
     </li>
     {tabFiles.map((tab, i) => <li
       className={"d-flex align-items-center list-group-item pr-2 " + (currEdFileIndex === i ? 'active-tab' : '')}
-      key={'tab' + i}>   
-         
+      key={'tab' + i}>
+
       <span onClick={() => { setEdFileIndex(i) }}>
-        <i className={tab.color + " mr-2 fab fa-" + tab.icon}></i> {preprocessors[tab.type]}
+        <i className={tab.color + " mr-2 fab fa-" + tab.icon}></i>
+        <span className="dsp-none">{preprocessors[tab.type]}</span>
       </span>
 
       <DropDown

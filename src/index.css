@@ -121,14 +121,6 @@ left: 0 !important;
 }
 
 .HW_badge {transform:scale(1) !important; top: 0 !important; left: 0;}
-/*********************/
-@media screen and (max-width: 600px) {
-  .dsp-none {
-     display: none !important;
-   }
-   .w-75,.w-50 {width: 90% !important;}
- }
-
  /**********************/
  ::-webkit-scrollbar {
   width: 5px;
@@ -140,7 +132,7 @@ left: 0 !important;
   border-radius: 10px;
 }
 
-/***********************/
+/**************** Animation *******/
 .scaleIn {
   animation-name: scaleIn;
   animation-duration: 0.6s;
@@ -150,3 +142,15 @@ left: 0 !important;
   from { transform: scale(0); }
   to { transform: scale(1); }
 }
+/************ Media queries *********/
+@media screen and (max-width: 724px) {
+  .dsp-none {
+     display: none !important;
+   }
+   .w-75,.w-50 {width: 90% !important;}
+
+   .playground>div {
+    display: flex;
+    flex-direction: column;
+  }
+ }
