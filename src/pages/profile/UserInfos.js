@@ -17,7 +17,7 @@ export default function UserInfos () {
   }, []);
 
   if (userInfos && userInfos.name) {
-    return (<div className="card text-dark">
+    return (<div className="card bg-dark">
 
       <img
         src={userInfos.profile_photo_url}

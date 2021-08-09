@@ -20,8 +20,6 @@
   color: #ffffff;
   box-shadow: 0 4px 5px 0 rgb(0 0 0 / 22%), 0 2px 0px 0px rgb(0 0 0 / 0%);
   z-index: 99999;
-  overflow-x: auto;
-  overflow-y: hidden;
 }
 .playground header .list-group { display:flex !important; flex-direction: row; }
 .playground header .list-group-item { 

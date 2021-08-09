@@ -8,7 +8,7 @@ export default function SectionFrameworks() {
   <h2 className="text-center mb-5">Your favorite Frameworks and libraries.</h2>
   <div className="row fs-35">
     {icons.map(icon => <div className="col-md-2 mb-3" key={icon}>
-      <div className="card">
+      <div className="card bg-black">
         <div className="card-body text-center">
           <img className="mb-3" src={`https://deroados.sirv.com/logos/${icon}.svg`} 
           alt={icon} width="90" height="90" />

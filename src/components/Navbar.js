@@ -13,8 +13,7 @@ function Navbar () {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
         <Link to="/" className="navbar-brand d-flex align-items-center font-weight-bold">
           <img src={kodyLogo} width="30" height="30" alt="online web editor" loading="lazy" className="mr-2" />

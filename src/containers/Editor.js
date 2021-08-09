@@ -113,8 +113,7 @@ export default function Editor (props) {
         </div>
 
         <div className="output">
-
-          <Split direction={isMobile ? "vertical":"horizontal"} cursor="row-resize"
+          <Split direction="vertical" cursor="row-resize"
             gutterSize={7}
             sizes={showConsole ? [50, 50] : [100, 0]}
             minSize={showConsole ? 70 : 0}>
@@ -123,7 +122,7 @@ export default function Editor (props) {
               <iframe title="Kody online web editor" id="sandbox"></iframe>
             </div>
 
-            <div className="w-100 console" style={{ display: showConsole ? 'block' : 'none' }}>
+            <div className="w-100 console border-left-dark" style={{ display: showConsole ? 'block' : 'none' }}>
               <div className="console-header fs-12 text-uppercase">
                 <p className="m-0"><i className="fa fa-terminal mr-2"></i><span>console</span></p>
 

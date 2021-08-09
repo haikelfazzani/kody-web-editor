@@ -1,12 +1,15 @@
 :root {
-  --dark-bleu-main: #171718;
-  --light-bleu: #292c2e;
+  --black: #181818;
+  --dark:#1f1f1f;
+  --light-dark: #292c2e;
   --dark-gray:#252525;
   --gray:rgb(87, 87, 87);
+  --green:#24b47e;
 }
 
 body {
-  background-color: #f7f7f7;
+  background-color: var(--black);
+  color: var(--white);
   font-family: 'Noto Sans';
   position: relative;
   overflow-y: auto;
@@ -20,10 +23,10 @@ body {
 }
 
 .navbar {
+  background-color: var(--black) !important;
   font-family: 'Poppins', sans-serif;
   letter-spacing: 2px;
   box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);
-    background: #fff;
 }
 
 .navbar .nav-link {cursor: pointer;}
@@ -32,7 +35,6 @@ thead {
   background-color: var(--dark-bleu) !important;
   color:#ffffff;
 }
-
 /*****************************************/
 .d-flex {
   display: -ms-flexbox!important;
@@ -44,8 +46,8 @@ thead {
 .btn { box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);}
 
 .btn-primary {
-  background-color: var(--light-bleu) !important;
-  border-color: var(--light-bleu) !important;
+  background-color: var(--dark) !important;
+  border-color: var(--dark-gray) !important;
 }
 
 .btn:focus, .btn:active {
@@ -83,7 +85,13 @@ h2 {
   text-transform: uppercase;
 }
 
+.text-green,a {color: var(--green);}
+
 .text-pink {color: var(--pink)}
+
+.bg-black {background-color: var(--black); color: var(--white);}
+
+.border-left-dark {border-left: 2px solid var(--dark-gray);}
 
 .fs-34 {font-size: 34px !important;}
 .fs-18 {font-size: 18px !important;}
@@ -128,7 +136,7 @@ left: 0 !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--gray);
+  background: var(--dark-gray);
   border-radius: 10px;
 }
 
