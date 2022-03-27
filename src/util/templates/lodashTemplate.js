@@ -1,5 +1,5 @@
 const lodashTemplate = [
-  `<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+  `<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 <p>Open terminal to see result</p>`,
   'body { color: red; }',
   `let res = _.chunk(['a', 'b', 'c', 'd'], 2);

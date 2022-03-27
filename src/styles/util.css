@@ -1,0 +1,20 @@
+.w-100 {width: 100%;}
+.h-100 {height: 100%;}
+
+.d-flex {display: flex;}
+.flex-column {flex-direction: column;}
+
+.align-center {align-items: center;}
+
+.justify-between {justify-content: space-between;}
+
+.mr-1 {margin-right: 10px;}
+
+.bg-dark {background-color: var(--dark);}
+
+.white {color: #fff;}
+.blue { color: rgb(25, 86, 255); }
+.red { color: rgb(255, 44, 44); }
+.yellow { color: rgb(241, 255, 47); }
+
+.text-uppercase {text-transform: uppercase;}

@@ -8,8 +8,8 @@ try {
 }
 
 const KODY_DROPBOX_TOKEN = 'kody-dropbox-token';
-const DROPBOX_API_BASE_URL = 'https://api.dropboxapi.com/2/';
-const redirect_uri = 'https://kody.cf/auth';
+const DROPBOX_API_BASE_URL = process.env.REACT_APP_DROPBOX_API_BASE_URL;
+const redirect_uri = "https://kody.cf/auth";
 
 export class DropboxAuth {
   static login () {

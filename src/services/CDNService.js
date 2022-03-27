@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export default class CDNService {
-
   static async search (query) {
     try {
       let url = 'https://api.cdnjs.com/libraries?search=' + query + '&fields=version&limit=15';

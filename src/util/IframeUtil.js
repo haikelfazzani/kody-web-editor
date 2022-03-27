@@ -21,15 +21,16 @@ export class IframeUtil {
     this.iframeWin = this.iframe.contentWindow;
   }
 
-  async write (html, cssValue, jsValue, resolve) {
+  async write (html, cssValue, jsValue, resolve) {    
     try {
       cssValue = await Compiler.toCss(this.cssPreprocessor, cssValue);
       jsValue = await Compiler.toJs(this.jsPreprocessor, jsValue);
-
+      
       jsValue = (this.jsPreprocessor !== 'coffeescript')
         ? `<script type="module" defer>${jsValue}</script>`
         : `<script src="https://cdn.jsdelivr.net/npm/coffeescript@2.5.1/lib/coffeescript-browser-compiler-legacy/coffeescript.min.js"></script>
         <script type="text/${this.jsPreprocessor}" defer>${jsValue}</script>`;
+
         
       this.iframeDoc.open();
       this.iframeDoc.write(`<html>

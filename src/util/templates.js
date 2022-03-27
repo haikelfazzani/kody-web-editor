@@ -1,4 +1,4 @@
-import vanillatTemplate from './templates/vanillatTemplate';
+import vanillaTemplate from './templates/vanillaTemplate';
 import reactTemplate from './templates/reactTemplate';
 import vueTemplate from './templates/vueTemplate';
 import preactTemplate from './templates/preactTemplate';
@@ -7,7 +7,7 @@ import jqueryTemplate from './templates/jqueryTemplate';
 import lodashTemplate from './templates/lodashTemplate';
 
 const templates = {
-  vanilla: vanillatTemplate,
+  vanilla: vanillaTemplate,
   react: reactTemplate,
   vue: vueTemplate,
   preact: preactTemplate,

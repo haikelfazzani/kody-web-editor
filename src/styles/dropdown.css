@@ -1,0 +1,26 @@
+.dropdown-menu {
+  position: absolute;
+  top: 30px;
+  z-index: 1000;
+  display: block;
+  padding: .5rem 0;
+  margin: .5rem 0 0;
+  font-size: 1rem;
+  list-style: none;
+  background-clip: padding-box;
+  border-radius: .25rem;
+}
+
+.dropdown-item {
+  color: var(--white);
+  display: block;
+  width: 100%;
+  padding: .2rem 1rem !important;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.dropdown-item:hover { background-color: rgba(212, 212, 212, 0.411);}

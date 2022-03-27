@@ -44,8 +44,6 @@ function FormSavePaste () {
       <div className="form-group">
         <label htmlFor="pasteService"><i className="fa fa-database"></i> service</label>
         <select className="form-control" id="pasteService" onChange={(e) => { setPasteService(e.target.value); }} value={pasteService}>
-          <option value="pastebin">pastebin</option>
-          <option value="hastebin">hastebin</option>
           {DropboxAuth.getToken() && <option value="dropbox">dropbox</option>}
         </select>
       </div>
@@ -55,19 +53,7 @@ function FormSavePaste () {
         <input type="text" className="form-control" placeholder="Main" required readOnly={isSaved} />
       </div>
 
-      {pasteService !== 'dropbox' && <div className="form-group mt-3">
-        <label htmlFor="expire_date"><i className="fa fa-clock"></i> expire date</label>
-        <select className="form-control" name="expire_date" required>
-          <option value="10M">10 minutes</option>
-          <option value="1H">1 hour</option>
-          <option value="1D">1 day</option>
-          <option value="1W">1 week</option>
-          <option value="1M">1 month</option>
-          <option value="1Y">1 year</option>
-        </select>
-      </div>}
-
-      {pasteService === 'dropbox' && <small className="form-text text-white fs-10 text-uppercase mb-2">* You need to be signed in to save this sandbox to Dropbox.</small>}
+      <small className="form-text text-white fs-10 text-uppercase mb-2">* You need to be signed in to save this sandbox to Dropbox.</small>
 
       <button type="submit" className="btn btn-warning btn-block" disabled={isSaved}>
         <i className="fa fa-save"></i> save paste
