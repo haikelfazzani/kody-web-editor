@@ -40,6 +40,8 @@
   position: relative;
 }
 
+.ace_editor {width: 100% !important; height: 100% !important;}
+
 .editor .btn-group {
   position: absolute;
   right: 10px;

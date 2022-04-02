@@ -7,7 +7,7 @@ export default function useClickAway (ref) {
   useEffect(() => {
     const handleClick = e => {
       let status = ref.current && ref.current.contains(e.target);
-      ref.current.style.display = status ? 'block' : 'none';
+      if(ref.current) ref.current.style.display = status ? 'block' : 'none';
       setIsHide(status);
       return;
     };

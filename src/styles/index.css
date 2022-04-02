@@ -69,13 +69,7 @@ button {padding: 0; border: 0; background-color: transparent;}
 }
 /************ Media queries *********/
 @media screen and (max-width: 724px) {
-  .dsp-none {
-     display: none !important;
-   }
-   .w-75,.w-50 {width: 90% !important;}
-
-   .playground>div {
-    display: flex;
-    flex-direction: column;
+  .d-sm-none {
+    display: none !important;
   }
- }
+}

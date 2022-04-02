@@ -5,8 +5,10 @@ import preactTemplate from './templates/preactTemplate';
 import rxjsTemplate from './templates/rxjsTemplate';
 import jqueryTemplate from './templates/jqueryTemplate';
 import lodashTemplate from './templates/lodashTemplate';
+import nanojsxTemplate from './templates/nanojsxTemplate';
 
 const templates = {
+  nanojsx: nanojsxTemplate,
   vanilla: vanillaTemplate,
   react: reactTemplate,
   vue: vueTemplate,

@@ -7,7 +7,7 @@ import Compiler from "./Compiler";
 
 export class IframeUtil {
   constructor (preprocessors) {
-    this.jsPreprocessor = preprocessors.js; // typescript - javascript - babel - coffeescript etc...
+    this.jsPreprocessor = preprocessors.javascript; // typescript - javascript - babel - coffeescript etc...
     this.cssPreprocessor = preprocessors.css;
     this.htmlPreprocessor = preprocessors.html;
 
@@ -29,8 +29,7 @@ export class IframeUtil {
       jsValue = (this.jsPreprocessor !== 'coffeescript')
         ? `<script type="module" defer>${jsValue}</script>`
         : `<script src="https://cdn.jsdelivr.net/npm/coffeescript@2.5.1/lib/coffeescript-browser-compiler-legacy/coffeescript.min.js"></script>
-        <script type="text/${this.jsPreprocessor}" defer>${jsValue}</script>`;
-
+        <script type="text/${this.jsPreprocessor}" defer>${jsValue}</script>`;        
         
       this.iframeDoc.open();
       this.iframeDoc.write(`<html>

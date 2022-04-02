@@ -1,5 +1,5 @@
 
-import cdns from "./cdns";
+import cdns from "./Preprocessor";
 import Compiler from "./Compiler";
 
 export default async function tabsToString (preprocessors) {
@@ -8,12 +8,12 @@ export default async function tabsToString (preprocessors) {
     tabs = JSON.parse(tabs);
 
     if (tabs.length === 3) {
-      let typeText = preprocessors.js === 'babel' ? 'text/babel'
-        : preprocessors.js === 'coffeescript' ? 'text/coffeescript'
+      let typeText = preprocessors.javascript === 'babel' ? 'text/babel'
+        : preprocessors.javascript === 'coffeescript' ? 'text/coffeescript'
           : 'text/javascript';
 
-      if (tabs[0] && cdns[preprocessors.js]) {
-        tabs[0] = `<script type="text/javascript" src="${cdns[preprocessors.js]}"></script>\n` + tabs[0];
+      if (tabs[0] && cdns[preprocessors.javascript]) {
+        tabs[0] = `<script type="text/javascript" src="${cdns[preprocessors.javascript]}"></script>\n` + tabs[0];
       }
 
       tabs[1] = await Compiler.toCss(preprocessors.css, tabs[1]);
