@@ -17,13 +17,24 @@ registerRoute(({ request, url }) => {
   createHandlerBoundToURL(process.env.PUBLIC_URL + '/index.html')
 );
 
-registerRoute(({ url }) => /.*\.(?:png|jpg|jpeg|svg|gif)/gi.test(url.hostname),
+registerRoute(({ url }) => /^.*\.(jpg|gif|jpeg|png|svg)$/gi.test(url.hostname),
   new StaleWhileRevalidate({ cacheName: 'images' })
 );
 
 registerRoute(
+  ({ url }) => /cloudflare|jsdelivr|unpkg|ace-builds/gi.test(url.hostname)
+    && /^.*\.js$/g.test(url.pathname),
+  new StaleWhileRevalidate({
+    cacheName: 'js-cdn',
+    plugins: [
+      new ExpirationPlugin({ maxAgeSeconds: 30 * 24 * 60 * 60 }),
+    ]
+  })
+);
+
+registerRoute(
   ({ url }) => /cloudflare|googleapis|unpkg|ace-builds/gi.test(url.hostname)
-    && /css/g.test(url.pathname),
+    && /^.*\.css$/g.test(url.pathname),
   new StaleWhileRevalidate({
     cacheName: 'styles',
     plugins: [
