@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { DropboxService } from '../services/DropboxService';
-import { withRouter } from 'react-router-dom';
-import tabsToHTML from '../util/tabsToHTML';
-import { Link } from 'react-router-dom';
+import { DropboxService } from '../../services/DropboxService';
+import { Link, withRouter } from 'react-router-dom';
+import tabsToHTML from '../../util/tabsToHTML';
 
 function FormSavePaste() {
   const [fileInfos, setFileInfos] = useState();

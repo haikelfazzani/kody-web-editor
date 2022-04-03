@@ -10,7 +10,9 @@ const initState = localStorage.getItem('config')
     template: 'vanilla',
     tabIndex: 0,    
     theme: 'monokai',
-    fontSize: 16
+    fontSize: 16,
+    showConsole: true,
+    logs: '',
   };
 
 initState.template = 'local';

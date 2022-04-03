@@ -1,4 +1,4 @@
-const noCDN = ['html', 'css', 'javascript'];
+const noCDN = ['html', 'css', 'javascript', 'coffeescript'];
 
 export default class Preprocessor {
 
@@ -16,7 +16,7 @@ export default class Preprocessor {
     script.type = "text/javascript";
     script.id = elementId;
     script.src = this.cdns[elementId];
-    
+
     const rootEl = document.getElementById('root');
     rootEl.parentNode.insertBefore(script, rootEl.previousElementSibling);
   }

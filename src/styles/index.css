@@ -67,6 +67,9 @@ input {padding: 15px;}
 }
 /************ Media queries *********/
 @media screen and (max-width: 724px) {
+
+  body,.btn,.dropdown-menu {font-size: 12px;}
+
   .d-sm-none {
     display: none !important;
   }

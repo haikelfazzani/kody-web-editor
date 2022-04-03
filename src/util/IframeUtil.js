@@ -6,7 +6,7 @@
 import Compiler from "./Compiler";
 
 export class IframeUtil {
-  constructor (preprocessors) {
+  constructor(preprocessors) {
     this.jsPreprocessor = preprocessors.javascript; // typescript - javascript - babel - coffeescript etc...
     this.cssPreprocessor = preprocessors.css;
     this.htmlPreprocessor = preprocessors.html;
@@ -21,42 +21,56 @@ export class IframeUtil {
     this.iframeWin = this.iframe.contentWindow;
   }
 
-  async write (html, cssValue, jsValue, resolve) {    
+  async write(html, cssValue, jsValue, resolve) {
     try {
       cssValue = await Compiler.toCss(this.cssPreprocessor, cssValue);
       jsValue = await Compiler.toJs(this.jsPreprocessor, jsValue);
-      
-      jsValue = (this.jsPreprocessor !== 'coffeescript')
-        ? `<script type="module" defer>${jsValue}</script>`
-        : `<script src="https://cdn.jsdelivr.net/npm/coffeescript@2.5.1/lib/coffeescript-browser-compiler-legacy/coffeescript.min.js"></script>
-        <script type="text/${this.jsPreprocessor}" defer>${jsValue}</script>`;        
-        
+
+      const cdnScripts = this.jsPreprocessor === 'coffeescript'
+        ? `<script src="https://cdn.jsdelivr.net/npm/coffeescript@2.5.1/lib/coffeescript-browser-compiler-legacy/coffeescript.min.js"></script>`
+        : '';
+
       this.iframeDoc.open();
-      this.iframeDoc.write(`<html>
-      <head>
+      this.iframeDoc.write(`<html><head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Kody - Online web editor</title>
-        <style>${cssValue}</style>              
-      </head>
-      <body>${html}${jsValue}</body>
-    </html>`);
-      this.iframeDoc.close();
+        <title>Sandbox</title>
+        <style>${cssValue}</style></head><body>${html}${cdnScripts}</body></html>`);
+
+      this.iframeWin.onload = () => {
+        const script = document.createElement('script');
+        script.type = this.jsPreprocessor === 'coffeescript' ? "text/" + this.jsPreprocessor : "module";
+        script.innerHTML = jsValue;
+        script.defer = true;
+        
+        this.iframeDoc.body.appendChild(script);
+        resolve(' ')
+      }
+
+      this.iframeWin.onerror = function (message, _, lineno, colno) {
+        const errors = jsValue.split('\n').map((line, i) => {
+          return `${lineno - 1 === i ? '> ' : '  '} ${i + 1} | ${line.trim()}`
+        });
+
+        resolve(`${message} (${lineno}:${colno})\n\n${errors.join('\n')}`)
+      };
+
+      this.iframeDoc.close();      
     } catch (error) {
       resolve(error.message);
     }
   }
 
-  removeElement (id) {
+  removeElement(id) {
     let elem = document.getElementById(id);
     return elem ? elem.parentNode.removeChild(elem) : null;
   }
 
-  formatOutput (logMessages) {
+  formatOutput(logMessages) {
     return logMessages.map(msg => this.concatArgs(msg)).join('\n');
   }
 
-  concatArgs (logMessages) {
+  concatArgs(logMessages) {
     let splitArgs = false;
     return logMessages.map(msg => {
 

@@ -3,6 +3,8 @@
 
 .d-none {display: none !important;}
 
+.position-relative {position: relative;}
+
 .d-flex {display: flex;}
 .flex-column {flex-direction: column;}
 .align-center {align-items: center;}
@@ -14,6 +16,10 @@
 .mr-1 {margin-right: 10px;}
 .mt-3 {margin-top: 30px;}
 
+.pr-1 {padding-right: 10px;}
+.pl-1 {padding-left: 10px;}
+.pb-1 {padding-bottom: 10px;}
+
 .bg-dark {background-color: var(--dark);}
 .bg-white {background-color: var(--white);}
 
@@ -21,6 +27,8 @@
 .blue { color: var(--blue); }
 .red { color: var(--red); }
 .yellow { color: var(--yellow); }
+
+.border-bottom {border-bottom: 1px solid var(--gray);}
 
 .text-uppercase {text-transform: uppercase;}
 .text-center {text-align: center;}

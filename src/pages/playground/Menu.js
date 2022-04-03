@@ -1,12 +1,14 @@
 import React, { useContext, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PlaygroundContext } from '../store/PlaygroundProvider';
-import Dropdown from '../components/DropDown';
+import { PlaygroundContext } from '../../store/PlaygroundProvider';
+import Dropdown from '../../components/DropDown';
 
-import templates from '../util/templates/index';
-import Preprocessor from '../util/Preprocessor';
+import templates from '../../util/templates/index';
+import Preprocessor from '../../util/Preprocessor';
 import FormSavePaste from './FormSavePaste';
-import Modal from '../components/Modal';
+import Modal from '../../components/Modal';
+import tabsToHTML from '../../util/tabsToHTML';
+import download from '../../util/download';
 
 const tabs = [
   { name: 'html', icon: 'html5', color: 'red', preprocessor: ['html'] },
@@ -49,6 +51,12 @@ export default function Menu({ children }) {
     dispatch({ type: 'fontSize', payload: { fontSize } })
   }
 
+  const onDownload = () => {
+    const tabs = JSON.parse(localStorage.getItem('tabs'));
+    const html = tabsToHTML(tabs);
+    download(html, 'kody.html');
+  }
+
   return <header className='w-100 d-flex justify-between align-center'>
     <ul className='h-100 d-flex align-center'>
       <li><Link to="/"><i className="fas fa-home text-white"></i></Link></li>
@@ -89,8 +97,7 @@ export default function Menu({ children }) {
         />
       </li>
 
-      {children}
-
+      <li title="Download Code" onClick={onDownload}><i className="fa fa-download"></i></li>
       <li title='Save Paste' onClick={() => { setShowModal(!showModal); }}><i className='fa fa-save'></i></li>
       <li title='Show Profile'><Link to="/profile"><i className="fas fa-user text-white"></i></Link></li>
     </ul>

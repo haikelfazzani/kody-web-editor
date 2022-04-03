@@ -46,6 +46,19 @@ export default function PlaygroundReducer(state, action) {
       return { ...state, message: url, showSnackbar: true }
     }
 
+    case 'show-console': {
+      const newState = { ...state, showConsole: !state.showConsole };
+      localStorage.setItem('config', JSON.stringify(newState))
+      return newState
+    }
+
+    case 'console-logs': {
+      const logs = action.payload.logs;
+      const newState = { ...state, logs };
+      localStorage.setItem('config', JSON.stringify(newState))
+      return newState
+    }
+
     default: {
       return state
     }
