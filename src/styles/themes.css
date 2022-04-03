@@ -1,0 +1,54 @@
+:root {
+  --green:#24b47e;
+  --blue: rgb(25, 86, 255);
+  --red: rgb(255, 44, 44);
+  --yellow: rgb(241, 255, 47);
+  --dark:#1f1f1f;
+  --gray:rgb(87, 87, 87);
+  --white: #fff;
+  --transparent: rgba(255, 255, 255, 0.199);
+  --shadow: 0 4px 5px 0 rgb(0 0 0 / 22%), 0 2px 0px 0px rgb(0 0 0 / 0%);
+}
+
+[data-theme="monokai"], [data-thme="dracula"], [data-theme="cobalt"], [data-thme="one_dark"] {
+  --black: #181818;
+}
+
+[data-theme="one_dark"] {
+  --black: #282c34;
+  --dark:#363c49;
+  --gray:#6a6f7a;
+}
+
+[data-theme="dracula"] {
+  --black: #282a36;
+  --dark:#333647;
+  --gray:#35384b;
+}
+
+[data-theme="cobalt"] {
+  --black: #011e3a;
+  --dark:#002d57;
+  --gray:#0d3963;
+}
+
+[data-theme="xcode"] {
+  --black: #fff;
+  --dark:#ebebeb;
+  --gray:#dbdbdb;
+  --white: rgb(0, 0, 0);
+}
+
+[data-theme="tomorrow"] {
+  --black: #f6f6f6;
+  --dark:#ebebeb;
+  --gray:#dbdbdb;
+  --white: #4D4D4C;
+}
+
+[data-theme="eclipse"] {
+  --black: #ebebeb;
+  --dark:#ebebeb;
+  --gray:#dbdbdb;
+  --white: #707070;
+}

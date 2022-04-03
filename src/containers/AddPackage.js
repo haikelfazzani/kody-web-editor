@@ -1,25 +1,12 @@
 import React, { useState } from 'react';
-import { useStoreActions, useStoreState } from 'easy-peasy';
-import CDNService from '../../services/CDNService';
+import CDNService from '../services/CDNService';
 
 export default function AddPackage () {
-
-  const { resources } = useStoreState(state => state.editorModel);
-  const { setResources } = useStoreActions(actions => actions.editorModel);
   const [searchResults, setSearchResults] = useState(null);
 
   const onAdd = (libURL) => {
     let cdnUrl = `<script src="${libURL}"></script>`;
 
-    let tmp = resources.slice(0);
-    if (!resources.includes(cdnUrl)) {
-      tmp.push(cdnUrl);
-      setResources(tmp);
-
-      let tmpR = searchResults.slice(0);
-      tmpR = tmpR.filter(t => t.latest !== libURL);
-      setSearchResults(tmpR);
-    }
   }
 
   const onSearch = async (e) => {

@@ -1,6 +1,6 @@
 .dropdown-menu {
   position: absolute;
-  top: 30px;
+  top: 100%;
   z-index: 1000;
   display: block;
   padding: .5rem 0;
@@ -23,4 +23,4 @@
   cursor: pointer;
 }
 
-.dropdown-item:hover { background-color: rgba(212, 212, 212, 0.411);}
+.dropdown-item:hover { background-color: var(--transparent);}

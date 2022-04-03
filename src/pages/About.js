@@ -1,11 +1,10 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { withRouter } from 'react-router-dom';
 
 function About () {
   return (<main>
-    <Navbar />
+
     <div className="container text-center py-5">
 
       <div><i className="display-1 fas fa-tree mb-3"></i></div>

@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
+import './styles/themes.css';
 import './styles/dropdown.css';
 import './styles/index.css';
 import './styles/util.css';
@@ -14,4 +15,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-serviceWorker.unregister();
+serviceWorkerRegistration.register();

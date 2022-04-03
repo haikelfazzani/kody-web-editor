@@ -1,17 +1,19 @@
 .playground {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 100vw;
+  height: calc(100vh - 14px);
+  width: calc(100vw - 14px);
   max-width: 100%;
   max-height: 100%;
+  border-radius: 7px;
+  border: 1px solid var(--gray);
+  overflow: hidden;
 }
 
 .playground header {
   height: 40px;  
+  background-color: var(--black);
   border-bottom: 1px solid var(--gray);
-  color: var(--white);
-  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 22%), 0 2px 0px 0px rgb(0 0 0 / 0%);
   z-index: 99999;
 }
 
@@ -19,20 +21,20 @@
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  color: rgb(155, 155, 155);
+  padding: 0 20px;  
   border-right: 1px solid var(--gray);
   cursor: pointer;
   text-transform: uppercase;
 }
-
-.playground header>ul li:hover {color: var(--white);}
 
 .playground>div {
   width: 100%;
   height: calc(100% - 40px);
   display: flex;
 }
+
+.playground header>ul li > * {filter: grayscale(1)}
+.active-tab > * {filter: grayscale(0) !important;}
 /********************************/
 .editor {
   width: 100%;
@@ -53,15 +55,13 @@
 
 /****************************/
 .gutter {
-  background-color: var(--dark);
+  background-color: var(--dark) !important;
   cursor: col-resize;
   background-image: url(../img/split.png) !important;
   background-repeat: no-repeat;
   background-position: 50%;
   z-index: 9999;
 }
-
-.gutter:hover {background-color: var(--dark);}
 
 .ace-monokai,.ace_gutter {
   background-color: var(--black) !important;
@@ -70,34 +70,31 @@
 .ace-monokai .ace_marker-layer .ace_active-line,.ace-monokai .ace_gutter-active-line {
   background: var(--dark);
 }
-/*******************************/
-.active-tab {color: var(--white) !important;}
 
 /*****************/
 .iframe-sandbox, .console {height:100%;}
 .gutter-vertical {background-color: transparent; background-image: none !important;}
 
 .console-header {
-  height: 32px;
-  width: 100%;
-  background-color: var(--dark);
+  height: 35px;
+  width: 100%;  
+  background-color: var(--black);
   color: var(--white);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 22px;
-  letter-spacing: 2px;
-  box-shadow: 0 0px 15px #222;
+  padding: 0 22px;  
+  border-bottom: 1px solid var(--dark);
+  border-top: 1px solid var(--dark);
 }
 
 iframe {
+  background-color: #fff;
   margin: 0;
   border: 0;
   width: 100% !important;
   max-width: 100% !important;
   height: 100%;
-  background-color: var(--white);
-  color: #000000;
   overflow: auto;
 }
 
@@ -107,7 +104,8 @@ pre {
   border: 0;
   width: 100%;
   max-width: 100%;
-  height: calc(100% - 32px);
+  height: calc(100% - 35px);
+  background-color: var(--black);
   color: var(--warning);
   overflow: auto;
   line-height: 1.5;

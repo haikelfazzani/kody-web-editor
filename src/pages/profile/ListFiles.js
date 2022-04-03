@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { DropboxService } from '../../services/DropboxService';
+import Spinner from '../../components/Spinner';
 
-let step = 5;
-export default function ListFiles () {
-
+let step = 10;
+function ListFiles(props) {
   const [dropboxFiles, setDropboxFiles] = useState(null);
   const [slicedFiles, setSlicedFiles] = useState(null);
 
@@ -16,20 +17,23 @@ export default function ListFiles () {
           setSlicedFiles(files.slice(0, step));
         }
       })
-      .catch(e => { });
+      .catch(e => {
+        props.history.push('/login');
+        console.log(e);
+      });
   }, []);
 
   const onLoadMore = () => {
-    step = step + 5;    
+    step = step + 5;
     if (step <= dropboxFiles.length) {
       let nfiles = dropboxFiles.slice(0, step);
-      setSlicedFiles(nfiles);      
+      setSlicedFiles(nfiles);
     }
   }
 
   if (slicedFiles && slicedFiles.length > 0) {
-    return (<div className="table-responsive">
-      <table className="table">
+    return (<div className="w-100">
+      <table className="w-100">
         <thead className="bg-dark">
           <tr>
             <th scope="col">#</th>
@@ -44,20 +48,22 @@ export default function ListFiles () {
             <td>{file.name}</td>
             <td>{file.server_modified}</td>
             <td>
-              <Link className="btn btn-dark fs-12" to={"/playground/dropbox/" + file.name}>
-                <i className="fa fa-pen-square"></i> Open
+              <Link className="btn btn-dark fs-12" to={"/?service=dropbox&file=" + file.name}>
+                <i className="fa fa-pen-square mr-1"></i>Open
               </Link>
             </td>
           </tr>)}
         </tbody>
       </table>
 
-      <button className="w-100 btn btn-dark" onClick={onLoadMore}>
-        <i className="fa fa-chevron-circle-down"></i> Load more files ({step}/{dropboxFiles.length})
+      <button className="w-100 btn" onClick={onLoadMore}>
+        <i className="fa fa-chevron-circle-down mr-1"></i>Load more files ({step}/{dropboxFiles.length})
       </button>
     </div>);
   }
   else {
-    return <div></div>
+    return <Spinner />
   }
 }
+
+export default withRouter(ListFiles)

@@ -2,29 +2,25 @@
   box-sizing: border-box;
 }
 
-:root {
-  --black: #181818;
-  --dark:#1f1f1f;
-  --light-dark: #292c2e;
-  --dark-gray:#252525;
-  --gray:rgb(87, 87, 87);
-  --green:#24b47e;
-  --white: #fff;
-}
 
 body {
   margin: 0;
-  background-color: var(--black);
+  background-color: #000;
   color: var(--white);
+  padding: 7px;
   font-size: 14px;
   font-family: 'Noto Sans';
   letter-spacing: 0.6px;
   overflow: auto;
 }
 
+main {background-color: var(--black);}
+
 ul {list-style: none; padding: 0; margin: 0;}
 
 a {text-decoration: none; color: var(--white);}
+
+th {text-transform: uppercase; padding: 7px;}
 
 button {padding: 0; border: 0; background-color: transparent;}
 
@@ -32,10 +28,9 @@ button {padding: 0; border: 0; background-color: transparent;}
   display: flex;
   justify-content: center;
   align-items: center;
-
-  border: 1px solid var(--black);
-  background: var(--white);
-  color: var(--black);
+  border: 1px solid var(--gray);
+  background-color: var(--dark);
+  color: var(--white);
   padding: 8px 18px;
   cursor: pointer;
   font-size: 16px;
@@ -43,9 +38,12 @@ button {padding: 0; border: 0; background-color: transparent;}
   order: 2;
   font-family: "Atlas Grotesk Web", "Atlas Grotesk", AtlasGrotesk, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   transition: opacity 0.25s;
+  text-transform: uppercase;
 }
 
 .btn:hover, a:hover {opacity: 0.8;}
+
+input {padding: 15px;}
  /**********************/
  ::-webkit-scrollbar {
   width: 5px;
@@ -53,7 +51,7 @@ button {padding: 0; border: 0; background-color: transparent;}
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--dark-gray);
+  background: var(--gray);
   border-radius: 10px;
 }
 

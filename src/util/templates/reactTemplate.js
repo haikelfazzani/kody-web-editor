@@ -3,10 +3,12 @@ const reactTemplate = [
 <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 <div id="app"></div>`,
   'body { color: red; }',
-  `function App(props) {
+  `const { useEffect, useState } = React;
+
+function App(props) {
   const numbers = props.numbers;
   
-  React.useEffect(()=>{    
+  useEffect(()=>{    
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
       .then(json => console.log(json))
@@ -22,6 +24,9 @@ const reactTemplate = [
 
 const numbers = [1, 2, 3, 4, 5];
 
-ReactDOM.render(<App numbers={numbers} />, document.getElementById('app'))`];
+ReactDOM.render(
+  <App numbers={numbers} />, 
+  document.getElementById('app')
+)`];
 
 export default reactTemplate;

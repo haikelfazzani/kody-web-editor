@@ -1,25 +1,29 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef, useCallback } from 'react'
 import useClickAway from '../hooks/useClickAway';
 
-export default function Dropdown({ title, data, icon, color, onclick, clx }) {
-
+export default function Dropdown({ title, data, icon, onchange, onTab, index }) {
   const dropRef = useRef()
   const { isHide, setIsHide } = useClickAway(dropRef);
-  const [state, setState] = useState(Array.isArray(data) ? data[0] : data);
 
-  return <li className={"dropdown position-relative mr-3 " + clx}>
+  const onTabChange = useCallback(() => {
+    if (onTab) onTab(index);
+  }, [])
+
+  return <div className="h-100 dropdown position-relative mr-3">
     <div className='h-100 d-flex'>
-      <span className='h-100 d-flex align-center mr-1' onClick={() => { onclick(state) }}>
-        <i className={icon + ' ' + color}></i>{title}
+      <span className='h-100 d-flex align-center mr-1' onClick={onTabChange}>
+        <i className={icon}></i><span>{title}</span>
       </span>
-      <span className='h-100 d-flex align-center' onClick={() => { setIsHide(!isHide) }}><i className='fa fa-chevron-down'></i></span>
+      <span className='h-100 d-flex align-center' onClick={() => { setIsHide(!isHide) }}>
+        <i className='fa fa-chevron-down'></i>
+      </span>
     </div>
 
     {isHide && <div className="bg-dark dropdown-menu" ref={dropRef}>
       {data.map((l, i) => <div
         className="dropdown-item cp"
         key={i}
-        onClick={() => { setState(l); onclick(l); setIsHide(!isHide) }}>{l}</div>)}
+        onClick={() => { onchange(l, index); setIsHide(!isHide) }}>{l}</div>)}
     </div>}
-  </li>
+  </div>
 }

@@ -1,7 +1,7 @@
 export default class Compiler {
+  
   static async toJs(jsPreprocessor, jsValue) {
-    return new Promise((resolve) => {      
-      console.log(jsPreprocessor);
+    return new Promise((resolve) => {
       if (jsPreprocessor === 'typescript') {
         let res = window.ts.transpileModule(jsValue, {
           compilerOptions: {
@@ -11,8 +11,7 @@ export default class Compiler {
             noEmitOnError: true,
             noImplicitAny: true,
             target: window.ts.ScriptTarget.ES5,
-            module: window.ts.ModuleKind.CommonJS,
-            jsx: "react-jsx"
+            module: window.ts.ModuleKind.CommonJS            
           }
         }).outputText;
 
@@ -20,24 +19,24 @@ export default class Compiler {
       }
 
       if (jsPreprocessor === 'babel') {
-        let options = { envName: 'production', presets: ['react', 'es2015'], babelrc: false };
+        let options = { envName: 'production', presets: ['react', 'es2017'], babelrc: false };
         let res = window.Babel.transform(jsValue, options);
         resolve(res.code);
       }
 
       if (jsPreprocessor === 'babel+typescript') {
-        let options = { envName: 'production', presets: ['react', 'es2015'], babelrc: false };
-        let res = window.Babel.transform(jsValue, options);        
-
-        let output = window.ts.transpileModule(res.code, {
+        let output = window.ts.transpileModule(jsValue, {
           compilerOptions: {
-            target: window.ts.ScriptTarget.ES5,
-            module: window.ts.ModuleKind.CommonJS,
-            jsx: "react-jsx"
+            "target": "esnext",
+            "module": "commonjs",
+            "jsx": "react"
           }
         }).outputText;
 
-        resolve(output);
+        let options = { envName: 'production', presets: ['react', 'es2015'], babelrc: false };
+        let res = window.Babel.transform(output, options);
+
+        resolve(res.code);
       }
 
       else { resolve(jsValue); }

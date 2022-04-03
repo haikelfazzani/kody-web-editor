@@ -1,12 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Editor from '../containers/Editor';
-import { PlaygroundStore } from '../store/playgroundStore';
+import { PlaygroundProvider } from '../store/PlaygroundProvider';
 
 function Playground() {
-  return (<PlaygroundStore>
+  return (<PlaygroundProvider>
     <Editor />
-  </PlaygroundStore>);
+  </PlaygroundProvider>);
 }
 
 export default withRouter(Playground);

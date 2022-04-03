@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
-import { DropboxAuth } from '../services/DropboxService';
+import { AuthService } from '../services/AuthService';
 
-function Auth (props) {
+function AuthRoute (props) {
   useEffect(() => {
     try {
-      DropboxAuth.setToken();
+      AuthService.setToken();
       props.history.push('/');
     } catch (error) {
       props.history.push('/');
@@ -15,4 +15,4 @@ function Auth (props) {
   return (<div>Loading..</div>);
 }
 
-export default withRouter(Auth);
+export default withRouter(AuthRoute);

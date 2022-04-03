@@ -19,6 +19,6 @@ export default function jsBeauty (data, lang) {
       return window.html_beautify(data, jsBeautyOptions);
 
     default:
-      break;
+      return data;
   }
 }
