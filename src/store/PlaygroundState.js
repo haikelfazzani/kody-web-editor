@@ -12,9 +12,12 @@ const initState = localStorage.getItem('config')
     showConsole: true,
     logs: '',
     editorOptions: {
+      keyboardHandler: 'ace/keyboard/sublime',
       theme: 'monokai',
       fontSize: 16,
-      tabSize: 2
+      tabSize: 2,
+      showInvisibles: false,
+      enableLiveAutocompletion: false,
     }
   };
 

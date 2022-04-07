@@ -22,12 +22,12 @@ export default function PlaygroundReducer(state, action) {
     }
 
     case 'editor-options': {
-      if (action.payload.theme) {
+      if (action.payload.theme !== state.editorOptions.theme) {
         loadTheme(action.payload.theme)
         document.documentElement.setAttribute('data-theme', action.payload.theme);
       }
 
-      const newState = { ...state, editorOptions: { ...state.editorOptions, ...action.payload } };
+      const newState = { ...state, editorOptions: action.payload };      
       localStorage.setItem('config', JSON.stringify(newState))
       return newState
     }

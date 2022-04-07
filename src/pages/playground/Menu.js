@@ -5,10 +5,11 @@ import Dropdown from '../../components/DropDown';
 
 import templates from '../../util/templates/index';
 import Preprocessor from '../../util/Preprocessor';
-import FormSavePaste from './FormSavePaste';
-import Modal from '../../components/Modal';
 import tabsToHTML from '../../util/tabsToHTML';
 import download from '../../util/download';
+import Modal from '../../components/Modal';
+import FormSavePaste from './menu/FormSavePaste';
+import Settings from './menu/Settings';
 
 const tabs = [
   { name: 'html', icon: 'html5', color: 'red', preprocessor: ['html'] },
@@ -20,14 +21,10 @@ const tabs = [
   }
 ];
 
-const fontSizes = [14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34];
-const themes = ['monokai', 'dracula', 'cobalt', 'one_dark', 'eclipse', 'xcode', 'tomorrow'];
-
 export default function Menu() {
   const { playgroundState, dispatch } = useContext(PlaygroundContext);
-  const [showModal, setShowModal] = useState(false);
-
-  const {editorOptions} = playgroundState;
+  const [showSaveModal, setShowSaveModal] = useState(false);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
 
   const onTab = useCallback(tabIndex => {
     dispatch({ type: 'tab-index', payload: { tabIndex } });
@@ -43,10 +40,6 @@ export default function Menu() {
 
   const onTemplateChange = (template) => {
     dispatch({ type: 'template', payload: { template } })
-  }
-
-  const onEditorOptionsChange = option => {
-    dispatch({ type: 'editor-options', payload: option })
   }
 
   const onDownload = () => {
@@ -79,28 +72,17 @@ export default function Menu() {
         />
       </li>
 
-      <li>
-        <Dropdown
-          title={editorOptions.fontSize}
-          data={fontSizes}
-          onchange={(fontSize) => { onEditorOptionsChange({ fontSize }) }}
-        />
-      </li>
-
-      <li>
-        <Dropdown
-          title={editorOptions.theme}
-          data={themes}
-          onchange={(theme) => { onEditorOptionsChange({ theme }) }}
-        />
-      </li>
-
       <li title="Download Code" onClick={onDownload}><i className="fa fa-download"></i></li>
-      <li title='Save Paste' onClick={() => { setShowModal(!showModal); }}><i className='fa fa-save'></i></li>
+      <li title='Save Paste' onClick={() => { setShowSaveModal(!showSaveModal); }}><i className='fa fa-save'></i></li>
+      <li title='Settings' onClick={() => { setShowSettingsModal(!showSettingsModal); }}><i className='fa fa-cog'></i></li>
       <li title='Show Profile'><Link to="/profile"><i className="fas fa-user text-white"></i></Link></li>
     </ul>
 
-    <Modal showModal={showModal} setShowModal={setShowModal}>
+    <Modal showModal={showSettingsModal} setShowModal={setShowSettingsModal}>
+      <Settings />
+    </Modal>
+
+    <Modal showModal={showSaveModal} setShowModal={setShowSaveModal}>
       <FormSavePaste />
     </Modal>
   </header>

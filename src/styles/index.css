@@ -31,19 +31,17 @@ button {padding: 0; border: 0; background-color: transparent;}
   border: 1px solid var(--gray);
   background-color: var(--dark);
   color: var(--white);
-  padding: 8px 18px;
-  cursor: pointer;
-  font-size: 16px;
-  line-height: 1.5;
-  order: 2;
-  font-family: "Atlas Grotesk Web", "Atlas Grotesk", AtlasGrotesk, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  cursor: pointer;  
+  order: 2;  
   transition: opacity 0.25s;
   text-transform: uppercase;
 }
 
 .btn:hover, a:hover {opacity: 0.8;}
 
-input {padding: 15px;}
+label {width: 100%; text-transform: uppercase; }
+.btn, input, select { padding: 8px 18px; font-size: .95rem; line-height: 1.5; outline: none;}
+input, select {min-width: 120px;}
  /**********************/
  ::-webkit-scrollbar {
   width: 5px;

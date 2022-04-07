@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { DropboxService } from '../../services/DropboxService';
 import { Link, withRouter } from 'react-router-dom';
-import tabsToHTML from '../../util/tabsToHTML';
+import { DropboxService } from '../../../services/DropboxService';
+import tabsToHTML from '../../../util/tabsToHTML';
 
 function FormSavePaste() {
   const [fileInfos, setFileInfos] = useState();
@@ -27,7 +27,7 @@ function FormSavePaste() {
 
       <Link to="/login" className="form-text text-white fs-10 text-uppercase mb-2">* Dropbox sign in is required.</Link>
 
-      <button type="submit" className="btn mt-1 br7" disabled={fileInfos}>
+      <button type="submit" className="btn mt-3 br7" disabled={fileInfos}>
         <i className="fa fa-save mr-1"></i>save paste
       </button>
     </form>
