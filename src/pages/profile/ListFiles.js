@@ -33,8 +33,8 @@ function ListFiles(props) {
 
   if (slicedFiles && slicedFiles.length > 0) {
     return (<div className="w-100">
-      <table className="w-100">
-        <thead className="bg-dark">
+      <table className="w-100 text-center">
+        <thead className='blue'>
           <tr>
             <th scope="col">#</th>
             <th scope="col">filename</th>
@@ -48,7 +48,7 @@ function ListFiles(props) {
             <td>{file.name}</td>
             <td>{file.server_modified}</td>
             <td>
-              <Link className="btn btn-dark fs-12" to={"/?service=dropbox&file=" + file.name}>
+              <Link to={"/?service=dropbox&file=" + file.name}>
                 <i className="fa fa-pen-square mr-1"></i>Open
               </Link>
             </td>
@@ -56,7 +56,7 @@ function ListFiles(props) {
         </tbody>
       </table>
 
-      <button className="w-100 btn" onClick={onLoadMore}>
+      <button className="w-100 btn bg-dark mt-3" onClick={onLoadMore}>
         <i className="fa fa-chevron-circle-down mr-1"></i>Load more files ({step}/{dropboxFiles.length})
       </button>
     </div>);

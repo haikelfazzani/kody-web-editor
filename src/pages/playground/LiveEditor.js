@@ -12,7 +12,7 @@ function LiveEditor() {
     file = params.get('file');
 
   const { playgroundState, dispatch } = useContext(PlaygroundContext);
-  const { tabIndex, template, languages, theme, fontSize } = playgroundState;
+  const { tabIndex, template, languages, editorOptions } = playgroundState;
   const [tabs, setTabs] = useState(templates['local']);
 
   useEffect(() => {
@@ -89,12 +89,11 @@ function LiveEditor() {
   return <div className="editor">
     <AceEditor
       mode={Object.keys(languages)[tabIndex]}
-      theme={theme}
       onChange={onEditorValueChange}
       value={tabs[tabIndex]}
       name="kody-ace-editor"
-      fontSize={fontSize}
       editorProps={{ $blockScrolling: true }}
+      {...editorOptions}
     />
 
     <div className="btn-group">

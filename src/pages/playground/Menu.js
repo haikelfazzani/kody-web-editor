@@ -23,9 +23,11 @@ const tabs = [
 const fontSizes = [14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34];
 const themes = ['monokai', 'dracula', 'cobalt', 'one_dark', 'eclipse', 'xcode', 'tomorrow'];
 
-export default function Menu({ children }) {
+export default function Menu() {
   const { playgroundState, dispatch } = useContext(PlaygroundContext);
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+
+  const {editorOptions} = playgroundState;
 
   const onTab = useCallback(tabIndex => {
     dispatch({ type: 'tab-index', payload: { tabIndex } });
@@ -43,12 +45,8 @@ export default function Menu({ children }) {
     dispatch({ type: 'template', payload: { template } })
   }
 
-  const onTheme = (theme) => {
-    dispatch({ type: 'theme', payload: { theme } })
-  }
-
-  const onFontSize = (fontSize) => {
-    dispatch({ type: 'fontSize', payload: { fontSize } })
+  const onEditorOptionsChange = option => {
+    dispatch({ type: 'editor-options', payload: option })
   }
 
   const onDownload = () => {
@@ -83,17 +81,17 @@ export default function Menu({ children }) {
 
       <li>
         <Dropdown
-          title={playgroundState.fontSize}
+          title={editorOptions.fontSize}
           data={fontSizes}
-          onchange={onFontSize}
+          onchange={(fontSize) => { onEditorOptionsChange({ fontSize }) }}
         />
       </li>
 
       <li>
         <Dropdown
-          title={playgroundState.theme}
+          title={editorOptions.theme}
           data={themes}
-          onchange={onTheme}
+          onchange={(theme) => { onEditorOptionsChange({ theme }) }}
         />
       </li>
 

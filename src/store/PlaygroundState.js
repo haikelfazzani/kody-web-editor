@@ -8,17 +8,20 @@ const initState = localStorage.getItem('config')
     tabs: templates['vanilla'],
     languages: { html: 'html', css: 'css', javascript: 'javascript' },
     template: 'vanilla',
-    tabIndex: 0,    
-    theme: 'monokai',
-    fontSize: 16,
+    tabIndex: 0,
     showConsole: true,
     logs: '',
+    editorOptions: {
+      theme: 'monokai',
+      fontSize: 16,
+      tabSize: 2
+    }
   };
 
 initState.template = 'local';
 
-loadTheme(initState.theme);
-document.documentElement.setAttribute('data-theme', initState.theme);
+loadTheme(initState.editorOptions.theme);
+document.documentElement.setAttribute('data-theme', initState.editorOptions.theme);
 
 Object.values(initState.languages).forEach(lang => {
   Preprocessor.loadCDN(lang);

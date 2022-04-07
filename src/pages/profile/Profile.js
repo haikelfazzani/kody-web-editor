@@ -7,7 +7,7 @@ const UserInfos = React.lazy(() => import('./UserInfos'));
 
 export default function Profile() {
   return (<>
-    <main className="grid-1-3 br7">
+    <main className="bg-inherit grid-1-3 br7 py-3 pr-3 pl-3 mx-auto">
       <Suspense fallback={<Spinner />}>
         <div><UserInfos /></div>
         <div><ListFiles /></div>

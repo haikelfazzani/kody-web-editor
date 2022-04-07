@@ -21,17 +21,13 @@ export default function PlaygroundReducer(state, action) {
       return newState
     }
 
-    case 'fontSize': {
-      const newState = { ...state, fontSize: action.payload.fontSize };
-      localStorage.setItem('config', JSON.stringify(newState))
-      return newState
-    }
+    case 'editor-options': {
+      if (action.payload.theme) {
+        loadTheme(action.payload.theme)
+        document.documentElement.setAttribute('data-theme', action.payload.theme);
+      }
 
-    case 'theme': {
-      const theme = action.payload.theme;
-      loadTheme(theme)
-      document.documentElement.setAttribute('data-theme', theme);
-      const newState = { ...state, theme };
+      const newState = { ...state, editorOptions: { ...state.editorOptions, ...action.payload } };
       localStorage.setItem('config', JSON.stringify(newState))
       return newState
     }

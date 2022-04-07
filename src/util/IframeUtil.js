@@ -1,8 +1,3 @@
-/**
- * 'https://cdn.jsdelivr.net/npm/sass.js@0.11.1/dist/sass.sync.min.js'
- * window.Sass.compile(css, function (result) { });
- */
-
 import Compiler from "./Compiler";
 
 export class IframeUtil {
@@ -50,7 +45,7 @@ export class IframeUtil {
       this.iframeWin.onerror = function (message, _, lineno, colno) {
         const errors = jsValue.split('\n').map((line, i) => {
           return `${lineno - 1 === i ? '> ' : '  '} ${i + 1} | ${line.trim()}`
-        });
+        }).slice(lineno - 1, lineno);
 
         resolve(`${message} (${lineno}:${colno})\n\n${errors.join('\n')}`)
       };
