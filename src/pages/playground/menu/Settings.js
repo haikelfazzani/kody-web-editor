@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { PlaygroundContext } from '../../../store/PlaygroundProvider';
 
-const themes = ['monokai', 'dracula', 'cobalt', 'one_dark', 'eclipse', 'xcode', 'tomorrow'];
+const themes = ['monokai', 'dracula', 'cobalt', 'one_dark', 'ambiance', 'eclipse', 'xcode', 'textmate', 'tomorrow'];
 
 export default function Settings() {
   const { playgroundState, dispatch } = useContext(PlaygroundContext);
@@ -19,7 +19,8 @@ export default function Settings() {
         fontSize: +data.fontSize,
         tabSize: +data.tabSize,
         showInvisibles: data.showInvisibles === 'on',
-        enableLiveAutocompletion: data.enableLiveAutocompletion === 'on'
+        enableLiveAutocompletion: data.enableLiveAutocompletion === 'on',
+        wrapEnabled: data.wrapEnabled === 'on'
       }
     });
 
@@ -43,6 +44,7 @@ export default function Settings() {
       <select name='keyboardHandler' defaultValue={editorOptions.keyboardHandler}>
         <option value="ace/keyboard/sublime">sublime</option>
         <option value="ace/keyboard/vim">vim</option>
+        <option value="ace/keyboard/emacs">emacs</option>
       </select>
     </div>
 
@@ -51,6 +53,14 @@ export default function Settings() {
       <select name='theme' defaultValue={editorOptions.theme}>
         {themes.map(theme => <option key={theme} value={theme}>{theme}</option>)}
       </select>
+    </div>
+
+    <div className='w-100 d-flex align-center justify-between mt-2'>
+      <label htmlFor='wrapEnabled'><i className="fas fa-ellipsis-h mr-1"></i>Wrap Mode</label>
+      <label className="switch">
+        <input type="checkbox" name='wrapEnabled' defaultChecked={editorOptions.wrapEnabled} />
+        <div></div>
+      </label>
     </div>
 
     <div className='w-100 d-flex align-center justify-between mt-2'>

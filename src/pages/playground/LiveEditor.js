@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import { PlaygroundContext } from '../../store/PlaygroundProvider';
 import { IframeUtil } from '../../util/IframeUtil'
 import AceEditor from "react-ace";
-import templates from '../../util/templates/index';
+import templates from '../../util/templates';
 import jsBeauty from '../../util/jsBeauty';
 import { DropboxService } from '../../services/DropboxService';
+import TemplatesService from '../../services/TemplatesService';
 
 function LiveEditor() {
   const params = new URLSearchParams(window.location.search),
@@ -16,18 +17,20 @@ function LiveEditor() {
   const [tabs, setTabs] = useState(templates['local']);
 
   useEffect(() => {
-    if (service && file) {
-      DropboxService.downloadFile(file)
-        .then(content => {
+    (async () => {
+      try {
+        await TemplatesService();
+        if (service && file) {
+          const content = await DropboxService.downloadFile(file)
           const temp = tabs.slice(0);
           temp[0] = content;
           temp[1] = '';
           temp[2] = '';
           setTabs(temp);
           localStorage.setItem('tabs', JSON.stringify(temp))
-        })
-        .catch(e => { })
-    }
+        }
+      } catch (error) { }
+    })();
     return () => { }
   }, [])
 

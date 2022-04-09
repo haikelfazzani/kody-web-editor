@@ -14,6 +14,12 @@
   --black: #181818;
 }
 
+[data-theme="ambiance"] {
+  --black: #202020;
+  --dark:#3a3a3a;
+  --gray:#5a5a5a;
+}
+
 [data-theme="one_dark"] {
   --black: #282c34;
   --dark:#363c49;
@@ -51,4 +57,11 @@
   --dark:#ebebeb;
   --gray:#dbdbdb;
   --white: #707070;
+}
+
+[data-theme="textmate"] {
+  --black: #fff;
+  --dark:#e2e2e2;
+  --gray:#cccccc;
+  --white: #333;
 }

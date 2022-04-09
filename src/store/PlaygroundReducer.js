@@ -4,20 +4,20 @@ export default function PlaygroundReducer(state, action) {
   switch (action.type) {
     case 'tab-index': {
       const newState = { ...state, tabIndex: action.payload.tabIndex }
-      localStorage.setItem('config', JSON.stringify(newState))
+      localStorage.setItem('config-v2', JSON.stringify(newState))
       return newState;
     }
 
     case 'language': {
       const newState = { ...state, languages: action.payload };
-      localStorage.setItem('config', JSON.stringify(newState));
+      localStorage.setItem('config-v2', JSON.stringify(newState));
       return newState
     }
 
     case 'template': {
       const template = action.payload.template;
       const newState = { ...state, template };
-      localStorage.setItem('config', JSON.stringify(newState));
+      localStorage.setItem('config-v2', JSON.stringify(newState));
       return newState
     }
 
@@ -28,7 +28,7 @@ export default function PlaygroundReducer(state, action) {
       }
 
       const newState = { ...state, editorOptions: action.payload };      
-      localStorage.setItem('config', JSON.stringify(newState))
+      localStorage.setItem('config-v2', JSON.stringify(newState))
       return newState
     }
 
@@ -44,14 +44,14 @@ export default function PlaygroundReducer(state, action) {
 
     case 'show-console': {
       const newState = { ...state, showConsole: !state.showConsole };
-      localStorage.setItem('config', JSON.stringify(newState))
+      localStorage.setItem('config-v2', JSON.stringify(newState))
       return newState
     }
 
     case 'console-logs': {
       const logs = action.payload.logs;
       const newState = { ...state, logs };
-      localStorage.setItem('config', JSON.stringify(newState))
+      localStorage.setItem('config-v2', JSON.stringify(newState))
       return newState
     }
 

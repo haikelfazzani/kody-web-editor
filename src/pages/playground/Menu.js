@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { PlaygroundContext } from '../../store/PlaygroundProvider';
 import Dropdown from '../../components/DropDown';
 
-import templates from '../../util/templates/index';
+import templates from '../../util/templates';
 import Preprocessor from '../../util/Preprocessor';
 import tabsToHTML from '../../util/tabsToHTML';
 import download from '../../util/download';
