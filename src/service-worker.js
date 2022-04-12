@@ -22,7 +22,7 @@ registerRoute(({ url }) => /^.*\.(jpg|gif|jpeg|png|svg)$/gi.test(url.hostname),
 );
 
 registerRoute(
-  ({ url }) => /cloudflare|jsdelivr|unpkg|ace-builds/gi.test(url.hostname)
+  ({ url }) => /jsdelivr|unpkg|ace-builds/gi.test(url.hostname)
     && /^.*\.js$/g.test(url.pathname),
   new StaleWhileRevalidate({
     cacheName: 'js-cdn',
@@ -33,7 +33,7 @@ registerRoute(
 );
 
 registerRoute(
-  ({ url }) => /cloudflare|googleapis|unpkg|ace-builds/gi.test(url.hostname)
+  ({ url }) => /googleapis|unpkg|ace-builds/gi.test(url.hostname)
     && /^.*\.css$/g.test(url.pathname),
   new StaleWhileRevalidate({
     cacheName: 'styles',

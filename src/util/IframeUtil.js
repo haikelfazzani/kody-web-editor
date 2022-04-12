@@ -1,4 +1,5 @@
 import Compiler from "./Compiler";
+import LocalExternalLibs from "./LocalExternalLibs";
 
 export class IframeUtil {
   constructor(preprocessors) {
@@ -14,6 +15,8 @@ export class IframeUtil {
 
     this.iframeDoc = this.iframe.contentDocument;
     this.iframeWin = this.iframe.contentWindow;
+
+    this.loadExternalLibs()
   }
 
   async write(html, cssValue, jsValue, resolve) {
@@ -37,7 +40,7 @@ export class IframeUtil {
         script.type = this.jsPreprocessor === 'coffeescript' ? "text/" + this.jsPreprocessor : "module";
         script.innerHTML = jsValue;
         script.defer = true;
-        
+
         this.iframeDoc.body.appendChild(script);
         resolve(' ')
       }
@@ -50,9 +53,35 @@ export class IframeUtil {
         resolve(`${message} (${lineno}:${colno})\n\n${errors.join('\n')}`)
       };
 
-      this.iframeDoc.close();      
+      this.iframeDoc.close();
     } catch (error) {
       resolve(error.message);
+    }
+  }
+
+  loadExternalLibs() {
+    const libs = LocalExternalLibs.getAll();
+    for (let i = 0; i < libs.length; i++) {
+      const lib = libs[i];
+      const id = lib.name + '-' + lib.version;
+      if (document.getElementById(id)) continue;
+
+      if (/\.js(?:\?|$)/g.test(lib.latest)) {
+        const script = document.createElement('script')
+        script.src = lib.latest;
+        script.id = id;
+        this.iframeDoc.body.appendChild(script);
+      }
+
+      if (/\.css(?:\?|$)/g.test(lib.latest)) {
+        const head = this.iframeDoc.getElementsByTagName('head')[0];
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = lib.latest;
+        link.id = id;
+        link.crossOrigin = "anonymous";
+        head.appendChild(link);
+      }
     }
   }
 

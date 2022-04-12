@@ -5,7 +5,7 @@ import initState from './PlaygroundState';
 const PlaygroundContext = createContext();
 
 function PlaygroundProvider(props) {
-  const [playgroundState, dispatch] = useReducer(PlaygroundReducer,initState)
+  const [playgroundState, dispatch] = useReducer(PlaygroundReducer, initState);
 
   return <PlaygroundContext.Provider value={{ playgroundState, dispatch }} >
     {props.children}

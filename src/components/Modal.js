@@ -7,7 +7,7 @@ export default function Modal({ children, showModal, setShowModal }) {
     <div className={"modal " + (showModal ? 'd-flex' : 'd-none')}>
       <div className="bg-dark d-flex flex-column justify-content-center align-items-center content scaleIn br7">
 
-        <button className='btn' onClick={() => { setShowModal(!showModal); }}>
+        <button className='btn br7' onClick={() => { setShowModal(!showModal); }}>
           <i className="fa fa-times"></i>
         </button>
 

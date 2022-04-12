@@ -1,5 +1,3 @@
-import loadTheme from "../util/loadTheme";
-
 export default function PlaygroundReducer(state, action) {
   switch (action.type) {
     case 'tab-index': {
@@ -18,17 +16,6 @@ export default function PlaygroundReducer(state, action) {
       const template = action.payload.template;
       const newState = { ...state, template };
       localStorage.setItem('config-v2', JSON.stringify(newState));
-      return newState
-    }
-
-    case 'editor-options': {
-      if (action.payload.theme !== state.editorOptions.theme) {
-        loadTheme(action.payload.theme)
-        document.documentElement.setAttribute('data-theme', action.payload.theme);
-      }
-
-      const newState = { ...state, editorOptions: action.payload };      
-      localStorage.setItem('config-v2', JSON.stringify(newState))
       return newState
     }
 

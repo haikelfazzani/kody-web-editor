@@ -1,20 +1,25 @@
-import React, { useState, useContext } from 'react';
-import { PlaygroundContext } from '../../../store/PlaygroundProvider';
+import { useState } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import editorOptionsState from '../../../atoms/editorOptionsState';
 
 const themes = ['monokai', 'dracula', 'cobalt', 'one_dark', 'ambiance', 'eclipse', 'xcode', 'textmate', 'tomorrow'];
 
-export default function Settings() {
-  const { playgroundState, dispatch } = useContext(PlaygroundContext);
-  const { editorOptions } = playgroundState;
+export default function EditorOptions() {
 
   const [isSaved, setIsSaved] = useState('Save settings');
+
+  const editorOptions = useRecoilValue(editorOptionsState);
+  const setOptions = useSetRecoilState(editorOptionsState);
 
   const onSubmit = e => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    dispatch({
-      type: 'editor-options', payload: {
+    document.documentElement.setAttribute('data-theme', data.theme);
+
+    const newState = (oldValue) => {
+      return {
+        ...oldValue,
         ...data,
         fontSize: +data.fontSize,
         tabSize: +data.tabSize,
@@ -22,16 +27,18 @@ export default function Settings() {
         enableLiveAutocompletion: data.enableLiveAutocompletion === 'on',
         wrapEnabled: data.wrapEnabled === 'on'
       }
-    });
+    }
 
+    setOptions(newState);
     setIsSaved('Saved');
+    localStorage.setItem('editor-options-v3', JSON.stringify(newState()))
     setTimeout(() => { setIsSaved('Save settings'); }, 2000);
   }
 
   return <form onSubmit={onSubmit}>
     <div className='w-100 d-flex align-center justify-between mb-1'>
       <label htmlFor='fontSize'><i className="fas fa-font mr-1"></i>Font size</label>
-      <input type="number" name='fontSize' defaultValue={editorOptions.fontSize} />
+      <input type="number" name='fontSize' defaultValue={+editorOptions.fontSize} />
     </div>
 
     <div className='w-100 d-flex align-center justify-between mb-1'>
@@ -45,6 +52,7 @@ export default function Settings() {
         <option value="ace/keyboard/sublime">sublime</option>
         <option value="ace/keyboard/vim">vim</option>
         <option value="ace/keyboard/emacs">emacs</option>
+        <option value="ace/keyboard/vscode">vscode</option>
       </select>
     </div>
 

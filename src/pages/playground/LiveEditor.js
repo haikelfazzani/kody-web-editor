@@ -1,20 +1,25 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { PlaygroundContext } from '../../store/PlaygroundProvider';
 import { IframeUtil } from '../../util/IframeUtil'
+import { useRecoilValue } from 'recoil';
 import AceEditor from "react-ace";
 import templates from '../../util/templates';
 import jsBeauty from '../../util/jsBeauty';
 import { DropboxService } from '../../services/DropboxService';
 import TemplatesService from '../../services/TemplatesService';
 
-function LiveEditor() {
-  const params = new URLSearchParams(window.location.search),
-    service = params.get('service'),
-    file = params.get('file');
+import templateState from '../../atoms/templateState';
+import editorOptionsState from '../../atoms/editorOptionsState';
+import tabState from '../../atoms/tabState';
 
+function LiveEditor() {
   const { playgroundState, dispatch } = useContext(PlaygroundContext);
-  const { tabIndex, template, languages, editorOptions } = playgroundState;
+  const { service, file } = playgroundState;
   const [tabs, setTabs] = useState(templates['local']);
+
+  const template = useRecoilValue(templateState);
+  const editorOptions = useRecoilValue(editorOptionsState);
+  const { tabIndex, languages } = useRecoilValue(tabState)
 
   useEffect(() => {
     (async () => {
@@ -90,6 +95,7 @@ function LiveEditor() {
   const onShowConsole = () => { dispatch({ type: 'show-console' }) }
 
   return <div className="editor">
+    
     <AceEditor
       mode={Object.keys(languages)[tabIndex]}
       onChange={onEditorValueChange}
