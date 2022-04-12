@@ -2,10 +2,17 @@ import { atom } from "recoil";
 import unquer from "unquer";
 import Preprocessor from "../util/Preprocessor";
 
-const { languages } = unquer.parse(window.location.search);
+const params = unquer.parse(window.location.search);
+let languages = { html: 'html', css: 'css', javascript: 'javascript' };
+
+if (params.languages && params.languages.length > 1) {
+  languages.html = params.languages[0];
+  languages.css = params.languages[1];
+  languages.javascript = params.languages[2];
+}
 
 const initState = {
-  languages: { html: languages[0] || 'html', css: languages[1] || 'css', javascript: languages[2] || 'javascript' },
+  languages,
   tabIndex: 0,
 }
 
