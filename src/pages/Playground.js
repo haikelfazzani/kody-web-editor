@@ -19,7 +19,7 @@ function Playground() {
         cursor="col-resize"
         gutterSize={7}
         className={"h-100 d-flex" + (isMobile ? " flex-column" : "")}
-        sizes={isMobile ? [100, 0] : [50, 50]}
+        sizes={isMobile ? [70, 30] : [50, 50]}
       >
         <LiveEditor />
         <LivePreview />

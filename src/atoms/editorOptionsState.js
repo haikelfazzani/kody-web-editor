@@ -9,10 +9,10 @@ const initState = local
     theme: 'monokai',
     fontSize: 16,
     tabSize: 2,
-    showInvisibles: false,
+    showPrintMargin: false,
     enableLiveAutocompletion: true,
     wrapEnabled: false,
-    useWorker: true
+    useWorker: false
   }
 
 const editorOptionsState = atom({

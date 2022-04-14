@@ -23,9 +23,10 @@ export default function EditorOptions() {
         ...data,
         fontSize: +data.fontSize,
         tabSize: +data.tabSize,
-        showInvisibles: data.showInvisibles === 'on',
+        showPrintMargin: data.showPrintMargin === 'on',
         enableLiveAutocompletion: data.enableLiveAutocompletion === 'on',
-        wrapEnabled: data.wrapEnabled === 'on'
+        wrapEnabled: data.wrapEnabled === 'on',
+        useWorker: data.useWorker === 'on'
       }
     }
 
@@ -64,7 +65,7 @@ export default function EditorOptions() {
     </div>
 
     <div className='w-100 d-flex align-center justify-between mt-2'>
-      <label htmlFor='wrapEnabled'><i className="fas fa-ellipsis-h mr-1"></i>Wrap Mode</label>
+      <label htmlFor='wrapEnabled'><i className="fas fa-grip-lines mr-1"></i>Wrap Mode</label>
       <label className="switch">
         <input type="checkbox" name='wrapEnabled' defaultChecked={editorOptions.wrapEnabled} />
         <div></div>
@@ -72,17 +73,25 @@ export default function EditorOptions() {
     </div>
 
     <div className='w-100 d-flex align-center justify-between mt-2'>
-      <label htmlFor='showInvisibles'><i className="fas fa-ellipsis-h mr-1"></i>show Invisibles</label>
+      <label htmlFor='showPrintMargin'><i className="fas fa-ellipsis-h mr-1"></i>Print Margin</label>
       <label className="switch">
-        <input type="checkbox" name='showInvisibles' defaultChecked={editorOptions.showInvisibles} />
+        <input type="checkbox" name='showPrintMargin' defaultChecked={editorOptions.showPrintMargin} />
+        <div></div>
+      </label>
+    </div>    
+
+    <div className='w-100 d-flex align-center justify-between mt-2'>
+      <label htmlFor='enableLiveAutocompletion'><i className="fas fa-feather mr-1"></i>Autocompletion</label>
+      <label className="switch">
+        <input type="checkbox" name='enableLiveAutocompletion' defaultChecked={editorOptions.enableLiveAutocompletion} />
         <div></div>
       </label>
     </div>
 
     <div className='w-100 d-flex align-center justify-between mt-2'>
-      <label htmlFor='enableLiveAutocompletion'><i className="fas fa-ellipsis-h mr-1"></i>Autocompletion</label>
+      <label htmlFor='useWorker'><i className="fas fa-signature mr-1"></i>SYNTAX CHECKER</label>
       <label className="switch">
-        <input type="checkbox" name='enableLiveAutocompletion' defaultChecked={editorOptions.enableLiveAutocompletion} />
+        <input type="checkbox" name='useWorker' defaultChecked={editorOptions.useWorker} />
         <div></div>
       </label>
     </div>

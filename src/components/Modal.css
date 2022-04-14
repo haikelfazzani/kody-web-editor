@@ -14,15 +14,14 @@
 }
 
 .modal .content {
-  min-width: 300px;
+  max-height: 90%;
   padding: 20px;
-  position: relative;
 }
 
-.content>button {
+.modal>button {
   position: absolute;
-  right: 0;
-  top: -35px;
+  right: 10px;
+  top: 10px;
 } 
 
 .w-50 {width: 50%;}

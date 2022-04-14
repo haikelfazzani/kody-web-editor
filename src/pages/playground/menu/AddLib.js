@@ -21,7 +21,10 @@ export default function AddLib() {
   }
 
   return (<div className='w-100'>
-    <input className='w-100 br7' type="text" name='library' onChange={onchange} placeholder='type name library..' required />
+
+    <div className='w-100 d-flex'>      
+      <input className='w-100 br7' type="text" name='library' onChange={onchange} placeholder='type name library..' required />
+    </div>
 
     <hr />
 

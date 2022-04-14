@@ -43,7 +43,7 @@ export default function Tab() {
   }, []);
 
   return <ul className='h-100 d-flex align-center'>
-    <li><i className="fas fa-circle text-white"></i></li>
+    <li><i className="fab fa-redhat text-white"></i></li>
     {tabs.map((tab, i) => <li key={tab.name} className={state.tabIndex === i ? 'active-tab' : ''}>
       <Dropdown
         index={i}

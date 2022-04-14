@@ -11,7 +11,7 @@ export default function LivePreview() {
   return <Split direction={isMobile ? "horizontal" : "vertical"}
     gutterSize={7}
     sizes={playgroundState.showConsole ? [50, 50] : [100, 0]}
-    minSize={playgroundState.showConsole ? 70 : 0}
+    minSize={0}
     className={"w-100 d-flex" + (isMobile ? "" : " flex-column")}>
 
     <LiveIframe />
