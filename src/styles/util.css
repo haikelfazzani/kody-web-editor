@@ -1,5 +1,6 @@
 .w-100 {width: 100%;}
 .h-100 {height: 100%; }
+.vh-100 { height: 100vh;}
 
 .h-25 {max-height: calc(100vh / 4);}
 
@@ -36,6 +37,9 @@
 .pr-3 {padding-right: 30px;}
 .pl-3 {padding-left: 30px;}
 
+.p-2 {padding: 20px;}
+.p-1 {padding: 10px;}
+
 .bg-inherit {background-color: inherit !important;}
 .bg-dark {background-color: var(--dark);}
 .bg-white {background-color: var(--white);}
@@ -46,11 +50,14 @@
 .red { color: var(--red); }
 .yellow { color: var(--yellow); }
 
+.border-right {border-right: 1px solid var(--gray);}
 .border-bottom {border-bottom: 1px solid var(--gray);}
 .border {border: 1px solid var(--gray);}
 
 .text-uppercase {text-transform: uppercase;}
 .text-center {text-align: center;}
+
+.fs-70 {font-size: 70px;}
 
 .grid-1-3 { display: grid; grid-template-columns: 1fr 3fr; gap: 20px; }
 .grid-2 {display: grid; grid-template-columns: 1fr 1fr; gap: 20px;}

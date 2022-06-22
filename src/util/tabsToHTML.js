@@ -1,4 +1,5 @@
-export default function tabsToHTML(tabs) {
+export default function tabsToHTML() {
+  const tabs = JSON.parse(localStorage.getItem('tabs'));  
   return `<html>
   <head>
     <meta charset="UTF-8">
@@ -8,7 +9,7 @@ export default function tabsToHTML(tabs) {
   </head>
   <body>
     ${tabs[0]}
-    <script>${tabs[0]}</script>
+    <script>${tabs[2]}</script>
   </body>
 </html>`
 }

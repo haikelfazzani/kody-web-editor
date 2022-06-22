@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import CDNService from '../../../services/CDNService';
-import debounce from '../../../util/debounce';
-import LocalExternalLibs from '../../../util/LocalExternalLibs';
+import CDNService from '../../services/CDNService';
+import debounce from '../../util/debounce';
+import LocalExternalLibs from '../../util/LocalExternalLibs';
 
 export default function AddLib() {
   const [libs, setLibs] = useState(LocalExternalLibs.getAll())

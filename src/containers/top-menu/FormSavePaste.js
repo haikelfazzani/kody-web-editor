@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { DropboxService } from '../../../services/DropboxService';
-import tabsToHTML from '../../../util/tabsToHTML';
+import useAuth from '../../hooks/useAuth';
+import SuperbaseService from '../../services/SuperbaseService';
 
 function FormSavePaste() {
+  const authSession = useAuth();
   const [fileInfos, setFileInfos] = useState();
-  const [errMsg, setErrMsg] = useState(null)
+  const [errMsg, setErrMsg] = useState(null);
 
   const onSaveSnippet = async (e) => {
     e.preventDefault();
+    if (!authSession || !authSession.user_metadata) return;
+
     try {
       let filename = e.target.elements[0].value;
-      let html = tabsToHTML(JSON.parse(localStorage.getItem('tabs')))
-      const response = await DropboxService.uploadFile(filename, html);
-      setFileInfos(response);
+      const tabsAsString = localStorage.getItem('tabs');
+
+      const response = await SuperbaseService.savePaste({
+        filename,
+        content: tabsAsString,
+        user_email: authSession.user_metadata.email
+      });
+
+      setErrMsg('Paste is saved successfully:' + response.id);
+
+      e.target.reset();
     } catch (error) {
       setErrMsg(error.message);
     }
@@ -31,12 +42,6 @@ function FormSavePaste() {
         <i className="fa fa-save mr-1"></i>save paste
       </button>
     </form>
-
-    {fileInfos && <ul className='w-100 d-flex justify-between'>
-      <li className='green'>Saved</li>
-      <li>{fileInfos.name}</li>
-      <li>{fileInfos.size}</li>
-    </ul>}
 
     {errMsg && <p className='red'>{errMsg}</p>}
   </>);

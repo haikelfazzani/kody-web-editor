@@ -14,15 +14,31 @@ body {
   overflow: auto;
 }
 
-main {background-color: var(--black);}
+main {
+  background-color: var(--black);
+}
 
-ul {list-style: none; padding: 0; margin: 0;}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-a {text-decoration: none; color: var(--white);}
+a {
+  text-decoration: none;
+  color: var(--white);
+}
 
-th {text-transform: uppercase; padding: 7px;}
+th {
+  text-transform: uppercase;
+  padding: 7px;
+}
 
-button {padding: 0; border: 0; background-color: transparent;}
+button {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}
 
 .btn {
   display: flex;
@@ -31,24 +47,43 @@ button {padding: 0; border: 0; background-color: transparent;}
   border: 1px solid var(--gray);
   background-color: var(--dark);
   color: var(--white);
-  cursor: pointer;  
-  order: 2;  
+  cursor: pointer;
+  order: 2;
   transition: opacity 0.25s;
   text-transform: uppercase;
 }
 
-.btn:hover, a:hover {opacity: 0.8;}
+.btn:hover,
+a:hover {
+  opacity: 0.8;
+}
 
-label {width: 100%; text-transform: uppercase; }
-.btn, input, select { padding: 8px 18px; font-size: .95rem; line-height: 1.5; outline: none;}
-input, select {min-width: 120px;}
+label {
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.btn,
+input,
+select {
+  padding: 8px 18px;
+  font-size: .95rem;
+  line-height: 1.5;
+  outline: none;
+}
+
+input,
+select {
+  min-width: 120px;
+}
 
 hr {
   margin: 12px 0;
-  border:1px solid var(--gray);
+  border: 1px solid var(--gray);
 }
- /**********************/
- ::-webkit-scrollbar {
+
+/**********************/
+::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
@@ -65,13 +100,23 @@ hr {
 }
 
 @keyframes scaleIn {
-  from { transform: scale(0); }
-  to { transform: scale(1); }
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
 }
+
 /************ Media queries *********/
 @media screen and (max-width: 724px) {
 
-  body,.btn,.dropdown-menu {font-size: 12px;}
+  body,
+  .btn,
+  .dropdown-menu {
+    font-size: 12px;
+  }
 
   .d-sm-none {
     display: none !important;

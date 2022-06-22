@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import editorOptionsState from '../../../atoms/editorOptionsState';
+import editorOptionsState from '../../atoms/editorOptionsState';
 
 const themes = ['monokai', 'dracula', 'cobalt', 'one_dark', 'ambiance', 'eclipse', 'xcode', 'textmate', 'tomorrow'];
 

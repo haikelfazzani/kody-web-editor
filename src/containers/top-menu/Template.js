@@ -1,8 +1,8 @@
 import React from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import templateState from '../../../atoms/templateState';
-import Dropdown from '../../../components/DropDown'
-import templates from '../../../util/templates';
+import templateState from '../../atoms/templateState';
+import Dropdown from '../../components/DropDown'
+import templates from '../../util/templates';
 
 export default function Template() {
   const template = useRecoilValue(templateState);
@@ -17,5 +17,4 @@ export default function Template() {
     data={Object.keys(templates)}
     onchange={onTemplateChange}
   />
-
 }

@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Footer from '../components/Footer';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 
-function About () {
+function About() {
+
+  useEffect(() => {
+    axios.get('/.netlify/functions/index')
+      .then(v => {
+        console.log(v.data);
+      })
+
+    return () => {
+
+    }
+  }, [])
+
+
   return (<main>
 
     <div className="container text-center py-5">

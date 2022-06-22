@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import tabState from '../../../atoms/tabState';
+import tabState from '../../atoms/tabState';
 
-import Dropdown from '../../../components/DropDown';
-import Preprocessor from '../../../util/Preprocessor'
+import Dropdown from '../../components/DropDown';
+import Preprocessor from '../../util/Preprocessor'
 
 const tabs = [
   { name: 'html', icon: 'html5', color: 'red', preprocessor: ['html'] },

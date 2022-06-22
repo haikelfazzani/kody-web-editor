@@ -5,16 +5,22 @@ import { useRecoilValue } from 'recoil';
 import AceEditor from "react-ace";
 import templates from '../../util/templates';
 import jsBeauty from '../../util/jsBeauty';
-import { DropboxService } from '../../services/DropboxService';
+
+import SuperbaseService from '../../services/SuperbaseService'
+
 import TemplatesService from '../../services/TemplatesService';
 
 import templateState from '../../atoms/templateState';
 import editorOptionsState from '../../atoms/editorOptionsState';
 import tabState from '../../atoms/tabState';
+import useAuth from '../../hooks/useAuth';
+import unquer from 'unquer';
 
 function LiveEditor() {
+  const authSession = useAuth();
+  const params = unquer.parse(window.location.href)
+
   const { playgroundState, dispatch } = useContext(PlaygroundContext);
-  const { service, file } = playgroundState;
   const [tabs, setTabs] = useState(templates['local']);
 
   const template = useRecoilValue(templateState);
@@ -25,16 +31,16 @@ function LiveEditor() {
     (async () => {
       try {
         await TemplatesService();
-        if (service && file) {
-          const content = await DropboxService.downloadFile(file)
-          const temp = tabs.slice(0);
-          temp[0] = content;
-          temp[1] = '';
-          temp[2] = '';
-          setTabs(temp);
+
+        if (params.p) {
+          const { content } = await SuperbaseService.getOnePaste(params.p);
+          const temp = JSON.parse(content);
+          setTabs(JSON.parse(content));
           localStorage.setItem('tabs', JSON.stringify(temp))
         }
-      } catch (error) { }
+      } catch (error) {
+        console.log(error);
+       }
     })();
     return () => { }
   }, [])

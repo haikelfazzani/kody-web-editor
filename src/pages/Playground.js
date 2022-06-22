@@ -1,10 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { PlaygroundProvider } from '../store/PlaygroundProvider';
-import LiveEditor from './playground/LiveEditor';
-import Menu from './playground/Menu';
-import LivePreview from './playground/LivePreview';
 import Split from 'react-split';
+
+import { PlaygroundProvider } from '../store/PlaygroundProvider';
+
+import LiveEditor from '../containers/playground/LiveEditor';
+import LivePreview from '../containers/playground/LivePreview';
+import Menu from '../containers/top-menu/index';
 
 function Playground() {
   const isMobile = window.innerWidth < 700;

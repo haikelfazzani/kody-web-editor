@@ -1,11 +1,22 @@
 # Kody
 is an online web editor for modern front end development that makes creating and sharing web apps faster. Including most popular frameworks like VueNext, ReactJs and more.
 
-- [x] typescript, coffeescript, babel
-- [x] Sass and Less
+## Features
+
+- [x] Transpilers: typescript, coffeescript, babel, livescript
+- [x] Css: Sass and Less
 - [x] Templates : React, Preact, VueNext, NanoJsx, RxJS, Jquery
-- [x] Oauth 2.0 Dropbox
+- [x] Oauth Github
 - [x] PWA
+- [ ] CRUD
+
+## Built with
+- Superbase
+- React
+- React Router
+- Ace Editor
+- Recoil
+- Netlify
 
 ### Captures
 ![](https://i.ibb.co/QkrTBbD/editor.png)
