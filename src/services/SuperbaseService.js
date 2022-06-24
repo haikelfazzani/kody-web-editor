@@ -1,27 +1,21 @@
-import { supabase } from '../util/supabaseClient'
+import { supabase } from '../util/supabaseClient';
+
+const redirectTo = process.env.REACT_APP_REDIRECTO;
 
 export default class SuperbaseService {
 
   static async signin() {
-    const { user, session, error } = await supabase.auth.signIn({
-      provider: 'github',
-    }, {
-      redirectTo: 'http://localhost:8888/callback'
-    });
-
+    const { user, session, error } = await supabase.auth.signIn({ provider: 'github', }, { redirectTo });
     return { user, session, error }
   }
 
-  static async getAllPastes(access_token) {
-    const token = localStorage.getItem('auth-token') || access_token;
-    const { user, error } = supabase.auth.setAuth(token);
-    console.log(user, error);
-    const { data } = await supabase.from('pastes').select().eq('user_id', user.id);
-    return data
+  static async getAllPastes(userEmail) {
+    const { data } = await supabase.from('pastes').select().eq('user_email', userEmail);
+    return data;
   }
 
   static async getOnePaste(id) {
-    const { data, error } = await supabase.from('pastes').select().eq('id', id);    
+    const { data, error } = await supabase.from('pastes').select().eq('id', id);
     return data[0];
   }
 
