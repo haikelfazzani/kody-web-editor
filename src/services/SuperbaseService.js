@@ -9,6 +9,12 @@ export default class SuperbaseService {
     return { user, session, error }
   }
 
+  static async signout() {
+    await supabase.auth.signOut();
+    window.localStorage.removeItem('auth-token')
+    window.location.href = '/';
+  }
+
   static async getAllPastes(userEmail) {
     const { data } = await supabase.from('pastes').select().eq('user_email', userEmail);
     return data;

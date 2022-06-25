@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react'
-
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
-
-import { supabase } from '../util/supabaseClient';
 import Spinner from '../components/Spinner'
 import SuperbaseService from '../services/SuperbaseService';
 
@@ -18,15 +15,10 @@ export default function Account() {
       const data = await SuperbaseService.getAllPastes(authSession.user_metadata.email);
       setPastes(data);
     })();
-
-    return () => {
-
-    }
   }, [authSession]);
 
   const signout = async () => {
-    await supabase.auth.signOut();
-    window.location.href = '/';
+    await SuperbaseService.signout()
   }
 
   if (authSession && authSession.user_metadata) {
@@ -37,6 +29,7 @@ export default function Account() {
           <img className='w-100 rounded' src={user.avatar_url} alt={user.user_name} />
           <h3>{user.name}</h3>
           <p>last sign in at: {new Date(authSession.last_sign_in_at).toDateString()}</p>
+          <Link className='w-100 btn mb-2 mt-3' to="/">Playground</Link>
           <button className='w-100 btn bg-red' onClick={signout}>Sign out</button>
         </div>
 
