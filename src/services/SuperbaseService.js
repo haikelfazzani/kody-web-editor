@@ -11,17 +11,19 @@ export default class SuperbaseService {
 
   static async signout() {
     await supabase.auth.signOut();
-    window.localStorage.removeItem('auth-token')
-    window.location.href = '/';
+    // window.localStorage.removeItem('auth-token')
+    window.location.href = '/login';
   }
 
   static async getAllPastes(userEmail) {
-    const { data } = await supabase.from('pastes').select().eq('user_email', userEmail);
+    const { data, error } = await supabase.from('pastes').select().eq('user_email', userEmail);
+    if (error) window.location.href = '/login';
     return data;
   }
 
   static async getOnePaste(id) {
     const { data, error } = await supabase.from('pastes').select().eq('id', id);
+    if (error) window.location.href = '/login';
     return data[0];
   }
 
@@ -29,7 +31,7 @@ export default class SuperbaseService {
     const { data, error } = await supabase
       .from('pastes')
       .insert([{ filename, content, user_email }]);
-
+    if (error) window.location.href = '/login';
     return data[0];
   }
 }

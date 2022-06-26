@@ -5,12 +5,14 @@ export default function useAuth() {
   const [authSession, setAuthSession] = useState(null);
 
   useEffect(() => {
-
     let authListener = null;
 
     (async () => {
       const token = localStorage.getItem('auth-token');
       const { user, error } = await supabase.auth.api.getUser(token);
+
+      // if (error) window.location.href = '/login';
+
       if (user) setAuthSession(user)
 
       authListener = supabase.auth.onAuthStateChange(async (event, session) => {

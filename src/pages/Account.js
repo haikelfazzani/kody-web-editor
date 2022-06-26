@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import Spinner from '../components/Spinner'
 import SuperbaseService from '../services/SuperbaseService';
+import { withRouter } from 'react-router-dom';
 
-export default function Account() {
+function Account(props) {
   const authSession = useAuth();
   const [pastes, setPastes] = useState(null)
 
@@ -12,8 +13,12 @@ export default function Account() {
     if (!authSession || !authSession.user_metadata) return;
 
     (async () => {
-      const data = await SuperbaseService.getAllPastes(authSession.user_metadata.email);
-      setPastes(data);
+      try {
+        const data = await SuperbaseService.getAllPastes(authSession.user_metadata.email);
+        setPastes(data);
+      } catch (error) {
+        props.history.push('/login')
+      }
     })();
   }, [authSession]);
 
@@ -49,3 +54,5 @@ export default function Account() {
     return <Spinner />
   }
 }
+
+export default withRouter(Account)

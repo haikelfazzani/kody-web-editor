@@ -13,7 +13,8 @@ function FormSavePaste() {
     if (!authSession || !authSession.user_metadata) return;
 
     try {
-      let filename = e.target.elements[0].value;
+      let filename = e.target.elements[0].value.replace(/[^a-z]/gi,'');
+
       const tabsAsString = localStorage.getItem('tabs');
 
       const response = await SuperbaseService.savePaste({
