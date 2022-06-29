@@ -70,4 +70,7 @@
 
 .cp {cursor: pointer;}
 
-.overflow-auto {overflow: auto;}
+.shadow {box-shadow: var(--shadow);}
+
+.overflow {overflow: auto;}
+.overflow-h {overflow: hidden;}

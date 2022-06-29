@@ -32,7 +32,7 @@ function LiveEditor() {
       try {
         await TemplatesService();
 
-        if (params.p) {
+        if (params && params.p) {
           const { content } = await SuperbaseService.getOnePaste(params.p);
           const temp = JSON.parse(content);
           setTabs(JSON.parse(content));

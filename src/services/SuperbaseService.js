@@ -34,4 +34,13 @@ export default class SuperbaseService {
     if (error) window.location.href = '/login';
     return data[0];
   }
+
+  static async deletePaste(pasteId) {
+    const { data, error } = await supabase
+      .from('pastes')
+      .delete()
+      .match({ id: pasteId })
+    if (error) window.location.href = '/login';
+    return data;
+  }
 }

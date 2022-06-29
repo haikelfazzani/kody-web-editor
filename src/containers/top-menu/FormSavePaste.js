@@ -23,7 +23,7 @@ function FormSavePaste() {
         user_email: authSession.user_metadata.email
       });
 
-      setErrMsg('Paste is saved successfully:' + response.id);
+      setErrMsg('http://localhost:8888/?p=' + response.id);
 
       e.target.reset();
     } catch (error) {
@@ -44,7 +44,7 @@ function FormSavePaste() {
       </button>
     </form>
 
-    {errMsg && <p className='red'>{errMsg}</p>}
+    {errMsg && <input className='w-100 mt-2' type="text" defaultValue={errMsg} readOnly />}
   </>);
 }
 
