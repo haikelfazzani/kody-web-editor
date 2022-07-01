@@ -9,28 +9,32 @@ function FormSavePaste() {
   const [fileInfos, setFileInfos] = useState();
   const [errMsg, setErrMsg] = useState(null);
 
-  const onSaveSnippet = debounce(async (e) => {
+  const onSaveSnippet = async (e) => {
     e.preventDefault();
+
+    setErrMsg(null);
     if (!authSession || !authSession.user_metadata) return;
 
-    try {
-      let filename = e.target.elements[0].value.replace(/[^a-z]/gi, '');
+    debounce(async () => {
+      try {
+        let filename = e.target.elements[0].value.replace(/[^a-z]/gi, '');
 
-      const tabsAsString = localStorage.getItem('tabs');
+        const tabsAsString = localStorage.getItem('tabs');
 
-      const response = await SuperbaseService.savePaste({
-        filename,
-        content: tabsAsString,
-        user_email: authSession.user_metadata.email
-      });
+        const response = await SuperbaseService.savePaste({
+          filename,
+          content: tabsAsString,
+          user_email: authSession.user_metadata.email
+        });
 
-      setErrMsg('http://localhost:8888/?p=' + response.id);
+        setErrMsg('http://localhost:8888/?p=' + response.id);
 
-      e.target.reset();
-    } catch (error) {
-      setErrMsg(error.message);
-    }
-  })
+        e.target.reset();
+      } catch (error) {
+        setErrMsg(error.message);
+      }
+    })()
+  }
 
   return (<>
     <form className="w-100" onSubmit={onSaveSnippet}>
